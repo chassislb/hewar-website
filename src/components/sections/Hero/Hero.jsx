@@ -15,42 +15,48 @@ const Hero = () => {
   useGSAP(() => {
     /* Preloader runs ~2s on first visit; skip it on return visits */
     const preloaderSeen = sessionStorage.getItem('hewar-loaded') === 'true'
-    const tl = gsap.timeline({ delay: preloaderSeen ? 0.15 : 2.0 })
+    const tl = gsap.timeline({ delay: preloaderSeen ? 0.1 : 2.0 })
 
     /* Orbs drift in from invisible */
-    tl.from('[data-hero-orb]', {
-      scale: 0.4, opacity: 0,
-      duration: 2.8, stagger: 0.3, ease: 'power2.out',
-    })
+    tl.fromTo('[data-hero-orb]',
+      { scale: 0.4, opacity: 0 },
+      { scale: 1, opacity: 1, duration: 2.8, stagger: 0.3, ease: 'power2.out' }
+    )
 
-    /* Eyebrow */
-    .from('[data-hero-eyebrow]', {
-      opacity: 0, y: 18,
-      duration: 0.7, ease: 'power3.out',
-    }, '-=2.2')
+    /* Eyebrow — explicit from→to because CSS starts it at opacity:0 */
+    .fromTo('[data-hero-eyebrow]',
+      { opacity: 0, y: 18 },
+      { opacity: 1, y: 0, duration: 0.7, ease: 'power3.out' },
+      '-=2.2'
+    )
 
-    /* Headline — line masks */
-    .from('[data-hero-line]', {
-      y: '115%',
-      duration: 1.2, stagger: 0.13, ease: 'power4.out',
-    }, '-=0.5')
+    /* Headline lines — CSS keeps them translated down; animate TO y:0 */
+    .fromTo('[data-hero-line]',
+      { y: '115%' },
+      { y: '0%', duration: 1.2, stagger: 0.13, ease: 'power4.out' },
+      '-=0.5'
+    )
 
     /* Descriptor */
-    .from('[data-hero-sub]', {
-      opacity: 0, y: 28,
-      duration: 0.85, ease: 'power3.out',
-    }, '-=0.75')
+    .fromTo('[data-hero-sub]',
+      { opacity: 0, y: 28 },
+      { opacity: 1, y: 0, duration: 0.85, ease: 'power3.out' },
+      '-=0.75'
+    )
 
     /* CTAs */
-    .from('[data-hero-cta]', {
-      opacity: 0, y: 20,
-      duration: 0.7, ease: 'power3.out',
-    }, '-=0.55')
+    .fromTo('[data-hero-cta]',
+      { opacity: 0, y: 20 },
+      { opacity: 1, y: 0, duration: 0.7, ease: 'power3.out' },
+      '-=0.55'
+    )
 
     /* Scroll hint */
-    .from('[data-hero-scroll]', {
-      opacity: 0, duration: 0.5,
-    }, '-=0.3')
+    .fromTo('[data-hero-scroll]',
+      { opacity: 0 },
+      { opacity: 1, duration: 0.5 },
+      '-=0.3'
+    )
 
     /* Subtle parallax on scroll */
     gsap.to('[data-hero-headline]', {

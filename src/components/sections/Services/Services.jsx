@@ -2,114 +2,102 @@ import { useRef } from 'react'
 import { useGSAP } from '@gsap/react'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
-import { motion } from 'framer-motion'
 import Container from '../../ui/Container/Container'
-import Button from '../../ui/Button/Button'
 import { services } from '../../../data/services'
 import { useCursor } from '../../../context/CursorContext'
 import styles from './Services.module.css'
 
 gsap.registerPlugin(ScrollTrigger)
 
-const ServiceCard = ({ service, index }) => {
+const ServiceCard = ({ service }) => {
   const { setCursor, resetCursor } = useCursor()
 
   return (
-    <motion.article
+    <div
       className={styles.card}
-      initial={{ opacity: 0, y: 50 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: '-60px' }}
-      transition={{ duration: 0.7, delay: index * 0.08, ease: [0.16, 1, 0.3, 1] }}
-      whileHover="hover"
       onMouseEnter={() => setCursor('hover')}
       onMouseLeave={resetCursor}
     >
       <div className={styles.cardInner}>
         <div className={styles.cardTop}>
           <span className={styles.cardNum}>{service.id}</span>
-          <motion.div
-            className={styles.cardArrow}
-            variants={{ hover: { x: 4, y: -4 } }}
-            transition={{ duration: 0.3 }}
-          >
-            ↗
-          </motion.div>
+          <span className={styles.cardArrow}>↗</span>
         </div>
-
         <h3 className={styles.cardTitle}>{service.title}</h3>
         <p className={styles.cardDesc}>{service.description}</p>
-
         <div className={styles.cardTags}>
           {service.tags.map((tag) => (
             <span key={tag} className={styles.tag}>{tag}</span>
           ))}
         </div>
       </div>
-
-      {/* Hover glow border */}
-      <motion.div
-        className={styles.cardBorder}
-        variants={{ rest: { opacity: 0 }, hover: { opacity: 1 } }}
-        transition={{ duration: 0.3 }}
-        aria-hidden
-      />
-    </motion.article>
+      <div className={styles.cardBorder} aria-hidden />
+    </div>
   )
 }
 
 const Services = () => {
   const sectionRef = useRef(null)
+  const trackRef   = useRef(null)
 
   useGSAP(() => {
-    gsap.from('[data-services-heading]', {
-      y: 50,
-      opacity: 0,
-      duration: 1,
-      ease: 'power4.out',
-      scrollTrigger: {
-        trigger: '[data-services-heading]',
-        start: 'top 85%',
-      },
+    const mm = gsap.matchMedia()
+
+    mm.add('(min-width: 769px)', () => {
+      const getX = () => -(trackRef.current.scrollWidth - window.innerWidth)
+
+      const setHeight = () => {
+        const extra = trackRef.current.scrollWidth - window.innerWidth
+        sectionRef.current.style.minHeight = `calc(100vh + ${extra}px)`
+      }
+      setHeight()
+
+      gsap.to(trackRef.current, {
+        x: getX,
+        ease: 'none',
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: 'top top',
+          end: 'bottom bottom',
+          scrub: 1,
+          invalidateOnRefresh: true,
+          onRefresh: setHeight,
+        },
+      })
     })
+
+    return () => mm.revert()
   }, { scope: sectionRef })
 
   return (
     <section className={styles.services} ref={sectionRef} id="services">
-      <Container>
-        {/* Header */}
-        <div className={styles.header} data-services-heading>
-          <div className={styles.label}>
-            <span className={styles.dots} aria-hidden>
-              <span /><span /><span />
-            </span>
-            <span>What We Do</span>
-          </div>
+      <div className={styles.sticky}>
 
-          <div className={styles.headingRow}>
-            <h2 className={styles.heading}>Our Services</h2>
-            <p className={styles.headingSub}>
-              Twelve integrated disciplines — from public relations and events to digital
-              media and financial communication — unified by one commitment: making every
-              partner's voice impossible to ignore.
-            </p>
+        <Container>
+          <div className={styles.header}>
+            <div className={styles.label}>
+              <span className={styles.dots} aria-hidden><span /><span /><span /></span>
+              <span>Our Services</span>
+            </div>
+            <div className={styles.headingRow}>
+              <h2 className={styles.heading}>
+                Everything a modern brand needs —<br />
+                <span className={styles.headingAccent}>amplified.</span>
+              </h2>
+              <p className={styles.headingSub}>
+                Seven disciplines. One team. Zero compromise.
+              </p>
+            </div>
           </div>
-        </div>
+        </Container>
 
-        {/* Grid */}
-        <div className={styles.grid}>
-          {services.map((service, i) => (
-            <ServiceCard key={service.id} service={service} index={i} />
+        <div className={styles.track} ref={trackRef}>
+          {services.map((service) => (
+            <ServiceCard key={service.id} service={service} />
           ))}
         </div>
 
-        {/* Footer CTA */}
-        <div className={styles.footerCta}>
-          <Button variant="ghost" href="/services">
-            View All Services
-          </Button>
-        </div>
-      </Container>
+      </div>
     </section>
   )
 }

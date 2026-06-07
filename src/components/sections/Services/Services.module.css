@@ -1,12 +1,25 @@
+/* ── Outer section — height set dynamically by GSAP ── */
 .services {
-  padding-block: var(--section-padding-y);
   background: var(--color-bg-primary);
   position: relative;
+  overflow-x: clip;
+}
+
+/* ── Sticky viewport — same pattern as Work ── */
+.sticky {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
 }
 
 /* ── Header ── */
 .header {
-  margin-bottom: clamp(3rem, 6vw, 5rem);
+  flex-shrink: 0;
+  padding-block: clamp(2.5rem, 5vw, 4rem) clamp(1.25rem, 2.5vw, 2rem);
 }
 
 .label {
@@ -18,7 +31,7 @@
   letter-spacing: var(--tracking-widest);
   text-transform: uppercase;
   color: var(--color-text-accent);
-  margin-bottom: var(--space-6);
+  margin-bottom: var(--space-5);
 }
 
 .dots {
@@ -49,30 +62,45 @@
   color: var(--color-text-primary);
 }
 
+.headingAccent {
+  background: var(--gradient-brand);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
 .headingSub {
-  max-width: 380px;
+  max-width: 300px;
   font-size: var(--type-body-md);
   color: var(--color-text-secondary);
   line-height: var(--leading-relaxed);
   padding-bottom: 0.4rem;
 }
 
-/* ── Grid ── */
-.grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
+/* ── Horizontal track ── */
+.track {
+  flex: 1;
+  display: flex;
+  align-items: stretch;
   gap: 1px;
+  /* Align to container left edge */
+  padding-left: max(var(--container-pad), calc((100vw - var(--container-max)) / 2 + var(--container-pad)));
+  padding-right: clamp(2rem, 5vw, 4rem);
+  padding-bottom: clamp(1rem, 2vw, 1.5rem);
+  width: max-content;
+  will-change: transform;
   background: var(--color-border);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-lg);
-  overflow: hidden;
 }
 
 /* ── Card ── */
 .card {
+  flex: none;
+  width: min(360px, 78vw);
   position: relative;
   background: var(--color-bg-primary);
   cursor: none;
+  display: flex;
+  flex-direction: column;
   transition: background var(--dur-normal) var(--ease-smooth);
 }
 
@@ -107,10 +135,11 @@
 .cardArrow {
   font-size: 1.1rem;
   color: var(--color-text-tertiary);
-  transition: color var(--dur-fast) ease;
+  transition: color var(--dur-fast) ease, transform var(--dur-fast) ease;
 }
 .card:hover .cardArrow {
   color: var(--color-cyan);
+  transform: translate(3px, -3px);
 }
 
 .cardTitle {
@@ -132,7 +161,9 @@
   display: flex;
   flex-wrap: wrap;
   gap: var(--space-2);
-  margin-top: var(--space-2);
+  margin-top: auto;
+  padding-top: var(--space-4);
+  border-top: 1px solid var(--color-border);
 }
 
 .tag {
@@ -150,29 +181,59 @@
   color: var(--color-text-secondary);
 }
 
-/* Hover glow border overlay */
+/* Hover glow border */
 .cardBorder {
   position: absolute;
   inset: 0;
-  border-radius: inherit;
   border: 1px solid var(--color-border-accent);
   pointer-events: none;
   z-index: 2;
+  opacity: 0;
+  transition: opacity var(--dur-normal) ease;
+}
+.card:hover .cardBorder {
+  opacity: 1;
 }
 
-.footerCta {
-  display: flex;
-  justify-content: center;
-  margin-top: clamp(2.5rem, 5vw, 4rem);
-}
+/* ── Mobile — horizontal swipe ── */
+@media (max-width: 768px) {
+  .services {
+    min-height: unset !important;
+  }
 
-/* ── Responsive ── */
-@media (max-width: 1024px) {
-  .grid { grid-template-columns: repeat(2, 1fr); }
-}
+  .sticky {
+    position: static;
+    height: auto;
+    overflow: visible;
+  }
 
-@media (max-width: 600px) {
-  .grid { grid-template-columns: 1fr; background: none; border: none; }
-  .card { border: 1px solid var(--color-border); border-radius: var(--radius-md); }
-  .headingRow { flex-direction: column; align-items: flex-start; }
+  .header {
+    padding-inline: var(--container-px, 1.5rem);
+  }
+
+  .headingRow {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .track {
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+    width: 100%;
+    padding-inline: var(--container-px, 1.5rem);
+    padding-bottom: 1.5rem;
+    background: none;
+    gap: clamp(0.75rem, 2vw, 1rem);
+  }
+  .track::-webkit-scrollbar {
+    display: none;
+  }
+
+  .card {
+    scroll-snap-align: start;
+    width: 82vw;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+  }
 }
