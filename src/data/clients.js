@@ -1,13 +1,7 @@
-/* Client names — logos can be added as SVG imports later */
 export const clients = [
-  'Jadwa Investment',
-  'Riyad Capital',
-  'STC',
-  'Ma\'aden',
   'NEOM',
-  'Saudi Vision 2030',
-  'Al Rajhi Bank',
-  'Tamkeen',
-  'PIF',
-  'Dur Hospitality',
+  'Zakat, Tax and Customs Authority',
+  'King Fahd Causeway Authority',
+  'D360 Bank',
+  'Zain Telecom',
 ]

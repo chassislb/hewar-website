@@ -1,13 +1,17 @@
-export const SITE_NAME = 'HEWAR Group'
-export const SITE_TAGLINE = 'Think. Create. Communicate.'
+export const SITE_NAME        = 'Hewar Group'
+export const SITE_TAGLINE    = 'Think. Create. Communicate.'
 export const SITE_DESCRIPTION =
-  "HEWAR Group is Saudi Arabia's premier communication and innovation company — where strategy, creativity, and technology converge."
+  'Hewar is a Saudi-born integrated marketing communications agency with regional presence, global expertise, and local knowledge — crafting bespoke solutions for partners across the public and private sectors.'
 
-export const CONTACT_EMAIL = 'hello@hewar.com'
-export const CONTACT_PHONE = '+966 11 000 0000'
+export const CONTACT_EMAIL   = 'info@hewargroup.com'
+
+export const OFFICES = [
+  { city: 'Riyadh', country: 'Saudi Arabia' },
+  { city: 'Beirut',  country: 'Lebanon' },
+]
 
 export const SOCIAL_LINKS = {
-  linkedin:  'https://linkedin.com/company/hewar',
+  linkedin:  'https://linkedin.com/company/hewar-group',
   twitter:   'https://twitter.com/hewargroup',
   instagram: 'https://instagram.com/hewargroup',
 }

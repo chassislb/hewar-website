@@ -1,44 +1,86 @@
 export const services = [
   {
     id: '01',
-    title: 'Strategic Communication',
+    title: 'Public Relations',
     description:
-      'Integrated communication strategies that align your brand voice with your business ambitions — built for clarity, scale, and impact.',
-    tags: ['Brand Strategy', 'Messaging', 'Positioning'],
+      "Strategic PR that builds, protects, and elevates reputations across media, government, and industry — crafted for the pace of today's news cycle.",
+    tags: ['Media Relations', 'Crisis Comms', 'Reputation'],
   },
   {
     id: '02',
-    title: 'Creative & Content',
+    title: 'Event Management',
     description:
-      'From brand identity to content ecosystems — we design and produce work that stops people mid-scroll and makes them feel something.',
-    tags: ['Design', 'Copywriting', 'Production'],
+      "From intimate leadership forums to large-scale national events — end-to-end production, logistics, and experience design that reflect your brand's ambition.",
+    tags: ['Conferences', 'Product Launches', 'Ceremonies'],
   },
   {
     id: '03',
-    title: 'Digital & Social',
+    title: 'Social Media Management',
     description:
-      'Data-informed digital campaigns and social strategies that grow communities, drive engagement, and convert attention into action.',
-    tags: ['Social Media', 'Performance', 'SEO'],
+      'Community building, content strategy, and real-time engagement that transforms your channels into platforms of influence and trust.',
+    tags: ['Strategy', 'Content', 'Community'],
   },
   {
     id: '04',
-    title: 'Fintech Communication',
+    title: 'Creative Communication',
     description:
-      'Specialized communication for financial services, fintech, and investment brands — building the trust that complex industries demand.',
-    tags: ['Financial PR', 'Investor Relations', 'Compliance'],
+      'Campaign ideation and brand storytelling that cuts through noise — ideas rooted in insight, executed with craft.',
+    tags: ['Campaigns', 'Brand Story', 'Ideation'],
   },
   {
     id: '05',
-    title: 'Media Relations',
+    title: 'Content Creation & Management',
     description:
-      'Deep media relationships and earned-coverage strategies that put your brand in the stories that shape your industry.',
-    tags: ['PR', 'Media Buying', 'Crisis Comms'],
+      'Editorial content, video production, photography, and publishing ecosystems built to sustain your brand narrative at scale.',
+    tags: ['Editorial', 'Video', 'Photography'],
   },
   {
     id: '06',
-    title: 'Events & Activation',
+    title: 'Strategic Communication',
     description:
-      'Live experiences, corporate forums, and brand activations designed to create moments your audience will remember — and talk about.',
-    tags: ['Events', 'Activations', 'Experiential'],
+      'Integrated communication strategies that align your messaging across audiences, channels, and touchpoints — built for clarity, consistency, and impact.',
+    tags: ['Positioning', 'Messaging', 'Planning'],
+  },
+  {
+    id: '07',
+    title: 'Financial Communication & IPO',
+    description:
+      'Specialized communication for financial milestones — IPO readiness, investor relations, regulatory disclosure, and financial media management.',
+    tags: ['IPO', 'Investor Relations', 'Financial PR'],
+  },
+  {
+    id: '08',
+    title: 'Advertising',
+    description:
+      'Above- and below-the-line advertising — from campaign concept to full production — for brands that want to be seen, remembered, and acted upon.',
+    tags: ['ATL / BTL', 'Campaign Production', 'Media Planning'],
+  },
+  {
+    id: '09',
+    title: 'Creative Services',
+    description:
+      'Design, visual identity, and brand collateral that express what your brand stands for — clearly, consistently, and beautifully.',
+    tags: ['Design', 'Branding', 'Visual Identity'],
+  },
+  {
+    id: '10',
+    title: 'Digital Media',
+    description:
+      'Performance-driven digital marketing — paid media, SEO, SEM, and analytics that connect your message to the right audience at the right moment.',
+    tags: ['Paid Media', 'SEO / SEM', 'Analytics'],
+  },
+  {
+    id: '11',
+    title: 'Activation Campaigns',
+    description:
+      'Experiential marketing and on-ground brand activations that create moments your audience participates in — not just observes.',
+    tags: ['Experiential', 'On-Ground', 'BTL'],
+  },
+  {
+    id: '12',
+    title: 'Public Speaking Training',
+    description:
+      'Executive media training, presentation skills coaching, and spokesperson development for leaders who need to communicate with clarity and conviction.',
+    tags: ['Media Training', 'Executive Coaching', 'Presentations'],
   },
 ]

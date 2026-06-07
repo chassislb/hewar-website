@@ -89,8 +89,9 @@ const Services = () => {
           <div className={styles.headingRow}>
             <h2 className={styles.heading}>Our Services</h2>
             <p className={styles.headingSub}>
-              Six core disciplines, one unified vision — to make every brand we touch
-              impossible to overlook.
+              Twelve integrated disciplines — from public relations and events to digital
+              media and financial communication — unified by one commitment: making every
+              partner's voice impossible to ignore.
             </p>
           </div>
         </div>

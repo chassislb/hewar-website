@@ -1,6 +1,6 @@
 export const numbers = [
-  { value: 120, suffix: '+', label: 'Clients Served',      description: 'Across Saudi Arabia and the region' },
-  { value: 8,   suffix: '+', label: 'Years of Excellence', description: 'Delivering results that matter' },
-  { value: 15,  suffix: '+', label: 'Markets Reached',     description: 'From Riyadh to the world' },
-  { value: 98,  suffix: '%', label: 'Client Retention',    description: 'They come back because it works' },
+  { value: 12,  suffix: '+', label: 'Years in the Market',    description: 'Serving partners across Saudi Arabia and the region' },
+  { value: 2,   suffix: '',  label: 'Regional Offices',       description: 'Riyadh, Saudi Arabia · Beirut, Lebanon' },
+  { value: 100, suffix: '+', label: 'Partners Served',        description: 'Public and private sector, across diverse industries' },
+  { value: 12,  suffix: '',  label: 'Service Disciplines',    description: 'End-to-end integrated marcom capabilities' },
 ]

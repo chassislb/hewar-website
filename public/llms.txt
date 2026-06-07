@@ -1,42 +1,62 @@
 # HEWAR Group
 
 > Think. Create. Communicate.
-> Saudi Arabia's premier communication and innovation company.
+> Saudi-born integrated marketing communications agency.
 
 ## About
 
-HEWAR Group (حوار) is a modern communication and fintech company headquartered in Saudi Arabia.
-The name "HEWAR" means "dialogue" in Arabic — reflecting the company's belief that the best
-results come from genuine conversation between brands and the people they serve.
+HEWAR Group (حوار) is an integrated marketing communications agency founded in Saudi Arabia,
+with over 12 years in the market and offices in Riyadh (Saudi Arabia) and Beirut (Lebanon).
 
-HEWAR Group is built around four core values: Growth, Methodology, Innovation, and Creativity.
+The name "HEWAR" means "dialogue" in Arabic — reflecting the agency's belief that the best
+communication is never one-directional: it listens as much as it speaks, and earns attention
+rather than demanding it.
+
+HEWAR crafts bespoke communication solutions for partners from the public and private sectors
+across diverse industries, aligned with Saudi Vision 2030 and the broader regional ambition.
+
 The company's brand pillars are Expertise, Integrity, Excellence, and Dedication.
 
 ## Services
 
-- **Strategic Communication** — Integrated communication strategies that align brand voice with business goals
-- **Creative & Content** — Brand identity, design, content production, and storytelling
-- **Digital & Social** — Digital marketing, social media management, SEO, and performance campaigns
-- **Fintech Communication** — Specialized communication for financial services, investment, and fintech brands
-- **Media Relations** — Press relations, media buying, earned media strategy, and crisis communications
-- **Events & Activation** — Corporate events, live experiences, and brand activations
+- **Public Relations** — Media relations, reputation management, and crisis communications
+- **Event Management** — Corporate events, conferences, product launches, and national ceremonies
+- **Social Media Management** — Strategy, content, and community management
+- **Creative Communication** — Campaign ideation and brand storytelling
+- **Content Creation & Management** — Editorial content, video, photography, and publishing
+- **Strategic Communication** — Integrated communication strategies and brand positioning
+- **Financial Communication & IPO** — IPO readiness, investor relations, and financial PR
+- **Advertising** — Above- and below-the-line advertising and campaign production
+- **Creative Services** — Design, branding, and visual identity
+- **Digital Media** — Paid media, SEO/SEM, and analytics
+- **Activation Campaigns** — Experiential marketing and on-ground brand activations
+- **Public Speaking Training** — Media training, executive coaching, and presentation skills
+
+## Clients & Partners
+
+- NEOM
+- Zakat, Tax and Customs Authority
+- King Fahd Causeway Authority
+- D360 Bank
+- Zain Telecom
 
 ## Positioning
 
-- Industry: Communication, Marketing, Fintech, Brand Strategy
+- Type: Integrated Marketing Communications (IMC) Agency
 - Founded: Saudi Arabia
-- Audience: Enterprise, B2B, Financial Services, Government, Fintech
+- Offices: Riyadh, Saudi Arabia · Beirut, Lebanon
+- Audience: Public sector, private sector, enterprise, B2B
 - Region: Saudi Arabia and the MENA region
 - Alignment: Saudi Vision 2030
+
+## Key Facts
+
+- 12+ years in the market
+- 2 regional offices (Riyadh + Beirut)
+- 100+ partners served across public and private sectors
+- 12 integrated service disciplines
 
 ## Contact
 
 - Website: https://hewargroup.com
-- Email: hello@hewar.com
-
-## Key Facts
-
-- 120+ clients served across Saudi Arabia and the region
-- 8+ years of excellence
-- 15+ markets reached
-- 98% client retention rate
+- Email: info@hewargroup.com

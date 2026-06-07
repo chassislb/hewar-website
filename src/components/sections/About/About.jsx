@@ -117,11 +117,11 @@ const About = () => {
               speaks, and earns attention rather than demanding it.
             </p>
             <p className={styles.story}>
-              Founded in Saudi Arabia, we've spent over eight years building the
-              infrastructure of how brands in the Kingdom — and beyond — connect
-              with the people that matter most to them. From fintech to
-              government, from startups to enterprise: we bring the same
-              discipline and creative intensity to every engagement.
+              Founded in Saudi Arabia with 12+ years in the market, we craft
+              bespoke communication solutions for partners from the public and
+              private sectors across diverse industries. From Riyadh to Beirut —
+              we bring the same discipline and creative intensity to every
+              engagement.
             </p>
 
             {/* Core values grid */}

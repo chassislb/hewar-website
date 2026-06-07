@@ -7,7 +7,7 @@ import styles from './Manifesto.module.css'
 
 gsap.registerPlugin(ScrollTrigger)
 
-const WORDS = ['We', 'don\'t', 'just', 'communicate', '—', 'we', 'make', 'ideas', 'impossible', 'to', 'ignore.']
+const WORDS = ['We', 'don\'t', 'just', 'tell', 'your', 'story', '—', 'we', 'shape', 'how', 'the', 'world', 'receives', 'it.']
 
 const Manifesto = () => {
   const sectionRef = useRef(null)
@@ -50,7 +50,7 @@ const Manifesto = () => {
       <div className={styles.line} aria-hidden />
 
       <Container size="narrow">
-        <p className={styles.statement} aria-label="We don't just communicate — we make ideas impossible to ignore.">
+        <p className={styles.statement} aria-label="We don't just tell your story — we shape how the world receives it.">
           {WORDS.map((word, i) => (
             <span key={i} className={styles.wordWrap}>
               <span className={styles.word} data-word>

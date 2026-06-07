@@ -116,8 +116,9 @@ const Hero = () => {
 
           {/* Sub */}
           <p className={styles.sub} data-hero-sub>
-            HEWAR Group is Saudi Arabia's premier communication and innovation company —
-            where strategy, creativity, and technology converge to drive lasting impact.
+            A Saudi-born integrated marketing communications agency — 12 years of
+            shaping brands, public narratives, and market presence for partners across
+            the public and private sectors. Riyadh. Beirut. The region.
           </p>
 
           {/* CTAs */}
