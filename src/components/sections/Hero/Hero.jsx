@@ -13,7 +13,9 @@ const Hero = () => {
   const { setCursor, resetCursor } = useCursor()
 
   useGSAP(() => {
-    const tl = gsap.timeline({ delay: 2.0 }) // starts after preloader (~2s)
+    /* Preloader runs ~2s on first visit; skip it on return visits */
+    const preloaderSeen = sessionStorage.getItem('hewar-loaded') === 'true'
+    const tl = gsap.timeline({ delay: preloaderSeen ? 0.15 : 2.0 })
 
     /* Orbs drift in from invisible */
     tl.from('[data-hero-orb]', {

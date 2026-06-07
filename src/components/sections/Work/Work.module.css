@@ -2,6 +2,7 @@
 .work {
   background: var(--color-bg-primary);
   position: relative;
+  overflow-x: clip; /* clip without creating a scroll container — keeps sticky working */
 }
 
 /* ── Sticky inner — stays pinned at top while outer scrolls ── */
@@ -231,11 +232,6 @@
     padding-bottom: 1.5rem;
   }
   .track::-webkit-scrollbar {
-    display: none;
-  }
-
-  .trackPadStart,
-  .trackPadEnd {
     display: none;
   }
 

@@ -61,6 +61,13 @@ body {
   direction: rtl;
 }
 
+/* ── Stacking — main sits above the fixed canvas (z-index:0) so particles
+   are visible only through transparent section backgrounds (hero area) ── */
+main {
+  position: relative;
+  z-index: 1;
+}
+
 /* ── Base Elements ── */
 img, video {
   display: block;

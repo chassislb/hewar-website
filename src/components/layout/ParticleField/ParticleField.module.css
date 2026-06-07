@@ -1,6 +1,6 @@
 .canvas {
   position: fixed;
   inset: 0;
-  z-index: 50;        /* above sections (z-index: 1) below navbar (100) and cursor (9999) */
+  z-index: 0;         /* below main content — shows through transparent hero background */
   pointer-events: none;
 }

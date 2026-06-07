@@ -5,7 +5,7 @@
   display: flex;
   align-items: center;
   overflow: hidden;
-  background: var(--color-bg-primary);
+  /* No background — canvas particles show through from behind main */
 }
 
 /* ═══════════════════════════════
