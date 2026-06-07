@@ -1,0 +1,55 @@
+/* HEWAR GROUP — Utility Classes */
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0,0,0,0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+.overflow-hidden { overflow: hidden; }
+.relative        { position: relative; }
+.flex            { display: flex; }
+.flex-col        { flex-direction: column; }
+.items-center    { align-items: center; }
+.justify-between { justify-content: space-between; }
+.gap-4           { gap: var(--space-4); }
+.gap-8           { gap: var(--space-8); }
+.w-full          { width: 100%; }
+
+.text-accent  { color: var(--color-text-accent); }
+.text-secondary { color: var(--color-text-secondary); }
+.gradient-text {
+  background: var(--gradient-text);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.section-label {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--type-body-xs);
+  font-weight: var(--weight-semibold);
+  letter-spacing: var(--tracking-widest);
+  text-transform: uppercase;
+  color: var(--color-text-accent);
+}
+
+.three-dots {
+  display: inline-flex;
+  gap: 3px;
+}
+.three-dots span {
+  display: block;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: currentColor;
+}

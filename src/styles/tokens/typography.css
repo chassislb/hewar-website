@@ -1,0 +1,58 @@
+/* ─────────────────────────────────────────────
+   HEWAR GROUP — Typography Tokens
+   Primary: Asterisk Sans → fallback Inter
+   Arabic: Swissra → fallback IBM Plex Sans Arabic
+───────────────────────────────────────────── */
+:root {
+  /* ── Font Families ── */
+  /* When Asterisk Sans font files are available, add @font-face in globals.css
+     and replace 'Inter' with 'Asterisk Sans' below */
+  --font-primary: 'Inter', 'Neue Haas Grotesk', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-arabic:  'IBM Plex Sans Arabic', 'Noto Kufi Arabic', sans-serif;
+  --font-mono:    'JetBrains Mono', 'Fira Code', monospace;
+
+  /* ── Display Scale (fluid clamp) ── */
+  --type-display-2xl: clamp(3.5rem, 9vw, 10.5rem);
+  --type-display-xl:  clamp(3rem,   7vw, 8rem);
+  --type-display-lg:  clamp(2.5rem, 5vw, 6rem);
+  --type-display-md:  clamp(2rem,   4vw, 4.5rem);
+  --type-display-sm:  clamp(1.75rem,3vw, 3.25rem);
+
+  /* ── Headings ── */
+  --type-h1: clamp(1.75rem, 3.5vw, 4rem);
+  --type-h2: clamp(1.5rem,  2.8vw, 3.25rem);
+  --type-h3: clamp(1.25rem, 2vw,   2rem);
+  --type-h4: clamp(1.1rem,  1.5vw, 1.5rem);
+
+  /* ── Body ── */
+  --type-body-xl: 1.375rem;
+  --type-body-lg: 1.25rem;
+  --type-body-md: 1rem;
+  --type-body-sm: 0.875rem;
+  --type-body-xs: 0.75rem;
+
+  /* ── Letter Spacing ── */
+  --tracking-tighter: -0.05em;
+  --tracking-tight:   -0.03em;
+  --tracking-normal:   0em;
+  --tracking-wide:     0.06em;
+  --tracking-wider:    0.12em;
+  --tracking-widest:   0.22em;
+
+  /* ── Line Height ── */
+  --leading-none:    1;
+  --leading-tight:   1.1;
+  --leading-snug:    1.25;
+  --leading-normal:  1.5;
+  --leading-relaxed: 1.65;
+  --leading-loose:   1.85;
+
+  /* ── Font Weights ── */
+  --weight-light:     300;
+  --weight-regular:   400;
+  --weight-medium:    500;
+  --weight-semibold:  600;
+  --weight-bold:      700;
+  --weight-extrabold: 800;
+  --weight-black:     900;
+}

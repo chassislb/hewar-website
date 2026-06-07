@@ -1,0 +1,84 @@
+.clients {
+  padding-block: clamp(4rem, 8vw, 7rem);
+  background: var(--color-bg-secondary);
+  border-top: 1px solid var(--color-border);
+  overflow: hidden;
+}
+
+.label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: var(--type-body-xs);
+  font-weight: var(--weight-semibold);
+  letter-spacing: var(--tracking-widest);
+  text-transform: uppercase;
+  color: var(--color-text-tertiary);
+  margin-bottom: clamp(2rem, 4vw, 3.5rem);
+}
+
+.dots {
+  display: flex;
+  gap: 3px;
+}
+.dots span {
+  display: block;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: currentColor;
+}
+
+/* ── Marquee ── */
+.track {
+  display: flex;
+  overflow: hidden;
+  /* Fade edges */
+  mask-image: linear-gradient(
+    to right,
+    transparent,
+    black 10%,
+    black 90%,
+    transparent
+  );
+}
+
+.marquee {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  animation: marquee 30s linear infinite;
+  will-change: transform;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.track:hover .marquee {
+  animation-play-state: paused;
+}
+
+.item {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  padding-inline: 1rem;
+}
+
+.itemText {
+  font-size: clamp(1.1rem, 2.5vw, 1.75rem);
+  font-weight: var(--weight-semibold);
+  letter-spacing: var(--tracking-tight);
+  color: var(--color-text-tertiary);
+  white-space: nowrap;
+  transition: color var(--dur-fast) ease;
+}
+
+.item:hover .itemText {
+  color: var(--color-text-primary);
+}
+
+.separator {
+  color: var(--color-violet);
+  font-size: 1.5rem;
+  line-height: 1;
+}

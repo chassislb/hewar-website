@@ -1,0 +1,45 @@
+/* ─────────────────────────────────────────────
+   HEWAR GROUP — Color Tokens
+   Source: HEWAR-Guideline-2025 extracted summary
+   Swap values here when brand PDF is processed.
+───────────────────────────────────────────── */
+:root {
+  /* ── Primary Brand ── */
+  --color-navy:            #061A40;
+  --color-navy-deep:       #041230;
+  --color-navy-mid:        #071E4A;
+  --color-white:           #FFFFFF;
+
+  /* ── Accent ── */
+  --color-violet:          #4700B3;
+  --color-violet-light:    #6200F0;
+  --color-violet-faint:    rgba(71, 0, 179, 0.12);
+  --color-violet-glow:     rgba(71, 0, 179, 0.35);
+  --color-cyan:            #00C8FF;
+  --color-cyan-dim:        rgba(0, 200, 255, 0.18);
+  --color-cyan-glow:       rgba(0, 200, 255, 0.30);
+
+  /* ── Backgrounds ── */
+  --color-bg-primary:      #061A40;
+  --color-bg-secondary:    #041230;
+  --color-bg-elevated:     #0A2255;
+  --color-bg-card:         rgba(255, 255, 255, 0.04);
+  --color-bg-card-hover:   rgba(255, 255, 255, 0.07);
+
+  /* ── Borders ── */
+  --color-border:          rgba(255, 255, 255, 0.08);
+  --color-border-hover:    rgba(255, 255, 255, 0.16);
+  --color-border-accent:   rgba(71, 0, 179, 0.45);
+
+  /* ── Text ── */
+  --color-text-primary:    #FFFFFF;
+  --color-text-secondary:  rgba(255, 255, 255, 0.60);
+  --color-text-tertiary:   rgba(255, 255, 255, 0.32);
+  --color-text-accent:     #00C8FF;
+
+  /* ── Gradients ── */
+  --gradient-brand:        linear-gradient(135deg, #4700B3 0%, #00C8FF 100%);
+  --gradient-brand-soft:   linear-gradient(135deg, rgba(71,0,179,0.6) 0%, rgba(0,200,255,0.6) 100%);
+  --gradient-surface:      linear-gradient(135deg, rgba(71,0,179,0.08) 0%, rgba(0,200,255,0.05) 100%);
+  --gradient-text:         linear-gradient(90deg, #FFFFFF 0%, rgba(0,200,255,0.85) 100%);
+}

@@ -1,0 +1,240 @@
+.hero {
+  position: relative;
+  width: 100%;
+  min-height: 100svh;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  background: var(--color-bg-primary);
+}
+
+/* ── Background ── */
+.bg {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.orb1 {
+  position: absolute;
+  width: clamp(500px, 65vw, 1000px);
+  height: clamp(500px, 65vw, 1000px);
+  top: -20%;
+  right: -8%;
+  background: radial-gradient(circle at center,
+    rgba(71, 0, 179, 0.5)  0%,
+    rgba(71, 0, 179, 0.18) 45%,
+    transparent            70%);
+  border-radius: 50%;
+  filter: blur(60px);
+  animation: driftOrb1 14s ease-in-out infinite;
+  will-change: transform;
+}
+
+.orb2 {
+  position: absolute;
+  width: clamp(350px, 50vw, 750px);
+  height: clamp(350px, 50vw, 750px);
+  bottom: -5%;
+  left: -5%;
+  background: radial-gradient(circle at center,
+    rgba(0, 200, 255, 0.35) 0%,
+    rgba(0, 200, 255, 0.1)  45%,
+    transparent              70%);
+  border-radius: 50%;
+  filter: blur(80px);
+  animation: driftOrb2 18s ease-in-out infinite;
+  will-change: transform;
+}
+
+.orb3 {
+  position: absolute;
+  width: clamp(200px, 30vw, 480px);
+  height: clamp(200px, 30vw, 480px);
+  top: 55%;
+  right: 28%;
+  background: radial-gradient(circle at center,
+    rgba(71, 0, 179, 0.25) 0%,
+    transparent             65%);
+  border-radius: 50%;
+  filter: blur(50px);
+  animation: driftOrb3 11s ease-in-out infinite;
+  will-change: transform;
+}
+
+/* Subtle dot grid */
+.grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    radial-gradient(circle, rgba(255,255,255,0.07) 1px, transparent 1px);
+  background-size: 48px 48px;
+  mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 0%, transparent 100%);
+}
+
+/* Edge vignette */
+.vignette {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 100% 60% at 50% 0%,   transparent 60%, var(--color-bg-primary) 100%),
+    radial-gradient(ellipse 100% 30% at 50% 100%,  var(--color-bg-primary) 0%, transparent 100%);
+}
+
+/* ── Content ── */
+.container {
+  position: relative;
+  z-index: 1;
+}
+
+.content {
+  padding-top: clamp(8rem, 18vw, 14rem);
+  padding-bottom: clamp(6rem, 10vw, 10rem);
+  max-width: 820px;
+}
+
+/* Eyebrow */
+.eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: clamp(1.5rem, 3vw, 2.5rem);
+  opacity: 0; /* GSAP owns this */
+}
+
+.dots {
+  display: flex;
+  gap: 4px;
+}
+
+.dot {
+  display: block;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--color-cyan);
+}
+
+.eyebrowText {
+  font-size: var(--type-body-xs);
+  font-weight: var(--weight-semibold);
+  letter-spacing: var(--tracking-widest);
+  text-transform: uppercase;
+  color: var(--color-text-secondary);
+}
+
+/* Headline */
+.headline {
+  display: flex;
+  flex-direction: column;
+  font-size: var(--type-display-2xl);
+  font-weight: var(--weight-black);
+  letter-spacing: var(--tracking-tighter);
+  line-height: var(--leading-tight);
+  color: var(--color-text-primary);
+  margin: 0 0 clamp(1.5rem, 3vw, 2.5rem);
+}
+
+/* Each line is wrapped in overflow:hidden — GSAP slides lineInner up */
+.lineWrap {
+  display: block;
+  overflow: hidden;
+  padding-bottom: 0.08em; /* prevents descenders clipping */
+}
+
+.lineInner {
+  display: block;
+  transform: translateY(115%); /* GSAP from-state */
+}
+
+.period {
+  background: var(--gradient-brand);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Subtext */
+.sub {
+  font-size: clamp(1rem, 1.6vw, 1.25rem);
+  color: var(--color-text-secondary);
+  line-height: var(--leading-relaxed);
+  max-width: 520px;
+  margin: 0 0 clamp(2rem, 4vw, 3rem);
+  opacity: 0; /* GSAP owns */
+}
+
+/* CTAs */
+.ctas {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  flex-wrap: wrap;
+  opacity: 0; /* GSAP owns */
+}
+
+/* ── Scroll indicator ── */
+.scrollIndicator {
+  position: absolute;
+  bottom: 2.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.6rem;
+  opacity: 0; /* GSAP owns */
+}
+
+.scrollLine {
+  width: 1px;
+  height: 56px;
+  background: linear-gradient(to bottom, var(--color-cyan), transparent);
+  border-radius: 2px;
+  animation: scrollPulse 2.2s ease-in-out infinite;
+}
+
+.scrollLabel {
+  font-size: 10px;
+  font-weight: var(--weight-semibold);
+  letter-spacing: var(--tracking-widest);
+  text-transform: uppercase;
+  color: var(--color-text-tertiary);
+}
+
+/* ── Bottom fade to next section ── */
+.bottomFade {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 200px;
+  background: linear-gradient(to bottom, transparent, var(--color-bg-primary));
+  pointer-events: none;
+}
+
+/* ── Mobile ── */
+@media (max-width: 768px) {
+  .content {
+    padding-top: 8rem;
+    padding-bottom: 5rem;
+  }
+
+  .headline {
+    font-size: clamp(2.8rem, 13vw, 5rem);
+  }
+
+  .sub {
+    font-size: 1rem;
+  }
+
+  .ctas {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .orb1 {
+    width: 100vw;
+    right: -50%;
+  }
+}

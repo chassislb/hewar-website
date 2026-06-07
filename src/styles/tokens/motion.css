@@ -1,0 +1,26 @@
+/* ─────────────────────────────────────────────
+   HEWAR GROUP — Motion Tokens
+   Shared by GSAP and CSS transitions.
+───────────────────────────────────────────── */
+:root {
+  /* ── Easing ── */
+  --ease-out-expo:    cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-out-quart:   cubic-bezier(0.25, 1, 0.5, 1);
+  --ease-in-out-circ: cubic-bezier(0.85, 0, 0.15, 1);
+  --ease-elastic:     cubic-bezier(0.34, 1.56, 0.64, 1);
+  --ease-smooth:      cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* ── Durations ── */
+  --dur-instant:   80ms;
+  --dur-fast:      180ms;
+  --dur-normal:    350ms;
+  --dur-slow:      600ms;
+  --dur-slower:    900ms;
+  --dur-cinematic: 1200ms;
+
+  /* ── Stagger ── */
+  --stagger-xs: 0.04s;
+  --stagger-sm: 0.08s;
+  --stagger-md: 0.12s;
+  --stagger-lg: 0.18s;
+}

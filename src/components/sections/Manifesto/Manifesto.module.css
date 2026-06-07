@@ -1,0 +1,85 @@
+.manifesto {
+  position: relative;
+  padding-block: clamp(7rem, 14vw, 12rem);
+  background: var(--color-bg-secondary);
+  overflow: hidden;
+}
+
+/* Accent orb */
+.orb {
+  position: absolute;
+  width: 600px;
+  height: 600px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(circle at center,
+    rgba(71, 0, 179, 0.22) 0%,
+    rgba(0, 200, 255, 0.08) 50%,
+    transparent             70%);
+  border-radius: 50%;
+  filter: blur(80px);
+  pointer-events: none;
+}
+
+/* Top/bottom border lines */
+.line {
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--color-border-accent), transparent);
+}
+
+/* Main statement */
+.statement {
+  font-size: clamp(2rem, 5.5vw, 5.5rem);
+  font-weight: var(--weight-bold);
+  letter-spacing: var(--tracking-tight);
+  line-height: var(--leading-snug);
+  color: var(--color-text-primary);
+  text-align: center;
+  position: relative;
+  z-index: 1;
+}
+
+.wordWrap {
+  display: inline;
+}
+
+.word {
+  display: inline;
+  transition: opacity var(--dur-normal) ease;
+}
+
+.dash {
+  color: var(--color-cyan);
+}
+
+/* Meta line below statement */
+.meta {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  margin-top: clamp(2.5rem, 5vw, 4rem);
+}
+
+.dots {
+  display: flex;
+  gap: 4px;
+}
+.dots span {
+  display: block;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--color-violet);
+}
+
+.metaText {
+  font-size: var(--type-body-xs);
+  font-weight: var(--weight-semibold);
+  letter-spacing: var(--tracking-widest);
+  text-transform: uppercase;
+  color: var(--color-text-tertiary);
+}
