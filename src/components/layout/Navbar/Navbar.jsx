@@ -6,50 +6,44 @@ import Container from '../../ui/Container/Container'
 import Button from '../../ui/Button/Button'
 import { navLinks } from '../../../data/navigation'
 import { useCursor } from '../../../context/CursorContext'
+import { useScrollProgress } from '../../../hooks/useScrollProgress'
 import styles from './Navbar.module.css'
 
 const Navbar = () => {
-  const [scrolled, setScrolled]   = useState(false)
-  const [menuOpen, setMenuOpen]   = useState(false)
-  const navRef                    = useRef(null)
-  const location                  = useLocation()
-  const { setCursor, resetCursor } = useCursor()
+  const [scrolled, setScrolled]     = useState(false)
+  const [menuOpen, setMenuOpen]     = useState(false)
+  const navRef                      = useRef(null)
+  const location                    = useLocation()
+  const { setCursor, resetCursor }  = useCursor()
+  const scrollProgress              = useScrollProgress()
 
-  /* Close menu on route change */
   useEffect(() => { setMenuOpen(false) }, [location])
 
-  /* Scroll detection */
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40)
     window.addEventListener('scroll', onScroll, { passive: true })
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
 
-  /* Lock body scroll when menu is open */
   useEffect(() => {
     document.body.style.overflow = menuOpen ? 'hidden' : ''
     return () => { document.body.style.overflow = '' }
   }, [menuOpen])
 
-  /* GSAP entrance */
   useEffect(() => {
     gsap.from(navRef.current, {
-      y: -30,
-      opacity: 0,
-      duration: 1,
-      delay: 0.2,
-      ease: 'power4.out',
+      y: -30, opacity: 0, duration: 1, delay: 2.2, ease: 'power4.out',
     })
   }, [])
 
   const menuVariants = {
-    closed: { clipPath: 'inset(0 0 100% 0)', opacity: 0, transition: { duration: 0.5, ease: [0.85, 0, 0.15, 1] } },
-    open:   { clipPath: 'inset(0 0 0% 0)',   opacity: 1, transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1] } },
+    closed: { clipPath: 'inset(0 0 100% 0)', opacity: 0, transition: { duration: 0.45, ease: [0.85, 0, 0.15, 1] } },
+    open:   { clipPath: 'inset(0 0 0% 0)',   opacity: 1, transition: { duration: 0.55, ease: [0.16, 1, 0.3, 1] } },
   }
 
   const linkVariants = {
-    closed: { opacity: 0, y: 30 },
-    open:   (i) => ({ opacity: 1, y: 0, transition: { delay: 0.15 + i * 0.07, duration: 0.6, ease: [0.16, 1, 0.3, 1] } }),
+    closed: { opacity: 0, y: 24 },
+    open:   (i) => ({ opacity: 1, y: 0, transition: { delay: 0.12 + i * 0.07, duration: 0.55, ease: [0.16, 1, 0.3, 1] } }),
   }
 
   return (
@@ -58,6 +52,13 @@ const Navbar = () => {
         ref={navRef}
         className={`${styles.navbar} ${scrolled ? styles.scrolled : ''} ${menuOpen ? styles.menuOpen : ''}`}
       >
+        {/* Scroll progress bar */}
+        <div
+          className={styles.progressBar}
+          style={{ transform: `scaleX(${scrollProgress})` }}
+          aria-hidden
+        />
+
         <Container>
           <nav className={styles.inner}>
             {/* Logo */}
@@ -77,7 +78,7 @@ const Navbar = () => {
               </span>
             </Link>
 
-            {/* Desktop nav links */}
+            {/* Desktop links */}
             <ul className={styles.links}>
               {navLinks.map((link) => (
                 <li key={link.href}>
@@ -111,7 +112,7 @@ const Navbar = () => {
             <button
               className={`${styles.hamburger} ${menuOpen ? styles.hamburgerOpen : ''}`}
               onClick={() => setMenuOpen((v) => !v)}
-              aria-label="Toggle menu"
+              aria-label={menuOpen ? 'Close menu' : 'Open menu'}
               onMouseEnter={() => setCursor('hover')}
               onMouseLeave={resetCursor}
             >
@@ -122,7 +123,7 @@ const Navbar = () => {
         </Container>
       </header>
 
-      {/* Mobile Menu Overlay */}
+      {/* Mobile Menu */}
       <AnimatePresence>
         {menuOpen && (
           <motion.div

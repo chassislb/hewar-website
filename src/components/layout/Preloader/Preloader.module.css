@@ -1,0 +1,87 @@
+.preloader {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  background: var(--color-bg-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* Gradient orb behind the logo */
+  background-image:
+    radial-gradient(ellipse 60% 60% at 50% 50%,
+      rgba(71, 0, 179, 0.25) 0%,
+      transparent 70%);
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.25rem;
+}
+
+/* Logo row */
+.logoRow {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.dots {
+  display: flex;
+  gap: 5px;
+}
+.dots span {
+  display: block;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--color-cyan);
+}
+
+.name {
+  font-size: clamp(2.5rem, 6vw, 5rem);
+  font-weight: var(--weight-black);
+  letter-spacing: var(--tracking-tighter);
+  color: var(--color-text-primary);
+  line-height: 1;
+}
+
+.sup {
+  font-size: 0.35em;
+  font-weight: var(--weight-semibold);
+  letter-spacing: var(--tracking-widest);
+  vertical-align: super;
+  margin-left: 0.3em;
+  color: var(--color-text-secondary);
+  font-style: normal;
+}
+
+/* Tagline */
+.tag {
+  font-size: var(--type-body-xs);
+  font-weight: var(--weight-semibold);
+  letter-spacing: var(--tracking-widest);
+  text-transform: uppercase;
+  color: var(--color-text-tertiary);
+  margin: 0;
+}
+
+/* Progress bar */
+.track {
+  width: clamp(160px, 20vw, 240px);
+  height: 1px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius-full);
+  overflow: hidden;
+  margin-top: 0.5rem;
+  position: relative;
+}
+
+.bar {
+  position: absolute;
+  inset: 0;
+  width: 0%;
+  background: var(--gradient-brand);
+  border-radius: var(--radius-full);
+}
