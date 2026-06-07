@@ -31,8 +31,9 @@ const Navbar = () => {
   }, [menuOpen])
 
   useEffect(() => {
+    const preloaderSeen = sessionStorage.getItem('hewar-loaded') === 'true'
     gsap.from(navRef.current, {
-      y: -30, opacity: 0, duration: 1, delay: 2.2, ease: 'power4.out',
+      y: -30, opacity: 0, duration: 1, delay: preloaderSeen ? 0.1 : 2.2, ease: 'power4.out',
     })
   }, [])
 

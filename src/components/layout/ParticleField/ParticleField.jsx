@@ -2,29 +2,29 @@ import { useEffect, useRef } from 'react'
 import styles from './ParticleField.module.css'
 
 /* ─── Tuning ─────────────────────────────── */
-const PARTICLE_COUNT  = 120
-const CONNECT_DIST    = 140   // px — max line length between particles
+const PARTICLE_COUNT  = 100
+const CONNECT_DIST    = 130   // px — max line length between particles
 const MOUSE_RADIUS    = 160   // px — cursor influence radius
-const REPEL_FORCE     = 0.55  // how hard cursor pushes particles away
+const REPEL_FORCE     = 0.5   // how hard cursor pushes particles away
 const RIPPLE_SPEED    = 0.14  // px per ms — outward ripple wave speed
 const RIPPLE_LIFE     = 900   // ms — ripple duration
 
 /* ─── Brand colours ─────────────────────── */
-const COL_LINE   = [0, 200, 255]    // cyan  #00C8FF
-const COL_POINT  = [71, 0, 179]     // violet #4700B3
-const COL_BRIGHT = [0, 200, 255]    // cyan highlight near cursor
+const COL_LINE   = [0, 200, 255]      // cyan  #00C8FF
+const COL_POINT  = [180, 140, 255]    // light lavender — visible as stars on navy
+const COL_BRIGHT = [0, 200, 255]      // cyan highlight near cursor
 /* ─────────────────────────────────────────── */
 
 function makeParticle(w, h) {
   const angle = Math.random() * Math.PI * 2
-  const speed = 0.18 + Math.random() * 0.22
+  const speed = 0.12 + Math.random() * 0.18
   return {
     x:     Math.random() * w,
     y:     Math.random() * h,
     vx:    Math.cos(angle) * speed,
     vy:    Math.sin(angle) * speed,
-    r:     1.4 + Math.random() * 1.6,
-    alpha: 0.25 + Math.random() * 0.45,
+    r:     1.2 + Math.random() * 2,
+    alpha: 0.4 + Math.random() * 0.5,
     phase: Math.random() * Math.PI * 2,
   }
 }
@@ -150,10 +150,10 @@ const ParticleField = () => {
 
         const [r, g, b] = near ? COL_BRIGHT : COL_POINT
 
-        if (near) {
-          ctx.shadowColor = `rgba(${COL_LINE[0]},${COL_LINE[1]},${COL_LINE[2]},0.8)`
-          ctx.shadowBlur  = 8 * DPR
-        }
+        ctx.shadowColor = near
+          ? `rgba(${COL_LINE[0]},${COL_LINE[1]},${COL_LINE[2]},0.9)`
+          : `rgba(${COL_POINT[0]},${COL_POINT[1]},${COL_POINT[2]},0.5)`
+        ctx.shadowBlur  = near ? 10 * DPR : 4 * DPR
 
         ctx.fillStyle = `rgba(${r},${g},${b},${alpha.toFixed(3)})`
         ctx.beginPath()

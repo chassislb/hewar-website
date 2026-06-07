@@ -97,8 +97,8 @@
 }
 
 .content {
-  padding-top: clamp(9rem, 20vw, 16rem);
-  padding-bottom: clamp(6rem, 10vw, 10rem);
+  padding-top: clamp(5rem, 10vw, 8rem);
+  padding-bottom: clamp(4rem, 8vw, 7rem);
   max-width: min(860px, 90vw);
 }
 
@@ -230,8 +230,8 @@
 ═══════════════════════════════ */
 @media (max-width: 768px) {
   .content {
-    padding-top: 8.5rem;
-    padding-bottom: 5rem;
+    padding-top: 6rem;
+    padding-bottom: 4rem;
   }
   .headline { font-size: clamp(2.8rem, 13vw, 5.5rem); }
   .sub      { font-size: 1.05rem; }
