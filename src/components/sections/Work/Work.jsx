@@ -1,44 +1,35 @@
 import { useRef } from 'react'
-import { motion } from 'framer-motion'
+import { useGSAP } from '@gsap/react'
+import gsap from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { Link } from 'react-router-dom'
 import Container from '../../ui/Container/Container'
-import Button from '../../ui/Button/Button'
 import { work } from '../../../data/work'
 import { useCursor } from '../../../context/CursorContext'
 import styles from './Work.module.css'
 
-const WorkCard = ({ project, large }) => {
+gsap.registerPlugin(ScrollTrigger)
+
+const WorkCard = ({ project, index }) => {
   const { setCursor, resetCursor } = useCursor()
 
   return (
-    <motion.div
-      className={`${styles.card} ${large ? styles.cardLarge : styles.cardSmall}`}
-      initial={{ opacity: 0, y: 60 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: '-80px' }}
-      transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
+    <div
+      className={styles.card}
       onMouseEnter={() => setCursor('view', 'View')}
       onMouseLeave={resetCursor}
     >
       <Link to={`/work/${project.id}`} className={styles.cardLink}>
-        {/* Visual block */}
-        <div
-          className={styles.visual}
-          style={{ '--card-color': project.color }}
-        >
-          {/* Gradient orb inside visual */}
+        {/* Visual */}
+        <div className={styles.visual} style={{ '--card-color': project.color }}>
           <div className={styles.visualOrb} />
           <div className={styles.visualGrid} />
-
-          {/* Hover overlay */}
-          <motion.div
-            className={styles.overlay}
-            initial={{ opacity: 0 }}
-            whileHover={{ opacity: 1 }}
-            transition={{ duration: 0.3 }}
-          >
+          <div className={styles.num} aria-hidden>
+            {String(index + 1).padStart(2, '0')}
+          </div>
+          <div className={styles.overlay}>
             <span className={styles.overlayBtn}>View Project ↗</span>
-          </motion.div>
+          </div>
         </div>
 
         {/* Meta */}
@@ -53,53 +44,67 @@ const WorkCard = ({ project, large }) => {
           </div>
         </div>
       </Link>
-    </motion.div>
+    </div>
   )
 }
 
 const Work = () => {
-  const large  = work.find((p) => p.size === 'large')
-  const smalls = work.filter((p) => p.size === 'small')
+  const sectionRef = useRef(null)
+  const trackRef   = useRef(null)
+
+  useGSAP(() => {
+    const mm = gsap.matchMedia()
+
+    mm.add('(min-width: 769px)', () => {
+      const getX = () => -(trackRef.current.scrollWidth - window.innerWidth)
+
+      /* Set section tall enough to scroll all cards */
+      const setHeight = () => {
+        const extra = trackRef.current.scrollWidth - window.innerWidth
+        sectionRef.current.style.minHeight = `calc(100vh + ${extra}px)`
+      }
+      setHeight()
+
+      gsap.to(trackRef.current, {
+        x: getX,
+        ease: 'none',
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: 'top top',
+          end: 'bottom bottom',
+          scrub: 1,
+          invalidateOnRefresh: true,
+          onRefresh: setHeight,
+        },
+      })
+    })
+
+    return () => mm.revert()
+  }, { scope: sectionRef })
 
   return (
-    <section className={styles.work} id="work">
-      <Container>
+    <section className={styles.work} ref={sectionRef} id="work">
+      <div className={styles.sticky}>
         {/* Header */}
-        <motion.div
-          className={styles.header}
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: '-60px' }}
-          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-        >
-          <div className={styles.label}>
-            <span className={styles.dots} aria-hidden><span /><span /><span /></span>
-            <span>Selected Work</span>
+        <Container>
+          <div className={styles.header}>
+            <div className={styles.label}>
+              <span className={styles.dots} aria-hidden><span /><span /><span /></span>
+              <span>Selected Work</span>
+            </div>
+            <h2 className={styles.heading}>Where Strategy<br />Meets Impact</h2>
           </div>
-          <h2 className={styles.heading}>Where Strategy<br />Meets Impact</h2>
-        </motion.div>
+        </Container>
 
-        {/* Layout */}
-        <div className={styles.grid}>
-          {large && <WorkCard project={large} large />}
-          <div className={styles.smallCol}>
-            {smalls.map((p) => (
-              <WorkCard key={p.id} project={p} />
-            ))}
-          </div>
+        {/* Horizontal track — GSAP drives translateX */}
+        <div className={styles.track} ref={trackRef}>
+          <div className={styles.trackPadStart} aria-hidden />
+          {work.map((project, i) => (
+            <WorkCard key={project.id} project={project} index={i} />
+          ))}
+          <div className={styles.trackPadEnd} aria-hidden />
         </div>
-
-        {/* CTA */}
-        <motion.div
-          className={styles.footerCta}
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.3 }}
-        >
-          <Button variant="ghost" href="/work">View All Work</Button>
-        </motion.div>
-      </Container>
+      </div>
     </section>
   )
 }
