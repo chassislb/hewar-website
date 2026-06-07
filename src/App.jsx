@@ -7,6 +7,7 @@ import Cursor from './components/layout/Cursor/Cursor'
 import Preloader from './components/layout/Preloader/Preloader'
 import Navbar from './components/layout/Navbar/Navbar'
 import Footer from './components/layout/Footer/Footer'
+import ParticleField from './components/layout/ParticleField/ParticleField'
 import Home from './pages/Home/Home'
 import './styles/globals.css'
 import './styles/utilities.css'
@@ -76,6 +77,9 @@ const App = () => {
     <BrowserRouter basename="/hewar-website">
       <CursorProvider>
         <SmoothScroll>
+          {/* Particle constellation — fixed behind all content */}
+          <ParticleField />
+
           {/* Preloader blocks content on first visit */}
           {!ready && <Preloader onComplete={handlePreloaderDone} />}
 
