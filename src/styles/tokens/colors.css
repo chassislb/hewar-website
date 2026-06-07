@@ -1,45 +1,51 @@
 /* ─────────────────────────────────────────────
    HEWAR GROUP — Color Tokens
-   Source: HEWAR-Guideline-2025 extracted summary
-   Swap values here when brand PDF is processed.
+   Palette: Midnight navy + Electric blue + Silver + Sand
 ───────────────────────────────────────────── */
 :root {
-  /* ── Primary Brand ── */
-  --color-navy:            #061A40;
-  --color-navy-deep:       #041230;
-  --color-navy-mid:        #071E4A;
+  /* ── Brand ── */
+  --color-blue:            #1E90FF;
+  --color-blue-light:      #3DA5FF;
+  --color-blue-faint:      rgba(30, 144, 255, 0.12);
+  --color-blue-glow:       rgba(30, 144, 255, 0.35);
+  --color-sand:            #D8C9A8;
   --color-white:           #FFFFFF;
 
-  /* ── Accent ── */
-  --color-violet:          #4700B3;
-  --color-violet-light:    #6200F0;
-  --color-violet-faint:    rgba(71, 0, 179, 0.12);
-  --color-violet-glow:     rgba(71, 0, 179, 0.35);
-  --color-cyan:            #00C8FF;
-  --color-cyan-dim:        rgba(0, 200, 255, 0.18);
-  --color-cyan-glow:       rgba(0, 200, 255, 0.30);
+  /* ── Legacy aliases (keep so existing components don't break) ── */
+  --color-violet:          #1E90FF;
+  --color-violet-light:    #3DA5FF;
+  --color-violet-faint:    rgba(30, 144, 255, 0.12);
+  --color-violet-glow:     rgba(30, 144, 255, 0.35);
+  --color-cyan:            #1E90FF;
+  --color-cyan-dim:        rgba(30, 144, 255, 0.18);
+  --color-cyan-glow:       rgba(30, 144, 255, 0.30);
 
   /* ── Backgrounds ── */
-  --color-bg-primary:      #061A40;
-  --color-bg-secondary:    #041230;
-  --color-bg-elevated:     #0A2255;
-  --color-bg-card:         rgba(255, 255, 255, 0.04);
-  --color-bg-card-hover:   rgba(255, 255, 255, 0.07);
+  --color-bg-primary:      #08111F;
+  --color-bg-secondary:    #0C1A2E;
+  --color-bg-elevated:     #0C1A2E;
+  --color-bg-card:         rgba(12, 26, 46, 0.70);
+  --color-bg-card-hover:   rgba(14, 34, 54, 0.85);
 
   /* ── Borders ── */
-  --color-border:          rgba(255, 255, 255, 0.08);
-  --color-border-hover:    rgba(255, 255, 255, 0.16);
-  --color-border-accent:   rgba(71, 0, 179, 0.45);
+  --color-border:          rgba(232, 236, 241, 0.12);
+  --color-border-hover:    rgba(232, 236, 241, 0.24);
+  --color-border-accent:   rgba(30, 144, 255, 0.45);
 
   /* ── Text ── */
-  --color-text-primary:    #FFFFFF;
-  --color-text-secondary:  rgba(255, 255, 255, 0.60);
-  --color-text-tertiary:   rgba(255, 255, 255, 0.32);
-  --color-text-accent:     #00C8FF;
+  --color-text-primary:    #E8ECF1;
+  --color-text-secondary:  #8A98AD;
+  --color-text-tertiary:   rgba(138, 152, 173, 0.50);
+  --color-text-accent:     #1E90FF;
+
+  /* ── Navy (keep for components that reference it) ── */
+  --color-navy:            #08111F;
+  --color-navy-deep:       #060D18;
+  --color-navy-mid:        #0C1A2E;
 
   /* ── Gradients ── */
-  --gradient-brand:        linear-gradient(135deg, #4700B3 0%, #00C8FF 100%);
-  --gradient-brand-soft:   linear-gradient(135deg, rgba(71,0,179,0.6) 0%, rgba(0,200,255,0.6) 100%);
-  --gradient-surface:      linear-gradient(135deg, rgba(71,0,179,0.08) 0%, rgba(0,200,255,0.05) 100%);
-  --gradient-text:         linear-gradient(90deg, #FFFFFF 0%, rgba(0,200,255,0.85) 100%);
+  --gradient-brand:        linear-gradient(135deg, #1E90FF 0%, #D8C9A8 100%);
+  --gradient-brand-soft:   linear-gradient(135deg, rgba(30,144,255,0.6) 0%, rgba(216,201,168,0.4) 100%);
+  --gradient-surface:      linear-gradient(135deg, rgba(30,144,255,0.08) 0%, rgba(216,201,168,0.04) 100%);
+  --gradient-text:         linear-gradient(180deg, #FFFFFF 0%, #A9B6C7 100%);
 }

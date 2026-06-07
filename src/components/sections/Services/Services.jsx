@@ -87,11 +87,11 @@ const Services = () => {
           </div>
 
           <div className={styles.headingRow}>
-            <h2 className={styles.heading}>Our Services</h2>
+            <h2 className={styles.heading}>Everything a modern brand needs — amplified.</h2>
             <p className={styles.headingSub}>
-              Twelve integrated disciplines — from public relations and events to digital
-              media and financial communication — unified by one commitment: making every
-              partner's voice impossible to ignore.
+              Seven integrated disciplines, from creative strategy and PR to
+              AI-enhanced production — unified by one goal: making your brand
+              impossible to ignore.
             </p>
           </div>
         </div>

@@ -7,7 +7,7 @@ import styles from './Manifesto.module.css'
 
 gsap.registerPlugin(ScrollTrigger)
 
-const WORDS = ['We', 'don\'t', 'just', 'tell', 'your', 'story', '—', 'we', 'shape', 'how', 'the', 'world', 'receives', 'it.']
+const WORDS = ['Creativity', 'was', 'never', 'the', 'challenge.', 'Amplification', 'is.']
 
 const Manifesto = () => {
   const sectionRef = useRef(null)
