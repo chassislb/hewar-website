@@ -74,7 +74,7 @@ const CTA = () => {
 
           {/* Headline */}
           <h2 className={styles.heading}>
-            {["Your next idea", "deserves", "amplification."].map((line, i) => (
+            {["Let's Build", "Something", "Worth Remembering."].map((line, i) => (
               <span key={i} className={styles.lineWrap}>
                 <span className={styles.lineInner} data-cta-line>
                   {line}
@@ -85,8 +85,8 @@ const CTA = () => {
 
           {/* Sub */}
           <p className={styles.sub} data-cta-sub>
-            Human strategy. Human creativity. AI-amplified reach. Let&apos;s build
-            something that moves people.
+            Whether you're launching, repositioning, or scaling — HEWAR Group is ready
+            to think, create, and communicate alongside you.
           </p>
 
           {/* Buttons */}
@@ -94,11 +94,11 @@ const CTA = () => {
             <Button
               variant="primary"
               size="lg"
-              href="mailto:info@hewargroup.com"
+              href="/contact"
               onMouseEnter={() => setCursor('hover')}
               onMouseLeave={resetCursor}
             >
-              Start a Conversation →
+              Start a Conversation
             </Button>
             <Button
               variant="ghost"

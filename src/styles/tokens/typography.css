@@ -1,13 +1,15 @@
 /* ─────────────────────────────────────────────
    HEWAR GROUP — Typography Tokens
-   Display: Syne · Body: Manrope · Mono: Space Mono
+   Primary: Asterisk Sans → fallback Inter
+   Arabic: Swissra → fallback IBM Plex Sans Arabic
 ───────────────────────────────────────────── */
 :root {
   /* ── Font Families ── */
-  --font-display:  'Syne', system-ui, sans-serif;
-  --font-primary:  'Manrope', system-ui, sans-serif;
-  --font-arabic:   'IBM Plex Sans Arabic', 'Noto Kufi Arabic', sans-serif;
-  --font-mono:     'Space Mono', 'JetBrains Mono', monospace;
+  /* When Asterisk Sans font files are available, add @font-face in globals.css
+     and replace 'Inter' with 'Asterisk Sans' below */
+  --font-primary: 'Inter', 'Neue Haas Grotesk', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-arabic:  'IBM Plex Sans Arabic', 'Noto Kufi Arabic', sans-serif;
+  --font-mono:    'JetBrains Mono', 'Fira Code', monospace;
 
   /* ── Display Scale (fluid clamp) ── */
   --type-display-2xl: clamp(3.5rem, 9vw, 10.5rem);

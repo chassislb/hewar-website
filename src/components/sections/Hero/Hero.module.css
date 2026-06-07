@@ -154,9 +154,12 @@
   transform: translateY(115%);
 }
 
-/* "Amplified." — blue accent on last line */
-.lineAccent {
-  color: var(--color-blue);
+/* Gradient period at end of headline */
+.period {
+  background: var(--gradient-brand);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
 /* ── Subtext ── */
