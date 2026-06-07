@@ -1,0 +1,204 @@
+/* ── Hero ── */
+.hero {
+  position: relative;
+  padding-top: clamp(8rem, 15vw, 12rem);
+  padding-bottom: clamp(5rem, 10vw, 8rem);
+  background: var(--color-bg-primary);
+  overflow: hidden;
+}
+
+.heroOrb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  pointer-events: none;
+}
+
+.eyebrow {
+  font-size: var(--type-body-xs);
+  font-weight: var(--weight-semibold);
+  letter-spacing: var(--tracking-widest);
+  text-transform: uppercase;
+  color: var(--color-text-accent);
+  margin-bottom: var(--space-6);
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.eyebrowDot {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--color-cyan);
+  flex-shrink: 0;
+}
+
+.title {
+  font-size: clamp(2.8rem, 7vw, 7rem);
+  font-weight: var(--weight-black);
+  letter-spacing: var(--tracking-tighter);
+  line-height: var(--leading-tight);
+  color: var(--color-text-primary);
+  max-width: 16ch;
+  position: relative;
+  z-index: 1;
+}
+
+/* ── Body ── */
+.bodySection {
+  padding-block: var(--section-padding-y);
+  background: var(--color-bg-secondary);
+}
+
+.bodyGrid {
+  display: grid;
+  grid-template-columns: 1fr 1.5fr;
+  gap: clamp(3rem, 8vw, 8rem);
+  align-items: start;
+}
+
+@media (max-width: 900px) {
+  .bodyGrid {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+}
+
+/* ── Info Column ── */
+.infoIntro {
+  font-size: clamp(1rem, 1.5vw, 1.15rem);
+  color: var(--color-text-secondary);
+  line-height: var(--leading-relaxed);
+  margin-bottom: clamp(2rem, 4vw, 3.5rem);
+  max-width: 38ch;
+}
+
+.infoItems {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(1.5rem, 3vw, 2rem);
+}
+
+.infoItem {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.infoLabel {
+  font-size: var(--type-body-xs);
+  font-weight: var(--weight-semibold);
+  letter-spacing: var(--tracking-widest);
+  text-transform: uppercase;
+  color: var(--color-text-tertiary);
+}
+
+.infoValue {
+  font-size: clamp(0.95rem, 1.4vw, 1.1rem);
+  color: var(--color-text-primary);
+  text-decoration: none;
+  transition: color 0.2s ease;
+  line-height: 1.4;
+}
+
+a.infoValue:hover {
+  color: var(--color-text-accent);
+}
+
+/* ── Form ── */
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+}
+
+.formRow {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-4);
+}
+
+@media (max-width: 580px) {
+  .formRow {
+    grid-template-columns: 1fr;
+  }
+}
+
+.fieldGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.fieldLabel {
+  font-size: var(--type-body-xs);
+  font-weight: var(--weight-semibold);
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  color: var(--color-text-tertiary);
+}
+
+.fieldInput,
+.fieldTextarea {
+  background: var(--color-bg-elevated);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  color: var(--color-text-primary);
+  font-family: var(--font-primary);
+  font-size: var(--type-body-sm);
+  padding: 0.85rem 1rem;
+  width: 100%;
+  transition: border-color 0.2s ease, background 0.2s ease;
+  outline: none;
+  resize: none;
+  -webkit-appearance: none;
+}
+
+.fieldInput::placeholder,
+.fieldTextarea::placeholder {
+  color: var(--color-text-tertiary);
+}
+
+.fieldInput:focus,
+.fieldTextarea:focus {
+  border-color: var(--color-border-accent);
+  background: rgba(0, 200, 255, 0.04);
+}
+
+.fieldTextarea {
+  min-height: 160px;
+  resize: vertical;
+}
+
+/* ── Success State ── */
+.successState {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+  padding: clamp(2.5rem, 5vw, 4rem);
+  background: var(--color-bg-elevated);
+  border: 1px solid var(--color-border-accent);
+  border-radius: var(--radius-lg);
+  align-items: flex-start;
+}
+
+.successIcon {
+  color: var(--color-text-accent);
+}
+
+.successTitle {
+  font-size: clamp(1.5rem, 3vw, 2.5rem);
+  font-weight: var(--weight-bold);
+  letter-spacing: var(--tracking-tight);
+  color: var(--color-text-primary);
+  line-height: 1.2;
+}
+
+.successBody {
+  font-size: var(--type-body-sm);
+  color: var(--color-text-secondary);
+  line-height: var(--leading-relaxed);
+  max-width: 42ch;
+}

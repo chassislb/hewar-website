@@ -1,0 +1,125 @@
+.hero {
+  position: relative;
+  padding-top: clamp(9rem, 16vw, 14rem);
+  padding-bottom: clamp(5rem, 10vw, 8rem);
+  background: var(--color-bg-primary);
+  overflow: hidden;
+}
+
+.heroOrb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  pointer-events: none;
+}
+
+.backLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: var(--type-body-xs);
+  font-weight: var(--weight-semibold);
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  color: var(--color-text-tertiary);
+  text-decoration: none;
+  margin-bottom: clamp(2rem, 4vw, 3rem);
+  position: relative;
+  z-index: 2;
+  transition: color 0.2s ease;
+}
+
+.backLink:hover {
+  color: var(--color-text-accent);
+}
+
+.categoryBadge {
+  display: inline-block;
+  font-size: 0.65rem;
+  font-weight: var(--weight-semibold);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-text-accent);
+  background: rgba(0, 200, 255, 0.1);
+  border: 1px solid rgba(0, 200, 255, 0.25);
+  border-radius: var(--radius-md);
+  padding: 0.3rem 0.8rem;
+  margin-bottom: var(--space-6);
+  position: relative;
+  z-index: 2;
+}
+
+.title {
+  font-size: clamp(2rem, 5vw, 4.5rem);
+  font-weight: var(--weight-black);
+  letter-spacing: var(--tracking-tighter);
+  line-height: var(--leading-tight);
+  color: var(--color-text-primary);
+  max-width: 22ch;
+  position: relative;
+  z-index: 2;
+  margin-bottom: var(--space-6);
+}
+
+.meta {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: var(--type-body-xs);
+  color: var(--color-text-tertiary);
+  margin-bottom: clamp(2rem, 4vw, 3rem);
+  position: relative;
+  z-index: 2;
+}
+
+.metaDot {
+  display: inline-block;
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: var(--color-text-tertiary);
+  flex-shrink: 0;
+}
+
+.excerpt {
+  font-size: clamp(1.05rem, 1.8vw, 1.25rem);
+  color: var(--color-text-secondary);
+  line-height: var(--leading-relaxed);
+  max-width: 58ch;
+  margin-bottom: clamp(2.5rem, 5vw, 4rem);
+  position: relative;
+  z-index: 2;
+}
+
+.comingSoonBox {
+  background: var(--color-bg-elevated);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: clamp(1.5rem, 3vw, 2.5rem);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+  align-items: flex-start;
+  position: relative;
+  z-index: 2;
+}
+
+.comingSoonText {
+  font-size: var(--type-body-sm);
+  color: var(--color-text-tertiary);
+  line-height: var(--leading-relaxed);
+}
+
+.notFound {
+  padding-top: clamp(10rem, 20vw, 16rem);
+  padding-bottom: clamp(5rem, 10vw, 8rem);
+  background: var(--color-bg-primary);
+}
+
+.notFoundTitle {
+  font-size: clamp(2rem, 4vw, 3.5rem);
+  font-weight: var(--weight-black);
+  letter-spacing: var(--tracking-tighter);
+  color: var(--color-text-primary);
+  margin-bottom: clamp(1.5rem, 3vw, 2.5rem);
+}

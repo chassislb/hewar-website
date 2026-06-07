@@ -1,0 +1,237 @@
+/* ── Hero ── */
+.hero {
+  position: relative;
+  padding-top: clamp(8rem, 15vw, 12rem);
+  padding-bottom: clamp(5rem, 10vw, 8rem);
+  background: var(--color-bg-primary);
+  overflow: hidden;
+}
+
+.heroOrb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  pointer-events: none;
+}
+
+.eyebrow {
+  font-size: var(--type-body-xs);
+  font-weight: var(--weight-semibold);
+  letter-spacing: var(--tracking-widest);
+  text-transform: uppercase;
+  color: var(--color-text-accent);
+  margin-bottom: var(--space-6);
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.eyebrowDot {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--color-cyan);
+  flex-shrink: 0;
+}
+
+.title {
+  font-size: clamp(2.8rem, 7vw, 7rem);
+  font-weight: var(--weight-black);
+  letter-spacing: var(--tracking-tighter);
+  line-height: var(--leading-tight);
+  color: var(--color-text-primary);
+  max-width: 16ch;
+  position: relative;
+  z-index: 1;
+}
+
+.heroSub {
+  font-size: clamp(1rem, 1.8vw, 1.25rem);
+  color: var(--color-text-secondary);
+  max-width: 52ch;
+  line-height: var(--leading-relaxed);
+  margin-top: clamp(1.5rem, 3vw, 2.5rem);
+  position: relative;
+  z-index: 1;
+}
+
+/* ── Work Grid ── */
+.workSection {
+  padding-block: var(--section-padding-y);
+  background: var(--color-bg-secondary);
+}
+
+.workGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-4);
+}
+
+@media (max-width: 768px) {
+  .workGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.workCard {
+  position: relative;
+  min-height: 420px;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  cursor: none;
+  text-decoration: none;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.workCard:hover {
+  transform: translateY(-6px);
+}
+
+.cardBg {
+  position: absolute;
+  inset: 0;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.workCard:hover .cardBg {
+  transform: scale(1.03);
+}
+
+.cardContent {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-height: 420px;
+  padding: clamp(1.5rem, 3vw, 2.5rem);
+}
+
+.cardNumber {
+  font-size: var(--type-body-xs);
+  font-weight: var(--weight-semibold);
+  letter-spacing: var(--tracking-widest);
+  color: rgba(255, 255, 255, 0.4);
+  margin-bottom: auto;
+  font-variant-numeric: tabular-nums;
+}
+
+.cardMeta {
+  margin-top: auto;
+  margin-bottom: var(--space-4);
+}
+
+.cardClient {
+  font-size: var(--type-body-xs);
+  font-weight: var(--weight-semibold);
+  letter-spacing: var(--tracking-widest);
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.cardTitle {
+  font-size: clamp(1.3rem, 2.5vw, 2rem);
+  font-weight: var(--weight-bold);
+  letter-spacing: var(--tracking-tight);
+  color: rgba(255, 255, 255, 0.95);
+  line-height: 1.25;
+  margin-bottom: clamp(1rem, 2vw, 1.5rem);
+}
+
+.cardFooter {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.cardCategory {
+  font-size: var(--type-body-xs);
+  color: rgba(255, 255, 255, 0.5);
+  letter-spacing: 0.06em;
+}
+
+.cardYear {
+  font-size: var(--type-body-xs);
+  color: rgba(255, 255, 255, 0.4);
+  font-variant-numeric: tabular-nums;
+}
+
+/* Hover overlay */
+.cardOverlay {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  background: rgba(0, 0, 0, 0.35);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.35s ease;
+}
+
+.workCard:hover .cardOverlay {
+  opacity: 1;
+}
+
+.viewLabel {
+  font-size: 1rem;
+  font-weight: var(--weight-semibold);
+  color: #fff;
+  letter-spacing: 0.04em;
+  padding: 0.6rem 1.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-radius: var(--radius-md);
+  backdrop-filter: blur(8px);
+}
+
+/* ── CTA ── */
+.ctaSection {
+  position: relative;
+  padding-block: clamp(8rem, 15vw, 12rem);
+  background: var(--color-bg-primary);
+  overflow: hidden;
+  text-align: center;
+}
+
+.ctaOrb {
+  position: absolute;
+  width: 700px;
+  height: 700px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(circle, rgba(71, 0, 179, 0.35) 0%, transparent 70%);
+  border-radius: 50%;
+  filter: blur(80px);
+  pointer-events: none;
+}
+
+.ctaContent {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: clamp(1.5rem, 3vw, 2.5rem);
+}
+
+.ctaEyebrow {
+  font-size: var(--type-body-xs);
+  font-weight: var(--weight-semibold);
+  letter-spacing: var(--tracking-widest);
+  text-transform: uppercase;
+  color: var(--color-text-accent);
+}
+
+.ctaTitle {
+  font-size: clamp(2.5rem, 6vw, 6rem);
+  font-weight: var(--weight-black);
+  letter-spacing: var(--tracking-tighter);
+  line-height: var(--leading-tight);
+  color: var(--color-text-primary);
+  margin: 0;
+}

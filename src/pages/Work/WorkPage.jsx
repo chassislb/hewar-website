@@ -1,0 +1,150 @@
+import { useRef } from 'react'
+import { Link } from 'react-router-dom'
+import { motion } from 'framer-motion'
+import { useGSAP } from '@gsap/react'
+import gsap from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import Container from '../../components/ui/Container/Container'
+import Button from '../../components/ui/Button/Button'
+import { work } from '../../data/work'
+import styles from './WorkPage.module.css'
+
+gsap.registerPlugin(ScrollTrigger)
+
+const pageVariants = {
+  initial: { opacity: 0 },
+  animate: { opacity: 1, transition: { duration: 0.5 } },
+  exit: { opacity: 0, transition: { duration: 0.25 } },
+}
+
+const WorkPage = () => {
+  const heroRef = useRef(null)
+  const gridRef = useRef(null)
+  const ctaRef = useRef(null)
+
+  useGSAP(() => {
+    gsap.fromTo(
+      '[data-page-eyebrow]',
+      { y: 20, opacity: 0 },
+      { y: 0, opacity: 1, duration: 0.8, ease: 'power3.out', delay: 0.1 }
+    )
+    gsap.fromTo(
+      '[data-page-title]',
+      { y: 60, opacity: 0 },
+      { y: 0, opacity: 1, duration: 1, ease: 'power4.out', delay: 0.2 }
+    )
+    gsap.fromTo(
+      '[data-page-sub]',
+      { y: 25, opacity: 0 },
+      { y: 0, opacity: 1, duration: 0.8, ease: 'power3.out', delay: 0.4 }
+    )
+  }, { scope: heroRef })
+
+  useGSAP(() => {
+    gsap.fromTo(
+      '[data-work-card]',
+      { y: 40, opacity: 0 },
+      {
+        y: 0,
+        opacity: 1,
+        duration: 0.8,
+        stagger: 0.1,
+        ease: 'power3.out',
+        scrollTrigger: { trigger: gridRef.current, start: 'top 82%' },
+      }
+    )
+  }, { scope: gridRef })
+
+  useGSAP(() => {
+    gsap.fromTo(
+      '[data-cta-reveal]',
+      { y: 30, opacity: 0 },
+      {
+        y: 0,
+        opacity: 1,
+        duration: 0.8,
+        stagger: 0.12,
+        ease: 'power3.out',
+        scrollTrigger: { trigger: ctaRef.current, start: 'top 85%' },
+      }
+    )
+  }, { scope: ctaRef })
+
+  return (
+    <motion.div variants={pageVariants} initial="initial" animate="animate" exit="exit">
+      {/* ── Hero ── */}
+      <section className={styles.hero} ref={heroRef}>
+        <div className={styles.heroOrb} style={{ top: '-30%', right: '-15%', background: 'radial-gradient(circle, rgba(71,0,179,0.4) 0%, transparent 70%)', width: 'clamp(400px,60vw,900px)', height: 'clamp(400px,60vw,900px)' }} aria-hidden />
+        <div className={styles.heroOrb} style={{ bottom: '-10%', left: '-8%', background: 'radial-gradient(circle, rgba(0,200,255,0.25) 0%, transparent 70%)', width: 'clamp(250px,40vw,600px)', height: 'clamp(250px,40vw,600px)' }} aria-hidden />
+        <Container>
+          <p className={styles.eyebrow} data-page-eyebrow>
+            <span className={styles.eyebrowDot} aria-hidden />
+            Selected Work
+          </p>
+          <h1 className={styles.title} data-page-title>
+            Human insight, amplified into impact.
+          </h1>
+          <p className={styles.heroSub} data-page-sub>
+            A selection of campaigns, identities, and experiences we've created
+            for partners across Saudi Arabia and the region.
+          </p>
+        </Container>
+      </section>
+
+      {/* ── Work Grid ── */}
+      <section className={styles.workSection} ref={gridRef}>
+        <Container>
+          <div className={styles.workGrid}>
+            {work.map((project, index) => (
+              <Link
+                key={project.id}
+                to={`/work/${project.id}`}
+                className={styles.workCard}
+                data-work-card
+                style={{ '--card-color': project.color }}
+              >
+                <div className={styles.cardBg} style={{ background: project.color }} />
+                <div className={styles.cardContent}>
+                  <span className={styles.cardNumber}>
+                    {String(index + 1).padStart(2, '0')}
+                  </span>
+                  <div className={styles.cardMeta}>
+                    <span className={styles.cardClient}>{project.client}</span>
+                  </div>
+                  <h2 className={styles.cardTitle}>{project.title}</h2>
+                  <div className={styles.cardFooter}>
+                    <span className={styles.cardCategory}>{project.category}</span>
+                    <span className={styles.cardYear}>{project.year}</span>
+                  </div>
+                </div>
+                <div className={styles.cardOverlay}>
+                  <span className={styles.viewLabel}>View Project ↗</span>
+                </div>
+              </Link>
+            ))}
+          </div>
+        </Container>
+      </section>
+
+      {/* ── CTA ── */}
+      <section className={styles.ctaSection} ref={ctaRef}>
+        <div className={styles.ctaOrb} aria-hidden />
+        <Container size="narrow">
+          <div className={styles.ctaContent}>
+            <p className={styles.ctaEyebrow} data-cta-reveal>Work with us</p>
+            <h2 className={styles.ctaTitle} data-cta-reveal>
+              Ready to create something great?
+            </h2>
+            <div data-cta-reveal>
+              <Button variant="primary" size="lg" href="/contact">
+                Start a Conversation
+              </Button>
+            </div>
+          </div>
+        </Container>
+      </section>
+    </motion.div>
+  )
+}
+
+export default WorkPage

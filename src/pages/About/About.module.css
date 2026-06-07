@@ -1,0 +1,294 @@
+/* ── Hero ── */
+.hero {
+  position: relative;
+  padding-top: clamp(8rem, 15vw, 12rem);
+  padding-bottom: clamp(5rem, 10vw, 8rem);
+  background: var(--color-bg-primary);
+  overflow: hidden;
+}
+
+.heroOrb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  pointer-events: none;
+}
+
+.eyebrow {
+  font-size: var(--type-body-xs);
+  font-weight: var(--weight-semibold);
+  letter-spacing: var(--tracking-widest);
+  text-transform: uppercase;
+  color: var(--color-text-accent);
+  margin-bottom: var(--space-6);
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.eyebrowDot {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--color-cyan);
+  flex-shrink: 0;
+}
+
+.title {
+  font-size: clamp(2.8rem, 7vw, 7rem);
+  font-weight: var(--weight-black);
+  letter-spacing: var(--tracking-tighter);
+  line-height: var(--leading-tight);
+  color: var(--color-text-primary);
+  max-width: 16ch;
+  position: relative;
+  z-index: 1;
+}
+
+.heroSub {
+  font-size: clamp(1rem, 1.8vw, 1.25rem);
+  color: var(--color-text-secondary);
+  max-width: 52ch;
+  line-height: var(--leading-relaxed);
+  margin-top: clamp(1.5rem, 3vw, 2.5rem);
+  position: relative;
+  z-index: 1;
+}
+
+/* ── Story ── */
+.story {
+  padding-block: var(--section-padding-y);
+  background: var(--color-bg-secondary);
+}
+
+.storyGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(3rem, 6vw, 6rem);
+  align-items: start;
+}
+
+@media (max-width: 768px) {
+  .storyGrid {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+}
+
+.storyLabel {
+  font-size: var(--type-body-xs);
+  font-weight: var(--weight-semibold);
+  letter-spacing: var(--tracking-widest);
+  text-transform: uppercase;
+  color: var(--color-text-accent);
+  margin-bottom: var(--space-6);
+}
+
+.storyText {
+  font-size: clamp(1rem, 1.5vw, 1.15rem);
+  color: var(--color-text-secondary);
+  line-height: var(--leading-relaxed);
+  margin-bottom: clamp(2rem, 4vw, 3rem);
+}
+
+.statsRow {
+  display: flex;
+  align-items: center;
+  gap: var(--space-8);
+  margin-bottom: var(--space-6);
+}
+
+.stat {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.statNumber {
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: var(--weight-black);
+  letter-spacing: var(--tracking-tighter);
+  color: var(--color-text-primary);
+  line-height: 1;
+}
+
+.statLabel {
+  font-size: var(--type-body-xs);
+  color: var(--color-text-tertiary);
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+}
+
+.statDivider {
+  width: 1px;
+  height: 40px;
+  background: var(--color-border);
+  flex-shrink: 0;
+}
+
+.offices {
+  font-size: var(--type-body-sm);
+  color: var(--color-text-tertiary);
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+}
+
+/* ── Method Pillars ── */
+.methodPillars {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.pillarCard {
+  background: var(--color-bg-elevated);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: clamp(1.5rem, 3vw, 2rem);
+  transition: border-color 0.3s ease;
+}
+
+.pillarCard:hover {
+  border-color: var(--color-border-accent);
+}
+
+.pillarTitle {
+  font-size: clamp(1.1rem, 1.8vw, 1.35rem);
+  font-weight: var(--weight-bold);
+  color: var(--color-text-primary);
+  margin-bottom: var(--space-4);
+  letter-spacing: var(--tracking-tight);
+}
+
+.pillarList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.pillarItem {
+  font-size: var(--type-body-xs);
+  color: var(--color-text-secondary);
+  background: rgba(0, 200, 255, 0.08);
+  border: 1px solid rgba(0, 200, 255, 0.2);
+  border-radius: var(--radius-md);
+  padding: 0.3rem 0.75rem;
+  letter-spacing: 0.04em;
+}
+
+/* ── Values ── */
+.valuesSection {
+  padding-block: var(--section-padding-y);
+  background: var(--color-bg-primary);
+}
+
+.sectionEyebrow {
+  font-size: var(--type-body-xs);
+  font-weight: var(--weight-semibold);
+  letter-spacing: var(--tracking-widest);
+  text-transform: uppercase;
+  color: var(--color-text-accent);
+  margin-bottom: var(--space-4);
+}
+
+.sectionTitle {
+  font-size: clamp(2rem, 4vw, 3.5rem);
+  font-weight: var(--weight-black);
+  letter-spacing: var(--tracking-tighter);
+  color: var(--color-text-primary);
+  margin-bottom: clamp(2.5rem, 5vw, 4rem);
+}
+
+.valuesGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-4);
+}
+
+@media (max-width: 1024px) {
+  .valuesGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .valuesGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.valueCard {
+  background: var(--color-bg-elevated);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: clamp(1.5rem, 3vw, 2.5rem);
+  transition: border-color 0.3s ease, transform 0.3s ease;
+}
+
+.valueCard:hover {
+  border-color: var(--color-border-accent);
+  transform: translateY(-4px);
+}
+
+.valueTitle {
+  font-size: 1.1rem;
+  font-weight: var(--weight-bold);
+  color: var(--color-text-primary);
+  margin-bottom: var(--space-4);
+  letter-spacing: var(--tracking-tight);
+}
+
+.valueBody {
+  font-size: var(--type-body-sm);
+  color: var(--color-text-secondary);
+  line-height: var(--leading-relaxed);
+}
+
+/* ── CTA ── */
+.ctaSection {
+  position: relative;
+  padding-block: clamp(8rem, 15vw, 12rem);
+  background: var(--color-bg-secondary);
+  overflow: hidden;
+  text-align: center;
+}
+
+.ctaOrb {
+  position: absolute;
+  width: 700px;
+  height: 700px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(circle, rgba(71, 0, 179, 0.35) 0%, transparent 70%);
+  border-radius: 50%;
+  filter: blur(80px);
+  pointer-events: none;
+}
+
+.ctaContent {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: clamp(1.5rem, 3vw, 2.5rem);
+}
+
+.ctaEyebrow {
+  font-size: var(--type-body-xs);
+  font-weight: var(--weight-semibold);
+  letter-spacing: var(--tracking-widest);
+  text-transform: uppercase;
+  color: var(--color-text-accent);
+}
+
+.ctaTitle {
+  font-size: clamp(2.5rem, 6vw, 6rem);
+  font-weight: var(--weight-black);
+  letter-spacing: var(--tracking-tighter);
+  line-height: var(--leading-tight);
+  color: var(--color-text-primary);
+  margin: 0;
+}
