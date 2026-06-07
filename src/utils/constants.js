@@ -1,7 +1,7 @@
 export const SITE_NAME        = 'Hewar Group'
-export const SITE_TAGLINE    = 'Think. Create. Communicate.'
+export const SITE_TAGLINE    = 'Human Intelligence. Amplified.'
 export const SITE_DESCRIPTION =
-  'Hewar is a Saudi-born integrated marketing communications agency with regional presence, global expertise, and local knowledge — crafting bespoke solutions for partners across the public and private sectors.'
+  'A creative, PR and marketing agency using AI to amplify ideas, influence and impact. 12 years. Riyadh & Beirut.'
 
 export const CONTACT_EMAIL   = 'info@hewargroup.com'
 

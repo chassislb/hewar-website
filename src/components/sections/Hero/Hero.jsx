@@ -6,7 +6,7 @@ import Button from '../../ui/Button/Button'
 import { useCursor } from '../../../context/CursorContext'
 import styles from './Hero.module.css'
 
-const HEADLINE = ['We Shape the Way', 'Ideas Reach', 'the World.']
+const HEADLINE = ['Human Intelligence.', 'Amplified.']
 
 const Hero = () => {
   const heroRef                    = useRef(null)
@@ -100,7 +100,7 @@ const Hero = () => {
               <span className={styles.dot} />
               <span className={styles.dot} />
             </span>
-            <span className={styles.eyebrowText}>Think. Create. Communicate.</span>
+            <span className={styles.eyebrowText}>Riyadh · Marketing · PR · Creative</span>
           </div>
 
           {/* Headline */}
@@ -108,8 +108,8 @@ const Hero = () => {
             {HEADLINE.map((line, i) => (
               <span key={i} className={styles.lineWrap}>
                 <span className={styles.lineInner} data-hero-line>
-                  {i === 2
-                    ? <>{line.replace('.', '')}<span className={styles.period}>.</span></>
+                  {i === 1
+                    ? <><span className={styles.period}>{line}</span></>
                     : line}
                 </span>
               </span>
@@ -118,26 +118,25 @@ const Hero = () => {
 
           {/* Sub */}
           <p className={styles.sub} data-hero-sub>
-            A Saudi-born integrated marketing communications agency — 12 years of
-            shaping brands, public narratives, and market presence for partners across
-            the public and private sectors. Riyadh. Beirut. The region.
+            A creative, PR and marketing agency using AI to amplify ideas,
+            influence and impact.
           </p>
 
           {/* CTAs */}
           <div className={styles.ctas} data-hero-cta>
             <Button
-              variant="primary" size="lg" href="/work"
-              onMouseEnter={() => setCursor('view', 'Explore')}
-              onMouseLeave={resetCursor}
-            >
-              Explore Our Work
-            </Button>
-            <Button
-              variant="ghost" size="lg" href="/contact"
+              variant="primary" size="lg" href="/contact"
               onMouseEnter={() => setCursor('hover')}
               onMouseLeave={resetCursor}
             >
-              Get in Touch
+              Amplify Your Brand
+            </Button>
+            <Button
+              variant="ghost" size="lg" href="/work"
+              onMouseEnter={() => setCursor('view', 'View')}
+              onMouseLeave={resetCursor}
+            >
+              See Our Work
             </Button>
           </div>
         </div>

@@ -69,12 +69,12 @@ const CTA = () => {
             <span className={styles.dots} aria-hidden>
               <span /><span /><span />
             </span>
-            <span className={styles.eyebrowText}>Ready to Begin?</span>
+            <span className={styles.eyebrowText}>Ready to Amplify?</span>
           </div>
 
           {/* Headline */}
           <h2 className={styles.heading}>
-            {["Let's Build", "Something", "Worth Remembering."].map((line, i) => (
+            {["Your next idea", "deserves", "amplification."].map((line, i) => (
               <span key={i} className={styles.lineWrap}>
                 <span className={styles.lineInner} data-cta-line>
                   {line}
@@ -85,8 +85,8 @@ const CTA = () => {
 
           {/* Sub */}
           <p className={styles.sub} data-cta-sub>
-            Whether you're launching, repositioning, or scaling — HEWAR Group is ready
-            to think, create, and communicate alongside you.
+            Human strategy. Human creativity. AI-amplified execution —
+            HEWAR Group is ready to turn your next idea into impact.
           </p>
 
           {/* Buttons */}

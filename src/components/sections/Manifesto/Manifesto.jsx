@@ -7,7 +7,7 @@ import styles from './Manifesto.module.css'
 
 gsap.registerPlugin(ScrollTrigger)
 
-const WORDS = ['We', 'don\'t', 'just', 'tell', 'your', 'story', '—', 'we', 'shape', 'how', 'the', 'world', 'receives', 'it.']
+const WORDS = ['Creativity', 'was', 'never', 'the', 'challenge.', 'Amplification', 'is.']
 
 const Manifesto = () => {
   const sectionRef = useRef(null)
@@ -59,6 +59,12 @@ const Manifesto = () => {
               {i < WORDS.length - 1 && ' '}
             </span>
           ))}
+        </p>
+
+        <p className={styles.body}>
+          Today, every brand can create content. Few can create influence.{' '}
+          <strong>HEWAR helps brands turn ideas into movements, campaigns into
+          conversations, and attention into measurable impact.</strong>
         </p>
 
         <div className={styles.meta}>
