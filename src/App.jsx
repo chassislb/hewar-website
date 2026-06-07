@@ -73,7 +73,7 @@ const App = () => {
   }
 
   return (
-    <BrowserRouter>
+    <BrowserRouter basename="/hewar-website">
       <CursorProvider>
         <SmoothScroll>
           {/* Preloader blocks content on first visit */}
