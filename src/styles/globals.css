@@ -61,6 +61,15 @@ body {
   direction: rtl;
 }
 
+/* ── Stacking — keeps ParticleField canvas (z-index:0) behind page content ── */
+main,
+header,
+footer,
+nav {
+  position: relative;
+  z-index: 1;
+}
+
 /* ── Base Elements ── */
 img, video {
   display: block;
