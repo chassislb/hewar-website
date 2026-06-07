@@ -9,6 +9,13 @@ import Navbar from './components/layout/Navbar/Navbar'
 import Footer from './components/layout/Footer/Footer'
 import ParticleField from './components/layout/ParticleField/ParticleField'
 import Home from './pages/Home/Home'
+import About from './pages/About/About'
+import ServicesPage from './pages/Services/ServicesPage'
+import WorkPage from './pages/Work/WorkPage'
+import WorkDetail from './pages/WorkDetail/WorkDetail'
+import InsightsPage from './pages/Insights/InsightsPage'
+import InsightDetail from './pages/InsightDetail/InsightDetail'
+import Contact from './pages/Contact/Contact'
 import './styles/globals.css'
 import './styles/utilities.css'
 
@@ -17,50 +24,6 @@ const pageVariants = {
   animate: { opacity: 1, transition: { duration: 0.5, ease: [0.16, 1, 0.3, 1] } },
   exit:    { opacity: 0, transition: { duration: 0.25 } },
 }
-
-const ComingSoon = ({ title }) => (
-  <motion.div
-    variants={pageVariants}
-    initial="initial"
-    animate="animate"
-    exit="exit"
-    style={{
-      minHeight: '100vh',
-      display: 'flex',
-      flexDirection: 'column',
-      alignItems: 'center',
-      justifyContent: 'center',
-      gap: '1.25rem',
-      paddingTop: '6rem',
-    }}
-  >
-    <span style={{
-      fontSize: '0.7rem',
-      fontWeight: 600,
-      letterSpacing: '0.22em',
-      textTransform: 'uppercase',
-      color: 'var(--color-cyan)',
-    }}>
-      Coming Soon
-    </span>
-    <h1 style={{
-      fontSize: 'clamp(2.5rem, 6vw, 6rem)',
-      fontWeight: 900,
-      letterSpacing: '-0.04em',
-      color: 'var(--color-text-primary)',
-      margin: 0,
-    }}>
-      {title}
-    </h1>
-    <p style={{
-      fontSize: '1rem',
-      color: 'var(--color-text-secondary)',
-      margin: 0,
-    }}>
-      This page is under construction. Check back soon.
-    </p>
-  </motion.div>
-)
 
 const App = () => {
   /* Show preloader only once per browser session */
@@ -96,11 +59,13 @@ const App = () => {
                   </motion.div>
                 }
               />
-              <Route path="/about"    element={<ComingSoon title="About" />} />
-              <Route path="/services" element={<ComingSoon title="Services" />} />
-              <Route path="/work"     element={<ComingSoon title="Work" />} />
-              <Route path="/insights" element={<ComingSoon title="Insights" />} />
-              <Route path="/contact"  element={<ComingSoon title="Contact" />} />
+              <Route path="/about"           element={<About />} />
+              <Route path="/services"        element={<ServicesPage />} />
+              <Route path="/work"            element={<WorkPage />} />
+              <Route path="/work/:id"        element={<WorkDetail />} />
+              <Route path="/insights"        element={<InsightsPage />} />
+              <Route path="/insights/:id"    element={<InsightDetail />} />
+              <Route path="/contact"         element={<Contact />} />
             </Routes>
           </AnimatePresence>
 
