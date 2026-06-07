@@ -98,11 +98,9 @@ const Work = () => {
 
         {/* Horizontal track — GSAP drives translateX */}
         <div className={styles.track} ref={trackRef}>
-          <div className={styles.trackPadStart} aria-hidden />
           {work.map((project, i) => (
             <WorkCard key={project.id} project={project} index={i} />
           ))}
-          <div className={styles.trackPadEnd} aria-hidden />
         </div>
       </div>
     </section>

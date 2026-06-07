@@ -58,21 +58,12 @@
   display: flex;
   align-items: stretch;
   gap: clamp(1rem, 1.5vw, 1.25rem);
+  /* Match container left edge so first card aligns with heading */
+  padding-left: max(var(--container-pad), calc((100vw - var(--container-max)) / 2 + var(--container-pad)));
+  padding-right: clamp(2rem, 5vw, 4rem);
   padding-bottom: clamp(1rem, 2vw, 1.5rem);
   width: max-content;
   will-change: transform;
-  /* Left edge aligns with container padding */
-  padding-left: 0;
-}
-
-/* Spacing sentinels so first/last cards have breathing room */
-.trackPadStart {
-  flex: none;
-  width: max(1.5rem, calc((100vw - var(--container-max-width, 1200px)) / 2 + var(--container-px, 1.5rem)));
-}
-.trackPadEnd {
-  flex: none;
-  width: clamp(2rem, 5vw, 4rem);
 }
 
 /* ── Card ── */
