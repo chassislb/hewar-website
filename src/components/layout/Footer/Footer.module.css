@@ -15,39 +15,21 @@
 
 /* ── Brand ── */
 .logo {
-  display: flex;
-  align-items: center;
-  gap: 0.6rem;
+  display: inline-flex;
   text-decoration: none;
   margin-bottom: var(--space-6);
+  opacity: 1;
+  transition: opacity var(--dur-fast) ease;
+}
+.logo:hover {
+  opacity: 0.8;
 }
 
-.logoDots {
-  display: flex;
-  gap: 3px;
-}
-.logoDots span {
+.logoImg {
   display: block;
-  width: 5px;
-  height: 5px;
-  border-radius: 50%;
-  background: var(--color-cyan);
+  height: 48px;
+  width: auto;
 }
-
-.logoText {
-  font-size: 1.25rem;
-  font-weight: var(--weight-black);
-  letter-spacing: var(--tracking-tight);
-  color: var(--color-text-primary);
-}
-
-.logoSub {
-  font-size: 0.5em;
-  font-weight: var(--weight-semibold);
-  letter-spacing: var(--tracking-widest);
-  vertical-align: super;
-  margin-left: 0.25em;
-  color: var(--color-text-secondary);
 }
 
 .tagline {
