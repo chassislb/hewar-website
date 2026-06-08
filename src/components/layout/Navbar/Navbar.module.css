@@ -47,45 +47,19 @@
 .logo {
   display: flex;
   align-items: center;
-  gap: 0.6rem;
   text-decoration: none;
   flex-shrink: 0;
+  opacity: 1;
+  transition: opacity var(--dur-fast) ease;
+}
+.logo:hover {
+  opacity: 0.85;
 }
 
-.logoMark {
-  display: flex;
-  gap: 3.5px;
-  align-items: center;
-}
-
-.logoDot {
+.logoImg {
   display: block;
-  width: 5px;
-  height: 5px;
-  border-radius: 50%;
-  background: var(--color-cyan);
-  box-shadow: 0 0 6px var(--color-cyan-dim);
-  transition: transform var(--dur-normal) var(--ease-elastic);
-}
-.logo:hover .logoDot:nth-child(1) { transform: translateY(-4px); }
-.logo:hover .logoDot:nth-child(2) { transform: translateY(-7px); transition-delay: 0.04s; }
-.logo:hover .logoDot:nth-child(3) { transform: translateY(-4px); transition-delay: 0.08s; }
-
-.logoText {
-  font-size: 1.3rem;
-  font-weight: var(--weight-black);
-  letter-spacing: var(--tracking-tight);
-  color: var(--color-text-primary);
-  line-height: 1;
-}
-
-.logoSub {
-  font-size: 0.45em;
-  font-weight: var(--weight-semibold);
-  letter-spacing: var(--tracking-widest);
-  vertical-align: super;
-  margin-left: 0.3em;
-  color: var(--color-text-secondary);
+  height: 38px;
+  width: auto;
 }
 
 /* ── Desktop Links ── */

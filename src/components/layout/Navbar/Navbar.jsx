@@ -69,14 +69,12 @@ const Navbar = () => {
               onMouseEnter={() => setCursor('hover')}
               onMouseLeave={resetCursor}
             >
-              <span className={styles.logoMark}>
-                <span className={styles.logoDot} />
-                <span className={styles.logoDot} />
-                <span className={styles.logoDot} />
-              </span>
-              <span className={styles.logoText}>
-                HEWAR<span className={styles.logoSub}>GROUP</span>
-              </span>
+              <img
+                src={`${import.meta.env.BASE_URL}hewar-logo-white.svg`}
+                alt="HEWAR Group"
+                className={styles.logoImg}
+                height="38"
+              />
             </Link>
 
             {/* Desktop links */}
