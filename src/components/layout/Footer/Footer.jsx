@@ -21,12 +21,12 @@ const Footer = () => {
               onMouseEnter={() => setCursor('hover')}
               onMouseLeave={resetCursor}
             >
-              <span className={styles.logoDots}>
-                <span /><span /><span />
-              </span>
-              <span className={styles.logoText}>
-                HEWAR<span className={styles.logoSub}>GROUP</span>
-              </span>
+              <img
+                src={`${import.meta.env.BASE_URL}hewar-logo-white.svg`}
+                alt="HEWAR Group"
+                className={styles.logoImg}
+                height="48"
+              />
             </Link>
             <p className={styles.tagline}>{SITE_TAGLINE}</p>
             <a
