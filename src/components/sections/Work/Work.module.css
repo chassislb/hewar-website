@@ -118,6 +118,41 @@
   pointer-events: none;
 }
 
+/* ── Client logo slot ── */
+.logoSlot {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2.5rem;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.logo {
+  max-width: 55%;
+  max-height: 90px;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  /* Resting state — slightly faded, shifted down */
+  opacity: 0.55;
+  transform: translateY(10px) scale(0.94);
+  transition:
+    opacity   0.55s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.55s cubic-bezier(0.16, 1, 0.3, 1),
+    filter    0.55s ease;
+  filter: drop-shadow(0 0 0px transparent);
+}
+
+/* Hover — full opacity, centred, cyan glow */
+.card:hover .logo {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  filter: drop-shadow(0 0 22px rgba(0, 200, 255, 0.5));
+}
+
 /* Card index number */
 .num {
   position: absolute;

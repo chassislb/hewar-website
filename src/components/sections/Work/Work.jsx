@@ -24,6 +24,14 @@ const WorkCard = ({ project, index }) => {
         <div className={styles.visual} style={{ '--card-color': project.color }}>
           <div className={styles.visualOrb} />
           <div className={styles.visualGrid} />
+
+          {/* Client logo — centred, animates on hover */}
+          {project.logo && (
+            <div className={styles.logoSlot}>
+              <img src={project.logo} alt={project.client} className={styles.logo} />
+            </div>
+          )}
+
           <div className={styles.num} aria-hidden>
             {String(index + 1).padStart(2, '0')}
           </div>
