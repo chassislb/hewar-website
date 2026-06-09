@@ -1,4 +1,6 @@
-/* ── Hero ── */
+/* ═══════════════════════════════
+   HERO
+═══════════════════════════════ */
 .hero {
   position: relative;
   padding-top: clamp(8rem, 15vw, 12rem);
@@ -56,24 +58,120 @@
   z-index: 1;
 }
 
-/* ── Story ── */
+/* ═══════════════════════════════
+   STORY — sticky image + scroll text
+═══════════════════════════════ */
 .story {
-  padding-block: var(--section-padding-y);
   background: var(--color-bg-secondary);
+  padding-block: var(--section-padding-y);
+  overflow: hidden;
 }
 
 .storyGrid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: clamp(3rem, 6vw, 6rem);
-  align-items: start;
+  gap: clamp(3rem, 5vw, 5rem);
+  align-items: start; /* critical — allows sticky to work */
 }
 
-@media (max-width: 768px) {
-  .storyGrid {
-    grid-template-columns: 1fr;
-    gap: 3rem;
-  }
+/* ── LEFT: sticky image column ── */
+.storyImageCol {
+  position: sticky;
+  top: clamp(5.5rem, 9vh, 7rem);
+  /* Clip-path driven by GSAP — starts at inset(100% 0 0 0) */
+  will-change: clip-path;
+}
+
+.imageFrame {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  border-radius: 14px;
+  overflow: hidden;
+  background: var(--color-bg-elevated);
+}
+
+/* Gradient placeholder (shown until real photo is set) */
+.imagePlaceholder {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    145deg,
+    rgba(71, 0, 179, 0.55) 0%,
+    rgba(6, 26, 64, 0.95) 50%,
+    rgba(0, 200, 255, 0.18) 100%
+  );
+}
+
+.imagePlaceholderGrid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.045) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+.imagePlaceholderOrb {
+  position: absolute;
+  width: 70%;
+  aspect-ratio: 1;
+  top: 10%;
+  right: -15%;
+  background: radial-gradient(circle, rgba(0, 200, 255, 0.3) 0%, transparent 65%);
+  border-radius: 50%;
+  filter: blur(40px);
+  pointer-events: none;
+}
+
+/* Real image — GSAP drives yPercent parallax */
+.storyImg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 115%;   /* oversized so parallax travel has room */
+  top: -7.5%;
+  object-fit: cover;
+  will-change: transform;
+}
+
+/* Value tags overlaid at bottom of image */
+.imageTags {
+  position: absolute;
+  bottom: 1.5rem;
+  left: 1.5rem;
+  right: 1.5rem;
+  display: flex;
+  gap: 0.45rem;
+  flex-wrap: wrap;
+  z-index: 2;
+}
+
+.imageTag {
+  font-size: 10px;
+  font-weight: var(--weight-semibold);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.8);
+  background: rgba(6, 26, 64, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  padding: 0.4rem 0.9rem;
+  border-radius: 100px;
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+}
+
+/* ── RIGHT: scrolling text column ── */
+.storyTextCol {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(3.5rem, 7vw, 6rem);
+  padding-block: clamp(1rem, 3vh, 2rem);
+}
+
+.storyBlock {
+  display: flex;
+  flex-direction: column;
 }
 
 .storyLabel {
@@ -89,24 +187,31 @@
   font-size: clamp(1rem, 1.5vw, 1.15rem);
   color: var(--color-text-secondary);
   line-height: var(--leading-relaxed);
-  margin-bottom: clamp(2rem, 4vw, 3rem);
+  margin-bottom: clamp(1.25rem, 2.5vw, 2rem);
+}
+
+.storyText em {
+  font-style: italic;
+  color: var(--color-text-primary);
 }
 
 .statsRow {
   display: flex;
   align-items: center;
-  gap: var(--space-8);
-  margin-bottom: var(--space-6);
+  gap: var(--space-6);
+  margin-top: clamp(1.5rem, 3vw, 2.5rem);
+  padding-top: clamp(1.5rem, 3vw, 2rem);
+  border-top: 1px solid var(--color-border);
 }
 
 .stat {
   display: flex;
   flex-direction: column;
-  gap: 0.25rem;
+  gap: 0.3rem;
 }
 
 .statNumber {
-  font-size: clamp(2rem, 4vw, 3rem);
+  font-size: clamp(1.8rem, 3.5vw, 2.75rem);
   font-weight: var(--weight-black);
   letter-spacing: var(--tracking-tighter);
   color: var(--color-text-primary);
@@ -122,31 +227,23 @@
 
 .statDivider {
   width: 1px;
-  height: 40px;
+  height: 36px;
   background: var(--color-border);
   flex-shrink: 0;
 }
 
-.offices {
-  font-size: var(--type-body-sm);
-  color: var(--color-text-tertiary);
-  letter-spacing: var(--tracking-wide);
-  text-transform: uppercase;
-}
-
-/* ── Method Pillars ── */
-.methodPillars {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-4);
-}
-
+/* ── Method pillars ── */
 .pillarCard {
   background: var(--color-bg-elevated);
   border: 1px solid var(--color-border);
   border-radius: var(--radius-lg);
   padding: clamp(1.5rem, 3vw, 2rem);
+  margin-bottom: var(--space-4);
   transition: border-color 0.3s ease;
+}
+
+.pillarCard:last-child {
+  margin-bottom: 0;
 }
 
 .pillarCard:hover {
@@ -154,7 +251,7 @@
 }
 
 .pillarTitle {
-  font-size: clamp(1.1rem, 1.8vw, 1.35rem);
+  font-size: clamp(1.1rem, 1.8vw, 1.3rem);
   font-weight: var(--weight-bold);
   color: var(--color-text-primary);
   margin-bottom: var(--space-4);
@@ -168,16 +265,18 @@
 }
 
 .pillarItem {
-  font-size: var(--type-body-xs);
+  font-size: 11px;
   color: var(--color-text-secondary);
-  background: rgba(0, 200, 255, 0.08);
-  border: 1px solid rgba(0, 200, 255, 0.2);
+  background: rgba(0, 200, 255, 0.07);
+  border: 1px solid rgba(0, 200, 255, 0.18);
   border-radius: var(--radius-md);
   padding: 0.3rem 0.75rem;
   letter-spacing: 0.04em;
 }
 
-/* ── Values ── */
+/* ═══════════════════════════════
+   VALUES
+═══════════════════════════════ */
 .valuesSection {
   padding-block: var(--section-padding-y);
   background: var(--color-bg-primary);
@@ -203,39 +302,37 @@
 .valuesGrid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: var(--space-4);
-}
-
-@media (max-width: 1024px) {
-  .valuesGrid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-@media (max-width: 600px) {
-  .valuesGrid {
-    grid-template-columns: 1fr;
-  }
+  gap: 1px;
+  background: var(--color-border);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
 }
 
 .valueCard {
-  background: var(--color-bg-elevated);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-lg);
-  padding: clamp(1.5rem, 3vw, 2.5rem);
-  transition: border-color 0.3s ease, transform 0.3s ease;
+  background: var(--color-bg-primary);
+  padding: clamp(1.75rem, 3vw, 2.5rem);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  transition: background var(--dur-normal) ease;
 }
 
 .valueCard:hover {
-  border-color: var(--color-border-accent);
-  transform: translateY(-4px);
+  background: var(--color-bg-card-hover);
+}
+
+.valueNum {
+  font-size: var(--type-body-xs);
+  font-weight: var(--weight-semibold);
+  letter-spacing: var(--tracking-wider);
+  color: var(--color-text-accent);
 }
 
 .valueTitle {
-  font-size: 1.1rem;
+  font-size: clamp(1.1rem, 1.8vw, 1.3rem);
   font-weight: var(--weight-bold);
   color: var(--color-text-primary);
-  margin-bottom: var(--space-4);
   letter-spacing: var(--tracking-tight);
 }
 
@@ -245,7 +342,9 @@
   line-height: var(--leading-relaxed);
 }
 
-/* ── CTA ── */
+/* ═══════════════════════════════
+   CTA
+═══════════════════════════════ */
 .ctaSection {
   position: relative;
   padding-block: clamp(8rem, 15vw, 12rem);
@@ -291,4 +390,33 @@
   line-height: var(--leading-tight);
   color: var(--color-text-primary);
   margin: 0;
+}
+
+/* ═══════════════════════════════
+   RESPONSIVE
+═══════════════════════════════ */
+@media (max-width: 768px) {
+  .storyGrid {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+
+  .storyImageCol {
+    position: relative;
+    top: auto;
+  }
+
+  .imageFrame {
+    aspect-ratio: 4 / 3;
+  }
+
+  .valuesGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .valuesGrid {
+    grid-template-columns: 1fr;
+  }
 }

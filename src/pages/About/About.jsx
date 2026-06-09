@@ -16,110 +16,97 @@ const pageVariants = {
 }
 
 const methodPillars = [
-  {
-    title: 'Think Smarter',
-    items: ['Insight', 'Strategy', 'Culture', 'Data'],
-  },
-  {
-    title: 'Create Faster',
-    items: ['AI-assisted ideation', 'Design', 'Production'],
-  },
-  {
-    title: 'Communicate Better',
-    items: ['PR', 'Social', 'Campaigns', 'Reputation'],
-  },
+  { title: 'Think Smarter',      items: ['Insight', 'Strategy', 'Culture', 'Data'] },
+  { title: 'Create Faster',      items: ['AI-assisted ideation', 'Design', 'Production'] },
+  { title: 'Communicate Better', items: ['PR', 'Social', 'Campaigns', 'Reputation'] },
 ]
 
 const values = [
-  {
-    title: 'Growth',
-    body: 'We grow with our partners — measuring success by the impact we create together.',
-  },
-  {
-    title: 'Methodology',
-    body: 'Every idea is built on a strategic foundation, not guesswork.',
-  },
-  {
-    title: 'Innovation',
-    body: 'We lead with curiosity, embracing AI and new tools to stay ahead.',
-  },
-  {
-    title: 'Creativity',
-    body: 'Bold ideas, beautifully executed — always in service of the message.',
-  },
+  { num: '01', title: 'Growth',      body: 'We scale with every client we serve.' },
+  { num: '02', title: 'Methodology', body: 'Strategy before execution, always.' },
+  { num: '03', title: 'Innovation',  body: 'New thinking for changing markets.' },
+  { num: '04', title: 'Creativity',  body: 'Ideas that earn attention and trust.' },
 ]
 
-const About = () => {
-  const heroRef = useRef(null)
-  const storyRef = useRef(null)
-  const valuesRef = useRef(null)
-  const ctaRef = useRef(null)
+const IMAGE_TAGS = ['Expertise', 'Integrity', 'Excellence', 'Dedication']
 
+/* ─── Set this path once the photo arrives ───────────────────────────────
+   e.g. '/hewar-website/about/team.webp'
+   Until then the branded gradient placeholder is shown.               ─── */
+const ABOUT_IMAGE = null
+
+const About = () => {
+  const heroRef   = useRef(null)
+  const storyRef  = useRef(null)
+  const valuesRef = useRef(null)
+  const ctaRef    = useRef(null)
+
+  /* Hero entrance */
   useGSAP(() => {
-    gsap.fromTo(
-      '[data-page-title]',
-      { y: 60, opacity: 0 },
-      { y: 0, opacity: 1, duration: 1, ease: 'power4.out' }
-    )
-    gsap.fromTo(
-      '[data-page-eyebrow]',
-      { y: 20, opacity: 0 },
-      { y: 0, opacity: 1, duration: 0.8, ease: 'power3.out', delay: 0.15 }
-    )
-    gsap.fromTo(
-      '[data-page-sub]',
-      { y: 25, opacity: 0 },
-      { y: 0, opacity: 1, duration: 0.8, ease: 'power3.out', delay: 0.35 }
-    )
+    gsap.fromTo('[data-page-eyebrow]', { y: 20, opacity: 0 }, { y: 0, opacity: 1, duration: 0.8, ease: 'power3.out', delay: 0.15 })
+    gsap.fromTo('[data-page-title]',   { y: 60, opacity: 0 }, { y: 0, opacity: 1, duration: 1,   ease: 'power4.out', delay: 0.05 })
+    gsap.fromTo('[data-page-sub]',     { y: 25, opacity: 0 }, { y: 0, opacity: 1, duration: 0.8, ease: 'power3.out', delay: 0.35 })
   }, { scope: heroRef })
 
+  /* Story — sticky image + parallax + text reveals */
   useGSAP(() => {
-    gsap.fromTo(
-      '[data-reveal]',
-      { y: 40, opacity: 0 },
+    /* Image wipes UP into frame as section enters */
+    gsap.fromTo('[data-story-image]',
+      { clipPath: 'inset(100% 0% 0% 0% round 14px)' },
       {
-        y: 0,
-        opacity: 1,
-        duration: 0.8,
-        stagger: 0.1,
+        clipPath: 'inset(0% 0% 0% 0% round 14px)',
+        duration: 1.6,
+        ease: 'expo.inOut',
+        scrollTrigger: { trigger: storyRef.current, start: 'top 78%', toggleActions: 'play none none none' },
+      }
+    )
+
+    /* Parallax — image drifts up slower than scroll speed */
+    gsap.to('[data-story-img]', {
+      yPercent: -14,
+      ease: 'none',
+      scrollTrigger: {
+        trigger: storyRef.current,
+        start: 'top bottom',
+        end: 'bottom top',
+        scrub: 2,
+      },
+    })
+
+    /* Right column text blocks reveal in sequence */
+    gsap.fromTo('[data-story-text]',
+      { y: 55, opacity: 0 },
+      {
+        y: 0, opacity: 1,
+        duration: 0.95,
+        stagger: 0.22,
         ease: 'power3.out',
-        scrollTrigger: { trigger: storyRef.current, start: 'top 82%' },
+        scrollTrigger: { trigger: storyRef.current, start: 'top 70%' },
       }
     )
   }, { scope: storyRef })
 
+  /* Values */
   useGSAP(() => {
-    gsap.fromTo(
-      '[data-value-card]',
+    gsap.fromTo('[data-value-card]',
       { y: 40, opacity: 0 },
-      {
-        y: 0,
-        opacity: 1,
-        duration: 0.7,
-        stagger: 0.1,
-        ease: 'power3.out',
-        scrollTrigger: { trigger: valuesRef.current, start: 'top 82%' },
-      }
+      { y: 0, opacity: 1, duration: 0.7, stagger: 0.1, ease: 'power3.out',
+        scrollTrigger: { trigger: valuesRef.current, start: 'top 82%' } }
     )
   }, { scope: valuesRef })
 
+  /* CTA */
   useGSAP(() => {
-    gsap.fromTo(
-      '[data-cta-reveal]',
+    gsap.fromTo('[data-cta-reveal]',
       { y: 30, opacity: 0 },
-      {
-        y: 0,
-        opacity: 1,
-        duration: 0.8,
-        stagger: 0.12,
-        ease: 'power3.out',
-        scrollTrigger: { trigger: ctaRef.current, start: 'top 85%' },
-      }
+      { y: 0, opacity: 1, duration: 0.8, stagger: 0.12, ease: 'power3.out',
+        scrollTrigger: { trigger: ctaRef.current, start: 'top 85%' } }
     )
   }, { scope: ctaRef })
 
   return (
     <motion.div variants={pageVariants} initial="initial" animate="animate" exit="exit">
+
       {/* ── Hero ── */}
       <section className={styles.hero} ref={heroRef}>
         <div className={styles.heroOrb} style={{ top: '-30%', right: '-15%', background: 'radial-gradient(circle, rgba(71,0,179,0.4) 0%, transparent 70%)', width: 'clamp(400px,60vw,900px)', height: 'clamp(400px,60vw,900px)' }} aria-hidden />
@@ -139,46 +126,94 @@ const About = () => {
         </Container>
       </section>
 
-      {/* ── Story + Method ── */}
+      {/* ── Story — sticky image left, scrolling text right ── */}
       <section className={styles.story} ref={storyRef}>
         <Container>
           <div className={styles.storyGrid}>
-            {/* Left: Story */}
-            <div className={styles.storyLeft} data-reveal>
-              <p className={styles.storyLabel}>Our Story</p>
-              <p className={styles.storyText}>
-                HEWAR — حوار — means dialogue in Arabic. We believe the best
-                communication listens as much as it speaks. Founded in Saudi Arabia
-                with 12+ years in the market, serving partners across the public
-                and private sectors.
-              </p>
-              <div className={styles.statsRow}>
-                <div className={styles.stat}>
-                  <span className={styles.statNumber}>12+</span>
-                  <span className={styles.statLabel}>Years in Market</span>
-                </div>
-                <div className={styles.statDivider} />
-                <div className={styles.stat}>
-                  <span className={styles.statNumber}>2</span>
-                  <span className={styles.statLabel}>Offices: Riyadh + Beirut</span>
+
+            {/* ── LEFT: sticky image panel ── */}
+            <div className={styles.storyImageCol} data-story-image>
+              <div className={styles.imageFrame}>
+
+                {/* Branded placeholder — replaced by real photo when ready */}
+                {!ABOUT_IMAGE && (
+                  <div className={styles.imagePlaceholder} aria-hidden>
+                    <div className={styles.imagePlaceholderGrid} />
+                    <div className={styles.imagePlaceholderOrb} />
+                  </div>
+                )}
+
+                {/* Real image — GSAP drives yPercent parallax */}
+                {ABOUT_IMAGE && (
+                  <img
+                    src={ABOUT_IMAGE}
+                    alt="HEWAR Group team"
+                    className={styles.storyImg}
+                    data-story-img
+                  />
+                )}
+
+                {/* Value tags overlaid at bottom */}
+                <div className={styles.imageTags}>
+                  {IMAGE_TAGS.map(tag => (
+                    <span key={tag} className={styles.imageTag}>{tag}</span>
+                  ))}
                 </div>
               </div>
-              <p className={styles.offices}>Riyadh. Beirut.</p>
             </div>
 
-            {/* Right: Method pillars */}
-            <div className={styles.methodPillars} data-reveal>
-              <p className={styles.storyLabel}>Our Method</p>
-              {methodPillars.map((pillar) => (
-                <div key={pillar.title} className={styles.pillarCard}>
-                  <h3 className={styles.pillarTitle}>{pillar.title}</h3>
-                  <ul className={styles.pillarList}>
-                    {pillar.items.map((item) => (
-                      <li key={item} className={styles.pillarItem}>{item}</li>
-                    ))}
-                  </ul>
+            {/* ── RIGHT: scrolling content ── */}
+            <div className={styles.storyTextCol}>
+
+              {/* Story copy */}
+              <div className={styles.storyBlock} data-story-text>
+                <p className={styles.storyLabel}>Our Story</p>
+                <p className={styles.storyText}>
+                  HEWAR — حوار — means <em>dialogue</em> in Arabic. It's not a
+                  metaphor. It's our operating principle. We believe the best
+                  communication is never one-directional. It listens as much
+                  as it speaks, and earns attention rather than demanding it.
+                </p>
+                <p className={styles.storyText}>
+                  Founded in Saudi Arabia with 12+ years in the market, we
+                  craft bespoke communication solutions for partners from
+                  the public and private sectors across diverse industries.
+                  From Riyadh to Beirut — we bring the same discipline and
+                  creative intensity to every engagement.
+                </p>
+                <div className={styles.statsRow}>
+                  <div className={styles.stat}>
+                    <span className={styles.statNumber}>12+</span>
+                    <span className={styles.statLabel}>Years in Market</span>
+                  </div>
+                  <div className={styles.statDivider} />
+                  <div className={styles.stat}>
+                    <span className={styles.statNumber}>2</span>
+                    <span className={styles.statLabel}>Offices</span>
+                  </div>
+                  <div className={styles.statDivider} />
+                  <div className={styles.stat}>
+                    <span className={styles.statNumber}>100+</span>
+                    <span className={styles.statLabel}>Brands Served</span>
+                  </div>
                 </div>
-              ))}
+              </div>
+
+              {/* Method pillars */}
+              <div className={styles.storyBlock} data-story-text>
+                <p className={styles.storyLabel}>Our Method</p>
+                {methodPillars.map((pillar) => (
+                  <div key={pillar.title} className={styles.pillarCard}>
+                    <h3 className={styles.pillarTitle}>{pillar.title}</h3>
+                    <ul className={styles.pillarList}>
+                      {pillar.items.map((item) => (
+                        <li key={item} className={styles.pillarItem}>{item}</li>
+                      ))}
+                    </ul>
+                  </div>
+                ))}
+              </div>
+
             </div>
           </div>
         </Container>
@@ -192,6 +227,7 @@ const About = () => {
           <div className={styles.valuesGrid}>
             {values.map((v) => (
               <div key={v.title} className={styles.valueCard} data-value-card>
+                <span className={styles.valueNum}>{v.num}</span>
                 <h3 className={styles.valueTitle}>{v.title}</h3>
                 <p className={styles.valueBody}>{v.body}</p>
               </div>
@@ -206,17 +242,16 @@ const About = () => {
         <Container size="narrow">
           <div className={styles.ctaContent}>
             <p className={styles.ctaEyebrow} data-cta-reveal>Ready to amplify your brand?</p>
-            <h2 className={styles.ctaTitle} data-cta-reveal>
-              Start a Conversation.
-            </h2>
+            <h2 className={styles.ctaTitle} data-cta-reveal>Start a Conversation.</h2>
             <div data-cta-reveal>
               <Button variant="primary" size="lg" href="/contact">
-                Start a Conversation
+                Get in Touch
               </Button>
             </div>
           </div>
         </Container>
       </section>
+
     </motion.div>
   )
 }
