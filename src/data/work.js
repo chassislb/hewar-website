@@ -9,6 +9,7 @@ export const work = [
       'A full brand communications campaign repositioning one of Riyadh\'s most recognised landmarks for the next generation of Saudi consumers.',
     color: '#0A3A8A',
     size: 'large',
+    logo: null, // e.g. '/hewar-website/logos/kingdom-centre.svg'
   },
   {
     id: 'karnr',
@@ -20,6 +21,7 @@ export const work = [
       'End-to-end identity, social, and campaign work that gave KARNR a confident, nature-rooted visual and verbal presence.',
     color: '#0e2048',
     size: 'small',
+    logo: null, // e.g. '/hewar-website/logos/karnr.svg'
   },
   {
     id: 'zatca-conference',
@@ -31,6 +33,7 @@ export const work = [
       'Full-spectrum event design and production for the Zakat, Tax and Customs Authority — turning a regulatory conference into a standout experience.',
     color: '#082060',
     size: 'small',
+    logo: null, // e.g. '/hewar-website/logos/zatca.svg'
   },
   {
     id: 'h-flavor',
@@ -42,6 +45,7 @@ export const work = [
       'Social strategy, photography, and video production that gave H Flavor a scroll-stopping presence across Saudi social platforms.',
     color: '#1a0a30',
     size: 'small',
+    logo: null, // e.g. '/hewar-website/logos/h-flavor.svg'
   },
   {
     id: 'corporate-spaces',
@@ -53,6 +57,7 @@ export const work = [
       'Environmental branding and workplace identity design that transform offices into cohesive, branded communities.',
     color: '#0a1a40',
     size: 'small',
+    logo: null, // e.g. '/hewar-website/logos/corporate-spaces.svg'
   },
   {
     id: 'magazine-design',
@@ -64,5 +69,6 @@ export const work = [
       'Editorial design and print production from concept to final press-ready file — quality at every page.',
     color: '#200a10',
     size: 'small',
+    logo: null, // e.g. '/hewar-website/logos/magazine-design.svg'
   },
 ]
