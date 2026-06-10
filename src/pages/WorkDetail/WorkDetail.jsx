@@ -125,7 +125,7 @@ const WorkDetail = () => {
       </section>
 
       {/* ── Gallery ── */}
-      {project.images && project.images.length > 1 && (
+      {project.images && project.images.length > 0 && (
         <section className={styles.gallerySection}>
           <Container>
             <p className={styles.galleryLabel}>Project Visuals</p>

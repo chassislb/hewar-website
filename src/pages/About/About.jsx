@@ -52,14 +52,14 @@ const About = () => {
 
   /* Story — sticky image + parallax + text reveals */
   useGSAP(() => {
-    /* Image wipes UP into frame as section enters */
+    /* Image column fades + rises in as section enters */
     gsap.fromTo('[data-story-image]',
-      { clipPath: 'inset(100% 0% 0% 0% round 14px)' },
+      { opacity: 0, y: 40 },
       {
-        clipPath: 'inset(0% 0% 0% 0% round 14px)',
-        duration: 1.6,
-        ease: 'expo.inOut',
-        scrollTrigger: { trigger: storyRef.current, start: 'top 78%', toggleActions: 'play none none none' },
+        opacity: 1, y: 0,
+        duration: 1.2,
+        ease: 'power3.out',
+        scrollTrigger: { trigger: storyRef.current, start: 'top 85%', toggleActions: 'play none none none' },
       }
     )
 

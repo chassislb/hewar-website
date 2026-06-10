@@ -78,8 +78,7 @@
 .storyImageCol {
   position: sticky;
   top: clamp(5.5rem, 9vh, 7rem);
-  /* Clip-path driven by GSAP — starts at inset(100% 0 0 0) */
-  will-change: clip-path;
+  will-change: transform, opacity;
 }
 
 .imageFrame {
