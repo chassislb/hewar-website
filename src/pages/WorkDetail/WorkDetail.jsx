@@ -73,7 +73,12 @@ const WorkDetail = () => {
         ref={heroRef}
         style={{ '--project-color': project.color }}
       >
-        <div className={styles.heroBg} style={{ background: project.color }} aria-hidden />
+        <div className={styles.heroBg} aria-hidden>
+          {project.image
+            ? <img src={project.image} alt="" className={styles.heroBgImg} />
+            : <div className={styles.heroBgColor} style={{ background: project.color }} />
+          }
+        </div>
         <div className={styles.heroOverlay} aria-hidden />
         <Container>
           <Link to="/work" className={styles.backLink}>
@@ -118,6 +123,22 @@ const WorkDetail = () => {
           </div>
         </Container>
       </section>
+
+      {/* ── Gallery ── */}
+      {project.images && project.images.length > 1 && (
+        <section className={styles.gallerySection}>
+          <Container>
+            <p className={styles.galleryLabel}>Project Visuals</p>
+            <div className={styles.gallery}>
+              {project.images.map((src, i) => (
+                <div key={i} className={styles.galleryItem}>
+                  <img src={src} alt={`${project.client} — visual ${i + 1}`} className={styles.galleryImg} />
+                </div>
+              ))}
+            </div>
+          </Container>
+        </section>
+      )}
     </motion.div>
   )
 }
