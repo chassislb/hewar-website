@@ -22,6 +22,9 @@ const WorkCard = ({ project, index }) => {
       <Link to={`/work/${project.id}`} className={styles.cardLink}>
         {/* Visual */}
         <div className={styles.visual} style={{ '--card-color': project.color }}>
+          {project.image && (
+            <img src={project.image} alt="" className={styles.cardImg} aria-hidden />
+          )}
           <div className={styles.visualOrb} />
           <div className={styles.visualGrid} />
 

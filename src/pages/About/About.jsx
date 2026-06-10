@@ -30,10 +30,12 @@ const values = [
 
 const IMAGE_TAGS = ['Expertise', 'Integrity', 'Excellence', 'Dedication']
 
-/* ─── Set this path once the photo arrives ───────────────────────────────
-   e.g. '/hewar-website/about/team.webp'
-   Until then the branded gradient placeholder is shown.               ─── */
-const ABOUT_IMAGE = null
+const ABOUT_IMAGE = '/hewar-website/Website/Website/About/HEWAR/3.png'
+
+const ABOUT_MOMENTS = [
+  { src: '/hewar-website/Website/Website/About/HEWAR/1.png', caption: 'Speaking at a regional industry summit' },
+  { src: '/hewar-website/Website/Website/About/HEWAR/2.png', caption: 'Employer Happiness Awards KSA — Best in Class' },
+]
 
 const About = () => {
   const heroRef   = useRef(null)
@@ -215,6 +217,22 @@ const About = () => {
               </div>
 
             </div>
+          </div>
+        </Container>
+      </section>
+
+      {/* ── Moments ── */}
+      <section className={styles.momentsSection}>
+        <Container>
+          <div className={styles.momentsGrid}>
+            {ABOUT_MOMENTS.map((m) => (
+              <figure key={m.src} className={styles.momentFigure}>
+                <div className={styles.momentImgWrap}>
+                  <img src={m.src} alt={m.caption} className={styles.momentImg} />
+                </div>
+                <figcaption className={styles.momentCaption}>{m.caption}</figcaption>
+              </figure>
+            ))}
           </div>
         </Container>
       </section>
