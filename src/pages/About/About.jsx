@@ -28,14 +28,12 @@ const values = [
   { num: '04', title: 'Creativity',  body: 'Ideas that earn attention and trust.' },
 ]
 
-const IMAGE_TAGS = ['Expertise', 'Integrity', 'Excellence', 'Dedication']
-
-const ABOUT_IMAGE = '/hewar-website/Website/Website/About/HEWAR/3.png'
-
-const ABOUT_MOMENTS = [
-  { src: '/hewar-website/Website/Website/About/HEWAR/1.png', caption: 'Speaking at a regional industry summit' },
-  { src: '/hewar-website/Website/Website/About/HEWAR/2.png', caption: 'Employer Happiness Awards KSA — Best in Class' },
-]
+/* All three About photos — A is main, B and C layer on top at different parallax rates */
+const ABOUT_IMAGES = {
+  a: '/hewar-website/Website/Website/About/HEWAR/3.png', // office / HEWAR logo wall
+  b: '/hewar-website/Website/Website/About/HEWAR/1.png', // panel discussion
+  c: '/hewar-website/Website/Website/About/HEWAR/2.png', // award ceremony
+}
 
 const About = () => {
   const heroRef   = useRef(null)
@@ -50,41 +48,28 @@ const About = () => {
     gsap.fromTo('[data-page-sub]',     { y: 25, opacity: 0 }, { y: 0, opacity: 1, duration: 0.8, ease: 'power3.out', delay: 0.35 })
   }, { scope: heroRef })
 
-  /* Story — sticky image + parallax + text reveals */
+  /* Story — 3-image parallax stack + text reveals */
   useGSAP(() => {
-    /* Image column fades + rises in as section enters */
-    gsap.fromTo('[data-story-image]',
-      { opacity: 0, y: 40 },
-      {
-        opacity: 1, y: 0,
-        duration: 1.2,
-        ease: 'power3.out',
-        scrollTrigger: { trigger: storyRef.current, start: 'top 85%', toggleActions: 'play none none none' },
-      }
-    )
+    const trigger = storyRef.current
+    const scrubConfig = { trigger, start: 'top bottom', end: 'bottom top', scrub: 2 }
 
-    /* Parallax — image drifts up slower than scroll speed */
-    gsap.to('[data-story-img]', {
-      yPercent: -14,
-      ease: 'none',
-      scrollTrigger: {
-        trigger: storyRef.current,
-        start: 'top bottom',
-        end: 'bottom top',
-        scrub: 2,
-      },
-    })
+    /* Three images move at different speeds — creates depth */
+    gsap.to('[data-img-a]', { yPercent: -8,  ease: 'none', scrollTrigger: scrubConfig })
+    gsap.to('[data-img-b]', { yPercent: -20, ease: 'none', scrollTrigger: scrubConfig })
+    gsap.to('[data-img-c]', { yPercent: -34, ease: 'none', scrollTrigger: scrubConfig })
+
+    /* Image stack fades in on enter */
+    gsap.fromTo('[data-story-image]',
+      { opacity: 0, y: 50 },
+      { opacity: 1, y: 0, duration: 1.3, ease: 'power3.out',
+        scrollTrigger: { trigger, start: 'top 85%', toggleActions: 'play none none none' } }
+    )
 
     /* Right column text blocks reveal in sequence */
     gsap.fromTo('[data-story-text]',
       { y: 55, opacity: 0 },
-      {
-        y: 0, opacity: 1,
-        duration: 0.95,
-        stagger: 0.22,
-        ease: 'power3.out',
-        scrollTrigger: { trigger: storyRef.current, start: 'top 70%' },
-      }
+      { y: 0, opacity: 1, duration: 0.95, stagger: 0.22, ease: 'power3.out',
+        scrollTrigger: { trigger, start: 'top 70%' } }
     )
   }, { scope: storyRef })
 
@@ -128,39 +113,30 @@ const About = () => {
         </Container>
       </section>
 
-      {/* ── Story — sticky image left, scrolling text right ── */}
+      {/* ── Story — 3-image parallax left, scrolling text right ── */}
       <section className={styles.story} ref={storyRef}>
         <Container>
           <div className={styles.storyGrid}>
 
-            {/* ── LEFT: sticky image panel ── */}
+            {/* ── LEFT: sticky 3-photo parallax stack ── */}
             <div className={styles.storyImageCol} data-story-image>
-              <div className={styles.imageFrame}>
+              <div className={styles.imageStack}>
 
-                {/* Branded placeholder — replaced by real photo when ready */}
-                {!ABOUT_IMAGE && (
-                  <div className={styles.imagePlaceholder} aria-hidden>
-                    <div className={styles.imagePlaceholderGrid} />
-                    <div className={styles.imagePlaceholderOrb} />
-                  </div>
-                )}
-
-                {/* Real image — GSAP drives yPercent parallax */}
-                {ABOUT_IMAGE && (
-                  <img
-                    src={ABOUT_IMAGE}
-                    alt="HEWAR Group team"
-                    className={styles.storyImg}
-                    data-story-img
-                  />
-                )}
-
-                {/* Value tags overlaid at bottom */}
-                <div className={styles.imageTags}>
-                  {IMAGE_TAGS.map(tag => (
-                    <span key={tag} className={styles.imageTag}>{tag}</span>
-                  ))}
+                {/* Photo A — office/logo wall — large, background layer, slowest */}
+                <div className={styles.imgFrameA}>
+                  <img src={ABOUT_IMAGES.a} alt="HEWAR Group office" className={styles.imgInner} data-img-a />
                 </div>
+
+                {/* Photo B — event panel — mid layer, medium speed */}
+                <div className={styles.imgFrameB}>
+                  <img src={ABOUT_IMAGES.b} alt="HEWAR Group event" className={styles.imgInner} data-img-b />
+                </div>
+
+                {/* Photo C — award ceremony — top layer, fastest */}
+                <div className={styles.imgFrameC}>
+                  <img src={ABOUT_IMAGES.c} alt="HEWAR Group award" className={styles.imgInner} data-img-c />
+                </div>
+
               </div>
             </div>
 
@@ -217,22 +193,6 @@ const About = () => {
               </div>
 
             </div>
-          </div>
-        </Container>
-      </section>
-
-      {/* ── Moments ── */}
-      <section className={styles.momentsSection}>
-        <Container>
-          <div className={styles.momentsGrid}>
-            {ABOUT_MOMENTS.map((m) => (
-              <figure key={m.src} className={styles.momentFigure}>
-                <div className={styles.momentImgWrap}>
-                  <img src={m.src} alt={m.caption} className={styles.momentImg} />
-                </div>
-                <figcaption className={styles.momentCaption}>{m.caption}</figcaption>
-              </figure>
-            ))}
           </div>
         </Container>
       </section>
