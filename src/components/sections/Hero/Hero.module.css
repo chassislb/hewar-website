@@ -5,12 +5,8 @@
   display: flex;
   align-items: center;
   overflow: hidden;
-  /* No background — canvas particles show through from behind main */
 }
 
-/* ═══════════════════════════════
-   BACKGROUND DEPTH LAYERS
-═══════════════════════════════ */
 .bg {
   position: absolute;
   inset: 0;
@@ -18,7 +14,6 @@
   z-index: 0;
 }
 
-/* ── Gradient Orbs (brand circle device) ── */
 .orb1 {
   position: absolute;
   width: clamp(550px, 70vw, 1100px);
@@ -26,10 +21,10 @@
   top: -25%;
   right: -12%;
   background: radial-gradient(circle at 40% 40%,
-    rgba(71, 0, 179, 0.55)  0%,
-    rgba(71, 0, 179, 0.22)  35%,
-    rgba(0,  200, 255, 0.08) 60%,
-    transparent              75%);
+    rgba(71, 0, 179, 0.55) 0%,
+    rgba(71, 0, 179, 0.22) 35%,
+    rgba(0, 200, 255, 0.08) 60%,
+    transparent 75%);
   border-radius: 50%;
   filter: blur(55px);
   animation: driftOrb1 16s ease-in-out infinite;
@@ -43,9 +38,9 @@
   bottom: -8%;
   left: -6%;
   background: radial-gradient(circle at 60% 60%,
-    rgba(0,  200, 255, 0.40) 0%,
-    rgba(0,  200, 255, 0.12) 45%,
-    transparent               70%);
+    rgba(0, 200, 255, 0.40) 0%,
+    rgba(0, 200, 255, 0.12) 45%,
+    transparent 70%);
   border-radius: 50%;
   filter: blur(75px);
   animation: driftOrb2 20s ease-in-out infinite;
@@ -61,36 +56,30 @@
   background: radial-gradient(circle at center,
     rgba(71, 0, 179, 0.28) 0%,
     rgba(0, 200, 255, 0.06) 50%,
-    transparent              70%);
+    transparent 70%);
   border-radius: 50%;
   filter: blur(45px);
   animation: driftOrb3 12s ease-in-out infinite;
   will-change: transform;
 }
 
-/* ── Dot grid ── */
 .grid {
   position: absolute;
   inset: 0;
   background-image: radial-gradient(circle, rgba(255,255,255,0.065) 1px, transparent 1px);
   background-size: 44px 44px;
-  -webkit-mask-image: radial-gradient(ellipse 85% 75% at 50% 50%, black 0%, transparent 100%);
   mask-image: radial-gradient(ellipse 85% 75% at 50% 50%, black 0%, transparent 100%);
 }
 
-/* ── Edge vignette to contain the scene ── */
 .vignette {
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(ellipse 110% 55% at 50% 0%,  transparent 55%, var(--color-bg-primary) 100%),
+    radial-gradient(ellipse 110% 55% at 50% 0%, transparent 55%, var(--color-bg-primary) 100%),
     radial-gradient(ellipse 110% 35% at 50% 100%, var(--color-bg-primary) 0%, transparent 100%),
-    radial-gradient(ellipse 20%  100% at 0%  50%, var(--color-bg-primary) 0%, transparent 100%);
+    radial-gradient(ellipse 20% 100% at 0% 50%, var(--color-bg-primary) 0%, transparent 100%);
 }
 
-/* ═══════════════════════════════
-   CONTENT
-═══════════════════════════════ */
 .container {
   position: relative;
   z-index: 1;
@@ -99,38 +88,9 @@
 .content {
   padding-top: clamp(5rem, 10vw, 8rem);
   padding-bottom: clamp(4rem, 8vw, 7rem);
-  max-width: min(860px, 90vw);
+  max-width: min(980px, 92vw);
 }
 
-/* ── Eyebrow ── */
-.eyebrow {
-  display: flex;
-  align-items: center;
-  gap: 0.8rem;
-  margin-bottom: clamp(1.75rem, 3.5vw, 3rem);
-  opacity: 0;
-}
-
-.dots { display: flex; gap: 5px; }
-
-.dot {
-  display: block;
-  width: 5px;
-  height: 5px;
-  border-radius: 50%;
-  background: var(--color-cyan);
-  box-shadow: 0 0 8px var(--color-cyan-glow);
-}
-
-.eyebrowText {
-  font-size: var(--type-body-xs);
-  font-weight: var(--weight-semibold);
-  letter-spacing: var(--tracking-widest);
-  text-transform: uppercase;
-  color: var(--color-text-secondary);
-}
-
-/* ── Headline ── */
 .headline {
   display: flex;
   flex-direction: column;
@@ -139,10 +99,9 @@
   letter-spacing: var(--tracking-tighter);
   line-height: var(--leading-tight);
   color: var(--color-text-primary);
-  margin: 0 0 clamp(1.5rem, 3.5vw, 3rem);
+  margin: 0 0 clamp(1.5rem, 3vw, 2.4rem);
 }
 
-/* Overflow-hidden mask — GSAP slides lineInner up from below */
 .lineWrap {
   display: block;
   overflow: hidden;
@@ -154,66 +113,22 @@
   transform: translateY(115%);
 }
 
-/* Gradient period at end of headline */
-.period {
+.gradientText {
   background: var(--gradient-brand);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 
-/* ── Subtext ── */
 .sub {
   font-size: clamp(1rem, 1.7vw, 1.3rem);
   color: var(--color-text-secondary);
   line-height: var(--leading-relaxed);
-  max-width: 540px;
-  margin: 0 0 clamp(2rem, 4.5vw, 3.5rem);
+  max-width: 560px;
+  margin: 0;
   opacity: 0;
 }
 
-/* ── CTAs ── */
-.ctas {
-  display: flex;
-  align-items: center;
-  gap: var(--space-4);
-  flex-wrap: wrap;
-  opacity: 0;
-}
-
-/* ═══════════════════════════════
-   SCROLL INDICATOR
-═══════════════════════════════ */
-.scrollIndicator {
-  position: absolute;
-  bottom: 2.5rem;
-  left: 50%;
-  transform: translateX(-50%);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.7rem;
-  opacity: 0;
-  z-index: 1;
-}
-
-.scrollLine {
-  width: 1px;
-  height: 60px;
-  background: linear-gradient(to bottom, var(--color-cyan), transparent);
-  border-radius: 2px;
-  animation: scrollPulse 2.4s ease-in-out infinite;
-}
-
-.scrollLabel {
-  font-size: 10px;
-  font-weight: var(--weight-semibold);
-  letter-spacing: var(--tracking-widest);
-  text-transform: uppercase;
-  color: var(--color-text-tertiary);
-}
-
-/* ── Bottom blend into next section ── */
 .bottomFade {
   position: absolute;
   bottom: 0;
@@ -225,17 +140,26 @@
   z-index: 1;
 }
 
-/* ═══════════════════════════════
-   RESPONSIVE
-═══════════════════════════════ */
 @media (max-width: 768px) {
   .content {
     padding-top: 6rem;
     padding-bottom: 4rem;
   }
-  .headline { font-size: clamp(2.8rem, 13vw, 5.5rem); }
-  .sub      { font-size: 1.05rem; }
-  .ctas     { flex-direction: column; align-items: flex-start; }
-  .orb1     { width: 100vw; right: -55%; }
-  .orb2     { width: 80vw; }
+
+  .headline {
+    font-size: clamp(2.8rem, 13vw, 5.5rem);
+  }
+
+  .sub {
+    font-size: 1.05rem;
+  }
+
+  .orb1 {
+    width: 100vw;
+    right: -55%;
+  }
+
+  .orb2 {
+    width: 80vw;
+  }
 }

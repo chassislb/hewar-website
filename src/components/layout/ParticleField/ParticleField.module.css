@@ -1,6 +1,6 @@
 .canvas {
   position: fixed;
   inset: 0;
-  z-index: 0;         /* below main content — shows through transparent hero background */
+  z-index: 0;
   pointer-events: none;
 }
