@@ -2,9 +2,8 @@ import { useRef } from 'react'
 import { useGSAP } from '@gsap/react'
 import gsap from 'gsap'
 import Container from '../../ui/Container/Container'
+import AnimatedAmplified from './AnimatedAmplified'
 import styles from './Hero.module.css'
-
-const HEADLINE = ['Human Intelligence.', 'Amplified.']
 
 const Hero = () => {
   const heroRef = useRef(null)
@@ -19,19 +18,19 @@ const Hero = () => {
       { scale: 1, opacity: 1, duration: 2.8, stagger: 0.3, ease: 'power2.out' }
     )
 
-    .fromTo(
-      '[data-hero-line]',
-      { y: '115%' },
-      { y: '0%', duration: 1.2, stagger: 0.13, ease: 'power4.out' },
-      '-=1.8'
-    )
+      .fromTo(
+        '[data-hero-line]',
+        { y: '115%' },
+        { y: '0%', duration: 1.2, stagger: 0.13, ease: 'power4.out' },
+        '-=1.8'
+      )
 
-    .fromTo(
-      '[data-hero-sub]',
-      { opacity: 0, y: 28 },
-      { opacity: 1, y: 0, duration: 0.85, ease: 'power3.out' },
-      '-=0.65'
-    )
+      .fromTo(
+        '[data-hero-sub]',
+        { opacity: 0, y: 28 },
+        { opacity: 1, y: 0, duration: 0.85, ease: 'power3.out' },
+        '-=0.65'
+      )
 
     gsap.to('[data-hero-headline]', {
       yPercent: 12,
@@ -69,13 +68,17 @@ const Hero = () => {
       <Container className={styles.container}>
         <div className={styles.content}>
           <h1 className={styles.headline} data-hero-headline>
-            {HEADLINE.map((line, i) => (
-              <span key={i} className={styles.lineWrap}>
-                <span className={styles.lineInner} data-hero-line>
-                  {i === 1 ? <span className={styles.gradientText}>{line}</span> : line}
-                </span>
+            <span className={styles.lineWrap}>
+              <span className={styles.lineInner} data-hero-line>
+                Human Intelligence.
               </span>
-            ))}
+            </span>
+
+            <span className={styles.lineWrap}>
+              <span className={styles.lineInner} data-hero-line>
+                <AnimatedAmplified />
+              </span>
+            </span>
           </h1>
 
           <p className={styles.sub} data-hero-sub>
