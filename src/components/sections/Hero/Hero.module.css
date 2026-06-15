@@ -23,11 +23,13 @@
   height: clamp(550px, 70vw, 1100px);
   top: -25%;
   right: -12%;
-  background: radial-gradient(circle at 40% 40%,
+  background: radial-gradient(
+    circle at 40% 40%,
     rgba(71, 0, 179, 0.55) 0%,
     rgba(71, 0, 179, 0.22) 35%,
     rgba(0, 200, 255, 0.08) 60%,
-    transparent 75%);
+    transparent 75%
+  );
   border-radius: 50%;
   filter: blur(55px);
   animation: driftOrb1 16s ease-in-out infinite;
@@ -40,10 +42,12 @@
   height: clamp(380px, 55vw, 820px);
   bottom: -8%;
   left: -6%;
-  background: radial-gradient(circle at 60% 60%,
-    rgba(0, 200, 255, 0.40) 0%,
+  background: radial-gradient(
+    circle at 60% 60%,
+    rgba(0, 200, 255, 0.4) 0%,
     rgba(0, 200, 255, 0.12) 45%,
-    transparent 70%);
+    transparent 70%
+  );
   border-radius: 50%;
   filter: blur(75px);
   animation: driftOrb2 20s ease-in-out infinite;
@@ -56,10 +60,12 @@
   height: clamp(220px, 32vw, 520px);
   top: 50%;
   right: 32%;
-  background: radial-gradient(circle at center,
+  background: radial-gradient(
+    circle at center,
     rgba(71, 0, 179, 0.28) 0%,
     rgba(0, 200, 255, 0.06) 50%,
-    transparent 70%);
+    transparent 70%
+  );
   border-radius: 50%;
   filter: blur(45px);
   animation: driftOrb3 12s ease-in-out infinite;
@@ -69,18 +75,38 @@
 .grid {
   position: absolute;
   inset: 0;
-  background-image: radial-gradient(circle, rgba(255,255,255,0.065) 1px, transparent 1px);
+  background-image: radial-gradient(
+    circle,
+    rgba(255, 255, 255, 0.065) 1px,
+    transparent 1px
+  );
   background-size: 44px 44px;
-  mask-image: radial-gradient(ellipse 85% 75% at 50% 50%, black 0%, transparent 100%);
+  mask-image: radial-gradient(
+    ellipse 85% 75% at 50% 50%,
+    black 0%,
+    transparent 100%
+  );
 }
 
 .vignette {
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(ellipse 110% 55% at 50% 0%, transparent 55%, var(--color-bg-primary) 100%),
-    radial-gradient(ellipse 110% 35% at 50% 100%, var(--color-bg-primary) 0%, transparent 100%),
-    radial-gradient(ellipse 20% 100% at 0% 50%, var(--color-bg-primary) 0%, transparent 100%);
+    radial-gradient(
+      ellipse 110% 55% at 50% 0%,
+      transparent 55%,
+      var(--color-bg-primary) 100%
+    ),
+    radial-gradient(
+      ellipse 110% 35% at 50% 100%,
+      var(--color-bg-primary) 0%,
+      transparent 100%
+    ),
+    radial-gradient(
+      ellipse 20% 100% at 0% 50%,
+      var(--color-bg-primary) 0%,
+      transparent 100%
+    );
 }
 
 .container {
@@ -90,8 +116,8 @@
 }
 
 .content {
-  padding-top: clamp(5rem, 10vw, 8rem);
-  padding-bottom: clamp(4rem, 8vw, 7rem);
+  padding-top: clamp(3rem, 6vw, 6rem);
+  padding-bottom: clamp(3rem, 6vw, 5rem);
 
   max-width: min(1200px, 92vw);
   margin: 0 auto;
@@ -108,21 +134,23 @@
   flex-direction: column;
   align-items: center;
 
-  font-size: var(--type-display-2xl);
-  font-weight: var(--weight-black);
-  letter-spacing: var(--tracking-tighter);
-  line-height: 0.95;
+  font-size: clamp(5rem, 9vw, 8rem);
+
+  font-weight: 700;
+
+  letter-spacing: -0.045em;
+  line-height: 0.9;
 
   color: var(--color-text-primary);
 
-  margin: 0 0 clamp(1.5rem, 3vw, 2.4rem);
+  margin: 0 0 2.5rem;
   text-align: center;
 }
 
 .lineWrap {
   display: block;
   overflow: hidden;
-  padding-bottom: 0.07em;
+  padding-bottom: 0.05em;
 }
 
 .lineInner {
@@ -138,11 +166,13 @@
 }
 
 .sub {
-  font-size: clamp(1rem, 1.7vw, 1.3rem);
-  color: var(--color-text-secondary);
-  line-height: var(--leading-relaxed);
+  font-size: clamp(1.05rem, 1.3vw, 1.25rem);
 
-  max-width: 700px;
+  color: rgba(255, 255, 255, 0.72);
+
+  line-height: 1.7;
+
+  max-width: 760px;
   margin: 0 auto;
 
   opacity: 0;
@@ -153,26 +183,34 @@
   bottom: 0;
   left: 0;
   right: 0;
+
   height: 220px;
-  background: linear-gradient(to bottom, transparent, var(--color-bg-primary));
+
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    var(--color-bg-primary)
+  );
+
   pointer-events: none;
   z-index: 1;
 }
 
 @media (max-width: 768px) {
   .content {
-    padding-top: 6rem;
-    padding-bottom: 4rem;
+    padding-top: 5rem;
+    padding-bottom: 3rem;
   }
 
   .headline {
-    font-size: clamp(2.8rem, 13vw, 5.5rem);
-    line-height: 0.95;
+    font-size: clamp(3.2rem, 12vw, 5.5rem);
+    line-height: 0.92;
   }
 
   .sub {
     max-width: 92vw;
-    font-size: 1.05rem;
+    font-size: 1rem;
+    line-height: 1.6;
   }
 
   .orb1 {
