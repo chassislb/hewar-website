@@ -1,5 +1,4 @@
 import Hero from '../../components/sections/Hero/Hero'
-import Manifesto from '../../components/sections/Manifesto/Manifesto'
 import Services from '../../components/sections/Services/Services'
 import Numbers from '../../components/sections/Numbers/Numbers'
 import About from '../../components/sections/About/About'
@@ -11,7 +10,6 @@ import CTA from '../../components/sections/CTA/CTA'
 const Home = () => (
   <main>
     <Hero />
-    <Manifesto />
     <Services />
     <Numbers />
     <About />
