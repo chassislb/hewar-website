@@ -13,6 +13,10 @@ const KEYWORDS = [
   'Digital',
 ]
 
+/* ── Place your video at: public/videos/amplified.mp4
+      then change this to: '/hewar-website/videos/amplified.mp4'  ── */
+const VIDEO_SRC = '/hewar-website/videos/amplified.mp4'
+
 const AnimatedAmplified = () => {
   return (
     <span className={styles.wrap} aria-label="Amplified.">
@@ -43,7 +47,29 @@ const AnimatedAmplified = () => {
         </defs>
 
         <g mask="url(#amplifiedMask)">
-          <rect width="1000" height="220" fill="url(#amplifiedGradient)" />
+
+          {/* Video fill — clipped to letter shapes by the SVG mask, moves LTR */}
+          {VIDEO_SRC && (
+            <foreignObject x="0" y="0" width="1000" height="220">
+              <video
+                autoPlay
+                muted
+                loop
+                playsInline
+                className={styles.videoFill}
+              >
+                <source src={VIDEO_SRC} type="video/mp4" />
+              </video>
+            </foreignObject>
+          )}
+
+          {/* Gradient tint — full opacity with no video, accent layer when video is on */}
+          <rect
+            width="1000"
+            height="220"
+            fill="url(#amplifiedGradient)"
+            opacity={VIDEO_SRC ? 0.45 : 1}
+          />
 
           <g className={styles.network}>
             <line x1="80" y1="60" x2="230" y2="130" />
@@ -72,6 +98,7 @@ const AnimatedAmplified = () => {
               {word}
             </text>
           ))}
+
         </g>
       </svg>
     </span>
