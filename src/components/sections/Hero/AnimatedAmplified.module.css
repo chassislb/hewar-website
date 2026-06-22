@@ -2,6 +2,9 @@
   display: block;
   width: min(780px, 70vw);
   margin: 0 auto;
+  position: relative;
+  /* Dark bg required for mix-blend-mode: multiply to hide video outside letter shapes */
+  background: var(--color-bg-primary);
 }
 
 .svg {
@@ -19,13 +22,18 @@
   fill: white;
 }
 
-/* Video clipped to letter shapes — pans LTR via object-position */
-.videoFill {
-  display: block;
+/* Video sits on top of the SVG white-filled text.
+   mix-blend-mode: multiply → video shows through white letter shapes,
+   disappears against the dark background outside them. */
+.videoOverlay {
+  position: absolute;
+  inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
   object-position: 0% center;
+  mix-blend-mode: multiply;
+  pointer-events: none;
   animation: videoSweepLTR 9s ease-in-out infinite alternate;
 }
 
