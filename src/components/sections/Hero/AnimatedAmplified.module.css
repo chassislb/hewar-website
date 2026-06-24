@@ -1,18 +1,39 @@
-/* Dark background is CRITICAL — multiply blend: dark × video = dark (hides video outside letters) */
 .wrap {
   display: block;
   width: min(780px, 70vw);
   margin: 0 auto;
   position: relative;
-  background: var(--color-bg-primary);
-  isolation: isolate; /* contain blend modes within this group */
-  overflow: hidden; /* clip the upscaled video element */
+  overflow: hidden;
+  isolation: isolate;
+  pointer-events: none;
+}
+
+.video {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+  object-position: center;
+
+  pointer-events: none;
+
+  animation: videoSweep 12s ease-in-out infinite alternate;
 }
 
 .svg {
+  position: relative;
+  z-index: 2;
+
   display: block;
   width: 100%;
   height: auto;
+  overflow: visible;
+
+  pointer-events: none;
 }
 
 .letterText {
@@ -22,40 +43,13 @@
   letter-spacing: -0.055em;
 }
 
-/* Video sits over white SVG text. multiply × white = video (shows through). multiply × dark bg = dark (hidden) */
-.videoOverlay {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  mix-blend-mode: multiply;
-  pointer-events: none;
-  will-change: transform;
-  animation: videoSweep 10s ease-in-out infinite alternate;
-}
-
-/* Brand gradient tint via screen blend — adds purple→cyan color cast to the video */
-.colorTint {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    90deg,
-    rgba(71, 0, 179, 0.55) 0%,
-    rgba(37, 99, 235, 0.45) 55%,
-    rgba(0, 200, 255, 0.55) 100%
-  );
-  mix-blend-mode: screen;
-  pointer-events: none;
-}
-
-/* scale(1.3) gives 30% overflow for the translateX pan to work in the wide-short container */
 @keyframes videoSweep {
   from {
-    transform: scale(1.3) translateX(10%);
+    transform: scale(1.25) translateX(8%);
   }
+
   to {
-    transform: scale(1.3) translateX(-10%);
+    transform: scale(1.25) translateX(-8%);
   }
 }
 
