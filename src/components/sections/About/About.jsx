@@ -21,16 +21,20 @@ const About = () => {
 
   useGSAP(() => {
     /* Left column — headline lines slide up */
-    gsap.from('[data-about-line]', {
-      y: '110%',
-      duration: 1.1,
-      stagger: 0.12,
-      ease: 'power4.out',
-      scrollTrigger: {
-        trigger: sectionRef.current,
-        start: 'top 80%',
-      },
-    })
+    gsap.fromTo(
+      '[data-about-line]',
+      { y: '110%' },
+      {
+        y: '0%',
+        duration: 1.1,
+        stagger: 0.12,
+        ease: 'power4.out',
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: 'top 80%',
+        },
+      }
+    )
 
     /* Right column — stagger in */
     gsap.from('[data-about-right] > *', {
