@@ -3,8 +3,6 @@
   width: min(780px, 70vw);
   margin: 0 auto;
   position: relative;
-  /* Dark bg required for mix-blend-mode: multiply to hide video outside letter shapes */
-  background: var(--color-bg-primary);
 }
 
 .svg {
@@ -19,83 +17,35 @@
   font-size: 178px;
   font-weight: 700;
   letter-spacing: -0.055em;
-  fill: white;
 }
 
-/* Video sits on top of the SVG white-filled text.
-   mix-blend-mode: multiply → video shows through white letter shapes,
-   disappears against the dark background outside them. */
-.videoOverlay {
-  position: absolute;
-  inset: 0;
+.videoBox {
+  width: 1000px;
+  height: 220px;
+  overflow: hidden;
+}
+
+.video {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: 0% center;
-  mix-blend-mode: multiply;
-  pointer-events: none;
-  animation: videoSweepLTR 9s ease-in-out infinite alternate;
+  object-position: center;
+  opacity: 1;
+  animation: videoPan 12s ease-in-out infinite alternate;
 }
 
-@keyframes videoSweepLTR {
-  from { object-position: 0% center; }
-  to   { object-position: 100% center; }
+.tint {
+  mix-blend-mode: screen;
+  opacity: 0.65;
 }
 
-.network {
-  opacity: 0.7;
-  animation: networkDrift 12s ease-in-out infinite alternate;
-}
-
-.network line {
-  stroke: rgba(255, 255, 255, 0.35);
-  stroke-width: 2;
-}
-
-.network circle {
-  fill: rgba(255, 255, 255, 0.75);
-  filter: drop-shadow(0 0 10px rgba(0, 200, 255, 0.75));
-}
-
-.keyword {
-  font-family: Inter, system-ui, sans-serif;
-  font-size: 42px;
-  font-weight: 700;
-  letter-spacing: -0.03em;
-  fill: rgba(255, 255, 255, 0);
-  animation: keywordFade 16s linear infinite;
-}
-
-@keyframes keywordFade {
-  0%,
-  8%,
-  100% {
-    opacity: 0;
-    fill: rgba(255, 255, 255, 0);
-    transform: translateY(12px);
-  }
-
-  12%,
-  18% {
-    opacity: 1;
-    fill: rgba(255, 255, 255, 0.22);
-    transform: translateY(0);
-  }
-
-  24% {
-    opacity: 0;
-    fill: rgba(255, 255, 255, 0);
-    transform: translateY(-12px);
-  }
-}
-
-@keyframes networkDrift {
+@keyframes videoPan {
   from {
-    transform: translateX(-24px) translateY(8px);
+    object-position: 15% center;
   }
 
   to {
-    transform: translateX(28px) translateY(-10px);
+    object-position: 85% center;
   }
 }
 
@@ -106,9 +56,5 @@
 
   .maskText {
     font-size: 168px;
-  }
-
-  .keyword {
-    font-size: 36px;
   }
 }
