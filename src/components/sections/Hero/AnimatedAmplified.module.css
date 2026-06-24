@@ -1,45 +1,71 @@
-.videoText {
-  display: inline-block;
-
-  font-family: Inter, system-ui, sans-serif;
-  font-size: clamp(5rem, 9vw, 8rem);
-  font-weight: 700;
-  letter-spacing: -0.055em;
-  line-height: 0.9;
-
-  color: transparent;
-  -webkit-text-fill-color: transparent;
-
-  background-image:
-    linear-gradient(
-      90deg,
-      rgba(71, 0, 179, 0.35),
-      rgba(0, 200, 255, 0.25)
-    ),
-    url('/hewar-website/videos/amplified.gif');
-
-  background-size: 140% 140%;
-  background-position: center;
-  background-repeat: no-repeat;
-
-  -webkit-background-clip: text;
-  background-clip: text;
-
-  animation: amplifiedMove 10s ease-in-out infinite alternate;
+.wrap {
+  display: block;
+  width: min(780px, 70vw);
+  margin: 0 auto;
+  position: relative;
+  pointer-events: none;
 }
 
-@keyframes amplifiedMove {
+.svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  overflow: visible;
+  pointer-events: none;
+}
+
+.letterText {
+  font-family: Inter, system-ui, sans-serif;
+  font-size: 178px;
+  font-weight: 700;
+  letter-spacing: -0.055em;
+}
+
+.videoHolder {
+  width: 1000px;
+  height: 220px;
+  overflow: hidden;
+  pointer-events: none;
+  background: transparent;
+}
+
+.video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  pointer-events: none;
+  animation: videoSweep 12s ease-in-out infinite alternate;
+}
+
+.strokeText {
+  font-family: Inter, system-ui, sans-serif;
+  font-size: 178px;
+  font-weight: 700;
+  letter-spacing: -0.055em;
+  fill: transparent;
+  stroke: rgba(0, 200, 255, 0.12);
+  stroke-width: 1.2px;
+  pointer-events: none;
+}
+
+@keyframes videoSweep {
   from {
-    background-position: 15% center;
+    transform: scale(1.18) translateX(5%);
   }
 
   to {
-    background-position: 85% center;
+    transform: scale(1.18) translateX(-5%);
   }
 }
 
 @media (max-width: 768px) {
-  .videoText {
-    font-size: clamp(3.2rem, 12vw, 5.5rem);
+  .wrap {
+    width: min(92vw, 540px);
+  }
+
+  .letterText,
+  .strokeText {
+    font-size: 168px;
   }
 }
