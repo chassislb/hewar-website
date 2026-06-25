@@ -3,69 +3,28 @@
   width: min(780px, 70vw);
   margin: 0 auto;
   position: relative;
-  pointer-events: none;
 }
 
-.svg {
+/* Canvas is transparent everywhere outside the letter shapes */
+.canvas {
   display: block;
   width: 100%;
-  height: auto;
-  overflow: visible;
+  /* Matches SVG viewBox 1000 × 220 */
+  aspect-ratio: 1000 / 220;
+}
+
+/* Video is off-screen — present in DOM for playback, invisible to users */
+.hiddenVideo {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  width: 1px;
+  height: 1px;
   pointer-events: none;
-}
-
-.letterText {
-  font-family: Inter, system-ui, sans-serif;
-  font-size: 178px;
-  font-weight: 700;
-  letter-spacing: -0.055em;
-}
-
-.videoHolder {
-  width: 1000px;
-  height: 220px;
-  overflow: hidden;
-  pointer-events: none;
-  background: transparent;
-}
-
-.video {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center;
-  pointer-events: none;
-  animation: videoSweep 12s ease-in-out infinite alternate;
-}
-
-.strokeText {
-  font-family: Inter, system-ui, sans-serif;
-  font-size: 178px;
-  font-weight: 700;
-  letter-spacing: -0.055em;
-  fill: transparent;
-  stroke: rgba(0, 200, 255, 0.12);
-  stroke-width: 1.2px;
-  pointer-events: none;
-}
-
-@keyframes videoSweep {
-  from {
-    transform: scale(1.18) translateX(5%);
-  }
-
-  to {
-    transform: scale(1.18) translateX(-5%);
-  }
 }
 
 @media (max-width: 768px) {
   .wrap {
     width: min(92vw, 540px);
-  }
-
-  .letterText,
-  .strokeText {
-    font-size: 168px;
   }
 }
