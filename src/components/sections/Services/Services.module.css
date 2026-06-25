@@ -5,13 +5,14 @@
   overflow-x: clip;
 }
 
-/* ── Sticky viewport — same pattern as Work ── */
+/* ── Sticky viewport ── */
 .sticky {
   position: sticky;
   top: 0;
   height: 100vh;
   width: 100vw;
   overflow: hidden;
+
   display: flex;
   flex-direction: column;
 }
@@ -19,25 +20,29 @@
 /* ── Header ── */
 .header {
   flex-shrink: 0;
-  padding-block: clamp(2.5rem, 5vw, 4rem) clamp(1.25rem, 2.5vw, 2rem);
+  padding-block: clamp(1.4rem, 3vw, 2.4rem) clamp(0.75rem, 1.5vw, 1.2rem);
 }
 
 .label {
   display: inline-flex;
   align-items: center;
   gap: 0.6rem;
+
   font-size: var(--type-body-xs);
   font-weight: var(--weight-semibold);
   letter-spacing: var(--tracking-widest);
   text-transform: uppercase;
+
   color: var(--color-text-accent);
-  margin-bottom: var(--space-5);
+
+  margin-bottom: clamp(0.85rem, 1.5vw, 1.25rem);
 }
 
 .dots {
   display: flex;
   gap: 3px;
 }
+
 .dots span {
   display: block;
   width: 4px;
@@ -50,16 +55,17 @@
   display: flex;
   align-items: flex-end;
   justify-content: space-between;
-  gap: var(--space-8);
+  gap: var(--space-6);
   flex-wrap: wrap;
 }
 
 .heading {
-  font-size: var(--type-display-md);
+  font-size: clamp(3.2rem, 5.6vw, 5.8rem);
   font-weight: var(--weight-black);
   letter-spacing: var(--tracking-tight);
-  line-height: var(--leading-tight);
+  line-height: 0.95;
   color: var(--color-text-primary);
+  margin: 0;
 }
 
 .headingAccent {
@@ -70,24 +76,31 @@
 }
 
 .headingSub {
-  max-width: 300px;
+  max-width: 290px;
   font-size: var(--type-body-md);
   color: var(--color-text-secondary);
   line-height: var(--leading-relaxed);
-  padding-bottom: 0.4rem;
+  padding-bottom: 0.25rem;
+  margin: 0;
 }
 
 /* ── Horizontal track ── */
 .track {
-  flex: 1;
+  height: clamp(300px, 38vh, 430px);
+
   display: flex;
   align-items: stretch;
   gap: 1px;
-  /* Align to container left edge */
-  padding-left: max(var(--container-pad), calc((100vw - var(--container-max)) / 2 + var(--container-pad)));
+
+  padding-left: max(
+    var(--container-pad),
+    calc((100vw - var(--container-max)) / 2 + var(--container-pad))
+  );
   padding-right: clamp(2rem, 5vw, 4rem);
-  padding-bottom: clamp(1rem, 2vw, 1.5rem);
+  padding-bottom: clamp(0.75rem, 1.5vw, 1rem);
+
   width: max-content;
+
   will-change: transform;
   background: var(--color-border);
 }
@@ -96,11 +109,14 @@
 .card {
   flex: none;
   width: min(360px, 78vw);
+
   position: relative;
   background: var(--color-bg-primary);
   cursor: none;
+
   display: flex;
   flex-direction: column;
+
   transition: background var(--dur-normal) var(--ease-smooth);
 }
 
@@ -109,11 +125,14 @@
 }
 
 .cardInner {
-  padding: clamp(1.75rem, 3vw, 2.5rem);
+  padding: clamp(1.35rem, 2.3vw, 2rem);
+
   height: 100%;
+
   display: flex;
   flex-direction: column;
-  gap: var(--space-4);
+  gap: clamp(0.75rem, 1.3vw, 1rem);
+
   position: relative;
   z-index: 1;
 }
@@ -122,7 +141,8 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: var(--space-2);
+
+  margin-bottom: 0.25rem;
 }
 
 .cardNum {
@@ -133,27 +153,30 @@
 }
 
 .cardArrow {
-  font-size: 1.1rem;
+  font-size: 1.05rem;
   color: var(--color-text-tertiary);
   transition: color var(--dur-fast) ease, transform var(--dur-fast) ease;
 }
+
 .card:hover .cardArrow {
   color: var(--color-cyan);
   transform: translate(3px, -3px);
 }
 
 .cardTitle {
-  font-size: var(--type-h3);
+  font-size: clamp(1.45rem, 2vw, 2rem);
   font-weight: var(--weight-bold);
   letter-spacing: var(--tracking-tight);
   color: var(--color-text-primary);
   line-height: var(--leading-snug);
+  margin: 0;
 }
 
 .cardDesc {
   font-size: var(--type-body-sm);
   color: var(--color-text-secondary);
-  line-height: var(--leading-relaxed);
+  line-height: 1.6;
+  margin: 0;
   flex: 1;
 }
 
@@ -161,8 +184,10 @@
   display: flex;
   flex-wrap: wrap;
   gap: var(--space-2);
+
   margin-top: auto;
-  padding-top: var(--space-4);
+  padding-top: clamp(0.9rem, 1.5vw, 1.2rem);
+
   border-top: 1px solid var(--color-border);
 }
 
@@ -171,11 +196,15 @@
   font-weight: var(--weight-medium);
   letter-spacing: var(--tracking-wide);
   color: var(--color-text-tertiary);
+
   border: 1px solid var(--color-border);
   border-radius: var(--radius-full);
+
   padding: 3px 10px;
+
   transition: border-color var(--dur-fast) ease, color var(--dur-fast) ease;
 }
+
 .card:hover .tag {
   border-color: var(--color-border-hover);
   color: var(--color-text-secondary);
@@ -185,12 +214,16 @@
 .cardBorder {
   position: absolute;
   inset: 0;
+
   border: 1px solid var(--color-border-accent);
+
   pointer-events: none;
   z-index: 2;
+
   opacity: 0;
   transition: opacity var(--dur-normal) ease;
 }
+
 .card:hover .cardBorder {
   opacity: 1;
 }
@@ -209,23 +242,39 @@
 
   .header {
     padding-inline: var(--container-px, 1.5rem);
+    padding-block: 3rem 1.5rem;
   }
 
   .headingRow {
     flex-direction: column;
     align-items: flex-start;
+    gap: 1rem;
+  }
+
+  .heading {
+    font-size: clamp(2.7rem, 12vw, 4.4rem);
+  }
+
+  .headingSub {
+    max-width: 92vw;
   }
 
   .track {
+    height: auto;
+
     overflow-x: auto;
     scroll-snap-type: x mandatory;
     scrollbar-width: none;
+
     width: 100%;
+
     padding-inline: var(--container-px, 1.5rem);
     padding-bottom: 1.5rem;
+
     background: none;
     gap: clamp(0.75rem, 2vw, 1rem);
   }
+
   .track::-webkit-scrollbar {
     display: none;
   }
@@ -233,6 +282,8 @@
   .card {
     scroll-snap-align: start;
     width: 82vw;
+    min-height: 340px;
+
     border: 1px solid var(--color-border);
     border-radius: var(--radius-md);
   }
