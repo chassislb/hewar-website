@@ -1,30 +1,70 @@
+/* Dark background is what makes multiply blend work:
+   white_SVG_text × video  = video  (video shows through the letters)
+   dark_background × video = dark   (video invisible outside the letters) */
 .wrap {
   display: block;
   width: min(780px, 70vw);
   margin: 0 auto;
   position: relative;
+  background: var(--color-bg-primary);
+  isolation: isolate;
+  overflow: hidden;
 }
 
-/* Canvas is transparent everywhere outside the letter shapes */
-.canvas {
+.svg {
   display: block;
   width: 100%;
-  /* Matches SVG viewBox 1000 × 220 */
-  aspect-ratio: 1000 / 220;
+  height: auto;
 }
 
-/* Video is off-screen — present in DOM for playback, invisible to users */
-.hiddenVideo {
+.letterText {
+  font-family: Inter, system-ui, sans-serif;
+  font-size: 178px;
+  font-weight: 700;
+  letter-spacing: -0.055em;
+}
+
+/* Video layer — starts invisible so white SVG text shows while buffering,
+   then fades in via JS .canplay event */
+.videoOverlay {
   position: absolute;
-  left: -9999px;
-  top: 0;
-  width: 1px;
-  height: 1px;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  mix-blend-mode: multiply;
+  pointer-events: none; /* no play button, no PiP trigger, no cursor change */
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  animation: videoSweep 10s ease-in-out infinite alternate;
+}
+
+/* Brand gradient tint via screen blend — adds purple→cyan colour to the video fill */
+.colorTint {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    rgba(71,  0, 179, 0.50) 0%,
+    rgba(37, 99, 235, 0.40) 55%,
+    rgba( 0,200, 255, 0.50) 100%
+  );
+  mix-blend-mode: screen;
   pointer-events: none;
+}
+
+/* Scale up 30% to create room for the pan; overflow:hidden clips the edges */
+@keyframes videoSweep {
+  from { transform: scale(1.3) translateX( 10%); }
+  to   { transform: scale(1.3) translateX(-10%); }
 }
 
 @media (max-width: 768px) {
   .wrap {
     width: min(92vw, 540px);
+  }
+
+  .letterText {
+    font-size: 160px;
   }
 }
