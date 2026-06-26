@@ -114,6 +114,11 @@ const Hero = () => {
       </div>
 
       <div className={styles.videoSection}>
+        <div className={styles.videoStars} aria-hidden>
+          <div className={styles.videoGrid} />
+          <div className={styles.videoGlow} />
+        </div>
+
         <video
           ref={videoRef}
           className={styles.heroVideo}
@@ -124,6 +129,8 @@ const Hero = () => {
         >
           <source src={VIDEO_SRC} type="video/mp4" />
         </video>
+
+        <div className={styles.videoOverlay} aria-hidden />
 
         <button
           type="button"
