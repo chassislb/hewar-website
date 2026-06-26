@@ -1,10 +1,10 @@
 .hero {
   position: relative;
   width: 100%;
-  min-height: 100svh;
+  min-height: 145svh;
 
   display: flex;
-  align-items: center;
+  flex-direction: column;
   justify-content: center;
 
   overflow: hidden;
@@ -40,12 +40,12 @@
   position: absolute;
   width: clamp(380px, 55vw, 820px);
   height: clamp(380px, 55vw, 820px);
-  bottom: -8%;
+  bottom: 14%;
   left: -6%;
   background: radial-gradient(
     circle at 60% 60%,
-    rgba(0, 200, 255, 0.4) 0%,
-    rgba(0, 200, 255, 0.12) 45%,
+    rgba(0, 200, 255, 0.35) 0%,
+    rgba(0, 200, 255, 0.11) 45%,
     transparent 70%
   );
   border-radius: 50%;
@@ -58,11 +58,11 @@
   position: absolute;
   width: clamp(220px, 32vw, 520px);
   height: clamp(220px, 32vw, 520px);
-  top: 50%;
+  top: 40%;
   right: 32%;
   background: radial-gradient(
     circle at center,
-    rgba(71, 0, 179, 0.28) 0%,
+    rgba(71, 0, 179, 0.25) 0%,
     rgba(0, 200, 255, 0.06) 50%,
     transparent 70%
   );
@@ -77,12 +77,12 @@
   inset: 0;
   background-image: radial-gradient(
     circle,
-    rgba(255, 255, 255, 0.065) 1px,
+    rgba(255, 255, 255, 0.055) 1px,
     transparent 1px
   );
   background-size: 44px 44px;
   mask-image: radial-gradient(
-    ellipse 85% 75% at 50% 50%,
+    ellipse 85% 75% at 50% 38%,
     black 0%,
     transparent 100%
   );
@@ -111,13 +111,13 @@
 
 .container {
   position: relative;
-  z-index: 1;
+  z-index: 2;
   width: 100%;
 }
 
 .content {
-  padding-top: clamp(4.5rem, 7vw, 6.5rem);
-  padding-bottom: clamp(3rem, 5vw, 4.5rem);
+  padding-top: clamp(5rem, 8vw, 7rem);
+  padding-bottom: clamp(2.5rem, 4vw, 3.5rem);
 
   max-width: min(1200px, 92vw);
   margin: 0 auto;
@@ -178,13 +178,35 @@
   opacity: 0;
 }
 
+.videoSection {
+  position: relative;
+  z-index: 2;
+
+  width: 100%;
+  margin-top: clamp(1.5rem, 3vw, 2.5rem);
+
+  opacity: 0;
+
+  overflow: hidden;
+}
+
+.heroVideo {
+  width: 100%;
+  height: clamp(360px, 58vw, 760px);
+
+  object-fit: cover;
+  object-position: center;
+
+  filter: saturate(0.95) contrast(1.02) brightness(0.9);
+}
+
 .bottomFade {
   position: absolute;
   bottom: 0;
   left: 0;
   right: 0;
 
-  height: 220px;
+  height: 260px;
 
   background: linear-gradient(
     to bottom,
@@ -193,13 +215,17 @@
   );
 
   pointer-events: none;
-  z-index: 1;
+  z-index: 3;
 }
 
 @media (max-width: 768px) {
+  .hero {
+    min-height: 125svh;
+  }
+
   .content {
     padding-top: 5rem;
-    padding-bottom: 3rem;
+    padding-bottom: 2rem;
   }
 
   .headline {
@@ -211,6 +237,14 @@
     max-width: 92vw;
     font-size: 1rem;
     line-height: 1.6;
+  }
+
+  .videoSection {
+    margin-top: 1.5rem;
+  }
+
+  .heroVideo {
+    height: clamp(260px, 72vw, 440px);
   }
 
   .orb1 {

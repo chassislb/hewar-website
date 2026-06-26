@@ -8,7 +8,6 @@ import Preloader from './components/layout/Preloader/Preloader'
 import Navbar from './components/layout/Navbar/Navbar'
 import Footer from './components/layout/Footer/Footer'
 import ParticleField from './components/layout/ParticleField/ParticleField'
-import BackgroundVideo from './components/layout/BackgroundVideo/BackgroundVideo'
 import Home from './pages/Home/Home'
 import About from './pages/About/About'
 import ServicesPage from './pages/Services/ServicesPage'
@@ -22,8 +21,14 @@ import './styles/utilities.css'
 
 const pageVariants = {
   initial: { opacity: 0 },
-  animate: { opacity: 1, transition: { duration: 0.5, ease: [0.16, 1, 0.3, 1] } },
-  exit: { opacity: 0, transition: { duration: 0.25 } },
+  animate: {
+    opacity: 1,
+    transition: { duration: 0.5, ease: [0.16, 1, 0.3, 1] },
+  },
+  exit: {
+    opacity: 0,
+    transition: { duration: 0.25 },
+  },
 }
 
 const App = () => {
@@ -40,7 +45,6 @@ const App = () => {
     <BrowserRouter basename="/hewar-website">
       <CursorProvider>
         <SmoothScroll>
-          <BackgroundVideo />
           <ParticleField />
 
           {!ready && <Preloader onComplete={handlePreloaderDone} />}
@@ -53,11 +57,17 @@ const App = () => {
               <Route
                 path="/"
                 element={
-                  <motion.div variants={pageVariants} initial="initial" animate="animate" exit="exit">
+                  <motion.div
+                    variants={pageVariants}
+                    initial="initial"
+                    animate="animate"
+                    exit="exit"
+                  >
                     <Home />
                   </motion.div>
                 }
               />
+
               <Route path="/about" element={<About />} />
               <Route path="/services" element={<ServicesPage />} />
               <Route path="/work" element={<WorkPage />} />

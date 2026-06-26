@@ -1,11 +1,22 @@
-import { useRef } from 'react'
+import { useRef, useEffect } from 'react'
 import { useGSAP } from '@gsap/react'
 import gsap from 'gsap'
 import Container from '../../ui/Container/Container'
 import styles from './Hero.module.css'
 
+const VIDEO_SRC = '/hewar-website/videos/amplified.mp4'
+
 const Hero = () => {
   const heroRef = useRef(null)
+  const videoRef = useRef(null)
+
+  useEffect(() => {
+    const video = videoRef.current
+    if (!video) return
+
+    video.playbackRate = 0.7
+    video.play().catch(() => {})
+  }, [])
 
   useGSAP(() => {
     const preloaderSeen = sessionStorage.getItem('hewar-loaded') === 'true'
@@ -31,8 +42,15 @@ const Hero = () => {
         '-=0.65'
       )
 
+      .fromTo(
+        '[data-hero-video]',
+        { opacity: 0, y: 34 },
+        { opacity: 1, y: 0, duration: 1, ease: 'power3.out' },
+        '-=0.35'
+      )
+
     gsap.to('[data-hero-headline]', {
-      yPercent: 8,
+      yPercent: 6,
       ease: 'none',
       scrollTrigger: {
         trigger: heroRef.current,
@@ -43,7 +61,7 @@ const Hero = () => {
     })
 
     gsap.to('[data-hero-orb]', {
-      yPercent: 22,
+      yPercent: 18,
       ease: 'none',
       scrollTrigger: {
         trigger: heroRef.current,
@@ -86,6 +104,20 @@ const Hero = () => {
           </p>
         </div>
       </Container>
+
+      <div className={styles.videoSection} data-hero-video>
+        <video
+          ref={videoRef}
+          className={styles.heroVideo}
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="auto"
+        >
+          <source src={VIDEO_SRC} type="video/mp4" />
+        </video>
+      </div>
 
       <div className={styles.bottomFade} aria-hidden />
     </section>
