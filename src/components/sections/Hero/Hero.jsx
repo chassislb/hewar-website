@@ -1,4 +1,4 @@
-import { useRef, useEffect } from 'react'
+import { useRef, useState, useEffect } from 'react'
 import { useGSAP } from '@gsap/react'
 import gsap from 'gsap'
 import Container from '../../ui/Container/Container'
@@ -9,14 +9,29 @@ const VIDEO_SRC = '/hewar-website/videos/amplified.mp4'
 const Hero = () => {
   const heroRef = useRef(null)
   const videoRef = useRef(null)
+  const [muted, setMuted] = useState(true)
 
   useEffect(() => {
     const video = videoRef.current
     if (!video) return
 
-    video.playbackRate = 0.7
+    video.playbackRate = 0.75
+    video.muted = true
     video.play().catch(() => {})
   }, [])
+
+  const toggleMute = () => {
+    const video = videoRef.current
+    if (!video) return
+
+    const nextMuted = !video.muted
+    video.muted = nextMuted
+    setMuted(nextMuted)
+
+    if (!nextMuted) {
+      video.play().catch(() => {})
+    }
+  }
 
   useGSAP(() => {
     const preloaderSeen = sessionStorage.getItem('hewar-loaded') === 'true'
@@ -27,14 +42,12 @@ const Hero = () => {
       { scale: 0.4, opacity: 0 },
       { scale: 1, opacity: 1, duration: 2.8, stagger: 0.3, ease: 'power2.out' }
     )
-
       .fromTo(
         '[data-hero-line]',
         { y: '115%' },
         { y: '0%', duration: 1.2, stagger: 0.13, ease: 'power4.out' },
         '-=1.8'
       )
-
       .fromTo(
         '[data-hero-sub]',
         { opacity: 0, y: 28 },
@@ -42,15 +55,8 @@ const Hero = () => {
         '-=0.65'
       )
 
-      .fromTo(
-        '[data-hero-video]',
-        { opacity: 0, y: 34 },
-        { opacity: 1, y: 0, duration: 1, ease: 'power3.out' },
-        '-=0.35'
-      )
-
     gsap.to('[data-hero-headline]', {
-      yPercent: 6,
+      yPercent: 8,
       ease: 'none',
       scrollTrigger: {
         trigger: heroRef.current,
@@ -61,7 +67,7 @@ const Hero = () => {
     })
 
     gsap.to('[data-hero-orb]', {
-      yPercent: 18,
+      yPercent: 22,
       ease: 'none',
       scrollTrigger: {
         trigger: heroRef.current,
@@ -74,52 +80,60 @@ const Hero = () => {
 
   return (
     <section className={styles.hero} ref={heroRef}>
-      <div className={styles.bg} aria-hidden>
-        <div className={styles.orb1} data-hero-orb />
-        <div className={styles.orb2} data-hero-orb />
-        <div className={styles.orb3} data-hero-orb />
-        <div className={styles.grid} />
-        <div className={styles.vignette} />
+      <div className={styles.heroIntro}>
+        <div className={styles.bg} aria-hidden>
+          <div className={styles.orb1} data-hero-orb />
+          <div className={styles.orb2} data-hero-orb />
+          <div className={styles.orb3} data-hero-orb />
+          <div className={styles.grid} />
+          <div className={styles.vignette} />
+        </div>
+
+        <Container className={styles.container}>
+          <div className={styles.content}>
+            <h1 className={styles.headline} data-hero-headline>
+              <span className={styles.lineWrap}>
+                <span className={styles.lineInner} data-hero-line>
+                  Human Intelligence.
+                </span>
+              </span>
+
+              <span className={styles.lineWrap}>
+                <span className={styles.lineInner} data-hero-line>
+                  <span className={styles.gradientText}>Amplified.</span>
+                </span>
+              </span>
+            </h1>
+
+            <p className={styles.sub} data-hero-sub>
+              A creative, PR and marketing agency using AI to amplify ideas,
+              influence and impact.
+            </p>
+          </div>
+        </Container>
       </div>
 
-      <Container className={styles.container}>
-        <div className={styles.content}>
-          <h1 className={styles.headline} data-hero-headline>
-            <span className={styles.lineWrap}>
-              <span className={styles.lineInner} data-hero-line>
-                Human Intelligence.
-              </span>
-            </span>
-
-            <span className={styles.lineWrap}>
-              <span className={styles.lineInner} data-hero-line>
-                <span className={styles.gradientText}>Amplified.</span>
-              </span>
-            </span>
-          </h1>
-
-          <p className={styles.sub} data-hero-sub>
-            A creative, PR and marketing agency using AI to amplify ideas,
-            influence and impact.
-          </p>
-        </div>
-      </Container>
-
-      <div className={styles.videoSection} data-hero-video>
+      <div className={styles.videoSection}>
         <video
           ref={videoRef}
           className={styles.heroVideo}
           autoPlay
           muted
-          loop
           playsInline
           preload="auto"
         >
           <source src={VIDEO_SRC} type="video/mp4" />
         </video>
-      </div>
 
-      <div className={styles.bottomFade} aria-hidden />
+        <button
+          type="button"
+          className={styles.soundButton}
+          onClick={toggleMute}
+          aria-label={muted ? 'Turn sound on' : 'Mute video'}
+        >
+          {muted ? 'Sound On' : 'Mute'}
+        </button>
+      </div>
     </section>
   )
 }
