@@ -4,8 +4,6 @@ import gsap from 'gsap'
 import Container from '../../ui/Container/Container'
 import styles from './Hero.module.css'
 
-const VIDEO_SRC = '/hewar-website/videos/amplified.mp4'
-
 const Hero = () => {
   const heroRef = useRef(null)
 
@@ -27,17 +25,10 @@ const Hero = () => {
       )
 
       .fromTo(
-        '[data-hero-video]',
-        { opacity: 0, y: 26, scale: 0.96 },
-        { opacity: 1, y: 0, scale: 1, duration: 0.85, ease: 'power3.out' },
-        '-=0.65'
-      )
-
-      .fromTo(
         '[data-hero-sub]',
         { opacity: 0, y: 28 },
         { opacity: 1, y: 0, duration: 0.85, ease: 'power3.out' },
-        '-=0.55'
+        '-=0.65'
       )
 
     gsap.to('[data-hero-headline]', {
@@ -88,16 +79,6 @@ const Hero = () => {
               </span>
             </span>
           </h1>
-
-          <div className={styles.videoWrap} data-hero-video>
-            <video
-              className={styles.heroVideo}
-              src={VIDEO_SRC}
-              controls
-              playsInline
-              preload="metadata"
-            />
-          </div>
 
           <p className={styles.sub} data-hero-sub>
             A creative, PR and marketing agency using AI to amplify ideas,

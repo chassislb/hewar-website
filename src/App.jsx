@@ -8,6 +8,7 @@ import Preloader from './components/layout/Preloader/Preloader'
 import Navbar from './components/layout/Navbar/Navbar'
 import Footer from './components/layout/Footer/Footer'
 import ParticleField from './components/layout/ParticleField/ParticleField'
+import BackgroundVideo from './components/layout/BackgroundVideo/BackgroundVideo'
 import Home from './pages/Home/Home'
 import About from './pages/About/About'
 import ServicesPage from './pages/Services/ServicesPage'
@@ -22,11 +23,10 @@ import './styles/utilities.css'
 const pageVariants = {
   initial: { opacity: 0 },
   animate: { opacity: 1, transition: { duration: 0.5, ease: [0.16, 1, 0.3, 1] } },
-  exit:    { opacity: 0, transition: { duration: 0.25 } },
+  exit: { opacity: 0, transition: { duration: 0.25 } },
 }
 
 const App = () => {
-  /* Show preloader only once per browser session */
   const [ready, setReady] = useState(() =>
     sessionStorage.getItem('hewar-loaded') === 'true'
   )
@@ -40,10 +40,9 @@ const App = () => {
     <BrowserRouter basename="/hewar-website">
       <CursorProvider>
         <SmoothScroll>
-          {/* Particle constellation — fixed behind all content */}
+          <BackgroundVideo />
           <ParticleField />
 
-          {/* Preloader blocks content on first visit */}
           {!ready && <Preloader onComplete={handlePreloaderDone} />}
 
           <Cursor />
@@ -59,13 +58,13 @@ const App = () => {
                   </motion.div>
                 }
               />
-              <Route path="/about"           element={<About />} />
-              <Route path="/services"        element={<ServicesPage />} />
-              <Route path="/work"            element={<WorkPage />} />
-              <Route path="/work/:id"        element={<WorkDetail />} />
-              <Route path="/insights"        element={<InsightsPage />} />
-              <Route path="/insights/:id"    element={<InsightDetail />} />
-              <Route path="/contact"         element={<Contact />} />
+              <Route path="/about" element={<About />} />
+              <Route path="/services" element={<ServicesPage />} />
+              <Route path="/work" element={<WorkPage />} />
+              <Route path="/work/:id" element={<WorkDetail />} />
+              <Route path="/insights" element={<InsightsPage />} />
+              <Route path="/insights/:id" element={<InsightDetail />} />
+              <Route path="/contact" element={<Contact />} />
             </Routes>
           </AnimatePresence>
 

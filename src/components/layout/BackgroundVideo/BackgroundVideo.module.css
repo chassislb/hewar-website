@@ -3,6 +3,8 @@
   inset: 0;
   z-index: -3;
   overflow: hidden;
+  pointer-events: none;
+  background: var(--color-bg-primary);
 }
 
 .video {
@@ -10,10 +12,9 @@
   height: 100%;
   object-fit: cover;
   object-position: center;
-  filter:
-    saturate(.8)
-    contrast(.95)
-    brightness(.45);
+
+  filter: saturate(0.75) contrast(0.95) brightness(0.42);
+  transform: scale(1.08);
 }
 
 .overlay {
@@ -21,9 +22,14 @@
   inset: 0;
 
   background:
+    radial-gradient(
+      ellipse 70% 55% at 50% 20%,
+      rgba(71, 0, 179, 0.18) 0%,
+      transparent 65%
+    ),
     linear-gradient(
-      rgba(6,26,64,.82),
-      rgba(6,26,64,.82)
+      rgba(6, 26, 64, 0.84),
+      rgba(6, 26, 64, 0.9)
     );
 
   backdrop-filter: blur(2px);
