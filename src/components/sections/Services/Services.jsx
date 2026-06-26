@@ -25,7 +25,6 @@ const ServiceCard = ({ service }) => {
         </div>
 
         <h3 className={styles.cardTitle}>{service.title}</h3>
-
         <p className={styles.cardDesc}>{service.description}</p>
 
         <div className={styles.cardTags}>
@@ -50,37 +49,61 @@ const Services = () => {
     const mm = gsap.matchMedia()
 
     mm.add('(min-width: 769px)', () => {
-      let tween
+      let timeline
+      let trigger
 
-      const setHeight = () => {
+      const setup = () => {
         const travel = Math.max(0, trackRef.current.scrollWidth - window.innerWidth)
-        const pauseStart = window.innerHeight * 0.35
-        const pauseEnd = window.innerHeight * 0.75
 
-        sectionRef.current.style.minHeight = `calc(100vh + ${travel + pauseStart + pauseEnd}px)`
-      }
+        const startPause = window.innerHeight * 0.45
+        const scrollDistance = Math.max(travel * 1.8, window.innerHeight * 1.5)
+        const endPause = window.innerHeight * 1.15
 
-      setHeight()
+        const totalDistance = startPause + scrollDistance + endPause
 
-      tween = gsap.to(trackRef.current, {
-        x: () => -(trackRef.current.scrollWidth - window.innerWidth),
-        ease: 'none',
-        scrollTrigger: {
+        sectionRef.current.style.minHeight = `calc(100vh + ${totalDistance}px)`
+
+        timeline?.kill()
+        trigger?.kill()
+
+        timeline = gsap.timeline({ paused: true })
+
+        timeline
+          .to(trackRef.current, {
+            x: 0,
+            duration: startPause,
+            ease: 'none',
+          })
+          .to(trackRef.current, {
+            x: -travel,
+            duration: scrollDistance,
+            ease: 'none',
+          })
+          .to(trackRef.current, {
+            x: -travel,
+            duration: endPause,
+            ease: 'none',
+          })
+
+        trigger = ScrollTrigger.create({
           trigger: sectionRef.current,
           start: 'top top',
           end: 'bottom bottom',
-          scrub: 1.35,
+          scrub: 1.2,
+          animation: timeline,
           invalidateOnRefresh: true,
-          onRefresh: setHeight,
-        },
-      })
+        })
+      }
 
-      window.addEventListener('resize', setHeight)
+      setup()
+
+      window.addEventListener('resize', setup)
+      ScrollTrigger.refresh()
 
       return () => {
-        window.removeEventListener('resize', setHeight)
-        tween?.scrollTrigger?.kill()
-        tween?.kill()
+        window.removeEventListener('resize', setup)
+        timeline?.kill()
+        trigger?.kill()
       }
     })
 

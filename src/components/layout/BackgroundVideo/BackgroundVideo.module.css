@@ -1,7 +1,7 @@
 .wrapper {
   position: fixed;
   inset: 0;
-  z-index: -3;
+  z-index: 0;
   overflow: hidden;
   pointer-events: none;
   background: var(--color-bg-primary);
@@ -13,7 +13,7 @@
   object-fit: cover;
   object-position: center;
 
-  filter: saturate(0.75) contrast(0.95) brightness(0.42);
+  filter: saturate(0.75) contrast(0.95) brightness(0.5);
   transform: scale(1.08);
 }
 
@@ -28,8 +28,8 @@
       transparent 65%
     ),
     linear-gradient(
-      rgba(6, 26, 64, 0.84),
-      rgba(6, 26, 64, 0.9)
+      rgba(6, 26, 64, 0.78),
+      rgba(6, 26, 64, 0.88)
     );
 
   backdrop-filter: blur(2px);

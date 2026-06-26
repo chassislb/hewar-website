@@ -37,8 +37,9 @@
 
 html {
   font-size: 16px;
-  scroll-behavior: auto; /* Lenis handles smooth scroll */
+  scroll-behavior: auto;
   -webkit-text-size-adjust: 100%;
+  background: var(--color-bg-primary);
 }
 
 body {
@@ -47,11 +48,20 @@ body {
   font-weight: var(--weight-regular);
   line-height: var(--leading-normal);
   color: var(--color-text-primary);
+
   background-color: var(--color-bg-primary);
+
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
   overflow-x: hidden;
-  cursor: none; /* Custom cursor replaces default */
+  cursor: none;
+}
+
+#root {
+  position: relative;
+  z-index: 1;
+  min-height: 100vh;
 }
 
 /* Arabic content */
@@ -61,11 +71,10 @@ body {
   direction: rtl;
 }
 
-/* ── Stacking — main sits above the fixed canvas (z-index:0) so particles
-   are visible only through transparent section backgrounds (hero area) ── */
+/* ── Stacking ── */
 main {
   position: relative;
-  z-index: 1;
+  z-index: 2;
 }
 
 /* ── Base Elements ── */
@@ -100,9 +109,11 @@ ul, ol {
 ::-webkit-scrollbar {
   width: 4px;
 }
+
 ::-webkit-scrollbar-track {
   background: var(--color-bg-secondary);
 }
+
 ::-webkit-scrollbar-thumb {
   background: var(--color-violet);
   border-radius: var(--radius-full);
@@ -116,43 +127,100 @@ ul, ol {
 
 /* ── Animations ── */
 @keyframes fadeUp {
-  from { opacity: 0; transform: translateY(20px); }
-  to   { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 @keyframes fadeIn {
-  from { opacity: 0; }
-  to   { opacity: 1; }
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
 }
 
 @keyframes driftOrb1 {
-  0%, 100% { transform: translate(0, 0) scale(1); }
-  33%       { transform: translate(-30px, 40px) scale(1.06); }
-  66%       { transform: translate(25px, -20px) scale(0.96); }
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+
+  33% {
+    transform: translate(-30px, 40px) scale(1.06);
+  }
+
+  66% {
+    transform: translate(25px, -20px) scale(0.96);
+  }
 }
 
 @keyframes driftOrb2 {
-  0%, 100% { transform: translate(0, 0) scale(1); }
-  40%       { transform: translate(40px, -35px) scale(1.08); }
-  70%       { transform: translate(-25px, 20px) scale(0.94); }
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+
+  40% {
+    transform: translate(40px, -35px) scale(1.08);
+  }
+
+  70% {
+    transform: translate(-25px, 20px) scale(0.94);
+  }
 }
 
 @keyframes driftOrb3 {
-  0%, 100% { transform: translate(0, 0) scale(1); }
-  50%       { transform: translate(-20px, 30px) scale(1.12); }
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+
+  50% {
+    transform: translate(-20px, 30px) scale(1.12);
+  }
 }
 
 @keyframes scrollPulse {
-  0%, 100% { opacity: 0.8; transform: scaleY(1); transform-origin: top; }
-  50%       { opacity: 0.2; transform: scaleY(0.6); transform-origin: top; }
+  0%,
+  100% {
+    opacity: 0.8;
+    transform: scaleY(1);
+    transform-origin: top;
+  }
+
+  50% {
+    opacity: 0.2;
+    transform: scaleY(0.6);
+    transform-origin: top;
+  }
 }
 
 @keyframes marquee {
-  from { transform: translateX(0); }
-  to   { transform: translateX(-50%); }
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-50%);
+  }
 }
 
 @keyframes borderGlow {
-  0%, 100% { border-color: var(--color-border); }
-  50%       { border-color: var(--color-border-accent); }
+  0%,
+  100% {
+    border-color: var(--color-border);
+  }
+
+  50% {
+    border-color: var(--color-border-accent);
+  }
 }

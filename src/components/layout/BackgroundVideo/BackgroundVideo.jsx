@@ -11,6 +11,7 @@ export default function BackgroundVideo() {
     if (!video) return
 
     video.playbackRate = 0.55
+    video.play().catch(() => {})
   }, [])
 
   return (
