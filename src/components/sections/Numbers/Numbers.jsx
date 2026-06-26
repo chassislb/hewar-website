@@ -1,36 +1,23 @@
-import { useRef, useEffect } from 'react'
+import { useRef } from 'react'
 import { useGSAP } from '@gsap/react'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import Container from '../../ui/Container/Container'
 import { numbers } from '../../../data/numbers'
-import { revealCounter } from '../../../animations/gsap/reveal'
 import styles from './Numbers.module.css'
 
 gsap.registerPlugin(ScrollTrigger)
 
-const StatItem = ({ stat, index }) => {
-  const numRef = useRef(null)
-
-  useEffect(() => {
-    if (!numRef.current) return
-    const tween = revealCounter(numRef.current, stat.value, {
-      suffix: stat.suffix,
-      start: 'top 80%',
-      duration: 2.2,
-    })
-    return () => {
-      tween?.scrollTrigger?.kill()
-      tween?.kill()
-    }
-  }, [stat.value, stat.suffix])
-
+const StatItem = ({ stat }) => {
   return (
     <div className={styles.stat}>
       <div className={styles.statValue}>
-        <span ref={numRef} className={styles.statNum}>0</span>
+        <span className={styles.statNum} data-stat-number data-value={stat.value}>
+          0
+        </span>
         <span className={styles.statSuffix}>{stat.suffix}</span>
       </div>
+
       <div className={styles.statMeta}>
         <span className={styles.statLabel}>{stat.label}</span>
         <span className={styles.statDesc}>{stat.description}</span>
@@ -43,17 +30,69 @@ const Numbers = () => {
   const sectionRef = useRef(null)
 
   useGSAP(() => {
-    gsap.from('[data-stat]', {
-      opacity: 0,
-      y: 40,
-      stagger: 0.12,
-      duration: 0.9,
-      ease: 'power4.out',
-      scrollTrigger: {
-        trigger: sectionRef.current,
-        start: 'top 80%',
+    const numberEls = gsap.utils.toArray('[data-stat-number]')
+    const statEls = gsap.utils.toArray('[data-stat]')
+
+    const resetNumbers = () => {
+      numberEls.forEach((el) => {
+        el.textContent = '0'
+      })
+    }
+
+    const animateNumbers = () => {
+      numberEls.forEach((el) => {
+        const endValue = Number(el.dataset.value)
+        const counter = { value: 0 }
+
+        gsap.to(counter, {
+          value: endValue,
+          duration: 2.2,
+          ease: 'power2.out',
+          onUpdate: () => {
+            el.textContent = Math.round(counter.value)
+          },
+        })
+      })
+    }
+
+    const introTween = gsap.fromTo(
+      statEls,
+      { opacity: 0, y: 40 },
+      {
+        opacity: 1,
+        y: 0,
+        stagger: 0.12,
+        duration: 0.9,
+        ease: 'power4.out',
+        paused: true,
+      }
+    )
+
+    const trigger = ScrollTrigger.create({
+      trigger: sectionRef.current,
+      start: 'top 80%',
+      end: 'bottom 20%',
+
+      onEnter: () => {
+        resetNumbers()
+        introTween.restart()
+        animateNumbers()
       },
+
+      onEnterBack: () => {
+        resetNumbers()
+        introTween.restart()
+        animateNumbers()
+      },
+
+      onLeave: resetNumbers,
+      onLeaveBack: resetNumbers,
     })
+
+    return () => {
+      trigger.kill()
+      introTween.kill()
+    }
   }, { scope: sectionRef })
 
   return (
@@ -62,9 +101,9 @@ const Numbers = () => {
 
       <Container>
         <div className={styles.grid}>
-          {numbers.map((stat, i) => (
+          {numbers.map((stat) => (
             <div key={stat.label} data-stat>
-              <StatItem stat={stat} index={i} />
+              <StatItem stat={stat} />
             </div>
           ))}
         </div>
