@@ -2,8 +2,9 @@ import { useRef } from 'react'
 import { useGSAP } from '@gsap/react'
 import gsap from 'gsap'
 import Container from '../../ui/Container/Container'
-import AnimatedAmplified from './AnimatedAmplified'
 import styles from './Hero.module.css'
+
+const VIDEO_SRC = '/hewar-website/videos/amplified.mp4'
 
 const Hero = () => {
   const heroRef = useRef(null)
@@ -26,14 +27,21 @@ const Hero = () => {
       )
 
       .fromTo(
-        '[data-hero-sub]',
-        { opacity: 0, y: 28 },
-        { opacity: 1, y: 0, duration: 0.85, ease: 'power3.out' },
+        '[data-hero-video]',
+        { opacity: 0, y: 26, scale: 0.96 },
+        { opacity: 1, y: 0, scale: 1, duration: 0.85, ease: 'power3.out' },
         '-=0.65'
       )
 
+      .fromTo(
+        '[data-hero-sub]',
+        { opacity: 0, y: 28 },
+        { opacity: 1, y: 0, duration: 0.85, ease: 'power3.out' },
+        '-=0.55'
+      )
+
     gsap.to('[data-hero-headline]', {
-      yPercent: 12,
+      yPercent: 8,
       ease: 'none',
       scrollTrigger: {
         trigger: heroRef.current,
@@ -76,10 +84,20 @@ const Hero = () => {
 
             <span className={styles.lineWrap}>
               <span className={styles.lineInner} data-hero-line>
-                <AnimatedAmplified />
+                <span className={styles.gradientText}>Amplified.</span>
               </span>
             </span>
           </h1>
+
+          <div className={styles.videoWrap} data-hero-video>
+            <video
+              className={styles.heroVideo}
+              src={VIDEO_SRC}
+              controls
+              playsInline
+              preload="metadata"
+            />
+          </div>
 
           <p className={styles.sub} data-hero-sub>
             A creative, PR and marketing agency using AI to amplify ideas,
