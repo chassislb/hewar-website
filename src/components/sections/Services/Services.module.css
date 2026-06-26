@@ -1,11 +1,9 @@
-/* ── Outer section — height set dynamically by GSAP ── */
 .services {
   background: var(--color-bg-primary);
   position: relative;
   overflow-x: clip;
 }
 
-/* ── Sticky viewport ── */
 .sticky {
   position: sticky;
   top: 0;
@@ -17,7 +15,6 @@
   flex-direction: column;
 }
 
-/* ── Header ── */
 .header {
   flex-shrink: 0;
   padding-block: clamp(1.4rem, 3vw, 2.4rem) clamp(0.75rem, 1.5vw, 1.2rem);
@@ -84,7 +81,6 @@
   margin: 0;
 }
 
-/* ── Horizontal track ── */
 .track {
   height: clamp(300px, 38vh, 430px);
 
@@ -105,7 +101,6 @@
   background: var(--color-border);
 }
 
-/* ── Card ── */
 .card {
   flex: none;
   width: min(360px, 78vw);
@@ -210,7 +205,6 @@
   color: var(--color-text-secondary);
 }
 
-/* Hover glow border */
 .cardBorder {
   position: absolute;
   inset: 0;
@@ -228,7 +222,6 @@
   opacity: 1;
 }
 
-/* ── Mobile — horizontal swipe ── */
 @media (max-width: 768px) {
   .services {
     min-height: unset !important;
