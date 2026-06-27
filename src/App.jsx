@@ -7,7 +7,6 @@ import Cursor from './components/layout/Cursor/Cursor'
 import Preloader from './components/layout/Preloader/Preloader'
 import Navbar from './components/layout/Navbar/Navbar'
 import Footer from './components/layout/Footer/Footer'
-import ParticleField from './components/layout/ParticleField/ParticleField'
 import Home from './pages/Home/Home'
 import About from './pages/About/About'
 import ServicesPage from './pages/Services/ServicesPage'
@@ -45,8 +44,6 @@ const App = () => {
     <BrowserRouter basename="/hewar-website">
       <CursorProvider>
         <SmoothScroll>
-          <ParticleField />
-
           {!ready && <Preloader onComplete={handlePreloaderDone} />}
 
           <Cursor />

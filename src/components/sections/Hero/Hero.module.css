@@ -9,9 +9,11 @@
   position: relative;
   width: 100%;
   min-height: 100svh;
+
   display: flex;
   align-items: center;
   justify-content: center;
+
   overflow: hidden;
 }
 
@@ -19,7 +21,7 @@
   position: absolute;
   inset: 0;
   pointer-events: none;
-  z-index: 0;
+  z-index: 1;
 }
 
 .orb1 {
@@ -81,30 +83,35 @@
   position: absolute;
   inset: 0;
   z-index: 1;
+
   background-image: radial-gradient(
     circle,
     rgba(255, 255, 255, 0.04) 1px,
     transparent 1px
   );
+
   background-size: 44px 44px;
-  opacity: 0.35;
+  opacity: 0.25;
 }
 
 .vignette {
   position: absolute;
   inset: 0;
-  z-index: 1;
+  z-index: 2;
+
   background:
     radial-gradient(
       ellipse 100% 55% at 50% 0%,
-      transparent 68%,
-      rgba(6, 26, 64, 0.3) 100%
+      transparent 72%,
+      rgba(6, 26, 64, 0.28) 100%
     ),
     radial-gradient(
       ellipse 100% 35% at 50% 100%,
-      rgba(6, 26, 64, 0.38) 0%,
+      rgba(6, 26, 64, 0.34) 0%,
       transparent 100%
     );
+
+  pointer-events: none;
 }
 
 .container {
@@ -116,9 +123,12 @@
 .content {
   padding-top: clamp(4.5rem, 7vw, 6.5rem);
   padding-bottom: clamp(3rem, 5vw, 4.5rem);
+
   max-width: min(1200px, 92vw);
   margin: 0 auto;
+
   text-align: center;
+
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -128,11 +138,14 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+
   font-size: clamp(4.3rem, 8vw, 7.2rem);
   font-weight: 700;
   letter-spacing: -0.045em;
   line-height: 0.9;
+
   color: var(--color-text-primary);
+
   margin: 0 0 clamp(1.4rem, 2.4vw, 2rem);
   text-align: center;
 }
@@ -150,6 +163,7 @@
 
 .gradientText {
   display: inline-block;
+
   background: var(--gradient-brand);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -158,10 +172,14 @@
 
 .sub {
   font-size: clamp(1.05rem, 1.3vw, 1.25rem);
+
   color: rgba(255, 255, 255, 0.72);
+
   line-height: 1.7;
+
   max-width: 760px;
   margin: 0 auto;
+
   opacity: 0;
 }
 
@@ -169,6 +187,7 @@
   position: relative;
   width: 100%;
   height: 100svh;
+
   overflow: hidden;
   background: #000;
 }
@@ -180,13 +199,10 @@
   pointer-events: none;
 }
 
-.videoGrid {
-  display: none;
-}
-
 .videoGlow {
   position: absolute;
   inset: 0;
+
   background:
     radial-gradient(
       ellipse 55% 45% at 75% 20%,
@@ -198,16 +214,20 @@
       rgba(0, 200, 255, 0.16),
       transparent 70%
     );
+
   opacity: 0.85;
 }
 
 .heroVideo {
   position: relative;
   z-index: 1;
+
   width: 100%;
   height: 100%;
+
   object-fit: cover;
   object-position: center;
+
   filter: saturate(0.95) contrast(1.03) brightness(0.92);
 }
 
@@ -215,11 +235,13 @@
   position: absolute;
   inset: 0;
   z-index: 2;
+
   background: linear-gradient(
     to bottom,
     rgba(6, 26, 64, 0.1),
     rgba(6, 26, 64, 0.18)
   );
+
   pointer-events: none;
 }
 
@@ -228,17 +250,28 @@
   right: clamp(1.25rem, 3vw, 3rem);
   bottom: clamp(1.25rem, 3vw, 3rem);
   z-index: 4;
+
   padding: 0.75rem 1rem;
+
   border: 1px solid rgba(255, 255, 255, 0.22);
   border-radius: 999px;
+
   background: rgba(6, 26, 64, 0.5);
   backdrop-filter: blur(14px);
+
   color: rgba(255, 255, 255, 0.9);
+
   font-size: 0.75rem;
   font-weight: 700;
   letter-spacing: 0.12em;
   text-transform: uppercase;
+
   cursor: pointer;
+
+  transition:
+    background 0.25s ease,
+    border-color 0.25s ease,
+    transform 0.25s ease;
 }
 
 .soundButton:hover {

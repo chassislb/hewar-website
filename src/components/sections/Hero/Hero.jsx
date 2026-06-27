@@ -2,6 +2,7 @@ import { useRef, useState, useEffect } from 'react'
 import { useGSAP } from '@gsap/react'
 import gsap from 'gsap'
 import Container from '../../ui/Container/Container'
+import ParticleField from '../../layout/ParticleField/ParticleField'
 import styles from './Hero.module.css'
 
 const VIDEO_SRC = '/hewar-website/videos/amplified.mp4'
@@ -81,6 +82,8 @@ const Hero = () => {
   return (
     <section className={styles.hero} ref={heroRef}>
       <div className={styles.heroIntro}>
+        <ParticleField />
+
         <div className={styles.bg} aria-hidden>
           <div className={styles.orb1} data-hero-orb />
           <div className={styles.orb2} data-hero-orb />
@@ -115,7 +118,6 @@ const Hero = () => {
 
       <div className={styles.videoSection}>
         <div className={styles.videoStars} aria-hidden>
-          <div className={styles.videoGrid} />
           <div className={styles.videoGlow} />
         </div>
 
