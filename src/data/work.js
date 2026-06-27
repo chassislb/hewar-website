@@ -1,48 +1,105 @@
-{
-  id: 'kfshrc',
-  title: 'A legacy of healthcare excellence, told through a cinematic 50-year story.',
-  client: 'KFSHRC',
-  category: 'Anniversary Campaign',
-  year: '2025',
-  description:
-    'A cinematic storytelling campaign celebrating 50 years of King Faisal Specialist Hospital & Research Centre through film, creative direction and visual production.',
-  color: '#071c46',
-  size: 'large',
-  logo: null,
-  image: '/hewar-website/images/work/kfshrc.png',
-  images: [
-    '/hewar-website/images/work/kfshrc.png',
-  ],
-},
-{
-  id: 'zatca',
-  title: 'Simplifying public engagement through strategic communication.',
-  client: 'ZATCA',
-  category: 'Government Campaign',
-  year: '2025',
-  description:
-    'Creative strategy and campaign development for the Zakat, Tax and Customs Authority, translating complex public messaging into engaging communication.',
-  color: '#0b285e',
-  size: 'large',
-  logo: null,
-  image: '/hewar-website/images/work/zatca.png',
-  images: [
-    '/hewar-website/images/work/zatca.png',
-  ],
-},
-{
-  id: 'amana-al-riyadh',
-  title: 'A city-wide initiative brought to life through integrated storytelling.',
-  client: 'Amana Al Riyadh',
-  category: 'Public Sector Campaign',
-  year: '2025',
-  description:
-    'Creative production and integrated communications supporting one of Riyadh Municipality's public engagement initiatives.',
-  color: '#08315a',
-  size: 'large',
-  logo: null,
-  image: '/hewar-website/images/work/amana-al-riyadh.png',
-  images: [
-    '/hewar-website/images/work/amana-al-riyadh.png',
-  ],
-},
+export const work = [
+  {
+    id: 'kingdom-centre',
+    title: 'A Riyadh icon, retold for a new generation',
+    client: 'Kingdom Centre',
+    category: 'Brand Campaign',
+    year: '2024',
+    description:
+      "A full brand communications campaign repositioning one of Riyadh's most recognised landmarks for the next generation of Saudi consumers.",
+    color: '#0A3A8A',
+    size: 'large',
+    logo: null,
+    image: '/hewar-website/Website/CaseStudy/KCT/3.jpg',
+    images: [
+      '/hewar-website/Website/CaseStudy/KCT/3.jpg',
+      '/hewar-website/Website/CaseStudy/KCT/4.jpg',
+      '/hewar-website/Website/CaseStudy/KCT/1.jpg',
+      '/hewar-website/Website/CaseStudy/KCT/2.jpg',
+    ],
+  },
+  {
+    id: 'kfshrc',
+    title: 'A legacy of healthcare excellence, told through a cinematic 50-year story.',
+    client: 'KFSHRC',
+    category: 'Anniversary Campaign',
+    year: '2025',
+    description:
+      'A cinematic storytelling campaign celebrating 50 years of King Faisal Specialist Hospital & Research Centre through film, creative direction and visual production.',
+    color: '#071c46',
+    size: 'large',
+    logo: null,
+    image: '/hewar-website/Website/CaseStudy/KFSHRC/1.png',
+    images: [
+      '/hewar-website/Website/CaseStudy/KFSHRC/1.png',
+    ],
+  },
+  {
+    id: 'zatca',
+    title: 'Simplifying public engagement through strategic communication.',
+    client: 'ZATCA',
+    category: 'Government Campaign',
+    year: '2025',
+    description:
+      'Creative strategy and campaign development for the Zakat, Tax and Customs Authority, translating complex public messaging into engaging communication.',
+    color: '#0b285e',
+    size: 'large',
+    logo: null,
+    image: '/hewar-website/Website/CaseStudy/Zatca/1.png',
+    images: [
+      '/hewar-website/Website/CaseStudy/Zatca/1.png',
+    ],
+  },
+  {
+    id: 'amana-al-riyadh',
+    title: 'A city-wide initiative brought to life through integrated storytelling.',
+    client: 'Amana Al Riyadh',
+    category: 'Public Sector Campaign',
+    year: '2025',
+    description:
+      'Creative production and integrated communications supporting one of Riyadh Municipality’s public engagement initiatives.',
+    color: '#08315a',
+    size: 'large',
+    logo: null,
+    image: '/hewar-website/Website/CaseStudy/Amana Al-Riyadh/4.png',
+    images: [
+      '/hewar-website/Website/CaseStudy/Amana Al-Riyadh/4.png',
+    ],
+  },
+  {
+    id: 'karnr',
+    title: 'A nature-rooted brand with a distinctive voice',
+    client: 'KARNR',
+    category: 'Brand Identity',
+    year: '2024',
+    description:
+      'End-to-end identity, social, and campaign work that gave KARNR a confident, nature-rooted visual and verbal presence.',
+    color: '#0e2048',
+    size: 'small',
+    logo: null,
+    image: '/hewar-website/Website/CaseStudy/KARNAR/2.png',
+    images: [
+      '/hewar-website/Website/CaseStudy/KARNAR/2.png',
+      '/hewar-website/Website/CaseStudy/KARNAR/4.png',
+      '/hewar-website/Website/CaseStudy/KARNAR/1.png',
+      '/hewar-website/Website/CaseStudy/KARNAR/3.png',
+      '/hewar-website/Website/CaseStudy/KARNAR/oo3.jpg',
+    ],
+  },
+  {
+    id: 'drdc',
+    title: 'A visionary desert concept introduced to the world',
+    client: 'DRDC',
+    category: 'Brand Communications',
+    year: '2024',
+    description:
+      'Strategic brand communications for a landmark desert development concept — crafting the narrative that introduced a visionary Saudi project to global audiences.',
+    color: '#1a0820',
+    size: 'small',
+    logo: null,
+    image: '/hewar-website/Website/CaseStudy/DRDC/oo2.jpg',
+    images: [
+      '/hewar-website/Website/CaseStudy/DRDC/oo2.jpg',
+    ],
+  },
+]
