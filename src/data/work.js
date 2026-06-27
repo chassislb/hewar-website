@@ -45,9 +45,9 @@ export const work = [
     color: '#0b285e',
     size: 'large',
     logo: null,
-    image: '/hewar-website/Website/CaseStudy/Zatca/1.png',
+    image: '/hewar-website/Website/CaseStudy/Zatca/2.png',
     images: [
-      '/hewar-website/Website/CaseStudy/Zatca/1.png',
+      '/hewar-website/Website/CaseStudy/Zatca/2.png',
     ],
   },
   {
