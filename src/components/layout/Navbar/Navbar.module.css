@@ -1,27 +1,241 @@
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  padding-block: 1.5rem;
+  transition:
+    background var(--dur-slow) var(--ease-smooth),
+    border-color var(--dur-slow) var(--ease-smooth),
+    padding var(--dur-slow) var(--ease-smooth),
+    backdrop-filter var(--dur-slow) var(--ease-smooth);
+  border-bottom: 1px solid transparent;
+  overflow: hidden;
+}
+
+/* Scroll progress bar */
+.progressBar {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 1.5px;
+  background: var(--gradient-brand);
+  transform-origin: left center;
+  transform: scaleX(0);
+  transition: opacity var(--dur-fast) ease;
+  z-index: 1;
+}
+
+.scrolled {
+  background: rgba(6, 26, 64, 0.85);
+  -webkit-backdrop-filter: blur(24px) saturate(1.6);
+  backdrop-filter: blur(24px) saturate(1.6);
+  border-bottom-color: var(--color-border);
+  padding-block: 1rem;
+}
+
+.inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-8);
+}
+
+/* ───────────────── LOGO ───────────────── */
+
+.logo {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  flex-shrink: 0;
+  opacity: 1;
+  transition: opacity .25s ease;
+}
+
+.logo:hover {
+  opacity: .85;
+}
+
+.logoImg {
+  display: block;
+  height: 38px;
+  width: auto;
+}
+
+/* ─────────────── DESKTOP LINKS ─────────────── */
+
+.links {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  gap: var(--space-8);
+  list-style: none;
+}
+
+.links:hover .link {
+  opacity: .45;
+}
+
+.links:hover .link:hover,
+.links:hover .link.active {
+  opacity: 1;
+}
+
 .link {
   position: relative;
-  font-size: var(--type-body-sm);
-  font-weight: var(--weight-medium);
-  color: var(--color-text-secondary);
-  letter-spacing: var(--tracking-wide);
-  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+
   padding-block: 4px;
 
+  text-decoration: none;
+
+  font-size: var(--type-body-sm);
+  font-weight: var(--weight-medium);
+  letter-spacing: var(--tracking-wide);
+
+  color: var(--color-text-secondary);
+
   transition:
-    color 0.25s ease,
-    opacity 0.25s ease,
-    transform 0.25s ease;
+    color .25s ease,
+    opacity .25s ease;
 }
 
 .link:hover {
   color: var(--color-cyan);
 }
 
-.link.active {
+.active {
   color: var(--color-text-primary);
 }
 
-/* Underline removed */
+/* Underline removed completely */
+
 .linkUnderline {
   display: none;
+}
+
+/* ───────────────── CTA ───────────────── */
+
+.cta {
+  display: flex;
+  align-items: center;
+}
+
+/* ─────────────── HAMBURGER ─────────────── */
+
+.hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 6px;
+  padding: 4px;
+  background: none;
+  border: none;
+  flex-shrink: 0;
+}
+
+.bar {
+  display: block;
+  width: 24px;
+  height: 1.5px;
+  background: var(--color-text-primary);
+  border-radius: 2px;
+
+  transition:
+    transform var(--dur-normal) var(--ease-out-expo),
+    opacity var(--dur-fast) ease;
+
+  transform-origin: center;
+}
+
+.hamburgerOpen .bar:nth-child(1) {
+  transform: translateY(3.75px) rotate(45deg);
+}
+
+.hamburgerOpen .bar:nth-child(2) {
+  transform: translateY(-3.75px) rotate(-45deg);
+}
+
+/* ─────────────── MOBILE MENU ─────────────── */
+
+.mobileMenu {
+  position: fixed;
+  inset: 0;
+  z-index: 99;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  padding-top: 5rem;
+
+  background: var(--color-bg-secondary);
+}
+
+.mobileLinks {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 var(--space-12);
+}
+
+.mobileLink {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-4);
+
+  padding-block: var(--space-4);
+
+  border-bottom: 1px solid var(--color-border);
+
+  text-decoration: none;
+
+  font-size: var(--type-display-sm);
+  font-weight: var(--weight-bold);
+  letter-spacing: var(--tracking-tight);
+
+  color: var(--color-text-primary);
+
+  transition:
+    color var(--dur-fast) ease,
+    padding-left var(--dur-normal) var(--ease-out-expo);
+}
+
+.mobileLink:hover {
+  color: var(--color-cyan);
+  padding-left: var(--space-4);
+}
+
+.mobileLinkNum {
+  flex-shrink: 0;
+
+  font-size: var(--type-body-xs);
+  font-weight: var(--weight-medium);
+  letter-spacing: var(--tracking-wider);
+
+  color: var(--color-text-tertiary);
+}
+
+.mobileCta {
+  margin-top: var(--space-8);
+}
+
+/* ─────────────── RESPONSIVE ─────────────── */
+
+@media (max-width:768px) {
+
+  .links {
+    display:none;
+  }
+
+  .cta {
+    display:none;
+  }
+
+  .hamburger {
+    display:flex;
+  }
+
 }
