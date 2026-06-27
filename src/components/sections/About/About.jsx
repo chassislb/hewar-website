@@ -8,10 +8,10 @@ import styles from './About.module.css'
 gsap.registerPlugin(ScrollTrigger)
 
 const VALUES = [
-  { id: '01', label: 'Growth',       desc: 'We scale with every client we serve.' },
-  { id: '02', label: 'Methodology',  desc: 'Strategy before execution, always.' },
-  { id: '03', label: 'Innovation',   desc: 'New thinking for changing markets.' },
-  { id: '04', label: 'Creativity',   desc: 'Ideas that earn attention and trust.' },
+  { id: '01', label: 'Growth', desc: 'We scale with every client we serve.' },
+  { id: '02', label: 'Methodology', desc: 'Strategy before execution, always.' },
+  { id: '03', label: 'Innovation', desc: 'New thinking for changing markets.' },
+  { id: '04', label: 'Creativity', desc: 'Ideas that earn attention and trust.' },
 ]
 
 const PILLARS = ['Expertise', 'Integrity', 'Excellence', 'Dedication']
@@ -20,7 +20,6 @@ const About = () => {
   const sectionRef = useRef(null)
 
   useGSAP(() => {
-    /* Left column — headline lines slide up */
     gsap.fromTo(
       '[data-about-line]',
       { y: '110%' },
@@ -36,7 +35,6 @@ const About = () => {
       }
     )
 
-    /* Right column — stagger in */
     gsap.from('[data-about-right] > *', {
       opacity: 0,
       y: 30,
@@ -49,7 +47,6 @@ const About = () => {
       },
     })
 
-    /* Value cards */
     gsap.from('[data-value-card]', {
       opacity: 0,
       y: 24,
@@ -62,7 +59,6 @@ const About = () => {
       },
     })
 
-    /* Decorative orb parallax */
     gsap.to('[data-about-orb]', {
       y: -60,
       ease: 'none',
@@ -81,8 +77,6 @@ const About = () => {
 
       <Container>
         <div className={styles.grid}>
-
-          {/* ── Left — Editorial headline ── */}
           <div className={styles.left}>
             <div className={styles.label}>
               <span className={styles.dots} aria-hidden>
@@ -104,7 +98,6 @@ const About = () => {
               ))}
             </h2>
 
-            {/* Brand pillars as a horizontal strip */}
             <div className={styles.pillars}>
               {PILLARS.map((p) => (
                 <span key={p} className={styles.pillar}>{p}</span>
@@ -112,7 +105,6 @@ const About = () => {
             </div>
           </div>
 
-          {/* ── Right — Story + Values ── */}
           <div className={styles.right} data-about-right>
             <p className={styles.story}>
               HEWAR — حوار — means <em>dialogue</em> in Arabic. It's not a
@@ -120,15 +112,15 @@ const About = () => {
               communication is never one-directional. It listens as much as it
               speaks, and earns attention rather than demanding it.
             </p>
+
             <p className={styles.story}>
               Founded in Saudi Arabia with 12+ years in the market, we craft
               bespoke communication solutions for partners from the public and
-              private sectors across diverse industries. From Riyadh to Beirut —
-              we bring the same discipline and creative intensity to every
-              engagement.
+              private sectors across diverse industries. Built for the MENA
+              region, we read the room before we shape the message — culture,
+              timing, stakeholders, and public conversation included.
             </p>
 
-            {/* Core values grid */}
             <div className={styles.valuesGrid}>
               {VALUES.map((v) => (
                 <div key={v.id} className={styles.valueCard} data-value-card>
