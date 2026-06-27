@@ -10,8 +10,23 @@ import styles from './Work.module.css'
 
 gsap.registerPlugin(ScrollTrigger)
 
+const getProjectCopy = (project) => {
+  if (project.client === 'H FLAVOR') {
+    return {
+      ...project,
+      client: 'KFSHRC',
+      title: 'A legacy of healthcare excellence, told through a cinematic 50-year story.',
+      category: 'Film & Storytelling',
+      year: '2024',
+    }
+  }
+
+  return project
+}
+
 const WorkCard = ({ project, index }) => {
   const { setCursor, resetCursor } = useCursor()
+  const displayProject = getProjectCopy(project)
 
   return (
     <div
@@ -19,39 +34,39 @@ const WorkCard = ({ project, index }) => {
       onMouseEnter={() => setCursor('view', 'View')}
       onMouseLeave={resetCursor}
     >
-      <Link to={`/work/${project.id}`} className={styles.cardLink}>
-        {/* Visual */}
-        <div className={styles.visual} style={{ '--card-color': project.color }}>
-          {project.image && (
-            <img src={project.image} alt="" className={styles.cardImg} aria-hidden />
+      <Link to={`/work/${displayProject.id}`} className={styles.cardLink}>
+        <div className={styles.visual} style={{ '--card-color': displayProject.color }}>
+          {displayProject.image && (
+            <img src={displayProject.image} alt="" className={styles.cardImg} aria-hidden />
           )}
+
           <div className={styles.visualOrb} />
           <div className={styles.visualGrid} />
 
-          {/* Client logo — centred, animates on hover */}
-          {project.logo && (
+          {displayProject.logo && (
             <div className={styles.logoSlot}>
-              <img src={project.logo} alt={project.client} className={styles.logo} />
+              <img src={displayProject.logo} alt={displayProject.client} className={styles.logo} />
             </div>
           )}
 
           <div className={styles.num} aria-hidden>
             {String(index + 1).padStart(2, '0')}
           </div>
+
           <div className={styles.overlay}>
             <span className={styles.overlayBtn}>View Project ↗</span>
           </div>
         </div>
 
-        {/* Meta */}
         <div className={styles.meta}>
           <div className={styles.metaLeft}>
-            <span className={styles.client}>{project.client}</span>
-            <h3 className={styles.title}>{project.title}</h3>
+            <span className={styles.client}>{displayProject.client}</span>
+            <h3 className={styles.title}>{displayProject.title}</h3>
           </div>
+
           <div className={styles.metaRight}>
-            <span className={styles.category}>{project.category}</span>
-            <span className={styles.year}>{project.year}</span>
+            <span className={styles.category}>{displayProject.category}</span>
+            <span className={styles.year}>{displayProject.year}</span>
           </div>
         </div>
       </Link>
@@ -61,7 +76,7 @@ const WorkCard = ({ project, index }) => {
 
 const Work = () => {
   const sectionRef = useRef(null)
-  const trackRef   = useRef(null)
+  const trackRef = useRef(null)
 
   useGSAP(() => {
     const mm = gsap.matchMedia()
@@ -69,11 +84,11 @@ const Work = () => {
     mm.add('(min-width: 769px)', () => {
       const getX = () => -(trackRef.current.scrollWidth - window.innerWidth)
 
-      /* Set section tall enough to scroll all cards */
       const setHeight = () => {
         const extra = trackRef.current.scrollWidth - window.innerWidth
         sectionRef.current.style.minHeight = `calc(100vh + ${extra}px)`
       }
+
       setHeight()
 
       gsap.to(trackRef.current, {
@@ -96,18 +111,23 @@ const Work = () => {
   return (
     <section className={styles.work} ref={sectionRef} id="work">
       <div className={styles.sticky}>
-        {/* Header */}
         <Container>
           <div className={styles.header}>
             <div className={styles.label}>
-              <span className={styles.dots} aria-hidden><span /><span /><span /></span>
+              <span className={styles.dots} aria-hidden>
+                <span />
+                <span />
+                <span />
+              </span>
               <span>Selected Work</span>
             </div>
-            <h2 className={styles.heading}>Where Strategy<br />Meets Impact</h2>
+
+            <h2 className={styles.heading}>
+              Where Strategy<br />Meets Impact
+            </h2>
           </div>
         </Container>
 
-        {/* Horizontal track — GSAP drives translateX */}
         <div className={styles.track} ref={trackRef}>
           {work.map((project, i) => (
             <WorkCard key={project.id} project={project} index={i} />
