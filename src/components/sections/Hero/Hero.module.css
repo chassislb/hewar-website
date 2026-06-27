@@ -24,6 +24,41 @@
   z-index: 0;
 }
 
+.bg::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+
+  background-image:
+    radial-gradient(circle, rgba(0, 200, 255, 0.95) 1.5px, transparent 2.5px),
+    radial-gradient(circle, rgba(180, 140, 255, 0.75) 1.5px, transparent 2.5px),
+    linear-gradient(115deg, transparent 0%, rgba(0, 200, 255, 0.16) 42%, transparent 43%),
+    linear-gradient(145deg, transparent 0%, rgba(180, 140, 255, 0.13) 48%, transparent 49%);
+
+  background-size:
+    180px 180px,
+    240px 240px,
+    320px 320px,
+    420px 420px;
+
+  background-position:
+    20px 40px,
+    110px 95px,
+    0 0,
+    80px 30px;
+
+  opacity: 0.55;
+
+  mask-image: radial-gradient(
+    ellipse 85% 75% at 50% 45%,
+    black 0%,
+    transparent 100%
+  );
+
+  animation: heroStarsDrift 18s ease-in-out infinite alternate;
+}
+
 .orb1 {
   position: absolute;
   width: clamp(550px, 70vw, 1100px);
@@ -85,11 +120,11 @@
   z-index: 1;
   background-image: radial-gradient(
     circle,
-    rgba(255, 255, 255, 0.12) 1px,
+    rgba(255, 255, 255, 0.1) 1px,
     transparent 1px
   );
   background-size: 42px 42px;
-  opacity: 0.8;
+  opacity: 0.45;
   mask-image: radial-gradient(
     ellipse 90% 80% at 50% 50%,
     black 0%,
@@ -100,23 +135,23 @@
 .vignette {
   position: absolute;
   inset: 0;
-  z-index: 2;
+  z-index: 3;
   background:
     radial-gradient(
       ellipse 100% 55% at 50% 0%,
-      transparent 62%,
-      rgba(6, 26, 64, 0.55) 100%
+      transparent 72%,
+      rgba(6, 26, 64, 0.28) 100%
     ),
     radial-gradient(
       ellipse 100% 35% at 50% 100%,
-      rgba(6, 26, 64, 0.7) 0%,
+      rgba(6, 26, 64, 0.38) 0%,
       transparent 100%
     );
 }
 
 .container {
   position: relative;
-  z-index: 3;
+  z-index: 5;
   width: 100%;
 }
 
@@ -293,6 +328,16 @@
   background: rgba(6, 26, 64, 0.72);
   border-color: rgba(0, 200, 255, 0.55);
   transform: translateY(-2px);
+}
+
+@keyframes heroStarsDrift {
+  from {
+    transform: translate3d(-18px, 8px, 0);
+  }
+
+  to {
+    transform: translate3d(22px, -12px, 0);
+  }
 }
 
 @media (max-width: 768px) {
