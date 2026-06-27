@@ -10,23 +10,8 @@ import styles from './Work.module.css'
 
 gsap.registerPlugin(ScrollTrigger)
 
-const getProjectCopy = (project) => {
-  if (project.client === 'H FLAVOR') {
-    return {
-      ...project,
-      client: 'KFSHRC',
-      title: 'A legacy of healthcare excellence, told through a cinematic 50-year story.',
-      category: 'Film & Storytelling',
-      year: '2024',
-    }
-  }
-
-  return project
-}
-
 const WorkCard = ({ project, index }) => {
   const { setCursor, resetCursor } = useCursor()
-  const displayProject = getProjectCopy(project)
 
   return (
     <div
@@ -34,18 +19,18 @@ const WorkCard = ({ project, index }) => {
       onMouseEnter={() => setCursor('view', 'View')}
       onMouseLeave={resetCursor}
     >
-      <Link to={`/work/${displayProject.id}`} className={styles.cardLink}>
-        <div className={styles.visual} style={{ '--card-color': displayProject.color }}>
-          {displayProject.image && (
-            <img src={displayProject.image} alt="" className={styles.cardImg} aria-hidden />
+      <Link to={`/work/${project.id}`} className={styles.cardLink}>
+        <div className={styles.visual} style={{ '--card-color': project.color }}>
+          {project.image && (
+            <img src={project.image} alt="" className={styles.cardImg} aria-hidden />
           )}
 
           <div className={styles.visualOrb} />
           <div className={styles.visualGrid} />
 
-          {displayProject.logo && (
+          {project.logo && (
             <div className={styles.logoSlot}>
-              <img src={displayProject.logo} alt={displayProject.client} className={styles.logo} />
+              <img src={project.logo} alt={project.client} className={styles.logo} />
             </div>
           )}
 
@@ -60,13 +45,13 @@ const WorkCard = ({ project, index }) => {
 
         <div className={styles.meta}>
           <div className={styles.metaLeft}>
-            <span className={styles.client}>{displayProject.client}</span>
-            <h3 className={styles.title}>{displayProject.title}</h3>
+            <span className={styles.client}>{project.client}</span>
+            <h3 className={styles.title}>{project.title}</h3>
           </div>
 
           <div className={styles.metaRight}>
-            <span className={styles.category}>{displayProject.category}</span>
-            <span className={styles.year}>{displayProject.year}</span>
+            <span className={styles.category}>{project.category}</span>
+            <span className={styles.year}>{project.year}</span>
           </div>
         </div>
       </Link>
