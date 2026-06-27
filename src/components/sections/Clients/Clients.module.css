@@ -21,6 +21,7 @@
   display: flex;
   gap: 3px;
 }
+
 .dots span {
   display: block;
   width: 4px;
@@ -29,16 +30,14 @@
   background: currentColor;
 }
 
-/* ── Marquee ── */
 .track {
   display: flex;
   overflow: hidden;
-  /* Fade edges */
   mask-image: linear-gradient(
     to right,
     transparent,
-    black 10%,
-    black 90%,
+    black 8%,
+    black 92%,
     transparent
   );
 }
@@ -46,11 +45,12 @@
 .marquee {
   display: flex;
   align-items: center;
-  gap: 0;
-  animation: marquee 30s linear infinite;
+  gap: clamp(3rem, 6vw, 6rem);
+  animation: marquee 38s linear infinite;
   will-change: transform;
   white-space: nowrap;
   flex-shrink: 0;
+  padding-right: clamp(3rem, 6vw, 6rem);
 }
 
 .track:hover .marquee {
@@ -58,27 +58,47 @@
 }
 
 .item {
+  flex: 0 0 auto;
   display: flex;
   align-items: center;
-  gap: 2rem;
-  padding-inline: 1rem;
+  justify-content: center;
+  min-width: clamp(130px, 13vw, 210px);
+  height: clamp(48px, 6vw, 80px);
 }
 
-.itemText {
-  font-size: clamp(1.1rem, 2.5vw, 1.75rem);
-  font-weight: var(--weight-semibold);
-  letter-spacing: var(--tracking-tight);
-  color: var(--color-text-tertiary);
-  white-space: nowrap;
-  transition: color var(--dur-fast) ease;
+.logo {
+  display: block;
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  opacity: 0.48;
+  filter: grayscale(1) brightness(1.35);
+  transition:
+    opacity 0.25s ease,
+    filter 0.25s ease,
+    transform 0.25s ease;
 }
 
-.item:hover .itemText {
-  color: var(--color-text-primary);
+.item:hover .logo {
+  opacity: 1;
+  filter: grayscale(0) brightness(1);
+  transform: translateY(-2px);
 }
 
-.separator {
-  color: var(--color-violet);
-  font-size: 1.5rem;
-  line-height: 1;
+@media (max-width: 768px) {
+  .clients {
+    padding-block: 3rem;
+  }
+
+  .marquee {
+    gap: 2.5rem;
+    animation-duration: 32s;
+  }
+
+  .item {
+    min-width: 120px;
+    height: 54px;
+  }
 }

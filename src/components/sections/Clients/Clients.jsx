@@ -4,7 +4,6 @@ import Container from '../../ui/Container/Container'
 import { clients } from '../../../data/clients'
 import styles from './Clients.module.css'
 
-/* Duplicate the list for seamless infinite loop */
 const MARQUEE_ITEMS = [...clients, ...clients]
 
 const Clients = () => {
@@ -20,18 +19,25 @@ const Clients = () => {
           viewport={{ once: true }}
           transition={{ duration: 0.7 }}
         >
-          <span className={styles.dots} aria-hidden><span /><span /><span /></span>
+          <span className={styles.dots} aria-hidden>
+            <span />
+            <span />
+            <span />
+          </span>
           <span>Trusted By</span>
         </motion.div>
       </Container>
 
-      {/* Full-width marquee — outside Container for edge-to-edge */}
-      <div className={styles.track} aria-hidden>
+      <div className={styles.track} aria-label="Trusted clients">
         <div className={styles.marquee}>
           {MARQUEE_ITEMS.map((client, i) => (
-            <div key={i} className={styles.item}>
-              <span className={styles.itemText}>{client}</span>
-              <span className={styles.separator} aria-hidden>·</span>
+            <div key={`${client.logo}-${i}`} className={styles.item}>
+              <img
+                src={client.logo}
+                alt={client.name}
+                className={styles.logo}
+                loading="lazy"
+              />
             </div>
           ))}
         </div>
