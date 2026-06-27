@@ -1,4 +1,4 @@
-export const clients = Array.from({ length: 36 }, (_, index) => {
+export const clients = Array.from({ length: 34 }, (_, index) => {
   const number = String(index + 1).padStart(2, '0')
 
   return {

@@ -46,11 +46,11 @@
   display: flex;
   align-items: center;
   gap: clamp(3rem, 6vw, 6rem);
-  animation: marquee 38s linear infinite;
+  animation: marqueeLTR 42s linear infinite;
   will-change: transform;
   white-space: nowrap;
   flex-shrink: 0;
-  padding-right: clamp(3rem, 6vw, 6rem);
+  padding-left: clamp(3rem, 6vw, 6rem);
 }
 
 .track:hover .marquee {
@@ -73,7 +73,7 @@
   width: auto;
   height: auto;
   object-fit: contain;
-  opacity: 0.48;
+  opacity: 0.52;
   filter: grayscale(1) brightness(1.35);
   transition:
     opacity 0.25s ease,
@@ -87,6 +87,16 @@
   transform: translateY(-2px);
 }
 
+@keyframes marqueeLTR {
+  from {
+    transform: translateX(-50%);
+  }
+
+  to {
+    transform: translateX(0);
+  }
+}
+
 @media (max-width: 768px) {
   .clients {
     padding-block: 3rem;
@@ -94,7 +104,7 @@
 
   .marquee {
     gap: 2.5rem;
-    animation-duration: 32s;
+    animation-duration: 36s;
   }
 
   .item {
