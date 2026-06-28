@@ -4,6 +4,7 @@ import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import Container from '../../ui/Container/Container'
 import Button from '../../ui/Button/Button'
+import ParticleField from '../../layout/ParticleField/ParticleField'
 import { useCursor } from '../../../context/CursorContext'
 import styles from './CTA.module.css'
 
@@ -54,6 +55,8 @@ const CTA = () => {
 
   return (
     <section className={styles.cta} ref={sectionRef}>
+      <ParticleField />
+
       <div className={styles.bg} aria-hidden>
         <div className={styles.orb1} data-cta-orb />
         <div className={styles.orb2} data-cta-orb />
