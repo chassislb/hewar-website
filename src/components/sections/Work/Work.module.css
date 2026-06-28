@@ -1,22 +1,19 @@
-/* ── Outer section — gets its height set dynamically by GSAP ── */
 .work {
   background: var(--color-bg-primary);
   position: relative;
-  overflow-x: clip; /* clip without creating a scroll container — keeps sticky working */
+  overflow-x: clip;
 }
 
-/* ── Sticky inner — stays pinned at top while outer scrolls ── */
 .sticky {
   position: sticky;
   top: 0;
   height: 100vh;
-  width: 100vw;       /* prevent max-content track from inflating layout */
+  width: 100vw;
   overflow: hidden;
   display: flex;
   flex-direction: column;
 }
 
-/* ── Header ── */
 .header {
   flex-shrink: 0;
   padding-block: clamp(2.5rem, 5vw, 4rem) clamp(1.25rem, 2.5vw, 2rem);
@@ -38,6 +35,7 @@
   display: flex;
   gap: 3px;
 }
+
 .dots span {
   display: block;
   width: 4px;
@@ -54,21 +52,21 @@
   color: var(--color-text-primary);
 }
 
-/* ── Horizontal track ── */
 .track {
   flex: 1;
   display: flex;
   align-items: stretch;
   gap: clamp(1rem, 1.5vw, 1.25rem);
-  /* Match container left edge so first card aligns with heading */
-  padding-left: max(var(--container-pad), calc((100vw - var(--container-max)) / 2 + var(--container-pad)));
+  padding-left: max(
+    var(--container-pad),
+    calc((100vw - var(--container-max)) / 2 + var(--container-pad))
+  );
   padding-right: clamp(2rem, 5vw, 4rem);
   padding-bottom: clamp(1rem, 2vw, 1.5rem);
   width: max-content;
   will-change: transform;
 }
 
-/* ── Card ── */
 .card {
   flex: none;
   width: min(520px, 80vw);
@@ -86,7 +84,6 @@
   text-decoration: none;
 }
 
-/* ── Card photo (when real image exists) ── */
 .cardImg {
   position: absolute;
   inset: 0;
@@ -101,7 +98,6 @@
   opacity: 0.88;
 }
 
-/* ── Visual area ── */
 .visual {
   flex: 1;
   position: relative;
@@ -117,9 +113,11 @@
 .visualOrb {
   position: absolute;
   inset: 0;
-  background: radial-gradient(ellipse at 70% 30%,
+  background: radial-gradient(
+    ellipse at 70% 30%,
     rgba(255, 255, 255, 0.12) 0%,
-    transparent 60%);
+    transparent 60%
+  );
   pointer-events: none;
 }
 
@@ -127,13 +125,12 @@
   position: absolute;
   inset: 0;
   background-image:
-    linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px);
+    linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
   background-size: 40px 40px;
   pointer-events: none;
 }
 
-/* ── Client logo slot ── */
 .logoSlot {
   position: absolute;
   inset: 0;
@@ -151,24 +148,21 @@
   width: auto;
   height: auto;
   object-fit: contain;
-  /* Resting state — slightly faded, shifted down */
   opacity: 0.55;
   transform: translateY(10px) scale(0.94);
   transition:
-    opacity   0.55s cubic-bezier(0.16, 1, 0.3, 1),
+    opacity 0.55s cubic-bezier(0.16, 1, 0.3, 1),
     transform 0.55s cubic-bezier(0.16, 1, 0.3, 1),
-    filter    0.55s ease;
+    filter 0.55s ease;
   filter: drop-shadow(0 0 0px transparent);
 }
 
-/* Hover — full opacity, centred, cyan glow */
 .card:hover .logo {
   opacity: 1;
   transform: translateY(0) scale(1);
   filter: drop-shadow(0 0 22px rgba(0, 200, 255, 0.5));
 }
 
-/* Card index number */
 .num {
   position: absolute;
   top: 1.25rem;
@@ -176,11 +170,10 @@
   font-size: var(--type-body-xs);
   font-weight: var(--weight-medium);
   letter-spacing: var(--tracking-wider);
-  color: rgba(255,255,255,0.3);
+  color: rgba(255, 255, 255, 0.3);
   font-variant-numeric: tabular-nums;
 }
 
-/* Hover overlay */
 .overlay {
   position: absolute;
   inset: 0;
@@ -203,12 +196,11 @@
   font-weight: var(--weight-semibold);
   letter-spacing: var(--tracking-wide);
   color: var(--color-white);
-  border: 1px solid rgba(255,255,255,0.3);
+  border: 1px solid rgba(255, 255, 255, 0.3);
   padding: 0.75rem 2rem;
   border-radius: var(--radius-full);
 }
 
-/* ── Meta ── */
 .meta {
   flex-shrink: 0;
   display: flex;
@@ -257,20 +249,27 @@
   color: var(--color-text-tertiary);
 }
 
-/* ── Mobile — plain overflow-x scroll ── */
 @media (max-width: 768px) {
   .work {
     min-height: unset !important;
+    overflow-x: hidden;
   }
 
   .sticky {
     position: static;
     height: auto;
+    width: 100%;
     overflow: visible;
   }
 
   .header {
-    padding-inline: var(--container-px, 1.5rem);
+    padding-inline: var(--container-px, 1.25rem);
+    padding-block: 3rem 1.25rem;
+  }
+
+  .heading {
+    font-size: clamp(2.4rem, 11vw, 4rem);
+    line-height: 1;
   }
 
   .track {
@@ -278,26 +277,56 @@
     scroll-snap-type: x mandatory;
     scrollbar-width: none;
     width: 100%;
-    padding-inline: var(--container-px, 1.5rem);
-    padding-bottom: 1.5rem;
+    padding-inline: var(--container-px, 1.25rem);
+    padding-bottom: 1.75rem;
+    gap: 1rem;
   }
+
   .track::-webkit-scrollbar {
     display: none;
   }
 
   .card {
     scroll-snap-align: start;
-    width: 85vw;
+    width: min(86vw, 380px);
+    border-radius: var(--radius-md);
+    cursor: pointer;
   }
 
   .card .visual {
-    height: min(55vw, 340px);
+    height: clamp(250px, 62vw, 340px);
+    flex: none;
+  }
+
+  .meta {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.75rem;
+    padding-top: 1rem;
+  }
+
+  .title {
+    font-size: clamp(1.25rem, 6vw, 1.75rem);
+    max-width: 100%;
+  }
+
+  .metaRight {
+    align-items: flex-start;
+  }
+
+  .category {
+    text-align: left;
   }
 
   .overlay {
     opacity: 1;
-    background: rgba(4, 18, 48, 0.45);
+    background: rgba(4, 18, 48, 0.38);
     -webkit-backdrop-filter: none;
     backdrop-filter: none;
+  }
+
+  .overlayBtn {
+    font-size: 0.9rem;
+    padding: 0.65rem 1.4rem;
   }
 }
