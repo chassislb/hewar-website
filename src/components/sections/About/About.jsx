@@ -125,6 +125,7 @@ const About = () => {
       </Container>
 
       <div className={styles.wordWave} aria-hidden>
+        <div className={styles.waveLine} />
         <div className={styles.wordTrack}>
           {[...MOVING_WORDS, ...MOVING_WORDS, ...MOVING_WORDS].map((word, i) => (
             <span key={`${word}-${i}`} className={styles.word}>

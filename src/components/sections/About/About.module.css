@@ -123,26 +123,60 @@
   color: var(--color-text-primary);
 }
 
-/* Moving words — soft wave, not harsh diagonal */
+/* Wave words: strong wave first, then straightens visually toward the end */
 .wordWave {
   position: relative;
   z-index: 2;
   width: 100%;
-  height: clamp(110px, 13vw, 170px);
-  margin-top: clamp(2.75rem, 5vw, 4rem);
+  height: clamp(150px, 17vw, 230px);
+  margin-top: clamp(2.5rem, 4vw, 3.5rem);
   overflow: hidden;
   pointer-events: none;
 }
 
+.waveLine {
+  position: absolute;
+  left: -6%;
+  right: -6%;
+  top: 58%;
+  height: 3px;
+  opacity: 0.38;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(123, 61, 255, 0.15) 8%,
+    rgba(123, 61, 255, 0.6) 24%,
+    rgba(0, 200, 255, 0.42) 39%,
+    rgba(123, 61, 255, 0.46) 52%,
+    rgba(60, 110, 255, 0.45) 67%,
+    rgba(60, 110, 255, 0.42) 100%
+  );
+  border-radius: var(--radius-full);
+  filter: blur(0.3px) drop-shadow(0 0 14px rgba(123, 61, 255, 0.35));
+  clip-path: polygon(
+    0% 48%,
+    8% 30%,
+    16% 62%,
+    24% 36%,
+    32% 66%,
+    40% 42%,
+    48% 58%,
+    56% 50%,
+    100% 50%,
+    100% 100%,
+    0% 100%
+  );
+}
+
 .wordTrack {
   position: absolute;
-  left: -10%;
-  top: 44%;
+  left: -14%;
+  top: 48%;
   display: flex;
   align-items: center;
   gap: clamp(0.85rem, 1.8vw, 1.4rem);
   width: max-content;
-  animation: waveMove 34s linear infinite;
+  animation: waveMove 38s linear infinite;
 }
 
 .word {
@@ -150,26 +184,39 @@
   align-items: center;
   justify-content: center;
   padding: 0.48rem 1.2rem;
-  border: 1px solid rgba(180, 140, 255, 0.32);
+  border: 1px solid rgba(180, 140, 255, 0.36);
   border-radius: var(--radius-full);
-  background: rgba(71, 0, 179, 0.08);
-  color: rgba(255, 255, 255, 0.74);
+  background: rgba(20, 18, 64, 0.54);
+  color: rgba(255, 255, 255, 0.82);
   font-size: var(--type-body-xs);
   font-weight: var(--weight-semibold);
   letter-spacing: var(--tracking-wider);
   text-transform: uppercase;
   white-space: nowrap;
+  box-shadow:
+    0 0 18px rgba(71, 0, 179, 0.16),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.03);
   transform: translateY(var(--wave-y, 0));
 }
 
-.word:nth-child(8n + 1) { --wave-y: -38px; }
-.word:nth-child(8n + 2) { --wave-y: -28px; }
-.word:nth-child(8n + 3) { --wave-y: -14px; }
-.word:nth-child(8n + 4) { --wave-y: 0px; }
-.word:nth-child(8n + 5) { --wave-y: 12px; }
-.word:nth-child(8n + 6) { --wave-y: 18px; }
-.word:nth-child(8n + 7) { --wave-y: 12px; }
-.word:nth-child(8n + 8) { --wave-y: 0px; }
+/* First half: obvious wave. Second half: gradually straight */
+.word:nth-child(16n + 1) { --wave-y: -58px; }
+.word:nth-child(16n + 2) { --wave-y: -24px; }
+.word:nth-child(16n + 3) { --wave-y: 20px; }
+.word:nth-child(16n + 4) { --wave-y: -36px; }
+.word:nth-child(16n + 5) { --wave-y: 34px; }
+.word:nth-child(16n + 6) { --wave-y: -18px; }
+.word:nth-child(16n + 7) { --wave-y: 12px; }
+.word:nth-child(16n + 8) { --wave-y: 0px; }
+
+.word:nth-child(16n + 9) { --wave-y: 4px; }
+.word:nth-child(16n + 10) { --wave-y: -3px; }
+.word:nth-child(16n + 11) { --wave-y: 2px; }
+.word:nth-child(16n + 12) { --wave-y: 0px; }
+.word:nth-child(16n + 13) { --wave-y: 0px; }
+.word:nth-child(16n + 14) { --wave-y: 0px; }
+.word:nth-child(16n + 15) { --wave-y: 0px; }
+.word:nth-child(16n + 16) { --wave-y: 0px; }
 
 @keyframes waveMove {
   from {
@@ -202,13 +249,14 @@
   }
 
   .wordWave {
-    height: 120px;
+    height: 145px;
     margin-top: 2rem;
   }
 
   .wordTrack {
-    left: -45%;
-    animation-duration: 28s;
+    left: -60%;
+    top: 50%;
+    animation-duration: 32s;
   }
 }
 
