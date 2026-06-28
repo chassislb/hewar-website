@@ -2,11 +2,9 @@ import { useEffect, useRef } from 'react'
 import styles from './ParticleField.module.css'
 
 const PARTICLE_COUNT = 95
-const CONNECT_DIST = 155
 const MOUSE_RADIUS = 150
 const MOUSE_PULL = 0.012
 
-const COL_LINE = [0, 200, 255]
 const COL_POINT = [180, 140, 255]
 const COL_BRIGHT = [0, 200, 255]
 
@@ -71,8 +69,6 @@ const ParticleField = () => {
 
       if (prefersReducedMotion) return
 
-      const cDist = CONNECT_DIST * DPR
-      const cDist2 = cDist * cDist
       const time = now * 0.001
 
       for (const p of particles) {
@@ -107,29 +103,6 @@ const ParticleField = () => {
         p.y += p.vy
       }
 
-      for (let i = 0; i < particles.length; i++) {
-        const a = particles[i]
-
-        for (let j = i + 1; j < particles.length; j++) {
-          const b = particles[j]
-          const dx = (a.x - b.x) * DPR
-          const dy = (a.y - b.y) * DPR
-          const d2 = dx * dx + dy * dy
-
-          if (d2 < cDist2) {
-            const dist = Math.sqrt(d2)
-            const alpha = (1 - dist / cDist) * 0.42
-
-            ctx.strokeStyle = `rgba(${COL_LINE[0]}, ${COL_LINE[1]}, ${COL_LINE[2]}, ${alpha.toFixed(3)})`
-            ctx.lineWidth = DPR * 0.75
-            ctx.beginPath()
-            ctx.moveTo(a.x * DPR, a.y * DPR)
-            ctx.lineTo(b.x * DPR, b.y * DPR)
-            ctx.stroke()
-          }
-        }
-      }
-
       for (const p of particles) {
         const md = mouse.active ? Math.hypot(p.x - mouse.x, p.y - mouse.y) : 9999
         const near = md < MOUSE_RADIUS
@@ -140,7 +113,7 @@ const ParticleField = () => {
         const [r, g, b] = near ? COL_BRIGHT : COL_POINT
 
         ctx.shadowColor = near
-          ? `rgba(${COL_LINE[0]}, ${COL_LINE[1]}, ${COL_LINE[2]}, 0.85)`
+          ? `rgba(${COL_BRIGHT[0]}, ${COL_BRIGHT[1]}, ${COL_BRIGHT[2]}, 0.85)`
           : `rgba(${COL_POINT[0]}, ${COL_POINT[1]}, ${COL_POINT[2]}, 0.45)`
 
         ctx.shadowBlur = near ? 9 * DPR : 4 * DPR
