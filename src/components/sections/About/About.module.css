@@ -8,10 +8,10 @@
 
 .orb {
   position: absolute;
-  width: 720px;
-  height: 720px;
-  top: -20%;
-  right: -18%;
+  width: 700px;
+  height: 700px;
+  top: -10%;
+  right: -15%;
   background: radial-gradient(
     circle at center,
     rgba(71, 0, 179, 0.18) 0%,
@@ -21,27 +21,6 @@
   border-radius: 50%;
   filter: blur(100px);
   pointer-events: none;
-  z-index: 0;
-}
-
-.gridGlow {
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-  pointer-events: none;
-
-  background-image:
-    linear-gradient(rgba(255, 255, 255, 0.025) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.025) 1px, transparent 1px);
-
-  background-size: 56px 56px;
-  opacity: 0.22;
-
-  mask-image: radial-gradient(
-    ellipse 80% 70% at 50% 45%,
-    black 0%,
-    transparent 100%
-  );
 }
 
 .grid {
@@ -49,13 +28,13 @@
   z-index: 2;
 
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(360px, 0.82fr);
+  grid-template-columns: 1fr 1fr;
   gap: clamp(3rem, 8vw, 8rem);
   align-items: start;
 }
 
 .left {
-  position: relative;
+  transform: translateY(-3.5rem);
 }
 
 .label {
@@ -70,7 +49,7 @@
 
   color: var(--color-text-accent);
 
-  margin-bottom: clamp(1.5rem, 3vw, 2.25rem);
+  margin-bottom: var(--space-8);
 }
 
 .dots {
@@ -87,21 +66,20 @@
 }
 
 .heading {
-  font-size: clamp(2.65rem, 5.1vw, 6rem);
+  font-size: clamp(2rem, 4vw, 4.5rem);
   font-weight: var(--weight-black);
   letter-spacing: var(--tracking-tight);
-  line-height: 0.98;
+  line-height: var(--leading-snug);
 
   color: var(--color-text-primary);
 
   margin: 0;
-  max-width: 9ch;
 }
 
 .lineWrap {
   display: block;
   overflow: hidden;
-  padding-bottom: 0.08em;
+  padding-bottom: 0.06em;
 }
 
 .lineInner {
@@ -110,19 +88,13 @@
 }
 
 .right {
-  position: relative;
-}
-
-.storyBlock {
-  max-width: 620px;
-  margin-left: auto;
-  padding-top: 0.35rem;
+  padding-top: 0.5rem;
 }
 
 .story {
-  font-size: clamp(1.05rem, 1.45vw, 1.32rem);
+  font-size: var(--type-body-lg);
   color: var(--color-text-secondary);
-  line-height: 1.75;
+  line-height: var(--leading-relaxed);
   margin: 0 0 var(--space-6);
 }
 
@@ -131,20 +103,63 @@
   color: var(--color-text-primary);
 }
 
-.note {
-  margin-top: clamp(1.5rem, 3vw, 2.5rem);
-  padding-top: clamp(1.25rem, 2vw, 1.75rem);
+/* Diagonal moving words */
+.diagonalWrap {
+  position: relative;
+  z-index: 1;
 
-  border-top: 1px solid var(--color-border);
+  height: clamp(90px, 12vw, 150px);
+  margin-top: clamp(0.5rem, 2vw, 1.5rem);
 
-  font-size: clamp(1rem, 1.25vw, 1.15rem);
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.diagonalTrack {
+  position: absolute;
+  left: -12%;
+  top: 20%;
+
+  display: flex;
+  align-items: center;
+  gap: clamp(0.75rem, 1.8vw, 1.35rem);
+
+  width: max-content;
+
+  transform: rotate(7deg);
+  animation: diagonalMove 28s linear infinite;
+}
+
+.movingWord {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 0.45rem 1.15rem;
+
+  border: 1px solid rgba(180, 140, 255, 0.35);
+  border-radius: var(--radius-full);
+
+  background: rgba(71, 0, 179, 0.08);
+
+  color: rgba(255, 255, 255, 0.72);
+
+  font-size: var(--type-body-xs);
   font-weight: var(--weight-semibold);
-  line-height: 1.55;
-  letter-spacing: var(--tracking-tight);
+  letter-spacing: var(--tracking-wider);
+  text-transform: uppercase;
 
-  color: var(--color-text-primary);
+  white-space: nowrap;
+}
 
-  max-width: 540px;
+@keyframes diagonalMove {
+  from {
+    transform: translateX(-18%) translateY(-10px) rotate(7deg);
+  }
+
+  to {
+    transform: translateX(0%) translateY(38px) rotate(7deg);
+  }
 }
 
 @media (max-width: 900px) {
@@ -154,35 +169,35 @@
 
   .grid {
     grid-template-columns: 1fr;
-    gap: var(--space-10);
+    gap: var(--space-8);
   }
 
-  .heading {
-    max-width: 10ch;
-    font-size: clamp(2.5rem, 11vw, 4rem);
+  .left {
+    transform: none;
   }
 
-  .storyBlock {
-    max-width: none;
-    margin: 0;
+  .diagonalWrap {
+    height: 120px;
+    margin-top: 1.5rem;
+  }
+
+  .diagonalTrack {
+    left: -35%;
+    top: 30%;
   }
 }
 
 @media (max-width: 480px) {
-  .about {
-    padding-block: 3.25rem;
-  }
-
-  .label {
-    margin-bottom: 1.25rem;
+  .heading {
+    font-size: clamp(2.4rem, 12vw, 3.8rem);
   }
 
   .story {
     font-size: 1rem;
-    line-height: 1.7;
   }
 
-  .note {
-    font-size: 0.98rem;
+  .movingWord {
+    padding: 0.4rem 0.9rem;
+    font-size: 0.68rem;
   }
 }
