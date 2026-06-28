@@ -1,6 +1,6 @@
 .about {
   position: relative;
-  padding-block: clamp(7rem, 10vw, 9rem) clamp(5.5rem, 8vw, 7rem);
+  padding-block: clamp(7rem, 10vw, 9rem) clamp(5rem, 7vw, 6rem);
   background: var(--color-bg-secondary);
   overflow: hidden;
   border-top: 1px solid var(--color-border);
@@ -123,108 +123,93 @@
   color: var(--color-text-primary);
 }
 
-/* Wave words: strong wave first, then straightens visually toward the end */
 .wordWave {
   position: relative;
   z-index: 2;
   width: 100%;
-  height: clamp(150px, 17vw, 230px);
-  margin-top: clamp(2.5rem, 4vw, 3.5rem);
+  height: clamp(150px, 15vw, 210px);
+  margin-top: clamp(2.25rem, 4vw, 3.25rem);
   overflow: hidden;
   pointer-events: none;
 }
 
-.waveLine {
+.waveTrack {
   position: absolute;
-  left: -6%;
-  right: -6%;
-  top: 58%;
-  height: 3px;
-  opacity: 0.38;
-  background: linear-gradient(
-    90deg,
-    transparent 0%,
-    rgba(123, 61, 255, 0.15) 8%,
-    rgba(123, 61, 255, 0.6) 24%,
-    rgba(0, 200, 255, 0.42) 39%,
-    rgba(123, 61, 255, 0.46) 52%,
-    rgba(60, 110, 255, 0.45) 67%,
-    rgba(60, 110, 255, 0.42) 100%
-  );
-  border-radius: var(--radius-full);
-  filter: blur(0.3px) drop-shadow(0 0 14px rgba(123, 61, 255, 0.35));
-  clip-path: polygon(
-    0% 48%,
-    8% 30%,
-    16% 62%,
-    24% 36%,
-    32% 66%,
-    40% 42%,
-    48% 58%,
-    56% 50%,
-    100% 50%,
-    100% 100%,
-    0% 100%
-  );
+  left: -18%;
+  top: 0;
+  width: 1800px;
+  height: 180px;
+  animation: waveSlide 42s linear infinite;
 }
 
-.wordTrack {
+.waveSvg {
   position: absolute;
-  left: -14%;
-  top: 48%;
-  display: flex;
-  align-items: center;
-  gap: clamp(0.85rem, 1.8vw, 1.4rem);
-  width: max-content;
-  animation: waveMove 38s linear infinite;
+  inset: 0;
+  width: 1800px;
+  height: 180px;
+  overflow: visible;
+}
+
+.wavePath {
+  fill: none;
+  stroke: rgba(123, 61, 255, 0.42);
+  stroke-width: 3;
+  stroke-linecap: round;
+  filter: drop-shadow(0 0 12px rgba(123, 61, 255, 0.4));
 }
 
 .word {
+  position: absolute;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 0.48rem 1.2rem;
-  border: 1px solid rgba(180, 140, 255, 0.36);
+
+  padding: 0.5rem 1.25rem;
+
+  border: 1px solid rgba(180, 140, 255, 0.42);
   border-radius: var(--radius-full);
-  background: rgba(20, 18, 64, 0.54);
-  color: rgba(255, 255, 255, 0.82);
+
+  background: rgba(20, 18, 64, 0.66);
+
+  color: rgba(255, 255, 255, 0.86);
+
   font-size: var(--type-body-xs);
   font-weight: var(--weight-semibold);
   letter-spacing: var(--tracking-wider);
   text-transform: uppercase;
   white-space: nowrap;
+
   box-shadow:
-    0 0 18px rgba(71, 0, 179, 0.16),
-    inset 0 0 0 1px rgba(255, 255, 255, 0.03);
-  transform: translateY(var(--wave-y, 0));
+    0 0 18px rgba(71, 0, 179, 0.18),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.035);
 }
 
-/* First half: obvious wave. Second half: gradually straight */
-.word:nth-child(16n + 1) { --wave-y: -58px; }
-.word:nth-child(16n + 2) { --wave-y: -24px; }
-.word:nth-child(16n + 3) { --wave-y: 20px; }
-.word:nth-child(16n + 4) { --wave-y: -36px; }
-.word:nth-child(16n + 5) { --wave-y: 34px; }
-.word:nth-child(16n + 6) { --wave-y: -18px; }
-.word:nth-child(16n + 7) { --wave-y: 12px; }
-.word:nth-child(16n + 8) { --wave-y: 0px; }
+/* Exact positions on the curve: wavy on the left, straight on the right */
+.word1 { left: 70px; top: 78px; }
+.word2 { left: 255px; top: 58px; }
+.word3 { left: 455px; top: 76px; }
+.word4 { left: 665px; top: 92px; }
+.word5 { left: 875px; top: 96px; }
+.word6 { left: 1055px; top: 96px; }
+.word7 { left: 1285px; top: 96px; }
+.word8 { left: 1500px; top: 96px; }
 
-.word:nth-child(16n + 9) { --wave-y: 4px; }
-.word:nth-child(16n + 10) { --wave-y: -3px; }
-.word:nth-child(16n + 11) { --wave-y: 2px; }
-.word:nth-child(16n + 12) { --wave-y: 0px; }
-.word:nth-child(16n + 13) { --wave-y: 0px; }
-.word:nth-child(16n + 14) { --wave-y: 0px; }
-.word:nth-child(16n + 15) { --wave-y: 0px; }
-.word:nth-child(16n + 16) { --wave-y: 0px; }
+.word9 { left: 1710px; top: 78px; }
+.word10 { left: 1895px; top: 58px; }
+.word11 { left: 2095px; top: 76px; }
+.word12 { left: 2305px; top: 92px; }
+.word13 { left: 2515px; top: 96px; }
+.word14 { left: 2695px; top: 96px; }
+.word15 { left: 2925px; top: 96px; }
+.word16 { left: 3140px; top: 96px; }
 
-@keyframes waveMove {
+@keyframes waveSlide {
   from {
-    transform: translateX(-18%);
+    transform: translateX(0);
   }
 
   to {
-    transform: translateX(0%);
+    transform: translateX(-1640px);
   }
 }
 
@@ -253,10 +238,9 @@
     margin-top: 2rem;
   }
 
-  .wordTrack {
-    left: -60%;
-    top: 50%;
-    animation-duration: 32s;
+  .waveTrack {
+    left: -65%;
+    animation-duration: 34s;
   }
 }
 
