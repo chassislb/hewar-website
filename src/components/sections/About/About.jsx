@@ -7,14 +7,16 @@ import styles from './About.module.css'
 
 gsap.registerPlugin(ScrollTrigger)
 
-const VALUES = [
-  { id: '01', label: 'Growth', desc: 'We scale with every client we serve.' },
-  { id: '02', label: 'Methodology', desc: 'Strategy before execution, always.' },
-  { id: '03', label: 'Innovation', desc: 'New thinking for changing markets.' },
-  { id: '04', label: 'Creativity', desc: 'Ideas that earn attention and trust.' },
+const MOVING_WORDS = [
+  'Expertise',
+  'Integrity',
+  'Excellence',
+  'Dedication',
+  'Growth',
+  'Methodology',
+  'Innovation',
+  'Creativity',
 ]
-
-const PILLARS = ['Expertise', 'Integrity', 'Excellence', 'Dedication']
 
 const About = () => {
   const sectionRef = useRef(null)
@@ -47,18 +49,6 @@ const About = () => {
       },
     })
 
-    gsap.from('[data-value-card]', {
-      opacity: 0,
-      y: 24,
-      duration: 0.7,
-      stagger: 0.08,
-      ease: 'power3.out',
-      scrollTrigger: {
-        trigger: '[data-value-card]',
-        start: 'top 85%',
-      },
-    })
-
     gsap.to('[data-about-orb]', {
       y: -60,
       ease: 'none',
@@ -80,7 +70,9 @@ const About = () => {
           <div className={styles.left}>
             <div className={styles.label}>
               <span className={styles.dots} aria-hidden>
-                <span /><span /><span />
+                <span />
+                <span />
+                <span />
               </span>
               <span>About HEWAR</span>
             </div>
@@ -93,16 +85,12 @@ const About = () => {
                 'worth saying.',
               ].map((line, i) => (
                 <span key={i} className={styles.lineWrap}>
-                  <span className={styles.lineInner} data-about-line>{line}</span>
+                  <span className={styles.lineInner} data-about-line>
+                    {line}
+                  </span>
                 </span>
               ))}
             </h2>
-
-            <div className={styles.pillars}>
-              {PILLARS.map((p) => (
-                <span key={p} className={styles.pillar}>{p}</span>
-              ))}
-            </div>
           </div>
 
           <div className={styles.right} data-about-right>
@@ -120,16 +108,16 @@ const About = () => {
               region, we read the room before we shape the message — culture,
               timing, stakeholders, and public conversation included.
             </p>
+          </div>
+        </div>
 
-            <div className={styles.valuesGrid}>
-              {VALUES.map((v) => (
-                <div key={v.id} className={styles.valueCard} data-value-card>
-                  <span className={styles.valueNum}>{v.id}</span>
-                  <span className={styles.valueLabel}>{v.label}</span>
-                  <span className={styles.valueDesc}>{v.desc}</span>
-                </div>
-              ))}
-            </div>
+        <div className={styles.diagonalWrap} aria-hidden>
+          <div className={styles.diagonalTrack}>
+            {[...MOVING_WORDS, ...MOVING_WORDS, ...MOVING_WORDS].map((word, i) => (
+              <span key={`${word}-${i}`} className={styles.movingWord}>
+                {word}
+              </span>
+            ))}
           </div>
         </div>
       </Container>
