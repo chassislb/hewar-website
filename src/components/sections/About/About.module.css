@@ -123,6 +123,7 @@
   color: var(--color-text-primary);
 }
 
+/* Words: upper-left to lower-right, no line, no weird wave */
 .wordWave {
   position: relative;
   z-index: 2;
@@ -133,29 +134,13 @@
   pointer-events: none;
 }
 
-.waveTrack {
+.wordTrack {
   position: absolute;
   left: -18%;
   top: 0;
-  width: 1800px;
-  height: 180px;
-  animation: waveSlide 42s linear infinite;
-}
-
-.waveSvg {
-  position: absolute;
-  inset: 0;
-  width: 1800px;
-  height: 180px;
-  overflow: visible;
-}
-
-.wavePath {
-  fill: none;
-  stroke: rgba(123, 61, 255, 0.42);
-  stroke-width: 3;
-  stroke-linecap: round;
-  filter: drop-shadow(0 0 12px rgba(123, 61, 255, 0.4));
+  width: 3400px;
+  height: 190px;
+  animation: diagonalSlide 42s linear infinite;
 }
 
 .word {
@@ -184,32 +169,32 @@
     inset 0 0 0 1px rgba(255, 255, 255, 0.035);
 }
 
-/* Exact positions on the curve: wavy on the left, straight on the right */
-.word1 { left: 70px; top: 78px; }
-.word2 { left: 255px; top: 58px; }
-.word3 { left: 455px; top: 76px; }
-.word4 { left: 665px; top: 92px; }
-.word5 { left: 875px; top: 96px; }
-.word6 { left: 1055px; top: 96px; }
-.word7 { left: 1285px; top: 96px; }
-.word8 { left: 1500px; top: 96px; }
+/* Clean diagonal: starts upper-left, ends lower-right */
+.word1 { left: 60px; top: 12px; }
+.word2 { left: 270px; top: 28px; }
+.word3 { left: 500px; top: 44px; }
+.word4 { left: 740px; top: 60px; }
+.word5 { left: 965px; top: 76px; }
+.word6 { left: 1190px; top: 92px; }
+.word7 { left: 1450px; top: 108px; }
+.word8 { left: 1690px; top: 124px; }
 
-.word9 { left: 1710px; top: 78px; }
-.word10 { left: 1895px; top: 58px; }
-.word11 { left: 2095px; top: 76px; }
-.word12 { left: 2305px; top: 92px; }
-.word13 { left: 2515px; top: 96px; }
-.word14 { left: 2695px; top: 96px; }
-.word15 { left: 2925px; top: 96px; }
-.word16 { left: 3140px; top: 96px; }
+.word9 { left: 1930px; top: 12px; }
+.word10 { left: 2140px; top: 28px; }
+.word11 { left: 2370px; top: 44px; }
+.word12 { left: 2610px; top: 60px; }
+.word13 { left: 2835px; top: 76px; }
+.word14 { left: 3060px; top: 92px; }
+.word15 { left: 3320px; top: 108px; }
+.word16 { left: 3560px; top: 124px; }
 
-@keyframes waveSlide {
+@keyframes diagonalSlide {
   from {
     transform: translateX(0);
   }
 
   to {
-    transform: translateX(-1640px);
+    transform: translateX(-1870px);
   }
 }
 
@@ -238,8 +223,8 @@
     margin-top: 2rem;
   }
 
-  .waveTrack {
-    left: -65%;
+  .wordTrack {
+    left: -75%;
     animation-duration: 34s;
   }
 }
