@@ -1,5 +1,7 @@
 import { Link } from 'react-router-dom'
 import Container from '../../ui/Container/Container'
+import Button from '../../ui/Button/Button'
+import ParticleField from '../ParticleField/ParticleField'
 import { navLinks } from '../../../data/navigation'
 import { SITE_NAME, SITE_TAGLINE, CONTACT_EMAIL, SOCIAL_LINKS } from '../../../utils/constants'
 import { useCursor } from '../../../context/CursorContext'
@@ -11,9 +13,57 @@ const Footer = () => {
 
   return (
     <footer className={styles.footer}>
+      <ParticleField />
+
+      <div className={styles.bg} aria-hidden>
+        <div className={styles.orb} />
+        <div className={styles.topBorder} />
+      </div>
+
       <Container>
+        <div className={styles.cta}>
+          <div className={styles.eyebrow}>
+            <span className={styles.dots} aria-hidden>
+              <span />
+              <span />
+              <span />
+            </span>
+            <span>Ready to Amplify?</span>
+          </div>
+
+          <h2 className={styles.ctaHeading}>
+            Build something people remember.
+          </h2>
+
+          <p className={styles.ctaText}>
+            Whether you are launching a brand, repositioning one, or telling a
+            story that deserves attention, let’s start the conversation.
+          </p>
+
+          <div className={styles.ctaButtons}>
+            <Button
+              variant="primary"
+              size="md"
+              href="/contact"
+              onMouseEnter={() => setCursor('hover')}
+              onMouseLeave={resetCursor}
+            >
+              Let’s Talk
+            </Button>
+
+            <Button
+              variant="ghost"
+              size="md"
+              href="/work"
+              onMouseEnter={() => setCursor('hover')}
+              onMouseLeave={resetCursor}
+            >
+              See Our Work
+            </Button>
+          </div>
+        </div>
+
         <div className={styles.top}>
-          {/* Brand column */}
           <div className={styles.brand}>
             <Link
               to="/"
@@ -28,7 +78,9 @@ const Footer = () => {
                 height="48"
               />
             </Link>
+
             <p className={styles.tagline}>{SITE_TAGLINE}</p>
+
             <a
               href={`mailto:${CONTACT_EMAIL}`}
               className={styles.email}
@@ -39,7 +91,6 @@ const Footer = () => {
             </a>
           </div>
 
-          {/* Navigation column */}
           <div className={styles.nav}>
             <span className={styles.colLabel}>Navigation</span>
             <ul className={styles.navList}>
@@ -55,6 +106,7 @@ const Footer = () => {
                   </Link>
                 </li>
               ))}
+
               <li>
                 <Link
                   to="/contact"
@@ -68,7 +120,6 @@ const Footer = () => {
             </ul>
           </div>
 
-          {/* Social column */}
           <div className={styles.social}>
             <span className={styles.colLabel}>Follow Us</span>
             <ul className={styles.navList}>
@@ -94,9 +145,14 @@ const Footer = () => {
           <span className={styles.copy}>
             © {year} {SITE_NAME}. All rights reserved.
           </span>
+
           <div className={styles.legal}>
-            <Link to="/privacy" className={styles.legalLink}>Privacy Policy</Link>
-            <Link to="/terms"   className={styles.legalLink}>Terms of Use</Link>
+            <Link to="/privacy" className={styles.legalLink}>
+              Privacy Policy
+            </Link>
+            <Link to="/terms" className={styles.legalLink}>
+              Terms of Use
+            </Link>
           </div>
         </div>
       </Container>

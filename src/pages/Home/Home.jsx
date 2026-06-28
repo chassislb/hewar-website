@@ -5,7 +5,6 @@ import About from '../../components/sections/About/About'
 import Work from '../../components/sections/Work/Work'
 import Clients from '../../components/sections/Clients/Clients'
 import Insights from '../../components/sections/Insights/Insights'
-import CTA from '../../components/sections/CTA/CTA'
 
 const Home = () => (
   <main>
@@ -16,7 +15,6 @@ const Home = () => (
     <Work />
     <Clients />
     <Insights />
-    <CTA />
   </main>
 )
 
