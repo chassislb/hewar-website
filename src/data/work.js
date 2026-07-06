@@ -1,12 +1,12 @@
 export const work = [
   {
     id: 'kfshrc',
-    title: 'A legacy of healthcare excellence, told through a cinematic 50-year story.',
+    title: 'A cinematic tribute to Ghar Al Ma’athar, told for Saudi Founding Day.',
     client: 'KFSHRC',
-    category: 'Anniversary Campaign',
+    category: 'Founding Day Film',
     year: '2025',
     description:
-      'A cinematic storytelling campaign celebrating 50 years of King Faisal Specialist Hospital & Research Centre through film, creative direction and visual production.',
+      'For Saudi Founding Day, HEWAR Group’s Creative Department produced a video honouring Ghar Al Ma’athar — capturing its significance as a religious centre, a place of healing, and a historic gathering hub. Designed from concept through animation, the film wove together the site’s historical, spiritual and communal importance, and was met with widespread engagement across social media.',
     color: '#071c46',
     size: 'large',
     logo: null,
