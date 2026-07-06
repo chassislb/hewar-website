@@ -91,17 +91,24 @@ const InsightsPage = () => {
                 <div className={styles.cardTop}>
                   <span className={styles.categoryBadge}>{insight.category}</span>
                 </div>
-                <h2 className={styles.cardTitle}>{insight.title}</h2>
+                <Link to={`/insights/${insight.id}`}>
+                  <h2 className={styles.cardTitle}>{insight.title}</h2>
+                </Link>
                 <p className={styles.cardExcerpt}>{insight.excerpt}</p>
                 <div className={styles.cardFooter}>
                   <div className={styles.cardMeta}>
-                    <span className={styles.cardDate}>{insight.date}</span>
+                    <span className={styles.cardDate}>{insight.author}</span>
                     <span className={styles.metaDot} aria-hidden />
-                    <span className={styles.cardReadTime}>{insight.readTime}</span>
+                    <span className={styles.cardReadTime}>{insight.publication} · {insight.year}</span>
                   </div>
-                  <Link to={`/insights/${insight.id}`} className={styles.readMore}>
-                    Read More →
-                  </Link>
+                  <a
+                    href={insight.externalUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={styles.readMore}
+                  >
+                    Read Article ↗
+                  </a>
                 </div>
               </article>
             ))}

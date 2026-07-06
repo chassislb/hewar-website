@@ -15,6 +15,9 @@ import WorkDetail from './pages/WorkDetail/WorkDetail'
 import InsightsPage from './pages/Insights/InsightsPage'
 import InsightDetail from './pages/InsightDetail/InsightDetail'
 import Contact from './pages/Contact/Contact'
+import Privacy from './pages/Privacy/Privacy'
+import Terms from './pages/Terms/Terms'
+import NotFound from './pages/NotFound/NotFound'
 import './styles/globals.css'
 import './styles/utilities.css'
 
@@ -72,6 +75,9 @@ const App = () => {
               <Route path="/insights" element={<InsightsPage />} />
               <Route path="/insights/:id" element={<InsightDetail />} />
               <Route path="/contact" element={<Contact />} />
+              <Route path="/privacy" element={<Privacy />} />
+              <Route path="/terms" element={<Terms />} />
+              <Route path="*" element={<NotFound />} />
             </Routes>
           </AnimatePresence>
 

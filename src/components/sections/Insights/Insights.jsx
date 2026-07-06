@@ -19,20 +19,29 @@ const InsightCard = ({ article, index }) => {
       onMouseEnter={() => setCursor('read', 'Read')}
       onMouseLeave={resetCursor}
     >
-      <Link to={`/insights/${article.id}`} className={styles.cardLink}>
+      <div className={styles.cardLink}>
         <div className={styles.cardTop}>
           <span className={styles.category}>{article.category}</span>
-          <span className={styles.readTime}>{article.readTime}</span>
+          <span className={styles.readTime}>{article.publication}</span>
         </div>
 
-        <h3 className={styles.title}>{article.title}</h3>
+        <Link to={`/insights/${article.id}`}>
+          <h3 className={styles.title}>{article.title}</h3>
+        </Link>
         <p className={styles.excerpt}>{article.excerpt}</p>
 
         <div className={styles.cardBottom}>
-          <span className={styles.date}>{article.date}</span>
-          <span className={styles.arrow}>→</span>
+          <span className={styles.date}>{article.author} · {article.year}</span>
+          <a
+            href={article.externalUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className={styles.arrow}
+          >
+            Read Article ↗
+          </a>
         </div>
-      </Link>
+      </div>
     </motion.article>
   )
 }

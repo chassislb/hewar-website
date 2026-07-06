@@ -1,0 +1,105 @@
+.hero {
+  position: relative;
+  padding-top: clamp(8rem, 15vw, 12rem);
+  padding-bottom: clamp(3rem, 6vw, 4rem);
+  background: var(--color-bg-primary);
+  overflow: hidden;
+}
+
+.heroOrb {
+  position: absolute;
+  top: -25%;
+  right: -10%;
+  width: clamp(300px, 45vw, 650px);
+  height: clamp(300px, 45vw, 650px);
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(71, 0, 179, 0.3) 0%, transparent 70%);
+  filter: blur(80px);
+  pointer-events: none;
+}
+
+.eyebrow {
+  position: relative;
+  z-index: 1;
+  font-size: var(--type-body-xs);
+  font-weight: var(--weight-semibold);
+  letter-spacing: var(--tracking-widest);
+  text-transform: uppercase;
+  color: var(--color-text-accent);
+  margin-bottom: var(--space-6);
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.eyebrowDot {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--color-cyan);
+  flex-shrink: 0;
+}
+
+.title {
+  position: relative;
+  z-index: 1;
+  font-size: clamp(2.5rem, 6vw, 5rem);
+  font-weight: var(--weight-black);
+  letter-spacing: var(--tracking-tighter);
+  line-height: var(--leading-tight);
+  color: var(--color-text-primary);
+  margin-bottom: var(--space-4);
+}
+
+.updated {
+  position: relative;
+  z-index: 1;
+  font-size: var(--type-body-sm);
+  color: var(--color-text-tertiary);
+}
+
+.body {
+  padding-block: var(--section-padding-y);
+  background: var(--color-bg-secondary);
+}
+
+.prose {
+  max-width: 68ch;
+}
+
+.notice {
+  font-size: var(--type-body-sm);
+  color: var(--color-text-accent);
+  background: var(--color-violet-faint);
+  border: 1px solid var(--color-border-accent);
+  border-radius: var(--radius-md);
+  padding: var(--space-5);
+  margin-bottom: clamp(2rem, 4vw, 3rem);
+  line-height: var(--leading-relaxed);
+}
+
+.prose h2 {
+  font-size: var(--type-h4, 1.3rem);
+  font-weight: var(--weight-bold);
+  letter-spacing: var(--tracking-tight);
+  color: var(--color-text-primary);
+  margin-top: clamp(2rem, 4vw, 3rem);
+  margin-bottom: var(--space-4);
+}
+
+.prose h2:first-of-type {
+  margin-top: 0;
+}
+
+.prose p {
+  font-size: var(--type-body-md);
+  color: var(--color-text-secondary);
+  line-height: var(--leading-relaxed);
+}
+
+.prose a {
+  color: var(--color-text-accent);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}

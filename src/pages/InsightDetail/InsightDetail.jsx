@@ -59,16 +59,24 @@ const InsightDetail = () => {
           <div className={styles.categoryBadge} data-page-eyebrow>{insight.category}</div>
           <h1 className={styles.title} data-page-title>{insight.title}</h1>
           <div className={styles.meta} data-page-sub>
-            <span>{insight.date}</span>
+            <span>{insight.author}</span>
             <span className={styles.metaDot} aria-hidden />
-            <span>{insight.readTime}</span>
+            <span>{insight.role}</span>
+            <span className={styles.metaDot} aria-hidden />
+            <span>{insight.publication} · {insight.year}</span>
           </div>
           <p className={styles.excerpt}>{insight.excerpt}</p>
           <div className={styles.comingSoonBox}>
             <p className={styles.comingSoonText}>
-              Full article coming soon. Check back for the complete read.
+              This piece was written for external publication. Read the full
+              article on {insight.publication}.
             </p>
-            <Button variant="ghost" href="/insights">← Back to Insights</Button>
+            <div className={styles.detailActions}>
+              <Button variant="primary" href={insight.externalUrl} external>
+                Read Full Article
+              </Button>
+              <Button variant="ghost" href="/insights">← Back to Insights</Button>
+            </div>
           </div>
         </Container>
       </section>

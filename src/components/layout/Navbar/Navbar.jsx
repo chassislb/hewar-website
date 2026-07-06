@@ -12,12 +12,18 @@ import styles from './Navbar.module.css'
 const Navbar = () => {
   const [scrolled, setScrolled]     = useState(false)
   const [menuOpen, setMenuOpen]     = useState(false)
+  const [prevPathname, setPrevPathname] = useState(null)
   const navRef                      = useRef(null)
   const location                    = useLocation()
   const { setCursor, resetCursor }  = useCursor()
   const scrollProgress              = useScrollProgress()
 
-  useEffect(() => { setMenuOpen(false) }, [location])
+  /* Close the mobile menu on navigation — adjusted during render per React's
+     guidance for resetting state in response to a prop/route change */
+  if (prevPathname !== location.pathname) {
+    setPrevPathname(location.pathname)
+    if (menuOpen) setMenuOpen(false)
+  }
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40)

@@ -64,6 +64,8 @@
 .meta {
   display: flex;
   align-items: center;
+  flex-wrap: wrap;
+  row-gap: 0.4rem;
   gap: 0.6rem;
   font-size: var(--type-body-xs);
   color: var(--color-text-tertiary);
@@ -108,6 +110,13 @@
   font-size: var(--type-body-sm);
   color: var(--color-text-tertiary);
   line-height: var(--leading-relaxed);
+}
+
+.detailActions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  flex-wrap: wrap;
 }
 
 .notFound {

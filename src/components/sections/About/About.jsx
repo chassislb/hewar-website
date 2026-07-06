@@ -125,14 +125,7 @@ const About = () => {
       </Container>
 
       <div className={styles.wordWave} aria-hidden>
-        <div className={styles.waveTrack}>
-          <svg className={styles.waveSvg} viewBox="0 0 1800 180" preserveAspectRatio="none">
-            <path
-              className={styles.wavePath}
-              d="M0,112 C140,38 245,142 360,82 C480,20 565,135 700,92 C835,50 930,92 1040,102 C1165,114 1265,108 1380,108 C1520,108 1660,108 1800,108"
-            />
-          </svg>
-
+        <div className={styles.wordTrack}>
           {[...MOVING_WORDS, ...MOVING_WORDS].map((word, i) => (
             <span key={`${word}-${i}`} className={`${styles.word} ${styles[`word${i + 1}`]}`}>
               {word}

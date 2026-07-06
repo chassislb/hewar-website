@@ -28,12 +28,11 @@ const values = [
   { num: '04', title: 'Creativity',  body: 'Ideas that earn attention and trust.' },
 ]
 
-/* All three About photos — A is main, B and C layer on top at different parallax rates */
-const ABOUT_IMAGES = {
-  a: '/hewar-website/Website/Website/About/HEWAR/3.png', // office / HEWAR logo wall
-  b: '/hewar-website/Website/Website/About/HEWAR/1.png', // panel discussion
-  c: '/hewar-website/Website/Website/About/HEWAR/2.png', // award ceremony
-}
+/*
+ * No real HEWAR office/event photography has been supplied yet for this section.
+ * Until real photos land, the 3-frame parallax stack uses a branded gradient
+ * treatment instead of a broken image — swap ABOUT_IMAGES back in once photos exist.
+ */
 
 const About = () => {
   const heroRef   = useRef(null)
@@ -122,19 +121,19 @@ const About = () => {
             <div className={styles.storyImageCol} data-story-image>
               <div className={styles.imageStack}>
 
-                {/* Photo A — office/logo wall — large, background layer, slowest */}
+                {/* Frame A — background layer, slowest parallax */}
                 <div className={styles.imgFrameA}>
-                  <img src={ABOUT_IMAGES.a} alt="HEWAR Group office" className={styles.imgInner} data-img-a />
+                  <div className={`${styles.imgInner} ${styles.placeholderA}`} data-img-a aria-hidden />
                 </div>
 
-                {/* Photo B — event panel — mid layer, medium speed */}
+                {/* Frame B — mid layer, medium parallax */}
                 <div className={styles.imgFrameB}>
-                  <img src={ABOUT_IMAGES.b} alt="HEWAR Group event" className={styles.imgInner} data-img-b />
+                  <div className={`${styles.imgInner} ${styles.placeholderB}`} data-img-b aria-hidden />
                 </div>
 
-                {/* Photo C — award ceremony — top layer, fastest */}
+                {/* Frame C — front layer, fastest parallax */}
                 <div className={styles.imgFrameC}>
-                  <img src={ABOUT_IMAGES.c} alt="HEWAR Group award" className={styles.imgInner} data-img-c />
+                  <div className={`${styles.imgInner} ${styles.placeholderC}`} data-img-c aria-hidden />
                 </div>
 
               </div>

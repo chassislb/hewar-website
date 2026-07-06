@@ -10,11 +10,9 @@ export const work = [
     color: '#071c46',
     size: 'large',
     logo: null,
-    image: '/hewar-website/Website/CaseStudy/KFSHRC/1.jpg',
+    image: '/hewar-website/Website/CaseStudy/KFSHRC/1.png',
     images: [
-      '/hewar-website/Website/CaseStudy/KFSHRC/1.jpg',
-      '/hewar-website/Website/CaseStudy/KFSHRC/2.jpg',
-      '/hewar-website/Website/CaseStudy/KFSHRC/3.jpg',
+      '/hewar-website/Website/CaseStudy/KFSHRC/1.png',
     ],
   },
   {
@@ -28,11 +26,9 @@ export const work = [
     color: '#0b285e',
     size: 'large',
     logo: null,
-    image: '/hewar-website/Website/CaseStudy/Zatca/1.jpg',
+    image: '/hewar-website/Website/CaseStudy/Zatca/2.png',
     images: [
-      '/hewar-website/Website/CaseStudy/Zatca/1.jpg',
-      '/hewar-website/Website/CaseStudy/Zatca/2.jpg',
-      '/hewar-website/Website/CaseStudy/Zatca/3.jpg',
+      '/hewar-website/Website/CaseStudy/Zatca/2.png',
     ],
   },
   {
@@ -46,11 +42,9 @@ export const work = [
     color: '#08315a',
     size: 'large',
     logo: null,
-    image: '/hewar-website/Website/CaseStudy/Amana Al-Riyadh/1.jpg',
+    image: '/hewar-website/Website/CaseStudy/Amana Al-Riyadh/4.png',
     images: [
-      '/hewar-website/Website/CaseStudy/Amana Al-Riyadh/1.jpg',
-      '/hewar-website/Website/CaseStudy/Amana Al-Riyadh/2.jpg',
-      '/hewar-website/Website/CaseStudy/Amana Al-Riyadh/3.jpg',
+      '/hewar-website/Website/CaseStudy/Amana Al-Riyadh/4.png',
     ],
   },
   {
