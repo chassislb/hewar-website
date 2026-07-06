@@ -1,24 +1,5 @@
 export const work = [
   {
-    id: 'kingdom-centre',
-    title: 'A Riyadh icon, retold for a new generation',
-    client: 'Kingdom Centre',
-    category: 'Brand Campaign',
-    year: '2024',
-    description:
-      "A full brand communications campaign repositioning one of Riyadh's most recognised landmarks for the next generation of Saudi consumers.",
-    color: '#0A3A8A',
-    size: 'large',
-    logo: null,
-    image: '/hewar-website/Website/CaseStudy/KCT/3.jpg',
-    images: [
-      '/hewar-website/Website/CaseStudy/KCT/3.jpg',
-      '/hewar-website/Website/CaseStudy/KCT/4.jpg',
-      '/hewar-website/Website/CaseStudy/KCT/1.jpg',
-      '/hewar-website/Website/CaseStudy/KCT/2.jpg',
-    ],
-  },
-  {
     id: 'kfshrc',
     title: 'A legacy of healthcare excellence, told through a cinematic 50-year story.',
     client: 'KFSHRC',
@@ -29,9 +10,11 @@ export const work = [
     color: '#071c46',
     size: 'large',
     logo: null,
-    image: '/hewar-website/Website/CaseStudy/KFSHRC/1.png',
+    image: '/hewar-website/Website/CaseStudy/KFSHRC/1.jpg',
     images: [
-      '/hewar-website/Website/CaseStudy/KFSHRC/1.png',
+      '/hewar-website/Website/CaseStudy/KFSHRC/1.jpg',
+      '/hewar-website/Website/CaseStudy/KFSHRC/2.jpg',
+      '/hewar-website/Website/CaseStudy/KFSHRC/3.jpg',
     ],
   },
   {
@@ -45,9 +28,11 @@ export const work = [
     color: '#0b285e',
     size: 'large',
     logo: null,
-    image: '/hewar-website/Website/CaseStudy/Zatca/2.png',
+    image: '/hewar-website/Website/CaseStudy/Zatca/1.jpg',
     images: [
-      '/hewar-website/Website/CaseStudy/Zatca/2.png',
+      '/hewar-website/Website/CaseStudy/Zatca/1.jpg',
+      '/hewar-website/Website/CaseStudy/Zatca/2.jpg',
+      '/hewar-website/Website/CaseStudy/Zatca/3.jpg',
     ],
   },
   {
@@ -61,19 +46,40 @@ export const work = [
     color: '#08315a',
     size: 'large',
     logo: null,
-    image: '/hewar-website/Website/CaseStudy/Amana Al-Riyadh/4.png',
+    image: '/hewar-website/Website/CaseStudy/Amana Al-Riyadh/1.jpg',
     images: [
-      '/hewar-website/Website/CaseStudy/Amana Al-Riyadh/4.png',
+      '/hewar-website/Website/CaseStudy/Amana Al-Riyadh/1.jpg',
+      '/hewar-website/Website/CaseStudy/Amana Al-Riyadh/2.jpg',
+      '/hewar-website/Website/CaseStudy/Amana Al-Riyadh/3.jpg',
+    ],
+  },
+  {
+    id: 'kingdom-centre',
+    title: 'A Riyadh icon, retold for a new generation.',
+    client: 'Kingdom Centre',
+    category: 'Brand Campaign',
+    year: '2024',
+    description:
+      'A brand communications campaign repositioning one of Riyadh’s most recognised landmarks for a new generation of Saudi audiences.',
+    color: '#0A3A8A',
+    size: 'large',
+    logo: null,
+    image: '/hewar-website/Website/CaseStudy/KCT/3.jpg',
+    images: [
+      '/hewar-website/Website/CaseStudy/KCT/3.jpg',
+      '/hewar-website/Website/CaseStudy/KCT/4.jpg',
+      '/hewar-website/Website/CaseStudy/KCT/1.jpg',
+      '/hewar-website/Website/CaseStudy/KCT/2.jpg',
     ],
   },
   {
     id: 'karnr',
-    title: 'A nature-rooted brand with a distinctive voice',
+    title: 'A nature-rooted brand with a distinctive voice.',
     client: 'KARNR',
     category: 'Brand Identity',
     year: '2024',
     description:
-      'End-to-end identity, social, and campaign work that gave KARNR a confident, nature-rooted visual and verbal presence.',
+      'Identity, social and campaign work that gave KARNR a confident, nature-rooted visual and verbal presence.',
     color: '#0e2048',
     size: 'small',
     logo: null,
@@ -88,18 +94,16 @@ export const work = [
   },
   {
     id: 'drdc',
-    title: 'A visionary desert concept introduced to the world',
+    title: 'A visionary desert concept introduced to the world.',
     client: 'DRDC',
     category: 'Brand Communications',
     year: '2024',
     description:
-      'Strategic brand communications for a landmark desert development concept — crafting the narrative that introduced a visionary Saudi project to global audiences.',
+      'Strategic brand communications for a landmark desert development concept, shaping the narrative that introduced a visionary Saudi project to global audiences.',
     color: '#1a0820',
     size: 'small',
     logo: null,
     image: '/hewar-website/Website/CaseStudy/DRDC/oo2.jpg',
-    images: [
-      '/hewar-website/Website/CaseStudy/DRDC/oo2.jpg',
-    ],
+    images: ['/hewar-website/Website/CaseStudy/DRDC/oo2.jpg'],
   },
 ]

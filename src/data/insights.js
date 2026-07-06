@@ -1,29 +1,29 @@
 export const insights = [
   {
-    id: 'integrated-marketing-saudi',
-    title: 'The Future of Integrated Marketing in Saudi Arabia',
+    id: 'saudi-arabia-dream-for-every-marketer',
+    title: 'Saudi Arabia Is the Dream for Every Marketer',
+    author: 'Loma Jaber',
+    role: 'Managing Director, HEWAR Group',
+    category: 'Saudi Market',
+    year: '2024',
+    publication: 'Campaign Middle East',
     excerpt:
-      "As Vision 2030 reshapes the economic and cultural landscape, integrated marketing communications must evolve to meet audiences where they are — and where they're going.",
-    category: 'Strategy',
-    date: 'May 2025',
-    readTime: '6 min read',
+      'A perspective on Saudi consumers, authenticity, digital transformation and the changing agency model in the Kingdom.',
+    image: '/hewar-website/Website/Insights/loma-jaber.jpg',
+    externalUrl: 'https://campaignme.com/saudi-arabia-is-the-dream-for-every-marketer/',
   },
   {
-    id: 'events-brand-experiences',
-    title: 'How Events Become Brand Experiences',
+    id: 'listening-brand-cultural-intelligence',
+    title: 'The Listening Brand',
+    author: 'Loma Jaber',
+    role: 'Managing Director, HEWAR Group',
+    category: 'Cultural Intelligence',
+    year: '2025',
+    publication: 'MEPRA',
     excerpt:
-      "The best corporate events don't just happen — they leave a mark. Here's how intentional design and storytelling turn gatherings into brand-defining moments.",
-    category: 'Events',
-    date: 'April 2025',
-    readTime: '5 min read',
-  },
-  {
-    id: 'public-sector-communication',
-    title: 'Strategic Communication for the Public Sector',
-    excerpt:
-      'Government and public sector entities face a unique communication challenge: serving diverse audiences while maintaining consistency, trust, and transparency at scale.',
-    category: 'Public Relations',
-    date: 'March 2025',
-    readTime: '7 min read',
+      'A strategic view on how brands can listen to culture, context and communities before shaping communication.',
+    image: '/hewar-website/Website/Insights/listening-brand.jpg',
+    externalUrl:
+      'https://www.mepra.org/events/mepra-academy-the-listening-brand-tapping-into-cultural-intelligence-as-a-strategic-communications-asset/',
   },
 ]
