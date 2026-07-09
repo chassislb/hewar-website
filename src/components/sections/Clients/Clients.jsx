@@ -10,7 +10,7 @@ const Clients = () => {
   const sectionRef = useRef(null)
 
   return (
-    <section className={styles.clients} ref={sectionRef}>
+    <section className={styles.clients} ref={sectionRef} data-section-theme="dark">
       <Container>
         <motion.div
           className={styles.label}

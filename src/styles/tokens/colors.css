@@ -42,4 +42,15 @@
   --gradient-brand-soft:   linear-gradient(135deg, rgba(71,0,179,0.6) 0%, rgba(0,200,255,0.6) 100%);
   --gradient-surface:      linear-gradient(135deg, rgba(71,0,179,0.08) 0%, rgba(0,200,255,0.05) 100%);
   --gradient-text:         linear-gradient(90deg, #FFFFFF 0%, rgba(0,200,255,0.85) 100%);
+
+  /* ── Light Theme (used by sections that switch to a light background,
+       e.g. Numbers, About) ── */
+  --color-bg-light:            #F3F1EC;
+  --color-bg-light-elevated:   #FFFFFF;
+  --color-text-primary-onlight:   #061A40;
+  --color-text-secondary-onlight: rgba(6, 26, 64, 0.62);
+  --color-text-tertiary-onlight:  rgba(6, 26, 64, 0.38);
+  --color-accent-onlight:      #4700B3;
+  --color-border-onlight:       rgba(6, 26, 64, 0.10);
+  --color-border-onlight-hover: rgba(6, 26, 64, 0.18);
 }

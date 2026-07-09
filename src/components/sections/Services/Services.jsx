@@ -111,7 +111,7 @@ const Services = () => {
   }, { scope: sectionRef })
 
   return (
-    <section className={styles.services} ref={sectionRef} id="services">
+    <section className={styles.services} ref={sectionRef} id="services" data-section-theme="dark">
       <div className={styles.sticky}>
         <Container>
           <div className={styles.header}>

@@ -1,9 +1,9 @@
 .numbers {
   position: relative;
   padding-block: var(--section-padding-y);
-  background: var(--color-bg-secondary);
-  border-top: 1px solid var(--color-border);
-  border-bottom: 1px solid var(--color-border);
+  background: var(--color-bg-light);
+  border-top: 1px solid var(--color-border-onlight);
+  border-bottom: 1px solid var(--color-border-onlight);
   overflow: hidden;
 }
 
@@ -33,7 +33,7 @@
 /* Each stat separated by vertical lines */
 .grid > div {
   padding-inline: clamp(1.5rem, 3vw, 3rem);
-  border-right: 1px solid var(--color-border);
+  border-right: 1px solid var(--color-border-onlight);
 }
 .grid > div:first-child { padding-left: 0; }
 .grid > div:last-child  { border-right: none; }
@@ -56,7 +56,7 @@
   font-weight: var(--weight-black);
   letter-spacing: var(--tracking-tighter);
   line-height: 1;
-  color: var(--color-text-primary);
+  color: var(--color-text-primary-onlight);
   tabular-nums: true;
   font-variant-numeric: tabular-nums;
 }
@@ -81,12 +81,12 @@
 .statLabel {
   font-size: var(--type-body-sm);
   font-weight: var(--weight-semibold);
-  color: var(--color-text-primary);
+  color: var(--color-text-primary-onlight);
 }
 
 .statDesc {
   font-size: var(--type-body-xs);
-  color: var(--color-text-tertiary);
+  color: var(--color-text-tertiary-onlight);
   line-height: var(--leading-relaxed);
 }
 
@@ -95,12 +95,12 @@
   .grid {
     grid-template-columns: repeat(2, 1fr);
     gap: 1px;
-    background: var(--color-border);
+    background: var(--color-border-onlight);
     border-radius: var(--radius-md);
     overflow: hidden;
   }
   .grid > div {
-    background: var(--color-bg-secondary);
+    background: var(--color-bg-light-elevated);
     padding: clamp(1.5rem, 3vw, 2.5rem);
     border-right: none;
   }

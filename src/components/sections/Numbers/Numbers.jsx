@@ -96,7 +96,7 @@ const Numbers = () => {
   }, { scope: sectionRef })
 
   return (
-    <section className={styles.numbers} ref={sectionRef}>
+    <section className={styles.numbers} ref={sectionRef} data-section-theme="light">
       <div className={styles.orb} aria-hidden />
 
       <Container>

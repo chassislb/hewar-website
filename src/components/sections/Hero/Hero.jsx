@@ -1,38 +1,13 @@
-import { useRef, useState, useEffect } from 'react'
+import { useRef } from 'react'
 import { useGSAP } from '@gsap/react'
 import gsap from 'gsap'
 import Container from '../../ui/Container/Container'
 import ParticleField from '../../layout/ParticleField/ParticleField'
+import HeroReveal from './HeroReveal'
 import styles from './Hero.module.css'
-
-const VIDEO_SRC = '/hewar-website/videos/amplified.mp4'
 
 const Hero = () => {
   const heroRef = useRef(null)
-  const videoRef = useRef(null)
-  const [muted, setMuted] = useState(true)
-
-  useEffect(() => {
-    const video = videoRef.current
-    if (!video) return
-
-    video.playbackRate = 0.75
-    video.muted = true
-    video.play().catch(() => {})
-  }, [])
-
-  const toggleMute = () => {
-    const video = videoRef.current
-    if (!video) return
-
-    const nextMuted = !video.muted
-    video.muted = nextMuted
-    setMuted(nextMuted)
-
-    if (!nextMuted) {
-      video.play().catch(() => {})
-    }
-  }
 
   useGSAP(() => {
     const preloaderSeen = sessionStorage.getItem('hewar-loaded') === 'true'
@@ -80,7 +55,7 @@ const Hero = () => {
   }, { scope: heroRef })
 
   return (
-    <section className={styles.hero} ref={heroRef}>
+    <section className={styles.hero} ref={heroRef} data-section-theme="dark">
       <div className={styles.heroIntro}>
         <ParticleField />
 
@@ -116,33 +91,7 @@ const Hero = () => {
         </Container>
       </div>
 
-      <div className={styles.videoSection}>
-        <div className={styles.videoStars} aria-hidden>
-          <div className={styles.videoGlow} />
-        </div>
-
-        <video
-          ref={videoRef}
-          className={styles.heroVideo}
-          autoPlay
-          muted
-          playsInline
-          preload="auto"
-        >
-          <source src={VIDEO_SRC} type="video/mp4" />
-        </video>
-
-        <div className={styles.videoOverlay} aria-hidden />
-
-        <button
-          type="button"
-          className={styles.soundButton}
-          onClick={toggleMute}
-          aria-label={muted ? 'Turn sound on' : 'Mute video'}
-        >
-          {muted ? 'Sound On' : 'Mute'}
-        </button>
-      </div>
+      <HeroReveal />
     </section>
   )
 }

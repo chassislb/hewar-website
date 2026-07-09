@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
 import { CursorProvider } from './context/CursorContext'
+import { SectionThemeProvider } from './context/SectionThemeContext'
 import SmoothScroll from './components/layout/SmoothScroll/SmoothScroll'
 import Cursor from './components/layout/Cursor/Cursor'
 import Preloader from './components/layout/Preloader/Preloader'
@@ -45,45 +46,47 @@ const App = () => {
 
   return (
     <BrowserRouter basename="/hewar-website">
-      <CursorProvider>
-        <SmoothScroll>
-          {!ready && <Preloader onComplete={handlePreloaderDone} />}
+      <SectionThemeProvider>
+        <CursorProvider>
+          <SmoothScroll>
+            {!ready && <Preloader onComplete={handlePreloaderDone} />}
 
-          <Cursor />
-          <Navbar />
+            <Cursor />
+            <Navbar />
 
-          <AnimatePresence mode="wait">
-            <Routes>
-              <Route
-                path="/"
-                element={
-                  <motion.div
-                    variants={pageVariants}
-                    initial="initial"
-                    animate="animate"
-                    exit="exit"
-                  >
-                    <Home />
-                  </motion.div>
-                }
-              />
+            <AnimatePresence mode="wait">
+              <Routes>
+                <Route
+                  path="/"
+                  element={
+                    <motion.div
+                      variants={pageVariants}
+                      initial="initial"
+                      animate="animate"
+                      exit="exit"
+                    >
+                      <Home />
+                    </motion.div>
+                  }
+                />
 
-              <Route path="/about" element={<About />} />
-              <Route path="/services" element={<ServicesPage />} />
-              <Route path="/work" element={<WorkPage />} />
-              <Route path="/work/:id" element={<WorkDetail />} />
-              <Route path="/insights" element={<InsightsPage />} />
-              <Route path="/insights/:id" element={<InsightDetail />} />
-              <Route path="/contact" element={<Contact />} />
-              <Route path="/privacy" element={<Privacy />} />
-              <Route path="/terms" element={<Terms />} />
-              <Route path="*" element={<NotFound />} />
-            </Routes>
-          </AnimatePresence>
+                <Route path="/about" element={<About />} />
+                <Route path="/services" element={<ServicesPage />} />
+                <Route path="/work" element={<WorkPage />} />
+                <Route path="/work/:id" element={<WorkDetail />} />
+                <Route path="/insights" element={<InsightsPage />} />
+                <Route path="/insights/:id" element={<InsightDetail />} />
+                <Route path="/contact" element={<Contact />} />
+                <Route path="/privacy" element={<Privacy />} />
+                <Route path="/terms" element={<Terms />} />
+                <Route path="*" element={<NotFound />} />
+              </Routes>
+            </AnimatePresence>
 
-          <Footer />
-        </SmoothScroll>
-      </CursorProvider>
+            <Footer />
+          </SmoothScroll>
+        </CursorProvider>
+      </SectionThemeProvider>
     </BrowserRouter>
   )
 }

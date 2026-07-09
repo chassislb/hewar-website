@@ -1,6 +1,7 @@
 import { useEffect, useRef } from 'react'
 import gsap from 'gsap'
 import { useCursor } from '../../../context/CursorContext'
+import { useSectionTheme } from '../../../context/SectionThemeContext'
 import { useIsMobile } from '../../../hooks/useMediaQuery'
 import styles from './Cursor.module.css'
 
@@ -9,6 +10,8 @@ const Cursor = () => {
   const ringRef = useRef(null)
   const { cursorType, cursorLabel } = useCursor()
   const isMobile = useIsMobile()
+  const theme = useSectionTheme()
+  const themeClass = theme === 'light' ? styles.themeLight : ''
 
   useEffect(() => {
     if (isMobile) return
@@ -51,14 +54,14 @@ const Cursor = () => {
       {/* Inner dot — snaps instantly */}
       <div
         ref={dotRef}
-        className={`${styles.dot} ${cursorType !== 'default' ? styles.dotHidden : ''}`}
+        className={`${styles.dot} ${cursorType !== 'default' ? styles.dotHidden : ''} ${themeClass}`}
         aria-hidden
       />
 
       {/* Outer ring — lags behind */}
       <div
         ref={ringRef}
-        className={`${styles.ring} ${styles[cursorType]}`}
+        className={`${styles.ring} ${styles[cursorType]} ${themeClass}`}
         aria-hidden
       >
         {cursorLabel && (

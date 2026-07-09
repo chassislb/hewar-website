@@ -36,6 +36,29 @@
   padding-block: 1rem;
 }
 
+/* ── Theme: light (nav sits over a light-background section) ── */
+
+.themeLight.scrolled {
+  background: rgba(243, 241, 236, 0.82);
+  border-bottom-color: var(--color-border-onlight);
+}
+
+.themeLight .link {
+  color: var(--color-text-secondary-onlight);
+}
+
+.themeLight .link:hover {
+  color: var(--color-violet);
+}
+
+.themeLight .active {
+  color: var(--color-text-primary-onlight);
+}
+
+.themeLight .bar {
+  background: var(--color-text-primary-onlight);
+}
+
 .inner {
   display: flex;
   align-items: center;

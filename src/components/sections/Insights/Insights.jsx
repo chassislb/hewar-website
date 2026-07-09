@@ -47,7 +47,7 @@ const InsightCard = ({ article, index }) => {
 }
 
 const Insights = () => (
-  <section className={styles.insights} id="insights">
+  <section className={styles.insights} id="insights" data-section-theme="dark">
     <Container>
       {/* Header */}
       <motion.div

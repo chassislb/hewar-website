@@ -94,7 +94,7 @@ const Work = () => {
   }, { scope: sectionRef })
 
   return (
-    <section className={styles.work} ref={sectionRef} id="work">
+    <section className={styles.work} ref={sectionRef} id="work" data-section-theme="dark">
       <div className={styles.sticky}>
         <Container>
           <div className={styles.header}>

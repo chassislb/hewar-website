@@ -6,6 +6,7 @@ import Container from '../../ui/Container/Container'
 import Button from '../../ui/Button/Button'
 import { navLinks } from '../../../data/navigation'
 import { useCursor } from '../../../context/CursorContext'
+import { useSectionTheme } from '../../../context/SectionThemeContext'
 import { useScrollProgress } from '../../../hooks/useScrollProgress'
 import styles from './Navbar.module.css'
 
@@ -17,6 +18,8 @@ const Navbar = () => {
   const location                    = useLocation()
   const { setCursor, resetCursor }  = useCursor()
   const scrollProgress              = useScrollProgress()
+  const theme                       = useSectionTheme()
+  const isLight                     = theme === 'light'
 
   /* Close the mobile menu on navigation — adjusted during render per React's
      guidance for resetting state in response to a prop/route change */
@@ -57,7 +60,7 @@ const Navbar = () => {
     <>
       <header
         ref={navRef}
-        className={`${styles.navbar} ${scrolled ? styles.scrolled : ''} ${menuOpen ? styles.menuOpen : ''}`}
+        className={`${styles.navbar} ${scrolled ? styles.scrolled : ''} ${menuOpen ? styles.menuOpen : ''} ${isLight ? styles.themeLight : ''}`}
       >
         {/* Scroll progress bar */}
         <div
@@ -76,7 +79,7 @@ const Navbar = () => {
               onMouseLeave={resetCursor}
             >
               <img
-                src={`${import.meta.env.BASE_URL}hewar-logo-white.svg`}
+                src={`${import.meta.env.BASE_URL}${isLight ? 'hewar-logo-color.svg' : 'hewar-logo-white.svg'}`}
                 alt="HEWAR Group"
                 className={styles.logoImg}
                 height="38"

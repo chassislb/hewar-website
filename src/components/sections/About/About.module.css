@@ -1,9 +1,9 @@
 .about {
   position: relative;
   padding-block: clamp(7rem, 10vw, 9rem) clamp(5rem, 7vw, 6rem);
-  background: var(--color-bg-secondary);
+  background: var(--color-bg-light);
   overflow: hidden;
-  border-top: 1px solid var(--color-border);
+  border-top: 1px solid var(--color-border-onlight);
   scroll-margin-top: 90px;
 }
 
@@ -31,8 +31,8 @@
   z-index: 0;
   pointer-events: none;
   background-image:
-    linear-gradient(rgba(255, 255, 255, 0.022) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.022) 1px, transparent 1px);
+    linear-gradient(rgba(6, 26, 64, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(6, 26, 64, 0.05) 1px, transparent 1px);
   background-size: 56px 56px;
   opacity: 0.2;
   mask-image: radial-gradient(
@@ -63,7 +63,7 @@
   font-weight: var(--weight-semibold);
   letter-spacing: var(--tracking-widest);
   text-transform: uppercase;
-  color: var(--color-text-accent);
+  color: var(--color-accent-onlight);
   margin-bottom: clamp(1.35rem, 2.5vw, 2rem);
 }
 
@@ -85,7 +85,7 @@
   font-weight: var(--weight-black);
   letter-spacing: var(--tracking-tight);
   line-height: 0.98;
-  color: var(--color-text-primary);
+  color: var(--color-text-primary-onlight);
   margin: 0;
   max-width: 10ch;
 }
@@ -113,14 +113,14 @@
 
 .story {
   font-size: clamp(1.05rem, 1.42vw, 1.28rem);
-  color: var(--color-text-secondary);
+  color: var(--color-text-secondary-onlight);
   line-height: 1.72;
   margin: 0 0 var(--space-6);
 }
 
 .story em {
   font-style: italic;
-  color: var(--color-text-primary);
+  color: var(--color-text-primary-onlight);
 }
 
 /* Words: upper-left to lower-right, no line, no weird wave */

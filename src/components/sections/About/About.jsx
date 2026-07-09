@@ -70,7 +70,7 @@ const About = () => {
   }, [])
 
   return (
-    <section className={styles.about} ref={sectionRef} id="about">
+    <section className={styles.about} ref={sectionRef} id="about" data-section-theme="light">
       <div className={styles.orb} data-about-orb aria-hidden />
       <div className={styles.gridGlow} aria-hidden />
 
