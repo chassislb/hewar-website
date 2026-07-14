@@ -2,7 +2,6 @@ import { useRef } from 'react'
 import { useGSAP } from '@gsap/react'
 import gsap from 'gsap'
 import Container from '../../ui/Container/Container'
-import ParticleField from '../../layout/ParticleField/ParticleField'
 import HeroReveal from './HeroReveal'
 import styles from './Hero.module.css'
 
@@ -57,8 +56,6 @@ const Hero = () => {
   return (
     <section className={styles.hero} ref={heroRef} data-section-theme="dark">
       <div className={styles.heroIntro}>
-        <ParticleField />
-
         <div className={styles.bg} aria-hidden>
           <div className={styles.orb1} data-hero-orb />
           <div className={styles.orb2} data-hero-orb />

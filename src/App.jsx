@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { CursorProvider } from './context/CursorContext'
 import { SectionThemeProvider } from './context/SectionThemeContext'
 import SmoothScroll from './components/layout/SmoothScroll/SmoothScroll'
+import ParticleField from './components/layout/ParticleField/ParticleField'
 import Cursor from './components/layout/Cursor/Cursor'
 import Preloader from './components/layout/Preloader/Preloader'
 import Navbar from './components/layout/Navbar/Navbar'
@@ -51,6 +52,7 @@ const App = () => {
           <SmoothScroll>
             {!ready && <Preloader onComplete={handlePreloaderDone} />}
 
+            <ParticleField />
             <Cursor />
             <Navbar />
 

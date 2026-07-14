@@ -1,12 +1,29 @@
 import { useEffect, useRef } from 'react'
+import { useSectionTheme } from '../../../context/SectionThemeContext'
 import styles from './ParticleField.module.css'
 
-const PARTICLE_COUNT = 95
+const PARTICLE_COUNT = 150
 const MOUSE_RADIUS = 150
 const MOUSE_PULL = 0.012
+const CONNECT_DIST = 140
+const RIPPLE_SPEED = 0.32
+const RIPPLE_LIFE = 950
+const RIPPLE_BAND = 22
 
-const COL_POINT = [180, 140, 255]
-const COL_BRIGHT = [0, 200, 255]
+const PALETTE = {
+  dark: {
+    point: [180, 140, 255],
+    bright: [0, 200, 255],
+    line: [150, 150, 220],
+    lineAlpha: 0.16,
+  },
+  light: {
+    point: [71, 0, 179],
+    bright: [0, 130, 190],
+    line: [71, 0, 179],
+    lineAlpha: 0.1,
+  },
+}
 
 function makeParticle(w, h) {
   const baseX = Math.random() * w
@@ -19,14 +36,24 @@ function makeParticle(w, h) {
     baseY,
     vx: (Math.random() - 0.5) * 0.18,
     vy: (Math.random() - 0.5) * 0.18,
-    r: 1.2 + Math.random() * 2,
+    r: 1.1 + Math.random() * 1.9,
     alpha: 0.35 + Math.random() * 0.45,
     phase: Math.random() * Math.PI * 2,
   }
 }
 
+function lerp(a, b, t) {
+  return a + (b - a) * t
+}
+
 const ParticleField = () => {
   const canvasRef = useRef(null)
+  const theme = useSectionTheme()
+  const themeRef = useRef(theme)
+
+  useEffect(() => {
+    themeRef.current = theme
+  }, [theme])
 
   useEffect(() => {
     const cv = canvasRef.current
@@ -34,12 +61,20 @@ const ParticleField = () => {
     const DPR = Math.min(1.75, window.devicePixelRatio || 1)
     const prefersReducedMotion = matchMedia('(prefers-reduced-motion: reduce)').matches
     const isTouch = matchMedia('(hover: none)').matches
-    const count = isTouch ? 55 : PARTICLE_COUNT
+    const count = isTouch ? 80 : PARTICLE_COUNT
 
     let W
     let H
     let particles = []
+    let ripples = []
     let animId
+
+    const color = {
+      point: [...PALETTE.dark.point],
+      bright: [...PALETTE.dark.bright],
+      line: [...PALETTE.dark.line],
+      lineAlpha: PALETTE.dark.lineAlpha,
+    }
 
     const mouse = {
       x: -9999,
@@ -63,13 +98,27 @@ const ParticleField = () => {
       }
     }
 
+    function updateColor() {
+      const target = themeRef.current === 'light' ? PALETTE.light : PALETTE.dark
+      for (let i = 0; i < 3; i++) {
+        color.point[i] = lerp(color.point[i], target.point[i], 0.04)
+        color.bright[i] = lerp(color.bright[i], target.bright[i], 0.04)
+        color.line[i] = lerp(color.line[i], target.line[i], 0.04)
+      }
+      color.lineAlpha = lerp(color.lineAlpha, target.lineAlpha, 0.04)
+    }
+
     function render(now) {
       animId = requestAnimationFrame(render)
       ctx.clearRect(0, 0, W, H)
 
       if (prefersReducedMotion) return
 
+      updateColor()
+
       const time = now * 0.001
+
+      ripples = ripples.filter((r) => now - r.t < RIPPLE_LIFE)
 
       for (const p of particles) {
         const floatX = Math.sin(time * 0.35 + p.phase) * 0.18
@@ -90,6 +139,20 @@ const ParticleField = () => {
           }
         }
 
+        for (const r of ripples) {
+          const age = now - r.t
+          const ringR = age * RIPPLE_SPEED
+          const dx = p.x - r.x
+          const dy = p.y - r.y
+          const dist = Math.sqrt(dx * dx + dy * dy)
+
+          if (Math.abs(dist - ringR) < RIPPLE_BAND && dist > 0) {
+            const force = (1 - age / RIPPLE_LIFE) * 0.85
+            p.vx += (dx / dist) * force
+            p.vy += (dy / dist) * force
+          }
+        }
+
         const homeDx = p.baseX - p.x
         const homeDy = p.baseY - p.y
 
@@ -103,6 +166,27 @@ const ParticleField = () => {
         p.y += p.vy
       }
 
+      /* Constellation lines between nearby particles */
+      ctx.lineWidth = 1
+      for (let i = 0; i < particles.length; i++) {
+        const a = particles[i]
+        for (let j = i + 1; j < particles.length; j++) {
+          const b = particles[j]
+          const dx = a.x - b.x
+          const dy = a.y - b.y
+          const dist = Math.sqrt(dx * dx + dy * dy)
+
+          if (dist < CONNECT_DIST) {
+            const alpha = (1 - dist / CONNECT_DIST) * color.lineAlpha
+            ctx.strokeStyle = `rgba(${color.line[0]}, ${color.line[1]}, ${color.line[2]}, ${alpha.toFixed(3)})`
+            ctx.beginPath()
+            ctx.moveTo(a.x * DPR, a.y * DPR)
+            ctx.lineTo(b.x * DPR, b.y * DPR)
+            ctx.stroke()
+          }
+        }
+      }
+
       for (const p of particles) {
         const md = mouse.active ? Math.hypot(p.x - mouse.x, p.y - mouse.y) : 9999
         const near = md < MOUSE_RADIUS
@@ -110,11 +194,11 @@ const ParticleField = () => {
         const alpha = Math.min(1, pulse + (near ? (1 - md / MOUSE_RADIUS) * 0.4 : 0))
         const radius = (p.r + (near ? (1 - md / MOUSE_RADIUS) * 1.4 : 0)) * DPR
 
-        const [r, g, b] = near ? COL_BRIGHT : COL_POINT
+        const [r, g, b] = near ? color.bright : color.point
 
         ctx.shadowColor = near
-          ? `rgba(${COL_BRIGHT[0]}, ${COL_BRIGHT[1]}, ${COL_BRIGHT[2]}, 0.85)`
-          : `rgba(${COL_POINT[0]}, ${COL_POINT[1]}, ${COL_POINT[2]}, 0.45)`
+          ? `rgba(${color.bright[0]}, ${color.bright[1]}, ${color.bright[2]}, 0.85)`
+          : `rgba(${color.point[0]}, ${color.point[1]}, ${color.point[2]}, 0.45)`
 
         ctx.shadowBlur = near ? 9 * DPR : 4 * DPR
         ctx.fillStyle = `rgba(${r}, ${g}, ${b}, ${alpha.toFixed(3)})`
@@ -137,11 +221,16 @@ const ParticleField = () => {
       mouse.active = false
     }
 
+    const onDown = (e) => {
+      ripples.push({ x: e.clientX, y: e.clientY, t: performance.now() })
+    }
+
     resize()
 
     window.addEventListener('resize', resize, { passive: true })
     window.addEventListener('pointermove', onMove, { passive: true })
     window.addEventListener('pointerleave', onLeave, { passive: true })
+    window.addEventListener('pointerdown', onDown, { passive: true })
 
     animId = requestAnimationFrame(render)
 
@@ -150,6 +239,7 @@ const ParticleField = () => {
       window.removeEventListener('resize', resize)
       window.removeEventListener('pointermove', onMove)
       window.removeEventListener('pointerleave', onLeave)
+      window.removeEventListener('pointerdown', onDown)
     }
   }, [])
 

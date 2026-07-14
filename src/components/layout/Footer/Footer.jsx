@@ -1,7 +1,6 @@
 import { Link } from 'react-router-dom'
 import Container from '../../ui/Container/Container'
 import Button from '../../ui/Button/Button'
-import ParticleField from '../ParticleField/ParticleField'
 import { navLinks } from '../../../data/navigation'
 import { SITE_NAME, SITE_TAGLINE, CONTACT_EMAIL, SOCIAL_LINKS } from '../../../utils/constants'
 import { useCursor } from '../../../context/CursorContext'
