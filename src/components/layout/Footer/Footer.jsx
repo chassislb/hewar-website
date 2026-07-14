@@ -12,8 +12,6 @@ const Footer = () => {
 
   return (
     <footer className={styles.footer}>
-      <ParticleField />
-
       <div className={styles.bg} aria-hidden>
         <div className={styles.orb} />
         <div className={styles.topBorder} />
