@@ -1,5 +1,5 @@
 .work {
-  background: var(--color-bg-primary);
+  background: transparent;
   position: relative;
   overflow-x: clip;
 }

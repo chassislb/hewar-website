@@ -1,6 +1,6 @@
 .clients {
   padding-block: clamp(3.5rem, 7vw, 6rem);
-  background: var(--color-bg-secondary);
+  background: transparent;
   border-top: 1px solid var(--color-border);
   overflow: hidden;
 }

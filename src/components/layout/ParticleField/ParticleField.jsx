@@ -80,6 +80,7 @@ const ParticleField = () => {
       x: -9999,
       y: -9999,
       active: false,
+      lastMove: 0,
     }
 
     function resize() {
@@ -120,6 +121,8 @@ const ParticleField = () => {
 
       ripples = ripples.filter((r) => now - r.t < RIPPLE_LIFE)
 
+      const mouseIsLive = mouse.active && now - mouse.lastMove < 3000
+
       for (const p of particles) {
         const floatX = Math.sin(time * 0.35 + p.phase) * 0.18
         const floatY = Math.cos(time * 0.28 + p.phase) * 0.18
@@ -127,7 +130,7 @@ const ParticleField = () => {
         p.vx += floatX * 0.015
         p.vy += floatY * 0.015
 
-        if (mouse.active) {
+        if (mouseIsLive) {
           const dx = mouse.x - p.x
           const dy = mouse.y - p.y
           const dist = Math.sqrt(dx * dx + dy * dy)
@@ -166,8 +169,12 @@ const ParticleField = () => {
         p.y += p.vy
       }
 
-      /* Constellation lines between nearby particles */
-      ctx.lineWidth = 1
+      /* Constellation lines between nearby particles, batched into a few
+         stroke() calls (bucketed by opacity) instead of one per pair —
+         O(n^2) pair checks are cheap, but individual stroke() calls are not. */
+      const BUCKETS = 6
+      const bucketPaths = Array.from({ length: BUCKETS }, () => new Path2D())
+
       for (let i = 0; i < particles.length; i++) {
         const a = particles[i]
         for (let j = i + 1; j < particles.length; j++) {
@@ -177,18 +184,23 @@ const ParticleField = () => {
           const dist = Math.sqrt(dx * dx + dy * dy)
 
           if (dist < CONNECT_DIST) {
-            const alpha = (1 - dist / CONNECT_DIST) * color.lineAlpha
-            ctx.strokeStyle = `rgba(${color.line[0]}, ${color.line[1]}, ${color.line[2]}, ${alpha.toFixed(3)})`
-            ctx.beginPath()
-            ctx.moveTo(a.x * DPR, a.y * DPR)
-            ctx.lineTo(b.x * DPR, b.y * DPR)
-            ctx.stroke()
+            const closeness = 1 - dist / CONNECT_DIST
+            const bucket = Math.min(BUCKETS - 1, Math.floor(closeness * BUCKETS))
+            bucketPaths[bucket].moveTo(a.x * DPR, a.y * DPR)
+            bucketPaths[bucket].lineTo(b.x * DPR, b.y * DPR)
           }
         }
       }
 
+      ctx.lineWidth = 1
+      for (let k = 0; k < BUCKETS; k++) {
+        const alpha = ((k + 1) / BUCKETS) * color.lineAlpha
+        ctx.strokeStyle = `rgba(${color.line[0]}, ${color.line[1]}, ${color.line[2]}, ${alpha.toFixed(3)})`
+        ctx.stroke(bucketPaths[k])
+      }
+
       for (const p of particles) {
-        const md = mouse.active ? Math.hypot(p.x - mouse.x, p.y - mouse.y) : 9999
+        const md = mouseIsLive ? Math.hypot(p.x - mouse.x, p.y - mouse.y) : 9999
         const near = md < MOUSE_RADIUS
         const pulse = p.alpha + 0.16 * Math.sin(time * 1.4 + p.phase)
         const alpha = Math.min(1, pulse + (near ? (1 - md / MOUSE_RADIUS) * 0.4 : 0))
@@ -215,6 +227,7 @@ const ParticleField = () => {
       mouse.x = e.clientX
       mouse.y = e.clientY
       mouse.active = true
+      mouse.lastMove = performance.now()
     }
 
     const onLeave = () => {

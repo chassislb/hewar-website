@@ -1,5 +1,5 @@
 .services {
-  background: var(--color-bg-primary);
+  background: transparent;
   position: relative;
   overflow-x: clip;
 }
@@ -12,7 +12,7 @@
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  background: var(--color-bg-primary);
+  background: transparent;
 }
 
 .header {

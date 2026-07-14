@@ -1,7 +1,7 @@
 .numbers {
   position: relative;
   padding-block: var(--section-padding-y);
-  background: var(--color-bg-light);
+  background: transparent;
   border-top: 1px solid var(--color-border-onlight);
   border-bottom: 1px solid var(--color-border-onlight);
   overflow: hidden;

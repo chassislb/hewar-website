@@ -1,7 +1,7 @@
 .about {
   position: relative;
   padding-block: clamp(7rem, 10vw, 9rem) clamp(5rem, 7vw, 6rem);
-  background: var(--color-bg-light);
+  background: transparent;
   overflow: hidden;
   border-top: 1px solid var(--color-border-onlight);
   scroll-margin-top: 90px;
