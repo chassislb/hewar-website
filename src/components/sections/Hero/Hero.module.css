@@ -1,7 +1,7 @@
 .hero {
   position: relative;
   width: 100%;
-  background: var(--color-bg-primary);
+  background: transparent;
   overflow: hidden;
 }
 
