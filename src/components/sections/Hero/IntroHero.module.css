@@ -1,0 +1,162 @@
+.wrapper {
+  position: relative;
+  height: 320vh; /* scroll runway for the whole intro animation */
+}
+
+.stage {
+  position: sticky;
+  top: 0;
+  width: 100%;
+  height: 100vh;
+  z-index: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background: radial-gradient(ellipse at 50% 30%, #10163a 0%, #060a1a 65%);
+}
+
+.dotsCanvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+.sphere {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  border-radius: 50%;
+  opacity: 0;
+  will-change: transform, opacity;
+  pointer-events: none;
+}
+
+.sphereMain {
+  width: 20vmin;
+  height: 20vmin;
+  background: radial-gradient(circle at 32% 26%, #b9f1ff 0%, #6fd4ff 18%, #2f9bef 42%, #144fc2 68%, #061a4d 100%);
+  box-shadow: 0 0 50px rgba(60, 150, 255, 0.3);
+  z-index: 3;
+}
+
+.sphereSecondary {
+  width: 8.8vmin;
+  height: 8.8vmin;
+  background: radial-gradient(circle at 35% 25%, #ffe7ff 0%, #e2a3ff 20%, #a24bef 48%, #4c1a90 76%, #180734 100%);
+  box-shadow: 0 0 30px rgba(160, 60, 220, 0.3);
+  z-index: 2;
+}
+
+.logoImg {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 23vmin;
+  height: auto;
+  transform: translate(-50%, -50%) scale(0.92);
+  opacity: 0;
+  z-index: 3;
+  will-change: opacity, transform;
+  pointer-events: none;
+}
+
+/* wraps the title / tagline / button as one block so they stack
+   and center as a unit, instead of fighting a flex row default */
+.copy {
+  position: relative;
+  z-index: 4;
+  text-align: center;
+  max-width: 640px;
+  padding: 0 24px;
+}
+
+.titleMain {
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.08;
+  font-size: clamp(2rem, 5.6vw, 4rem);
+  opacity: 1;
+  will-change: opacity;
+  color: #f4f2ee;
+  margin: 0;
+}
+
+.gradientText {
+  background: linear-gradient(90deg, #6a4bff, #6fd4ff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.introHeadline {
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  line-height: 1.4;
+  font-size: clamp(1.1rem, 2.2vw, 1.5rem);
+  color: #cfe6ff;
+  opacity: 0;
+  will-change: opacity, transform;
+  margin-top: 8vmin; /* sits below the logo once it's formed */
+}
+
+.ctaButton {
+  display: inline-block;
+  margin-top: 28px;
+  padding: 12px 28px;
+  border: 1px solid #6fd4ff;
+  color: #6fd4ff;
+  border-radius: 999px;
+  text-decoration: none;
+  font-size: 0.9rem;
+  letter-spacing: 0.04em;
+  opacity: 0;
+  transform: translateY(10px);
+  will-change: opacity, transform;
+}
+
+.scrollHint {
+  position: absolute;
+  bottom: 36px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 4;
+  font-size: 0.7rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  opacity: 0.5;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  color: #f4f2ee;
+}
+
+.scrollHint span {
+  width: 1px;
+  height: 34px;
+  background: currentColor;
+  animation: introPulse 1.6s ease-in-out infinite;
+}
+
+@keyframes introPulse {
+  0%, 100% { opacity: 0.15; }
+  50% { opacity: 0.7; }
+}
+
+@media (max-width: 768px) {
+  .wrapper {
+    height: 280vh;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .introHeadline,
+  .sphere,
+  .logoImg,
+  .ctaButton {
+    transition: none !important;
+  }
+}

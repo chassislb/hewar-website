@@ -1,3 +1,4 @@
+import IntroHero from '../../components/sections/Hero/IntroHero'
 import Hero from '../../components/sections/Hero/Hero'
 import Services from '../../components/sections/Services/Services'
 import Numbers from '../../components/sections/Numbers/Numbers'
@@ -8,6 +9,7 @@ import Insights from '../../components/sections/Insights/Insights'
 
 const Home = () => (
   <main>
+    <IntroHero />
     <Hero />
     <Services />
     <Numbers />
