@@ -54,8 +54,8 @@
   position: absolute;
   top: 50%;
   left: 50%;
-  width: 34vmin;
-  max-width: 80vw;
+  width: 48vmin;
+  max-width: 85vw;
   height: auto;
   transform: translate(-50%, -50%) scale(0.92);
   opacity: 0;
@@ -100,7 +100,7 @@
   color: #cfe6ff;
   opacity: 0;
   will-change: opacity, transform;
-  margin-top: 8vmin; /* sits below the logo once it's formed */
+  margin-top: 11vmin; /* sits below the logo once it's formed */
 }
 
 .ctaButton {

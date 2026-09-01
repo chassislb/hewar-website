@@ -177,8 +177,8 @@ const IntroHero = () => {
           </h1>
 
           <p ref={introHeadlineRef} className={styles.introHeadline}>
-            A creative, PR and marketing agency using AI to amplify ideas,
-            influence and impact.
+            A creative, PR and marketing agency, AI-enhanced to amplify
+            ideas, influence and impact.
           </p>
 
           <Link ref={ctaButtonRef} className={styles.ctaButton} to="/contact">
