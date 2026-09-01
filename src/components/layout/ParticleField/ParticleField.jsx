@@ -14,12 +14,16 @@ const PALETTE = {
   dark: {
     point: [180, 140, 255],
     bright: [0, 200, 255],
+    halo: [180, 140, 255],
+    haloBright: [0, 200, 255],
     line: [150, 150, 220],
     lineAlpha: 0.16,
   },
   light: {
-    point: [71, 0, 179],
-    bright: [0, 130, 190],
+    point: [255, 255, 255],
+    bright: [255, 255, 255],
+    halo: [71, 0, 179],
+    haloBright: [0, 130, 190],
     line: [71, 0, 179],
     lineAlpha: 0.1,
   },
@@ -72,6 +76,8 @@ const ParticleField = () => {
     const color = {
       point: [...PALETTE.dark.point],
       bright: [...PALETTE.dark.bright],
+      halo: [...PALETTE.dark.halo],
+      haloBright: [...PALETTE.dark.haloBright],
       line: [...PALETTE.dark.line],
       lineAlpha: PALETTE.dark.lineAlpha,
     }
@@ -104,6 +110,8 @@ const ParticleField = () => {
       for (let i = 0; i < 3; i++) {
         color.point[i] = lerp(color.point[i], target.point[i], 0.04)
         color.bright[i] = lerp(color.bright[i], target.bright[i], 0.04)
+        color.halo[i] = lerp(color.halo[i], target.halo[i], 0.04)
+        color.haloBright[i] = lerp(color.haloBright[i], target.haloBright[i], 0.04)
         color.line[i] = lerp(color.line[i], target.line[i], 0.04)
       }
       color.lineAlpha = lerp(color.lineAlpha, target.lineAlpha, 0.04)
@@ -209,8 +217,8 @@ const ParticleField = () => {
         const [r, g, b] = near ? color.bright : color.point
 
         ctx.shadowColor = near
-          ? `rgba(${color.bright[0]}, ${color.bright[1]}, ${color.bright[2]}, 0.85)`
-          : `rgba(${color.point[0]}, ${color.point[1]}, ${color.point[2]}, 0.45)`
+          ? `rgba(${color.haloBright[0]}, ${color.haloBright[1]}, ${color.haloBright[2]}, 0.85)`
+          : `rgba(${color.halo[0]}, ${color.halo[1]}, ${color.halo[2]}, 0.45)`
 
         ctx.shadowBlur = near ? 9 * DPR : 4 * DPR
         ctx.fillStyle = `rgba(${r}, ${g}, ${b}, ${alpha.toFixed(3)})`

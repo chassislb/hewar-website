@@ -43,7 +43,6 @@ const IntroHero = () => {
   const sphereSecondaryRef = useRef(null)
   const logoMarkRef = useRef(null)
   const ctaButtonRef = useRef(null)
-  const scrollHintRef = useRef(null)
 
   useEffect(() => {
     const wrapper = wrapperRef.current
@@ -55,7 +54,6 @@ const IntroHero = () => {
     const sphereSecondary = sphereSecondaryRef.current
     const logoMark = logoMarkRef.current
     const ctaButton = ctaButtonRef.current
-    const scrollHint = scrollHintRef.current
 
     const dpr = Math.min(window.devicePixelRatio || 1, 2)
     let W, H, mainRadius
@@ -112,7 +110,6 @@ const IntroHero = () => {
       // "Human Intelligence. Amplified." fades out over the first 15% of scroll
       const titleT = 1 - clamp(progress / 0.15, 0, 1)
       titleMain.style.opacity = titleT
-      scrollHint.style.opacity = titleT * 0.5
 
       // main sphere fades/scales in as the dots finish gathering
       const mainT = easeOutCubic(clamp((progress - 0.32) / 0.25, 0, 1))
@@ -187,10 +184,6 @@ const IntroHero = () => {
           <Link ref={ctaButtonRef} className={styles.ctaButton} to="/contact">
             Let's Talk
           </Link>
-        </div>
-
-        <div ref={scrollHintRef} className={styles.scrollHint} aria-hidden>
-          <span />
         </div>
       </div>
     </section>
