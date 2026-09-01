@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import styles from './IntroHero.module.css'
 
 const PARTICLE_COUNT = 220
-const LOGO_SRC = `${import.meta.env.BASE_URL}hewar-logo-white.svg`
+const LOGO_SRC = `${import.meta.env.BASE_URL}thinkmate-logo-mark.png`
 
 const clamp = (v, min, max) => Math.min(Math.max(v, min), max)
 const lerp = (a, b, t) => a + (b - a) * t
@@ -170,7 +170,7 @@ const IntroHero = () => {
         <div ref={sphereSecondaryRef} className={`${styles.sphere} ${styles.sphereSecondary}`} aria-hidden />
         <div ref={sphereMainRef} className={`${styles.sphere} ${styles.sphereMain}`} aria-hidden />
 
-        <img ref={logoMarkRef} className={styles.logoImg} src={LOGO_SRC} alt="HEWAR Group" />
+        <img ref={logoMarkRef} className={styles.logoImg} src={LOGO_SRC} alt="ThinkMate" />
 
         <div className={styles.copy}>
           <h1 ref={titleMainRef} className={styles.titleMain}>
