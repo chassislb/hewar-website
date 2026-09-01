@@ -191,7 +191,6 @@ const IntroHero = () => {
 
         <div ref={scrollHintRef} className={styles.scrollHint} aria-hidden>
           <span />
-          Scroll
         </div>
       </div>
     </section>
