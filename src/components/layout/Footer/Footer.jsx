@@ -1,7 +1,6 @@
 import { Link } from 'react-router-dom'
 import Container from '../../ui/Container/Container'
 import Button from '../../ui/Button/Button'
-import { navLinks } from '../../../data/navigation'
 import { SITE_NAME, SITE_TAGLINE, CONTACT_EMAIL, SOCIAL_LINKS } from '../../../utils/constants'
 import { useCursor } from '../../../context/CursorContext'
 import styles from './Footer.module.css'
@@ -18,48 +17,6 @@ const Footer = () => {
       </div>
 
       <Container>
-        <div className={styles.cta}>
-          <div className={styles.eyebrow}>
-            <span className={styles.dots} aria-hidden>
-              <span />
-              <span />
-              <span />
-            </span>
-            <span>Ready to Amplify?</span>
-          </div>
-
-          <h2 className={styles.ctaHeading}>
-            Build something people remember.
-          </h2>
-
-          <p className={styles.ctaText}>
-            Whether you are launching a brand, repositioning one, or telling a
-            story that deserves attention, let’s start the conversation.
-          </p>
-
-          <div className={styles.ctaButtons}>
-            <Button
-              variant="primary"
-              size="md"
-              href="/contact"
-              onMouseEnter={() => setCursor('hover')}
-              onMouseLeave={resetCursor}
-            >
-              Let’s Talk
-            </Button>
-
-            <Button
-              variant="ghost"
-              size="md"
-              href="/work"
-              onMouseEnter={() => setCursor('hover')}
-              onMouseLeave={resetCursor}
-            >
-              See Our Work
-            </Button>
-          </div>
-        </div>
-
         <div className={styles.top}>
           <div className={styles.brand}>
             <Link
@@ -88,35 +45,6 @@ const Footer = () => {
             </a>
           </div>
 
-          <div className={styles.nav}>
-            <span className={styles.colLabel}>Navigation</span>
-            <ul className={styles.navList}>
-              {navLinks.map((link) => (
-                <li key={link.href}>
-                  <Link
-                    to={link.href}
-                    className={styles.navLink}
-                    onMouseEnter={() => setCursor('hover')}
-                    onMouseLeave={resetCursor}
-                  >
-                    {link.label}
-                  </Link>
-                </li>
-              ))}
-
-              <li>
-                <Link
-                  to="/contact"
-                  className={styles.navLink}
-                  onMouseEnter={() => setCursor('hover')}
-                  onMouseLeave={resetCursor}
-                >
-                  Contact
-                </Link>
-              </li>
-            </ul>
-          </div>
-
           <div className={styles.social}>
             <span className={styles.colLabel}>Follow Us</span>
             <ul className={styles.navList}>
@@ -136,6 +64,20 @@ const Footer = () => {
               ))}
             </ul>
           </div>
+        </div>
+
+        <div className={styles.miniCta}>
+          <p className={styles.miniCtaText}>Build something people remember.</p>
+
+          <Button
+            variant="primary"
+            size="sm"
+            href="/contact"
+            onMouseEnter={() => setCursor('hover')}
+            onMouseLeave={resetCursor}
+          >
+            Let’s Talk
+          </Button>
         </div>
 
         <div className={styles.bottom}>
