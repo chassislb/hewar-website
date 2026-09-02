@@ -7,6 +7,7 @@ import Button from '../../ui/Button/Button'
 import { navLinks } from '../../../data/navigation'
 import { useCursor } from '../../../context/CursorContext'
 import { useSectionTheme } from '../../../context/SectionThemeContext'
+import { useContactModal } from '../../../context/ContactModalContext'
 import { useScrollProgress } from '../../../hooks/useScrollProgress'
 import styles from './Navbar.module.css'
 
@@ -20,6 +21,7 @@ const Navbar = () => {
   const scrollProgress              = useScrollProgress()
   const theme                       = useSectionTheme()
   const isLight                     = theme === 'light'
+  const { openContactModal }        = useContactModal()
 
   /* Close the mobile menu on navigation — adjusted during render per React's
      guidance for resetting state in response to a prop/route change */
@@ -108,7 +110,7 @@ const Navbar = () => {
               <Button
                 variant="primary"
                 size="sm"
-                href="/contact"
+                onClick={openContactModal}
                 onMouseEnter={() => setCursor('hover')}
                 onMouseLeave={resetCursor}
               >
@@ -170,7 +172,13 @@ const Navbar = () => {
                 animate={{ opacity: 1, y: 0, transition: { delay: 0.4, duration: 0.5 } }}
                 exit={{ opacity: 0 }}
               >
-                <Button variant="primary" href="/contact" onClick={() => setMenuOpen(false)}>
+                <Button
+                  variant="primary"
+                  onClick={() => {
+                    setMenuOpen(false)
+                    openContactModal()
+                  }}
+                >
                   Let's Talk
                 </Button>
               </motion.div>

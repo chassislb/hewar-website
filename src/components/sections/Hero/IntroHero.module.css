@@ -108,11 +108,14 @@
   margin-top: 28px;
   padding: 12px 28px;
   border: 1px solid #6fd4ff;
+  background: transparent;
   color: #6fd4ff;
   border-radius: 999px;
   text-decoration: none;
+  font-family: inherit;
   font-size: 0.9rem;
   letter-spacing: 0.04em;
+  cursor: none;
   opacity: 0;
   transform: translateY(10px);
   will-change: opacity, transform;

@@ -1,5 +1,5 @@
 import { useEffect, useRef } from 'react'
-import { Link } from 'react-router-dom'
+import { useContactModal } from '../../../context/ContactModalContext'
 import styles from './IntroHero.module.css'
 
 const PARTICLE_COUNT = 220
@@ -35,6 +35,7 @@ function makeParticle(w, h, cx, cy, mainRadius) {
   where it sits on the page.
 */
 const IntroHero = () => {
+  const { openContactModal } = useContactModal()
   const wrapperRef = useRef(null)
   const canvasRef = useRef(null)
   const titleMainRef = useRef(null)
@@ -181,9 +182,14 @@ const IntroHero = () => {
             ideas, influence and impact.
           </p>
 
-          <Link ref={ctaButtonRef} className={styles.ctaButton} to="/contact">
+          <button
+            ref={ctaButtonRef}
+            type="button"
+            className={styles.ctaButton}
+            onClick={openContactModal}
+          >
             Let's Talk
-          </Link>
+          </button>
         </div>
       </div>
     </section>

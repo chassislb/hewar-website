@@ -3,10 +3,12 @@ import Container from '../../ui/Container/Container'
 import Button from '../../ui/Button/Button'
 import { SITE_NAME, SITE_TAGLINE, CONTACT_EMAIL, SOCIAL_LINKS } from '../../../utils/constants'
 import { useCursor } from '../../../context/CursorContext'
+import { useContactModal } from '../../../context/ContactModalContext'
 import styles from './Footer.module.css'
 
 const Footer = () => {
   const { setCursor, resetCursor } = useCursor()
+  const { openContactModal } = useContactModal()
   const year = new Date().getFullYear()
 
   return (
@@ -72,7 +74,7 @@ const Footer = () => {
           <Button
             variant="primary"
             size="sm"
-            href="/contact"
+            onClick={openContactModal}
             onMouseEnter={() => setCursor('hover')}
             onMouseLeave={resetCursor}
           >
