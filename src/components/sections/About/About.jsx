@@ -20,8 +20,8 @@ const MOVING_WORDS = [
 
 const ABOUT_IMAGES = [
   { src: 'about-01-speaking.png', alt: 'HEWAR team member speaking in front of the HEWAR Group office sign' },
-  { src: 'about-02-panel.png', alt: 'HEWAR representatives on a panel discussion' },
   { src: 'about-03-award.png', alt: 'HEWAR team accepting the Employee Happiness Awards KSA' },
+  { src: 'about-02-panel.png', alt: 'HEWAR representatives on a panel discussion' },
 ]
 
 const About = () => {
@@ -71,16 +71,20 @@ const About = () => {
         },
       })
 
-      /* Crossfade the three images as the section scrolls through the
-         viewport: image[i] peaks when progress === i / (count - 1), and
-         fades linearly toward its neighbors. */
+      /* Crossfade the three images as the reader scrolls through the
+         section's own content (top hits viewport top -> bottom hits
+         viewport bottom), not the wider enter/exit range, so the change
+         tracks actual reading progress instead of mostly happening while
+         the section is only half on-screen. image[i] peaks when
+         progress === i / (count - 1), fading linearly toward its
+         neighbors. */
       const images = gsap.utils.toArray('[data-about-img]')
       const step = 1 / (images.length - 1)
 
       ScrollTrigger.create({
         trigger: sectionRef.current,
-        start: 'top bottom',
-        end: 'bottom top',
+        start: 'top top',
+        end: 'bottom bottom',
         scrub: true,
         onUpdate: (self) => {
           images.forEach((img, i) => {
