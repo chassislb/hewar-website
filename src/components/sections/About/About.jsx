@@ -18,6 +18,12 @@ const MOVING_WORDS = [
   'Creativity',
 ]
 
+const ABOUT_IMAGES = [
+  { src: 'about-01-speaking.png', alt: 'HEWAR team member speaking in front of the HEWAR Group office sign' },
+  { src: 'about-02-panel.png', alt: 'HEWAR representatives on a panel discussion' },
+  { src: 'about-03-award.png', alt: 'HEWAR team accepting the Employee Happiness Awards KSA' },
+]
+
 const About = () => {
   const sectionRef = useRef(null)
 
@@ -64,6 +70,25 @@ const About = () => {
           scrub: 2,
         },
       })
+
+      /* Crossfade the three images as the section scrolls through the
+         viewport: image[i] peaks when progress === i / (count - 1), and
+         fades linearly toward its neighbors. */
+      const images = gsap.utils.toArray('[data-about-img]')
+      const step = 1 / (images.length - 1)
+
+      ScrollTrigger.create({
+        trigger: sectionRef.current,
+        start: 'top bottom',
+        end: 'bottom top',
+        scrub: true,
+        onUpdate: (self) => {
+          images.forEach((img, i) => {
+            const distance = Math.abs(self.progress - i * step)
+            img.style.opacity = Math.max(0, 1 - distance / step)
+          })
+        },
+      })
     }, sectionRef)
 
     return () => ctx.revert()
@@ -86,6 +111,21 @@ const About = () => {
 
         <div className={styles.grid}>
           <div className={styles.left}>
+            <div className={styles.imageStack}>
+              {ABOUT_IMAGES.map((image, i) => (
+                <img
+                  key={image.src}
+                  className={styles.aboutImg}
+                  data-about-img
+                  src={`${import.meta.env.BASE_URL}images/about/${image.src}`}
+                  alt={image.alt}
+                  style={{ opacity: i === 0 ? 1 : 0 }}
+                />
+              ))}
+            </div>
+          </div>
+
+          <div className={styles.right}>
             <h2 className={styles.heading}>
               {[
                 'Born from the',
@@ -101,9 +141,7 @@ const About = () => {
                 </span>
               ))}
             </h2>
-          </div>
 
-          <div className={styles.right}>
             <div className={styles.storyBlock}>
               <p className={styles.story} data-about-story>
                 HEWAR — حوار — means <em>dialogue</em> in Arabic. It is not a
