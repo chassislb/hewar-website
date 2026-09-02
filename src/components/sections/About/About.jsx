@@ -75,17 +75,17 @@ const About = () => {
       <div className={styles.gridGlow} aria-hidden />
 
       <Container>
+        <div className={styles.label}>
+          <span className={styles.dots} aria-hidden>
+            <span />
+            <span />
+            <span />
+          </span>
+          <span>About HEWAR</span>
+        </div>
+
         <div className={styles.grid}>
           <div className={styles.left}>
-            <div className={styles.label}>
-              <span className={styles.dots} aria-hidden>
-                <span />
-                <span />
-                <span />
-              </span>
-              <span>About HEWAR</span>
-            </div>
-
             <h2 className={styles.heading}>
               {[
                 'Born from the',
