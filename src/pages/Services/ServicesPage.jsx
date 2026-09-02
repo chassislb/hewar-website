@@ -6,6 +6,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import Container from '../../components/ui/Container/Container'
 import Button from '../../components/ui/Button/Button'
 import { services } from '../../data/services'
+import { useLanguage } from '../../context/LanguageContext'
 import styles from './ServicesPage.module.css'
 
 gsap.registerPlugin(ScrollTrigger)
@@ -38,6 +39,7 @@ const processSteps = [
 ]
 
 const ServicesPage = () => {
+  const { language } = useLanguage()
   const heroRef = useRef(null)
   const listRef = useRef(null)
   const processRef = useRef(null)
@@ -126,11 +128,11 @@ const ServicesPage = () => {
               <div key={service.id} className={styles.serviceRow} data-service-row>
                 <span className={styles.serviceNumber}>{service.id}</span>
                 <div className={styles.serviceContent}>
-                  <h2 className={styles.serviceTitle}>{service.title}</h2>
-                  <p className={styles.serviceDesc}>{service.description}</p>
+                  <h2 className={styles.serviceTitle}>{service.title[language]}</h2>
+                  <p className={styles.serviceDesc}>{service.description[language]}</p>
                 </div>
                 <div className={styles.serviceTags}>
-                  {service.tags.map((tag) => (
+                  {service.tags[language].map((tag) => (
                     <span key={tag} className={styles.tag}>{tag}</span>
                   ))}
                 </div>

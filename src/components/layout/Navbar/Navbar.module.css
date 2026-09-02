@@ -146,6 +146,64 @@
 .cta {
   display: flex;
   align-items: center;
+  gap: var(--space-4);
+}
+
+/* ───────────────── LANGUAGE TOGGLE ───────────────── */
+
+.langToggle,
+.langToggleMobile {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.4rem 0.7rem;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-full);
+  background: transparent;
+  color: var(--color-text-tertiary);
+  font-family: inherit;
+  font-size: var(--type-body-xs);
+  font-weight: var(--weight-semibold);
+  letter-spacing: var(--tracking-wide);
+  cursor: none;
+  transition: border-color var(--dur-fast) ease, color var(--dur-fast) ease;
+  /* keep "EN / AR" in a fixed order regardless of page direction */
+  direction: ltr;
+}
+
+.langToggle:hover,
+.langToggleMobile:hover {
+  border-color: var(--color-border-hover);
+}
+
+.langActive {
+  color: var(--color-text-primary);
+}
+
+.themeLight .langToggle {
+  border-color: var(--color-border-onlight);
+  color: var(--color-text-tertiary-onlight);
+}
+
+.themeLight .langToggle:hover {
+  border-color: var(--color-border-onlight-hover);
+}
+
+.themeLight .langActive {
+  color: var(--color-text-primary-onlight);
+}
+
+.langDivider {
+  opacity: 0.4;
+}
+
+.langToggleMobile {
+  color: var(--color-text-tertiary);
+  margin-bottom: var(--space-4);
+}
+
+.langToggleMobile .langActive {
+  color: var(--color-text-primary);
 }
 
 /* ─────────────── HAMBURGER ─────────────── */

@@ -6,6 +6,7 @@ import gsap from 'gsap'
 import Container from '../../components/ui/Container/Container'
 import Button from '../../components/ui/Button/Button'
 import { work } from '../../data/work'
+import { useLanguage } from '../../context/LanguageContext'
 import styles from './WorkDetail.module.css'
 
 const pageVariants = {
@@ -15,6 +16,7 @@ const pageVariants = {
 }
 
 const WorkDetail = () => {
+  const { language } = useLanguage()
   const { id } = useParams()
   const heroRef = useRef(null)
   const bodyRef = useRef(null)
@@ -89,12 +91,12 @@ const WorkDetail = () => {
             {project.client}
           </p>
           <h1 className={styles.title} data-page-title>
-            {project.title}
+            {project.title[language]}
           </h1>
           <div className={styles.heroMeta} data-page-meta>
             <span className={styles.metaItem}>
               <span className={styles.metaLabel}>Category</span>
-              <span className={styles.metaValue}>{project.category}</span>
+              <span className={styles.metaValue}>{project.category[language]}</span>
             </span>
             <span className={styles.metaDivider} aria-hidden />
             <span className={styles.metaItem}>
@@ -110,7 +112,7 @@ const WorkDetail = () => {
         <Container size="narrow">
           <div className={styles.bodyInner}>
             <p className={styles.description} data-reveal>
-              {project.description}
+              {project.description[language]}
             </p>
             <div className={styles.actions} data-reveal>
               <Button variant="ghost" href="/work">

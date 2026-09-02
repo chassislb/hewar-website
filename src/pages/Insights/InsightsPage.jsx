@@ -7,6 +7,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import Container from '../../components/ui/Container/Container'
 import Button from '../../components/ui/Button/Button'
 import { insights } from '../../data/insights'
+import { useLanguage } from '../../context/LanguageContext'
 import styles from './InsightsPage.module.css'
 
 gsap.registerPlugin(ScrollTrigger)
@@ -18,6 +19,7 @@ const pageVariants = {
 }
 
 const InsightsPage = () => {
+  const { language } = useLanguage()
   const heroRef = useRef(null)
   const gridRef = useRef(null)
   const ctaRef = useRef(null)
@@ -89,12 +91,12 @@ const InsightsPage = () => {
             {insights.map((insight) => (
               <article key={insight.id} className={styles.insightCard} data-insight-card>
                 <div className={styles.cardTop}>
-                  <span className={styles.categoryBadge}>{insight.category}</span>
+                  <span className={styles.categoryBadge}>{insight.category[language]}</span>
                 </div>
                 <Link to={`/insights/${insight.id}`}>
-                  <h2 className={styles.cardTitle}>{insight.title}</h2>
+                  <h2 className={styles.cardTitle}>{insight.title[language]}</h2>
                 </Link>
-                <p className={styles.cardExcerpt}>{insight.excerpt}</p>
+                <p className={styles.cardExcerpt}>{insight.excerpt[language]}</p>
                 <div className={styles.cardFooter}>
                   <div className={styles.cardMeta}>
                     <span className={styles.cardDate}>{insight.author}</span>

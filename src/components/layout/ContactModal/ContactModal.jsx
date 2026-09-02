@@ -3,30 +3,8 @@ import { AnimatePresence, motion } from 'framer-motion'
 import Button from '../../ui/Button/Button'
 import { useContactModal } from '../../../context/ContactModalContext'
 import { useCursor } from '../../../context/CursorContext'
+import { useTranslation } from '../../../i18n/useTranslation'
 import styles from './ContactModal.module.css'
-
-const contactInfo = [
-  {
-    label: 'Email',
-    value: 'info@hewargroup.com',
-    href: 'mailto:info@hewargroup.com',
-  },
-  {
-    label: 'Phone',
-    value: '+966 56 775 5776',
-    href: 'tel:+966567755776',
-  },
-  {
-    label: 'Riyadh',
-    value: 'Salah Ad Din Al Ayyubi Rd, Riyadh',
-    href: null,
-  },
-  {
-    label: 'Beirut',
-    value: 'Beirut, Lebanon',
-    href: null,
-  },
-]
 
 const backdropVariants = {
   closed: { opacity: 0 },
@@ -41,8 +19,16 @@ const panelVariants = {
 const ContactModal = () => {
   const { isOpen, closeContactModal } = useContactModal()
   const { setCursor, resetCursor } = useCursor()
+  const { t } = useTranslation()
   const [submitted, setSubmitted] = useState(false)
   const [formData, setFormData] = useState({ name: '', company: '', email: '', message: '' })
+
+  const contactInfo = [
+    { label: t('contact.emailLabel'), value: 'info@hewargroup.com', href: 'mailto:info@hewargroup.com' },
+    { label: t('contact.phoneLabel'), value: '+966 56 775 5776', href: 'tel:+966567755776' },
+    { label: t('contact.riyadhLabel'), value: t('contact.riyadhValue'), href: null },
+    { label: t('contact.beirutLabel'), value: t('contact.beirutValue'), href: null },
+  ]
 
   useEffect(() => {
     document.body.style.overflow = isOpen ? 'hidden' : ''
@@ -117,9 +103,9 @@ const ContactModal = () => {
               <div className={styles.infoCol}>
                 <p className={styles.eyebrow}>
                   <span className={styles.eyebrowDot} aria-hidden />
-                  Get in Touch
+                  {t('contact.eyebrow')}
                 </p>
-                <h2 className={styles.title}>Let&rsquo;s start the conversation.</h2>
+                <h2 className={styles.title}>{t('contact.title')}</h2>
                 <div className={styles.infoItems}>
                   {contactInfo.map((item) => (
                     <div key={item.label} className={styles.infoItem}>
@@ -145,17 +131,16 @@ const ContactModal = () => {
                         <path d="M10 16.5l4 4 8-8" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
                       </svg>
                     </div>
-                    <h3 className={styles.successTitle}>Thank you, we&rsquo;ll be in touch.</h3>
+                    <h3 className={styles.successTitle}>{t('contact.thankYou')}</h3>
                     <p className={styles.successBody}>
-                      We&rsquo;ve received your message and will get back to you within
-                      one business day.
+                      {t('contact.thankYouBody')}
                     </p>
                   </div>
                 ) : (
                   <form className={styles.form} onSubmit={handleSubmit} noValidate>
                     <div className={styles.formRow}>
                       <div className={styles.fieldGroup}>
-                        <label className={styles.fieldLabel} htmlFor="modal-name">Name</label>
+                        <label className={styles.fieldLabel} htmlFor="modal-name">{t('contact.name')}</label>
                         <input
                           id="modal-name"
                           name="name"
@@ -163,27 +148,27 @@ const ContactModal = () => {
                           required
                           autoComplete="name"
                           className={styles.fieldInput}
-                          placeholder="Your name"
+                          placeholder={t('contact.namePlaceholder')}
                           value={formData.name}
                           onChange={handleChange}
                         />
                       </div>
                       <div className={styles.fieldGroup}>
-                        <label className={styles.fieldLabel} htmlFor="modal-company">Company</label>
+                        <label className={styles.fieldLabel} htmlFor="modal-company">{t('contact.company')}</label>
                         <input
                           id="modal-company"
                           name="company"
                           type="text"
                           autoComplete="organization"
                           className={styles.fieldInput}
-                          placeholder="Your company"
+                          placeholder={t('contact.companyPlaceholder')}
                           value={formData.company}
                           onChange={handleChange}
                         />
                       </div>
                     </div>
                     <div className={styles.fieldGroup}>
-                      <label className={styles.fieldLabel} htmlFor="modal-email">Email</label>
+                      <label className={styles.fieldLabel} htmlFor="modal-email">{t('contact.emailLabel')}</label>
                       <input
                         id="modal-email"
                         name="email"
@@ -191,20 +176,21 @@ const ContactModal = () => {
                         required
                         autoComplete="email"
                         className={styles.fieldInput}
-                        placeholder="your@email.com"
+                        placeholder={t('contact.emailPlaceholder')}
                         value={formData.email}
                         onChange={handleChange}
+                        dir="ltr"
                       />
                     </div>
                     <div className={styles.fieldGroup}>
-                      <label className={styles.fieldLabel} htmlFor="modal-message">Message</label>
+                      <label className={styles.fieldLabel} htmlFor="modal-message">{t('contact.message')}</label>
                       <textarea
                         id="modal-message"
                         name="message"
                         required
                         rows={4}
                         className={styles.fieldTextarea}
-                        placeholder="Tell us about your project or idea..."
+                        placeholder={t('contact.messagePlaceholder')}
                         value={formData.message}
                         onChange={handleChange}
                       />
@@ -216,7 +202,7 @@ const ContactModal = () => {
                       onMouseEnter={() => setCursor('hover')}
                       onMouseLeave={resetCursor}
                     >
-                      Send Message
+                      {t('contact.send')}
                     </Button>
                   </form>
                 )}

@@ -6,11 +6,12 @@ import Container from '../../ui/Container/Container'
 import { services } from '../../../data/services'
 import { useCursor } from '../../../context/CursorContext'
 import { useSectionTheme } from '../../../context/SectionThemeContext'
+import { useTranslation } from '../../../i18n/useTranslation'
 import styles from './Services.module.css'
 
 gsap.registerPlugin(ScrollTrigger)
 
-const ServiceCard = ({ service }) => {
+const ServiceCard = ({ service, language }) => {
   const { setCursor, resetCursor } = useCursor()
 
   return (
@@ -25,11 +26,11 @@ const ServiceCard = ({ service }) => {
           <span className={styles.cardArrow}>↗</span>
         </div>
 
-        <h3 className={styles.cardTitle}>{service.title}</h3>
-        <p className={styles.cardDesc}>{service.description}</p>
+        <h3 className={styles.cardTitle}>{service.title[language]}</h3>
+        <p className={styles.cardDesc}>{service.description[language]}</p>
 
         <div className={styles.cardTags}>
-          {service.tags.map((tag) => (
+          {service.tags[language].map((tag) => (
             <span key={tag} className={styles.tag}>
               {tag}
             </span>
@@ -47,6 +48,7 @@ const Services = () => {
   const trackRef = useRef(null)
   const theme = useSectionTheme()
   const isLight = theme === 'light'
+  const { t, language } = useTranslation()
 
   useGSAP(() => {
     const mm = gsap.matchMedia()
@@ -129,17 +131,17 @@ const Services = () => {
                 <span />
                 <span />
               </span>
-              <span>Our Services</span>
+              <span>{t('services.label')}</span>
             </div>
 
             <div className={styles.headingRow}>
               <h2 className={styles.heading}>
-                Everything a modern brand needs —<br />
-                <span className={styles.headingAccent}>amplified.</span>
+                {t('services.headingLine1')}<br />
+                <span className={styles.headingAccent}>{t('services.headingAccent')}</span>
               </h2>
 
               <p className={styles.headingSub}>
-                Seven disciplines. One team. Zero compromise.
+                {t('services.sub')}
               </p>
             </div>
           </div>
@@ -147,7 +149,7 @@ const Services = () => {
 
         <div className={styles.track} ref={trackRef}>
           {services.map((service) => (
-            <ServiceCard key={service.id} service={service} />
+            <ServiceCard key={service.id} service={service} language={language} />
           ))}
         </div>
       </div>

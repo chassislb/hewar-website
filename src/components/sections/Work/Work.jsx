@@ -6,11 +6,12 @@ import { Link } from 'react-router-dom'
 import Container from '../../ui/Container/Container'
 import { work } from '../../../data/work'
 import { useCursor } from '../../../context/CursorContext'
+import { useTranslation } from '../../../i18n/useTranslation'
 import styles from './Work.module.css'
 
 gsap.registerPlugin(ScrollTrigger)
 
-const WorkCard = ({ project, index }) => {
+const WorkCard = ({ project, index, language, viewProjectLabel }) => {
   const { setCursor, resetCursor } = useCursor()
 
   return (
@@ -39,18 +40,18 @@ const WorkCard = ({ project, index }) => {
           </div>
 
           <div className={styles.overlay}>
-            <span className={styles.overlayBtn}>View Project ↗</span>
+            <span className={styles.overlayBtn}>{viewProjectLabel} ↗</span>
           </div>
         </div>
 
         <div className={styles.meta}>
           <div className={styles.metaLeft}>
             <span className={styles.client}>{project.client}</span>
-            <h3 className={styles.title}>{project.title}</h3>
+            <h3 className={styles.title}>{project.title[language]}</h3>
           </div>
 
           <div className={styles.metaRight}>
-            <span className={styles.category}>{project.category}</span>
+            <span className={styles.category}>{project.category[language]}</span>
             <span className={styles.year}>{project.year}</span>
           </div>
         </div>
@@ -62,6 +63,7 @@ const WorkCard = ({ project, index }) => {
 const Work = () => {
   const sectionRef = useRef(null)
   const trackRef = useRef(null)
+  const { t, language } = useTranslation()
 
   useGSAP(() => {
     const mm = gsap.matchMedia()
@@ -104,18 +106,24 @@ const Work = () => {
                 <span />
                 <span />
               </span>
-              <span>Selected Work</span>
+              <span>{t('work.label')}</span>
             </div>
 
             <h2 className={styles.heading}>
-              Where Strategy<br />Meets Impact
+              {t('work.headingLine1')}<br />{t('work.headingLine2')}
             </h2>
           </div>
         </Container>
 
         <div className={styles.track} ref={trackRef}>
           {work.map((project, i) => (
-            <WorkCard key={project.id} project={project} index={i} />
+            <WorkCard
+              key={project.id}
+              project={project}
+              index={i}
+              language={language}
+              viewProjectLabel={t('work.viewProject')}
+            />
           ))}
         </div>
       </div>

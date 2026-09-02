@@ -72,11 +72,18 @@ html[data-theme='light'] body {
   min-height: 100vh;
 }
 
-/* Arabic content */
+/* Arabic content — body has its own explicit font-family, which always
+   wins over whatever [lang="ar"] sets on <html> (an element's own rule
+   beats an inherited value regardless of selector specificity), so the
+   override has to target body directly to actually take effect. */
 [lang="ar"],
 .arabic {
   font-family: var(--font-arabic);
   direction: rtl;
+}
+
+html[lang="ar"] body {
+  font-family: var(--font-arabic);
 }
 
 /* ── Stacking ── */

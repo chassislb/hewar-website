@@ -1,12 +1,17 @@
 export const work = [
   {
     id: 'kfshrc',
-    title: 'A cinematic tribute to Ghar Al Ma’athar, told for Saudi Founding Day.',
+    title: {
+      en: 'A cinematic tribute to Ghar Al Ma’athar, told for Saudi Founding Day.',
+      ar: 'تحية سينمائية لـ«غار المآثر»، احتفاءً بيوم التأسيس السعودي.',
+    },
     client: 'KFSHRC',
-    category: 'Founding Day Film',
+    category: { en: 'Founding Day Film', ar: 'فيلم يوم التأسيس' },
     year: '2025',
-    description:
-      'For Saudi Founding Day, HEWAR Group’s Creative Department produced a video honouring Ghar Al Ma’athar — capturing its significance as a religious centre, a place of healing, and a historic gathering hub. Designed from concept through animation, the film wove together the site’s historical, spiritual and communal importance, and was met with widespread engagement across social media.',
+    description: {
+      en: 'For Saudi Founding Day, HEWAR Group’s Creative Department produced a video honouring Ghar Al Ma’athar — capturing its significance as a religious centre, a place of healing, and a historic gathering hub. Designed from concept through animation, the film wove together the site’s historical, spiritual and communal importance, and was met with widespread engagement across social media.',
+      ar: 'بمناسبة يوم التأسيس السعودي، أنتج القسم الإبداعي في مجموعة حوار فيلماً تكريمياً لغار المآثر، يُبرز أهميته كمركز ديني، ومكان للشفاء، وملتقى تاريخي. صُمم الفيلم من الفكرة وحتى التحريك، ليجمع بين الأهمية التاريخية والروحية والمجتمعية للموقع، وحقق تفاعلاً واسعاً عبر منصات التواصل الاجتماعي.',
+    },
     color: '#071c46',
     size: 'large',
     logo: null,
@@ -17,12 +22,17 @@ export const work = [
   },
   {
     id: 'zatca',
-    title: 'Simplifying public engagement through strategic communication.',
+    title: {
+      en: 'Simplifying public engagement through strategic communication.',
+      ar: 'تبسيط التفاعل العام من خلال تواصل استراتيجي.',
+    },
     client: 'ZATCA',
-    category: 'Government Campaign',
+    category: { en: 'Government Campaign', ar: 'حملة حكومية' },
     year: '2025',
-    description:
-      'Creative strategy and campaign development for the Zakat, Tax and Customs Authority, translating complex public messaging into engaging communication.',
+    description: {
+      en: 'Creative strategy and campaign development for the Zakat, Tax and Customs Authority, translating complex public messaging into engaging communication.',
+      ar: 'استراتيجية إبداعية وتطوير حملات لهيئة الزكاة والضريبة والجمارك، لترجمة الرسائل العامة المعقدة إلى تواصل جذاب.',
+    },
     color: '#0b285e',
     size: 'large',
     logo: null,
@@ -33,12 +43,17 @@ export const work = [
   },
   {
     id: 'amana-al-riyadh',
-    title: 'A city-wide initiative brought to life through integrated storytelling.',
+    title: {
+      en: 'A city-wide initiative brought to life through integrated storytelling.',
+      ar: 'مبادرة على مستوى المدينة، أُحييت عبر سرد قصصي متكامل.',
+    },
     client: 'Amana Al Riyadh',
-    category: 'Public Sector Campaign',
+    category: { en: 'Public Sector Campaign', ar: 'حملة القطاع العام' },
     year: '2025',
-    description:
-      'Creative production and integrated communications supporting one of Riyadh Municipality’s public engagement initiatives.',
+    description: {
+      en: 'Creative production and integrated communications supporting one of Riyadh Municipality’s public engagement initiatives.',
+      ar: 'إنتاج إبداعي وتواصل متكامل لدعم إحدى مبادرات أمانة الرياض للتفاعل العام.',
+    },
     color: '#08315a',
     size: 'large',
     logo: null,
@@ -49,12 +64,17 @@ export const work = [
   },
   {
     id: 'kingdom-centre',
-    title: 'A Riyadh icon, retold for a new generation.',
+    title: {
+      en: 'A Riyadh icon, retold for a new generation.',
+      ar: 'أيقونة الرياض، تُروى من جديد لجيل جديد.',
+    },
     client: 'Kingdom Centre',
-    category: 'Brand Campaign',
+    category: { en: 'Brand Campaign', ar: 'حملة علامة تجارية' },
     year: '2024',
-    description:
-      'A brand communications campaign repositioning one of Riyadh’s most recognised landmarks for a new generation of Saudi audiences.',
+    description: {
+      en: 'A brand communications campaign repositioning one of Riyadh’s most recognised landmarks for a new generation of Saudi audiences.',
+      ar: 'حملة تواصل للعلامة التجارية تعيد تموضع أحد أبرز معالم الرياض لمخاطبة جيل جديد من الجمهور السعودي.',
+    },
     color: '#0A3A8A',
     size: 'large',
     logo: null,
@@ -68,12 +88,17 @@ export const work = [
   },
   {
     id: 'karnr',
-    title: 'A nature-rooted brand with a distinctive voice.',
+    title: {
+      en: 'A nature-rooted brand with a distinctive voice.',
+      ar: 'علامة تجارية متجذرة في الطبيعة بصوت مميز.',
+    },
     client: 'KARNR',
-    category: 'Brand Identity',
+    category: { en: 'Brand Identity', ar: 'الهوية التجارية' },
     year: '2024',
-    description:
-      'Identity, social and campaign work that gave KARNR a confident, nature-rooted visual and verbal presence.',
+    description: {
+      en: 'Identity, social and campaign work that gave KARNR a confident, nature-rooted visual and verbal presence.',
+      ar: 'أعمال هوية وسوشيال ميديا وحملات أعطت كارنر حضوراً بصرياً ولفظياً واثقاً ومتجذراً في الطبيعة.',
+    },
     color: '#0e2048',
     size: 'small',
     logo: null,
@@ -88,12 +113,17 @@ export const work = [
   },
   {
     id: 'drdc',
-    title: 'A visionary desert concept introduced to the world.',
+    title: {
+      en: 'A visionary desert concept introduced to the world.',
+      ar: 'مفهوم صحراوي طموح يُقدَّم للعالم.',
+    },
     client: 'DRDC',
-    category: 'Brand Communications',
+    category: { en: 'Brand Communications', ar: 'تواصل العلامة التجارية' },
     year: '2024',
-    description:
-      'Strategic brand communications for a landmark desert development concept, shaping the narrative that introduced a visionary Saudi project to global audiences.',
+    description: {
+      en: 'Strategic brand communications for a landmark desert development concept, shaping the narrative that introduced a visionary Saudi project to global audiences.',
+      ar: 'تواصل استراتيجي لعلامة تجارية لمفهوم تطوير صحراوي بارز، صاغ السردية التي قدّمت مشروعاً سعودياً طموحاً للجمهور العالمي.',
+    },
     color: '#1a0820',
     size: 'small',
     logo: null,

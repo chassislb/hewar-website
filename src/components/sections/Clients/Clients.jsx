@@ -2,12 +2,14 @@ import { useRef } from 'react'
 import { motion } from 'framer-motion'
 import Container from '../../ui/Container/Container'
 import { clients } from '../../../data/clients'
+import { useTranslation } from '../../../i18n/useTranslation'
 import styles from './Clients.module.css'
 
 const MARQUEE_ITEMS = [...clients, ...clients]
 
 const Clients = () => {
   const sectionRef = useRef(null)
+  const { t } = useTranslation()
 
   return (
     <section className={styles.clients} ref={sectionRef} data-section-theme="dark">
@@ -24,7 +26,7 @@ const Clients = () => {
             <span />
             <span />
           </span>
-          <span>Trusted By</span>
+          <span>{t('clients.trustedBy')}</span>
         </motion.div>
       </Container>
 

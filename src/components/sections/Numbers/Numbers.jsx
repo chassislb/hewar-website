@@ -4,11 +4,12 @@ import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import Container from '../../ui/Container/Container'
 import { numbers } from '../../../data/numbers'
+import { useLanguage } from '../../../context/LanguageContext'
 import styles from './Numbers.module.css'
 
 gsap.registerPlugin(ScrollTrigger)
 
-const StatItem = ({ stat }) => {
+const StatItem = ({ stat, language }) => {
   return (
     <div className={styles.stat}>
       <div className={styles.statValue}>
@@ -19,14 +20,15 @@ const StatItem = ({ stat }) => {
       </div>
 
       <div className={styles.statMeta}>
-        <span className={styles.statLabel}>{stat.label}</span>
-        <span className={styles.statDesc}>{stat.description}</span>
+        <span className={styles.statLabel}>{stat.label[language]}</span>
+        <span className={styles.statDesc}>{stat.description[language]}</span>
       </div>
     </div>
   )
 }
 
 const Numbers = () => {
+  const { language } = useLanguage()
   const sectionRef = useRef(null)
 
   useGSAP(() => {
@@ -102,8 +104,8 @@ const Numbers = () => {
       <Container>
         <div className={styles.grid}>
           {numbers.map((stat) => (
-            <div key={stat.label} data-stat>
-              <StatItem stat={stat} />
+            <div key={stat.label.en} data-stat>
+              <StatItem stat={stat} language={language} />
             </div>
           ))}
         </div>

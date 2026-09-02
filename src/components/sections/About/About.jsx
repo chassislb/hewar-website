@@ -3,20 +3,10 @@ import { useGSAP } from '@gsap/react'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import Container from '../../ui/Container/Container'
+import { useTranslation } from '../../../i18n/useTranslation'
 import styles from './About.module.css'
 
 gsap.registerPlugin(ScrollTrigger)
-
-const MOVING_WORDS = [
-  'Expertise',
-  'Integrity',
-  'Excellence',
-  'Dedication',
-  'Growth',
-  'Methodology',
-  'Innovation',
-  'Creativity',
-]
 
 const ABOUT_IMAGES = [
   { src: 'about-01-speaking.png', alt: 'HEWAR team member speaking in front of the HEWAR Group office sign' },
@@ -35,6 +25,9 @@ const WORD_COLORS = [
 const About = () => {
   const sectionRef = useRef(null)
   const pinWrapperRef = useRef(null)
+  const { t } = useTranslation()
+  const movingWords = t('about.words')
+  const headingLines = t('about.headingLines')
 
   useGSAP(() => {
     const ctx = gsap.context(() => {
@@ -141,7 +134,7 @@ const About = () => {
             <span />
             <span />
           </span>
-          <span>About HEWAR</span>
+          <span>{t('about.label')}</span>
         </div>
 
         <div className={styles.pinWrapper} ref={pinWrapperRef}>
@@ -164,13 +157,7 @@ const About = () => {
 
               <div className={styles.right}>
                 <h2 className={styles.heading}>
-                  {[
-                    'Born from the',
-                    'belief that every',
-                    'brand has',
-                    'something',
-                    'worth saying.',
-                  ].map((line, i) => (
+                  {headingLines.map((line, i) => (
                     <span key={i} className={styles.lineWrap}>
                       <span className={styles.lineInner} data-about-line>
                         {line}
@@ -181,18 +168,11 @@ const About = () => {
 
                 <div className={styles.storyBlock}>
                   <p className={styles.story} data-about-story>
-                    HEWAR — حوار — means <em>dialogue</em> in Arabic. It is not a
-                    metaphor. It is our operating principle. We believe the best
-                    communication is never one-directional. It listens as much as it
-                    speaks, and earns attention rather than demanding it.
+                    {t('about.p1Before')}<em>{t('about.p1Emphasis')}</em>{t('about.p1After')}
                   </p>
 
                   <p className={styles.story} data-about-story>
-                    Founded in Saudi Arabia with 12+ years in the market, we craft
-                    bespoke communication solutions for partners from the public and
-                    private sectors across diverse industries. Built for the MENA
-                    region, we read the room before we shape the message — culture,
-                    timing, stakeholders, and public conversation included.
+                    {t('about.p2')}
                   </p>
                 </div>
               </div>
@@ -200,7 +180,7 @@ const About = () => {
 
             <div className={styles.wordsTrack} aria-hidden>
               <div className={styles.wordsMarquee}>
-                {[...MOVING_WORDS, ...MOVING_WORDS].map((word, i) => (
+                {[...movingWords, ...movingWords].map((word, i) => (
                   <span key={`${word}-${i}`} className={styles.wordPill} data-about-word>
                     {word}
                   </span>

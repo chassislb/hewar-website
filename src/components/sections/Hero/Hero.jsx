@@ -1,9 +1,11 @@
 import { useRef, useState, useEffect } from 'react'
+import { useTranslation } from '../../../i18n/useTranslation'
 import styles from './Hero.module.css'
 
 const VIDEO_SRC = '/hewar-website/videos/amplified.mp4'
 
 const Hero = () => {
+  const { t } = useTranslation()
   const videoRef = useRef(null)
   const [muted, setMuted] = useState(true)
 
@@ -55,7 +57,7 @@ const Hero = () => {
           onClick={toggleMute}
           aria-label={muted ? 'Turn sound on' : 'Mute video'}
         >
-          {muted ? 'Sound On' : 'Mute'}
+          {muted ? t('video.soundOn') : t('video.mute')}
         </button>
       </div>
     </section>

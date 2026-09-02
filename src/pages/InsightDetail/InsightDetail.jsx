@@ -6,6 +6,7 @@ import gsap from 'gsap'
 import Container from '../../components/ui/Container/Container'
 import Button from '../../components/ui/Button/Button'
 import { insights } from '../../data/insights'
+import { useLanguage } from '../../context/LanguageContext'
 import styles from './InsightDetail.module.css'
 
 const pageVariants = {
@@ -15,6 +16,7 @@ const pageVariants = {
 }
 
 const InsightDetail = () => {
+  const { language } = useLanguage()
   const { id } = useParams()
   const heroRef = useRef(null)
   const insight = insights.find((i) => i.id === id)
@@ -56,16 +58,16 @@ const InsightDetail = () => {
         <div className={styles.heroOrb} style={{ top: '-30%', right: '-15%', background: 'radial-gradient(circle, rgba(71,0,179,0.4) 0%, transparent 70%)', width: 'clamp(400px,60vw,900px)', height: 'clamp(400px,60vw,900px)' }} aria-hidden />
         <Container size="narrow">
           <Link to="/insights" className={styles.backLink}>← All Insights</Link>
-          <div className={styles.categoryBadge} data-page-eyebrow>{insight.category}</div>
-          <h1 className={styles.title} data-page-title>{insight.title}</h1>
+          <div className={styles.categoryBadge} data-page-eyebrow>{insight.category[language]}</div>
+          <h1 className={styles.title} data-page-title>{insight.title[language]}</h1>
           <div className={styles.meta} data-page-sub>
             <span>{insight.author}</span>
             <span className={styles.metaDot} aria-hidden />
-            <span>{insight.role}</span>
+            <span>{insight.role[language]}</span>
             <span className={styles.metaDot} aria-hidden />
             <span>{insight.publication} · {insight.year}</span>
           </div>
-          <p className={styles.excerpt}>{insight.excerpt}</p>
+          <p className={styles.excerpt}>{insight.excerpt[language]}</p>
           <div className={styles.comingSoonBox}>
             <p className={styles.comingSoonText}>
               This piece was written for external publication. Read the full

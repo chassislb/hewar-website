@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { CursorProvider } from './context/CursorContext'
 import { SectionThemeProvider } from './context/SectionThemeContext'
 import { ContactModalProvider } from './context/ContactModalContext'
+import { LanguageProvider } from './context/LanguageContext'
 import SmoothScroll from './components/layout/SmoothScroll/SmoothScroll'
 import ParticleField from './components/layout/ParticleField/ParticleField'
 import Cursor from './components/layout/Cursor/Cursor'
@@ -49,51 +50,53 @@ const App = () => {
 
   return (
     <BrowserRouter basename="/hewar-website">
-      <SectionThemeProvider>
-        <CursorProvider>
-          <ContactModalProvider>
-            <SmoothScroll>
-              {!ready && <Preloader onComplete={handlePreloaderDone} />}
+      <LanguageProvider>
+        <SectionThemeProvider>
+          <CursorProvider>
+            <ContactModalProvider>
+              <SmoothScroll>
+                {!ready && <Preloader onComplete={handlePreloaderDone} />}
 
-              <ParticleField />
-              <Cursor />
-              <Navbar />
-              <ContactModal />
+                <ParticleField />
+                <Cursor />
+                <Navbar />
+                <ContactModal />
 
-              <AnimatePresence mode="wait">
-                <Routes>
-                  <Route
-                    path="/"
-                    element={
-                      <motion.div
-                        variants={pageVariants}
-                        initial="initial"
-                        animate="animate"
-                        exit="exit"
-                      >
-                        <Home />
-                      </motion.div>
-                    }
-                  />
+                <AnimatePresence mode="wait">
+                  <Routes>
+                    <Route
+                      path="/"
+                      element={
+                        <motion.div
+                          variants={pageVariants}
+                          initial="initial"
+                          animate="animate"
+                          exit="exit"
+                        >
+                          <Home />
+                        </motion.div>
+                      }
+                    />
 
-                  <Route path="/about" element={<About />} />
-                  <Route path="/services" element={<ServicesPage />} />
-                  <Route path="/work" element={<WorkPage />} />
-                  <Route path="/work/:id" element={<WorkDetail />} />
-                  <Route path="/insights" element={<InsightsPage />} />
-                  <Route path="/insights/:id" element={<InsightDetail />} />
-                  <Route path="/contact" element={<Contact />} />
-                  <Route path="/privacy" element={<Privacy />} />
-                  <Route path="/terms" element={<Terms />} />
-                  <Route path="*" element={<NotFound />} />
-                </Routes>
-              </AnimatePresence>
+                    <Route path="/about" element={<About />} />
+                    <Route path="/services" element={<ServicesPage />} />
+                    <Route path="/work" element={<WorkPage />} />
+                    <Route path="/work/:id" element={<WorkDetail />} />
+                    <Route path="/insights" element={<InsightsPage />} />
+                    <Route path="/insights/:id" element={<InsightDetail />} />
+                    <Route path="/contact" element={<Contact />} />
+                    <Route path="/privacy" element={<Privacy />} />
+                    <Route path="/terms" element={<Terms />} />
+                    <Route path="*" element={<NotFound />} />
+                  </Routes>
+                </AnimatePresence>
 
-              <Footer />
-            </SmoothScroll>
-          </ContactModalProvider>
-        </CursorProvider>
-      </SectionThemeProvider>
+                <Footer />
+              </SmoothScroll>
+            </ContactModalProvider>
+          </CursorProvider>
+        </SectionThemeProvider>
+      </LanguageProvider>
     </BrowserRouter>
   )
 }

@@ -1,14 +1,16 @@
 import { Link } from 'react-router-dom'
 import Container from '../../ui/Container/Container'
 import Button from '../../ui/Button/Button'
-import { SITE_NAME, SITE_TAGLINE, CONTACT_EMAIL, SOCIAL_LINKS } from '../../../utils/constants'
+import { CONTACT_EMAIL, SOCIAL_LINKS } from '../../../utils/constants'
 import { useCursor } from '../../../context/CursorContext'
 import { useContactModal } from '../../../context/ContactModalContext'
+import { useTranslation } from '../../../i18n/useTranslation'
 import styles from './Footer.module.css'
 
 const Footer = () => {
   const { setCursor, resetCursor } = useCursor()
   const { openContactModal } = useContactModal()
+  const { t } = useTranslation()
   const year = new Date().getFullYear()
 
   return (
@@ -35,7 +37,7 @@ const Footer = () => {
               />
             </Link>
 
-            <p className={styles.tagline}>{SITE_TAGLINE}</p>
+            <p className={styles.tagline}>{t('common.tagline')}</p>
 
             <a
               href={`mailto:${CONTACT_EMAIL}`}
@@ -48,7 +50,7 @@ const Footer = () => {
           </div>
 
           <div className={styles.social}>
-            <span className={styles.colLabel}>Follow Us</span>
+            <span className={styles.colLabel}>{t('footer.followUs')}</span>
             <ul className={styles.navList}>
               {Object.entries(SOCIAL_LINKS).map(([platform, url]) => (
                 <li key={platform}>
@@ -69,7 +71,7 @@ const Footer = () => {
         </div>
 
         <div className={styles.miniCta}>
-          <p className={styles.miniCtaText}>Build something people remember.</p>
+          <p className={styles.miniCtaText}>{t('footer.miniCta')}</p>
 
           <Button
             variant="primary"
@@ -78,21 +80,21 @@ const Footer = () => {
             onMouseEnter={() => setCursor('hover')}
             onMouseLeave={resetCursor}
           >
-            Let’s Talk
+            {t('footer.letsTalk')}
           </Button>
         </div>
 
         <div className={styles.bottom}>
           <span className={styles.copy}>
-            © {year} {SITE_NAME}. All rights reserved.
+            © {year} {t('common.siteName')}. {t('footer.rightsReserved')}
           </span>
 
           <div className={styles.legal}>
             <Link to="/privacy" className={styles.legalLink}>
-              Privacy Policy
+              {t('footer.privacy')}
             </Link>
             <Link to="/terms" className={styles.legalLink}>
-              Terms of Use
+              {t('footer.terms')}
             </Link>
           </div>
         </div>

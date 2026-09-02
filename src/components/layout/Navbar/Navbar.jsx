@@ -8,8 +8,17 @@ import { navLinks } from '../../../data/navigation'
 import { useCursor } from '../../../context/CursorContext'
 import { useSectionTheme } from '../../../context/SectionThemeContext'
 import { useContactModal } from '../../../context/ContactModalContext'
+import { useLanguage } from '../../../context/LanguageContext'
+import { useTranslation } from '../../../i18n/useTranslation'
 import { useScrollProgress } from '../../../hooks/useScrollProgress'
 import styles from './Navbar.module.css'
+
+const NAV_LABEL_KEYS = {
+  '/about': 'nav.about',
+  '/services': 'nav.services',
+  '/work': 'nav.work',
+  '/insights': 'nav.insights',
+}
 
 const Navbar = () => {
   const [scrolled, setScrolled]     = useState(false)
@@ -22,6 +31,8 @@ const Navbar = () => {
   const theme                       = useSectionTheme()
   const isLight                     = theme === 'light'
   const { openContactModal }        = useContactModal()
+  const { language, toggleLanguage } = useLanguage()
+  const { t }                       = useTranslation()
 
   /* Close the mobile menu on navigation — adjusted during render per React's
      guidance for resetting state in response to a prop/route change */
@@ -98,7 +109,7 @@ const Navbar = () => {
                     onMouseEnter={() => setCursor('hover')}
                     onMouseLeave={resetCursor}
                   >
-                    {link.label}
+                    {t(NAV_LABEL_KEYS[link.href])}
                     <span className={styles.linkUnderline} />
                   </Link>
                 </li>
@@ -107,6 +118,19 @@ const Navbar = () => {
 
             {/* Desktop CTA */}
             <div className={styles.cta}>
+              <button
+                type="button"
+                className={styles.langToggle}
+                onClick={toggleLanguage}
+                onMouseEnter={() => setCursor('hover')}
+                onMouseLeave={resetCursor}
+                aria-label={language === 'en' ? 'Switch to Arabic' : 'التبديل إلى الإنجليزية'}
+              >
+                <span className={language === 'en' ? styles.langActive : ''}>EN</span>
+                <span className={styles.langDivider} aria-hidden>/</span>
+                <span className={language === 'ar' ? styles.langActive : ''}>AR</span>
+              </button>
+
               <Button
                 variant="primary"
                 size="sm"
@@ -114,7 +138,7 @@ const Navbar = () => {
                 onMouseEnter={() => setCursor('hover')}
                 onMouseLeave={resetCursor}
               >
-                Let's Talk
+                {t('nav.letsTalk')}
               </Button>
             </div>
 
@@ -160,7 +184,7 @@ const Navbar = () => {
                       onClick={() => setMenuOpen(false)}
                     >
                       <span className={styles.mobileLinkNum}>0{i + 1}</span>
-                      {link.label}
+                      {t(NAV_LABEL_KEYS[link.href])}
                     </Link>
                   </motion.li>
                 ))}
@@ -172,6 +196,17 @@ const Navbar = () => {
                 animate={{ opacity: 1, y: 0, transition: { delay: 0.4, duration: 0.5 } }}
                 exit={{ opacity: 0 }}
               >
+                <button
+                  type="button"
+                  className={styles.langToggleMobile}
+                  onClick={toggleLanguage}
+                  aria-label={language === 'en' ? 'Switch to Arabic' : 'التبديل إلى الإنجليزية'}
+                >
+                  <span className={language === 'en' ? styles.langActive : ''}>EN</span>
+                  <span className={styles.langDivider} aria-hidden>/</span>
+                  <span className={language === 'ar' ? styles.langActive : ''}>AR</span>
+                </button>
+
                 <Button
                   variant="primary"
                   onClick={() => {
@@ -179,7 +214,7 @@ const Navbar = () => {
                     openContactModal()
                   }}
                 >
-                  Let's Talk
+                  {t('nav.letsTalk')}
                 </Button>
               </motion.div>
             </Container>

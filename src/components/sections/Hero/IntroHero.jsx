@@ -1,5 +1,6 @@
 import { useEffect, useRef } from 'react'
 import { useContactModal } from '../../../context/ContactModalContext'
+import { useTranslation } from '../../../i18n/useTranslation'
 import styles from './IntroHero.module.css'
 
 const PARTICLE_COUNT = 220
@@ -36,6 +37,7 @@ function makeParticle(w, h, cx, cy, mainRadius) {
 */
 const IntroHero = () => {
   const { openContactModal } = useContactModal()
+  const { t } = useTranslation()
   const wrapperRef = useRef(null)
   const canvasRef = useRef(null)
   const titleMainRef = useRef(null)
@@ -172,14 +174,13 @@ const IntroHero = () => {
 
         <div className={styles.copy}>
           <h1 ref={titleMainRef} className={styles.titleMain}>
-            Human Intelligence.
+            {t('hero.line1')}
             <br />
-            <span className={styles.gradientText}>Amplified.</span>
+            <span className={styles.gradientText}>{t('hero.line2')}</span>
           </h1>
 
           <p ref={introHeadlineRef} className={styles.introHeadline}>
-            A creative, PR and marketing agency, AI-enhanced to amplify
-            ideas, influence and impact.
+            {t('hero.tagline')}
           </p>
 
           <button
@@ -188,7 +189,7 @@ const IntroHero = () => {
             className={styles.ctaButton}
             onClick={openContactModal}
           >
-            Let's Talk
+            {t('hero.cta')}
           </button>
         </div>
       </div>

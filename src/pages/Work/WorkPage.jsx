@@ -7,6 +7,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import Container from '../../components/ui/Container/Container'
 import Button from '../../components/ui/Button/Button'
 import { work } from '../../data/work'
+import { useLanguage } from '../../context/LanguageContext'
 import styles from './WorkPage.module.css'
 
 gsap.registerPlugin(ScrollTrigger)
@@ -18,6 +19,7 @@ const pageVariants = {
 }
 
 const WorkPage = () => {
+  const { language } = useLanguage()
   const heroRef = useRef(null)
   const gridRef = useRef(null)
   const ctaRef = useRef(null)
@@ -111,9 +113,9 @@ const WorkPage = () => {
                   <div className={styles.cardMeta}>
                     <span className={styles.cardClient}>{project.client}</span>
                   </div>
-                  <h2 className={styles.cardTitle}>{project.title}</h2>
+                  <h2 className={styles.cardTitle}>{project.title[language]}</h2>
                   <div className={styles.cardFooter}>
-                    <span className={styles.cardCategory}>{project.category}</span>
+                    <span className={styles.cardCategory}>{project.category[language]}</span>
                     <span className={styles.cardYear}>{project.year}</span>
                   </div>
                 </div>
