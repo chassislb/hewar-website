@@ -30,6 +30,7 @@
   text-transform: uppercase;
   color: var(--color-text-accent);
   margin-bottom: clamp(0.85rem, 1.5vw, 1.25rem);
+  transition: color var(--dur-normal) var(--ease-smooth);
 }
 
 .dots {
@@ -60,6 +61,7 @@
   line-height: 0.95;
   color: var(--color-text-primary);
   margin: 0;
+  transition: color var(--dur-normal) var(--ease-smooth);
 }
 
 .headingAccent {
@@ -76,6 +78,7 @@
   line-height: var(--leading-relaxed);
   padding-bottom: 0.25rem;
   margin: 0;
+  transition: color var(--dur-normal) var(--ease-smooth);
 }
 
 .track {
@@ -103,7 +106,9 @@
   display: flex;
   flex-direction: column;
   border-left: 1px solid var(--color-border);
-  transition: background var(--dur-normal) var(--ease-smooth);
+  transition:
+    background var(--dur-normal) var(--ease-smooth),
+    border-color var(--dur-normal) var(--ease-smooth);
 }
 
 .card:last-child {
@@ -136,6 +141,7 @@
   font-weight: var(--weight-semibold);
   letter-spacing: var(--tracking-wider);
   color: var(--color-text-tertiary);
+  transition: color var(--dur-normal) var(--ease-smooth);
 }
 
 .cardArrow {
@@ -156,6 +162,7 @@
   color: var(--color-text-primary);
   line-height: var(--leading-snug);
   margin: 0;
+  transition: color var(--dur-normal) var(--ease-smooth);
 }
 
 .cardDesc {
@@ -164,6 +171,7 @@
   line-height: 1.6;
   margin: 0;
   flex: 1;
+  transition: color var(--dur-normal) var(--ease-smooth);
 }
 
 .cardTags {
@@ -173,6 +181,7 @@
   margin-top: auto;
   padding-top: clamp(0.9rem, 1.5vw, 1.2rem);
   border-top: 1px solid var(--color-border);
+  transition: border-color var(--dur-normal) var(--ease-smooth);
 }
 
 .tag {
@@ -203,6 +212,61 @@
 
 .card:hover .cardBorder {
   opacity: 1;
+}
+
+/* ── Light theme: cards flip to white once a nearby section (e.g. Numbers)
+     pulls the page theme light, instead of staying hard-coded dark navy
+     against a light backdrop ── */
+.themeLight .label {
+  color: var(--color-accent-onlight);
+}
+
+.themeLight .heading {
+  color: var(--color-text-primary-onlight);
+}
+
+.themeLight .headingSub {
+  color: var(--color-text-secondary-onlight);
+}
+
+.themeLight .card {
+  background: var(--color-bg-light-elevated);
+  border-left-color: var(--color-border-onlight);
+}
+
+.themeLight .card:last-child {
+  border-right-color: var(--color-border-onlight);
+}
+
+.themeLight .card:hover {
+  background: var(--color-bg-light);
+}
+
+.themeLight .cardNum,
+.themeLight .cardArrow {
+  color: var(--color-text-tertiary-onlight);
+}
+
+.themeLight .cardTitle {
+  color: var(--color-text-primary-onlight);
+}
+
+.themeLight .cardDesc {
+  color: var(--color-text-secondary-onlight);
+}
+
+.themeLight .cardTags {
+  border-top-color: var(--color-border-onlight);
+}
+
+.themeLight .tag {
+  color: var(--color-text-tertiary-onlight);
+  border-color: var(--color-border-onlight);
+}
+
+.themeLight .card:hover .tag {
+  border-color: var(--color-border-onlight-hover);
+  color: var(--color-text-secondary-onlight);
 }
 
 @media (max-width: 768px) {

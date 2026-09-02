@@ -5,6 +5,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import Container from '../../ui/Container/Container'
 import { services } from '../../../data/services'
 import { useCursor } from '../../../context/CursorContext'
+import { useSectionTheme } from '../../../context/SectionThemeContext'
 import styles from './Services.module.css'
 
 gsap.registerPlugin(ScrollTrigger)
@@ -44,6 +45,8 @@ const ServiceCard = ({ service }) => {
 const Services = () => {
   const sectionRef = useRef(null)
   const trackRef = useRef(null)
+  const theme = useSectionTheme()
+  const isLight = theme === 'light'
 
   useGSAP(() => {
     const mm = gsap.matchMedia()
@@ -111,7 +114,12 @@ const Services = () => {
   }, { scope: sectionRef })
 
   return (
-    <section className={styles.services} ref={sectionRef} id="services" data-section-theme="dark">
+    <section
+      className={`${styles.services} ${isLight ? styles.themeLight : ''}`}
+      ref={sectionRef}
+      id="services"
+      data-section-theme="dark"
+    >
       <div className={styles.sticky}>
         <Container>
           <div className={styles.header}>
