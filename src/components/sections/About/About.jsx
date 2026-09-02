@@ -129,8 +129,10 @@ const About = () => {
 
   return (
     <section className={styles.about} ref={sectionRef} id="about" data-section-theme="light">
-      <div className={styles.orb} data-about-orb aria-hidden />
-      <div className={styles.gridGlow} aria-hidden />
+      <div className={styles.bgClip} aria-hidden>
+        <div className={styles.orb} data-about-orb />
+        <div className={styles.gridGlow} />
+      </div>
 
       <Container>
         <div className={styles.label}>
@@ -196,12 +198,14 @@ const About = () => {
               </div>
             </div>
 
-            <div className={styles.wordsRow} aria-hidden>
-              {MOVING_WORDS.map((word) => (
-                <span key={word} className={styles.wordPill} data-about-word>
-                  {word}
-                </span>
-              ))}
+            <div className={styles.wordsTrack} aria-hidden>
+              <div className={styles.wordsMarquee}>
+                {[...MOVING_WORDS, ...MOVING_WORDS].map((word, i) => (
+                  <span key={`${word}-${i}`} className={styles.wordPill} data-about-word>
+                    {word}
+                  </span>
+                ))}
+              </div>
             </div>
           </div>
         </div>

@@ -2,9 +2,20 @@
   position: relative;
   padding-block: clamp(7rem, 10vw, 9rem) clamp(5rem, 7vw, 6rem);
   background: transparent;
-  overflow: hidden;
   border-top: 1px solid var(--color-border-onlight);
   scroll-margin-top: 90px;
+}
+
+/* overflow:hidden lives here instead of on .about itself — an
+   overflow value other than visible on any ancestor of .pinStage
+   breaks position: sticky, which is what was silently defeating the
+   pin/freeze effect below. */
+.bgClip {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  z-index: 0;
+  pointer-events: none;
 }
 
 .orb {
@@ -157,22 +168,53 @@
   color: var(--color-text-primary-onlight);
 }
 
-/* Words: a calm static row, no sliding — color shifts to match
-   whichever photo is currently in focus (set inline via JS). */
-.wordsRow {
+/* Words: a plain horizontal marquee (same technique as the Clients
+   logo strip) — steady, not the old diagonal cascade — with color
+   shifting to match whichever photo is currently in focus (set
+   inline via JS on every cloned pill). */
+.wordsTrack {
   position: relative;
   z-index: 2;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 0.75rem;
+  overflow: hidden;
+  width: 100%;
   margin-top: clamp(2.5rem, 5vw, 4rem);
+  mask-image: linear-gradient(
+    to right,
+    transparent,
+    black 7%,
+    black 93%,
+    transparent
+  );
+}
+
+.wordsMarquee {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  width: max-content;
+  animation: wordsMarquee 32s linear infinite;
+  will-change: transform;
+}
+
+.wordsTrack:hover .wordsMarquee {
+  animation-play-state: paused;
+}
+
+@keyframes wordsMarquee {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-50%);
+  }
 }
 
 .wordPill {
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  flex-shrink: 0;
 
   padding: 0.5rem 1.25rem;
 
@@ -231,7 +273,7 @@
     margin: 0;
   }
 
-  .wordsRow {
+  .wordsTrack {
     margin-top: 2rem;
   }
 }
