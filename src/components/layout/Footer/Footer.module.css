@@ -2,7 +2,7 @@
   position: relative;
   background: transparent;
   border-top: 1px solid var(--color-border);
-  padding-top: clamp(3rem, 6vw, 5rem);
+  padding-top: clamp(2rem, 3.5vw, 3rem);
   padding-bottom: var(--space-10);
   overflow: hidden;
   isolation: isolate;
@@ -59,7 +59,7 @@
 
 .cta {
   max-width: 760px;
-  margin: 0 auto clamp(3rem, 5vw, 4.5rem);
+  margin: 0 auto clamp(2rem, 3vw, 2.75rem);
   text-align: center;
 }
 
@@ -69,7 +69,7 @@
   justify-content: center;
   gap: 0.65rem;
 
-  margin-bottom: 1rem;
+  margin-bottom: 0.75rem;
 
   font-size: var(--type-body-xs);
   font-weight: var(--weight-semibold);
@@ -97,7 +97,7 @@
   letter-spacing: var(--tracking-tighter);
   line-height: 0.98;
   color: var(--color-text-primary);
-  margin: 0 0 1rem;
+  margin: 0 0 0.75rem;
 }
 
 .ctaText {
@@ -105,7 +105,7 @@
   color: var(--color-text-secondary);
   line-height: 1.65;
   max-width: 600px;
-  margin: 0 auto 1.5rem;
+  margin: 0 auto 1.1rem;
 }
 
 .ctaButtons {
@@ -232,11 +232,11 @@
 /* ── Responsive ── */
 @media (max-width: 768px) {
   .footer {
-    padding-top: 3rem;
+    padding-top: 2.25rem;
   }
 
   .cta {
-    margin-bottom: 2.75rem;
+    margin-bottom: 2rem;
   }
 
   .ctaHeading {
