@@ -56,6 +56,21 @@
   z-index: 3;
 }
 
+.pinWrapper {
+  position: relative;
+  height: 240vh;
+}
+
+.pinStage {
+  position: sticky;
+  top: 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-block: 2rem;
+}
+
 .grid {
   position: relative;
   z-index: 3;
@@ -66,8 +81,7 @@
 }
 
 .left {
-  position: sticky;
-  top: 110px;
+  position: relative;
 }
 
 .imageStack {
@@ -143,40 +157,29 @@
   color: var(--color-text-primary-onlight);
 }
 
-/* Words: upper-left to lower-right, no line, no weird wave */
-.wordWave {
+/* Words: a calm static row, no sliding — color shifts to match
+   whichever photo is currently in focus (set inline via JS). */
+.wordsRow {
   position: relative;
   z-index: 2;
-  width: 100%;
-  height: clamp(150px, 15vw, 210px);
-  margin-top: clamp(2.25rem, 4vw, 3.25rem);
-  overflow: hidden;
-  pointer-events: none;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.75rem;
+  margin-top: clamp(2.5rem, 5vw, 4rem);
 }
 
-.wordTrack {
-  position: absolute;
-  left: -18%;
-  top: 0;
-  width: 3400px;
-  height: 190px;
-  animation: diagonalSlide 42s linear infinite;
-}
-
-.word {
-  position: absolute;
+.wordPill {
   display: inline-flex;
   align-items: center;
   justify-content: center;
 
   padding: 0.5rem 1.25rem;
 
-  border: 1px solid rgba(180, 140, 255, 0.42);
+  border: 1px solid var(--color-accent-onlight);
   border-radius: var(--radius-full);
 
-  background: rgba(20, 18, 64, 0.66);
-
-  color: rgba(255, 255, 255, 0.86);
+  color: var(--color-accent-onlight);
 
   font-size: var(--type-body-xs);
   font-weight: var(--weight-semibold);
@@ -184,38 +187,9 @@
   text-transform: uppercase;
   white-space: nowrap;
 
-  box-shadow:
-    0 0 18px rgba(71, 0, 179, 0.18),
-    inset 0 0 0 1px rgba(255, 255, 255, 0.035);
-}
-
-/* Clean diagonal: starts upper-left, ends lower-right */
-.word1 { left: 60px; top: 12px; }
-.word2 { left: 270px; top: 28px; }
-.word3 { left: 500px; top: 44px; }
-.word4 { left: 740px; top: 60px; }
-.word5 { left: 965px; top: 76px; }
-.word6 { left: 1190px; top: 92px; }
-.word7 { left: 1450px; top: 108px; }
-.word8 { left: 1690px; top: 124px; }
-
-.word9 { left: 1930px; top: 12px; }
-.word10 { left: 2140px; top: 28px; }
-.word11 { left: 2370px; top: 44px; }
-.word12 { left: 2610px; top: 60px; }
-.word13 { left: 2835px; top: 76px; }
-.word14 { left: 3060px; top: 92px; }
-.word15 { left: 3320px; top: 108px; }
-.word16 { left: 3560px; top: 124px; }
-
-@keyframes diagonalSlide {
-  from {
-    transform: translateX(0);
-  }
-
-  to {
-    transform: translateX(-1870px);
-  }
+  transition:
+    color var(--dur-normal) var(--ease-smooth),
+    border-color var(--dur-normal) var(--ease-smooth);
 }
 
 @media (max-width: 900px) {
@@ -223,13 +197,23 @@
     padding-block: 4.5rem 4rem;
   }
 
+  /* Pinning a stacked image+heading+paragraphs+words column inside one
+     100vh screen doesn't fit on mobile, so just let it scroll normally —
+     the crossfade below still runs, it just won't hold the section in
+     place while it plays. */
+  .pinWrapper {
+    height: auto;
+  }
+
+  .pinStage {
+    position: static;
+    min-height: auto;
+    padding-block: 0;
+  }
+
   .grid {
     grid-template-columns: 1fr;
     gap: var(--space-8);
-  }
-
-  .left {
-    position: static;
   }
 
   .imageStack {
@@ -247,14 +231,8 @@
     margin: 0;
   }
 
-  .wordWave {
-    height: 145px;
+  .wordsRow {
     margin-top: 2rem;
-  }
-
-  .wordTrack {
-    left: -75%;
-    animation-duration: 34s;
   }
 }
 
@@ -272,7 +250,7 @@
     line-height: 1.7;
   }
 
-  .word {
+  .wordPill {
     padding: 0.4rem 0.9rem;
     font-size: 0.68rem;
   }

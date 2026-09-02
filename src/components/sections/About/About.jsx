@@ -24,8 +24,17 @@ const ABOUT_IMAGES = [
   { src: 'about-02-panel.png', alt: 'HEWAR representatives on a panel discussion' },
 ]
 
+/* Tracks the same color as whichever photo is currently dominant, so
+   the word row visibly shifts in sync with each image change. */
+const WORD_COLORS = [
+  [71, 0, 179], // violet — image 1
+  [0, 130, 190], // cyan — image 2
+  [6, 26, 64], // navy — image 3
+]
+
 const About = () => {
   const sectionRef = useRef(null)
+  const pinWrapperRef = useRef(null)
 
   useGSAP(() => {
     const ctx = gsap.context(() => {
@@ -71,25 +80,45 @@ const About = () => {
         },
       })
 
-      /* Crossfade the three images as the reader scrolls through the
-         section's own content (top hits viewport top -> bottom hits
-         viewport bottom), not the wider enter/exit range, so the change
-         tracks actual reading progress instead of mostly happening while
-         the section is only half on-screen. image[i] peaks when
+      /* Pin the whole photo + copy block in place while the reader scrolls
+         through pinWrapper's extra height (set in CSS via .pinStage's
+         position: sticky). That scroll distance is what drives the image
+         crossfade and the word-row color — not page scroll in general —
+         so the section only releases to the next one once the third photo
+         has settled in. image[i] (and its matching color) peaks when
          progress === i / (count - 1), fading linearly toward its
          neighbors. */
       const images = gsap.utils.toArray('[data-about-img]')
+      const words = gsap.utils.toArray('[data-about-word]')
       const step = 1 / (images.length - 1)
 
       ScrollTrigger.create({
-        trigger: sectionRef.current,
+        trigger: pinWrapperRef.current,
         start: 'top top',
         end: 'bottom bottom',
         scrub: true,
         onUpdate: (self) => {
-          images.forEach((img, i) => {
+          const weights = images.map((_, i) => {
             const distance = Math.abs(self.progress - i * step)
-            img.style.opacity = Math.max(0, 1 - distance / step)
+            return Math.max(0, 1 - distance / step)
+          })
+
+          images.forEach((img, i) => {
+            img.style.opacity = weights[i]
+          })
+
+          const totalWeight = weights.reduce((sum, w) => sum + w, 0) || 1
+          const rgb = [0, 0, 0]
+          weights.forEach((w, i) => {
+            rgb[0] += WORD_COLORS[i][0] * w
+            rgb[1] += WORD_COLORS[i][1] * w
+            rgb[2] += WORD_COLORS[i][2] * w
+          })
+          const color = `rgb(${Math.round(rgb[0] / totalWeight)}, ${Math.round(rgb[1] / totalWeight)}, ${Math.round(rgb[2] / totalWeight)})`
+
+          words.forEach((word) => {
+            word.style.color = color
+            word.style.borderColor = color
           })
         },
       })
@@ -113,68 +142,70 @@ const About = () => {
           <span>About HEWAR</span>
         </div>
 
-        <div className={styles.grid}>
-          <div className={styles.left}>
-            <div className={styles.imageStack}>
-              {ABOUT_IMAGES.map((image, i) => (
-                <img
-                  key={image.src}
-                  className={styles.aboutImg}
-                  data-about-img
-                  src={`${import.meta.env.BASE_URL}images/about/${image.src}`}
-                  alt={image.alt}
-                  style={{ opacity: i === 0 ? 1 : 0 }}
-                />
-              ))}
-            </div>
-          </div>
+        <div className={styles.pinWrapper} ref={pinWrapperRef}>
+          <div className={styles.pinStage}>
+            <div className={styles.grid}>
+              <div className={styles.left}>
+                <div className={styles.imageStack}>
+                  {ABOUT_IMAGES.map((image, i) => (
+                    <img
+                      key={image.src}
+                      className={styles.aboutImg}
+                      data-about-img
+                      src={`${import.meta.env.BASE_URL}images/about/${image.src}`}
+                      alt={image.alt}
+                      style={{ opacity: i === 0 ? 1 : 0 }}
+                    />
+                  ))}
+                </div>
+              </div>
 
-          <div className={styles.right}>
-            <h2 className={styles.heading}>
-              {[
-                'Born from the',
-                'belief that every',
-                'brand has',
-                'something',
-                'worth saying.',
-              ].map((line, i) => (
-                <span key={i} className={styles.lineWrap}>
-                  <span className={styles.lineInner} data-about-line>
-                    {line}
-                  </span>
+              <div className={styles.right}>
+                <h2 className={styles.heading}>
+                  {[
+                    'Born from the',
+                    'belief that every',
+                    'brand has',
+                    'something',
+                    'worth saying.',
+                  ].map((line, i) => (
+                    <span key={i} className={styles.lineWrap}>
+                      <span className={styles.lineInner} data-about-line>
+                        {line}
+                      </span>
+                    </span>
+                  ))}
+                </h2>
+
+                <div className={styles.storyBlock}>
+                  <p className={styles.story} data-about-story>
+                    HEWAR — حوار — means <em>dialogue</em> in Arabic. It is not a
+                    metaphor. It is our operating principle. We believe the best
+                    communication is never one-directional. It listens as much as it
+                    speaks, and earns attention rather than demanding it.
+                  </p>
+
+                  <p className={styles.story} data-about-story>
+                    Founded in Saudi Arabia with 12+ years in the market, we craft
+                    bespoke communication solutions for partners from the public and
+                    private sectors across diverse industries. Built for the MENA
+                    region, we read the room before we shape the message — culture,
+                    timing, stakeholders, and public conversation included.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div className={styles.wordsRow} aria-hidden>
+              {MOVING_WORDS.map((word) => (
+                <span key={word} className={styles.wordPill} data-about-word>
+                  {word}
                 </span>
               ))}
-            </h2>
-
-            <div className={styles.storyBlock}>
-              <p className={styles.story} data-about-story>
-                HEWAR — حوار — means <em>dialogue</em> in Arabic. It is not a
-                metaphor. It is our operating principle. We believe the best
-                communication is never one-directional. It listens as much as it
-                speaks, and earns attention rather than demanding it.
-              </p>
-
-              <p className={styles.story} data-about-story>
-                Founded in Saudi Arabia with 12+ years in the market, we craft
-                bespoke communication solutions for partners from the public and
-                private sectors across diverse industries. Built for the MENA
-                region, we read the room before we shape the message — culture,
-                timing, stakeholders, and public conversation included.
-              </p>
             </div>
           </div>
         </div>
       </Container>
-
-      <div className={styles.wordWave} aria-hidden>
-        <div className={styles.wordTrack}>
-          {[...MOVING_WORDS, ...MOVING_WORDS].map((word, i) => (
-            <span key={`${word}-${i}`} className={`${styles.word} ${styles[`word${i + 1}`]}`}>
-              {word}
-            </span>
-          ))}
-        </div>
-      </div>
     </section>
   )
 }
