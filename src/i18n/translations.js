@@ -41,6 +41,7 @@ export const translations = {
       headingLine1: 'Where Strategy',
       headingLine2: 'Meets Impact',
       viewProject: 'View Project',
+      nextProject: 'Next Project',
     },
     clients: {
       trustedBy: 'Trusted By',
@@ -122,6 +123,7 @@ export const translations = {
       headingLine1: 'حيث تلتقي',
       headingLine2: 'الاستراتيجية بالأثر',
       viewProject: 'عرض المشروع',
+      nextProject: 'المشروع التالي',
     },
     clients: {
       trustedBy: 'موضع ثقة',

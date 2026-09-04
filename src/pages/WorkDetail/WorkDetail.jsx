@@ -7,6 +7,7 @@ import Container from '../../components/ui/Container/Container'
 import Button from '../../components/ui/Button/Button'
 import { work } from '../../data/work'
 import { useLanguage } from '../../context/LanguageContext'
+import { useTranslation } from '../../i18n/useTranslation'
 import styles from './WorkDetail.module.css'
 
 const pageVariants = {
@@ -17,10 +18,13 @@ const pageVariants = {
 
 const WorkDetail = () => {
   const { language } = useLanguage()
+  const { t } = useTranslation()
   const { id } = useParams()
   const heroRef = useRef(null)
   const bodyRef = useRef(null)
-  const project = work.find((p) => p.id === id)
+  const projectIndex = work.findIndex((p) => p.id === id)
+  const project = work[projectIndex]
+  const nextProject = project ? work[(projectIndex + 1) % work.length] : null
 
   useGSAP(() => {
     gsap.fromTo(
@@ -68,7 +72,7 @@ const WorkDetail = () => {
   }
 
   return (
-    <motion.div variants={pageVariants} initial="initial" animate="animate" exit="exit">
+    <motion.div key={project.id} variants={pageVariants} initial="initial" animate="animate" exit="exit">
       {/* ── Hero ── */}
       <section
         className={styles.hero}
@@ -140,6 +144,32 @@ const WorkDetail = () => {
             </div>
           </Container>
         </section>
+      )}
+
+      {/* ── Next Project ── */}
+      {nextProject && (
+        <Link
+          to={`/work/${nextProject.id}`}
+          className={styles.nextSection}
+          style={{ '--next-color': nextProject.color }}
+        >
+          <div className={styles.nextBg} aria-hidden>
+            {nextProject.image
+              ? <img src={nextProject.image} alt="" className={styles.nextBgImg} />
+              : <div className={styles.nextBgColor} style={{ background: nextProject.color }} />
+            }
+          </div>
+          <div className={styles.nextOverlay} aria-hidden />
+          <Container>
+            <div className={styles.nextInner}>
+              <p className={styles.nextLabel}>{t('work.nextProject')}</p>
+              <h2 className={styles.nextTitle}>
+                {nextProject.client}
+                <span className={styles.nextArrow} aria-hidden>↗</span>
+              </h2>
+            </div>
+          </Container>
+        </Link>
       )}
     </motion.div>
   )
