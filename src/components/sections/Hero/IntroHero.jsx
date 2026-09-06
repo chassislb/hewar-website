@@ -1,5 +1,4 @@
 import { useEffect, useRef } from 'react'
-import { useContactModal } from '../../../context/ContactModalContext'
 import { useTranslation } from '../../../i18n/useTranslation'
 import styles from './IntroHero.module.css'
 
@@ -36,7 +35,6 @@ function makeParticle(w, h, cx, cy, mainRadius) {
   where it sits on the page.
 */
 const IntroHero = () => {
-  const { openContactModal } = useContactModal()
   const { t } = useTranslation()
   const wrapperRef = useRef(null)
   const canvasRef = useRef(null)
@@ -183,14 +181,15 @@ const IntroHero = () => {
             {t('hero.tagline')}
           </p>
 
-          <button
+          <a
             ref={ctaButtonRef}
-            type="button"
+            href="https://thinkmate-test.netlify.app/#top"
+            target="_blank"
+            rel="noopener noreferrer"
             className={styles.ctaButton}
-            onClick={openContactModal}
           >
             {t('hero.cta')}
-          </button>
+          </a>
         </div>
       </div>
     </section>

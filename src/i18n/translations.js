@@ -15,7 +15,7 @@ export const translations = {
       line1: 'Human Intelligence.',
       line2: 'Amplified.',
       tagline: 'A creative, PR and marketing agency, AI-enhanced to amplify ideas, influence and impact.',
-      cta: "Let's Talk",
+      cta: 'Know More',
     },
     video: {
       soundOn: 'Sound On',
@@ -97,7 +97,7 @@ export const translations = {
       line1: 'ذكاء بشري.',
       line2: 'مُضخَّم.',
       tagline: 'وكالة إبداعية للعلاقات العامة والتسويق، مدعومة بالذكاء الاصطناعي لتضخيم الأفكار والتأثير والأثر.',
-      cta: 'لنتحدث',
+      cta: 'اعرف أكثر',
     },
     video: {
       soundOn: 'تشغيل الصوت',
