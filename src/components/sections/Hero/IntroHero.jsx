@@ -183,7 +183,7 @@ const IntroHero = () => {
 
           <a
             ref={ctaButtonRef}
-            href="https://thinkmate-test.netlify.app/#top"
+            href="https://thinkmate-hewar-699.netlify.app/"
             target="_blank"
             rel="noopener noreferrer"
             className={styles.ctaButton}
