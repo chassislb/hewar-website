@@ -38,12 +38,11 @@
 }
 
 .title {
-  font-size: clamp(2.8rem, 7vw, 7rem);
+  font-size: var(--type-display-2xl);
   font-weight: var(--weight-black);
   letter-spacing: var(--tracking-tighter);
-  line-height: var(--leading-tight);
+  line-height: var(--leading-none);
   color: var(--color-text-primary);
-  max-width: 16ch;
   position: relative;
   z-index: 1;
 }
@@ -59,244 +58,111 @@
 }
 
 /* ═══════════════════════════════
-   STORY — 3-image parallax + scroll text
+   MISSION / VISION — big numbered editorial blocks
 ═══════════════════════════════ */
-.story {
+.pillars {
   background: var(--color-bg-secondary);
   padding-block: var(--section-padding-y);
-  overflow: hidden;
 }
 
-.storyGrid {
+.pillarsGrid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: clamp(3rem, 5vw, 5rem);
-  align-items: start; /* critical — allows sticky to work */
+  gap: clamp(3rem, 6vw, 6rem);
 }
 
-/* ── LEFT: sticky image column ── */
-.storyImageCol {
-  position: sticky;
-  top: clamp(5.5rem, 9vh, 7rem);
-  will-change: transform, opacity;
-}
-
-/* ── 3-photo parallax stack ── */
-.imageStack {
-  position: relative;
-  width: 100%;
-  height: clamp(460px, 76vh, 720px);
-}
-
-/* Photo A — office/logo wall — large, back layer, slowest parallax */
-.imgFrameA {
-  position: absolute;
-  width: 72%;
-  aspect-ratio: 3 / 4;
-  top: 0;
-  left: 0;
-  border-radius: 14px;
-  overflow: hidden;
-  box-shadow: 0 28px 72px rgba(0, 0, 0, 0.5);
-  z-index: 1;
-}
-
-/* Photo B — panel discussion — mid layer, medium parallax */
-.imgFrameB {
-  position: absolute;
-  width: 54%;
-  aspect-ratio: 4 / 3;
-  top: 20%;
-  right: 0;
-  border-radius: 14px;
-  overflow: hidden;
-  box-shadow: 0 20px 56px rgba(0, 0, 0, 0.55);
-  z-index: 2;
-}
-
-/* Photo C — award ceremony — front layer, fastest parallax */
-.imgFrameC {
-  position: absolute;
-  width: 44%;
-  aspect-ratio: 3 / 2;
-  bottom: 2%;
-  left: 16%;
-  border-radius: 14px;
-  overflow: hidden;
-  box-shadow: 0 14px 40px rgba(0, 0, 0, 0.6);
-  z-index: 3;
-  border: 2px solid rgba(0, 200, 255, 0.18);
-}
-
-/* Inner image — oversized vertically to allow parallax travel */
-.imgInner {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 120%;
-  top: -10%;
-  object-fit: cover;
-  will-change: transform;
-  display: block;
-}
-
-/* Branded placeholder treatment — used until real HEWAR photography is supplied */
-.imgInner.placeholderA,
-.imgInner.placeholderB,
-.imgInner.placeholderC {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-  background-color: var(--color-bg-elevated);
-  background-image:
-    linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
-  background-size: 34px 34px;
-}
-
-.imgInner.placeholderA::before,
-.imgInner.placeholderB::before,
-.imgInner.placeholderC::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-}
-
-.imgInner.placeholderA::before { background: var(--gradient-surface); }
-.imgInner.placeholderB::before { background: var(--gradient-brand-soft); opacity: 0.35; }
-.imgInner.placeholderC::before { background: var(--gradient-surface); }
-
-.imgInner.placeholderA::after,
-.imgInner.placeholderB::after,
-.imgInner.placeholderC::after {
-  content: 'H';
-  position: relative;
-  font-weight: var(--weight-black);
-  font-size: clamp(3rem, 8vw, 5.5rem);
-  letter-spacing: var(--tracking-tighter);
-  color: rgba(255, 255, 255, 0.08);
-}
-
-/* ── RIGHT: scrolling text column ── */
-.storyTextCol {
-  display: flex;
-  flex-direction: column;
-  gap: clamp(3.5rem, 7vw, 6rem);
-  padding-block: clamp(1rem, 3vh, 2rem);
-}
-
-.storyBlock {
+.pillarBlock {
   display: flex;
   flex-direction: column;
 }
 
-.storyLabel {
-  font-size: var(--type-body-xs);
+.pillarNum {
+  font-size: var(--type-body-sm);
   font-weight: var(--weight-semibold);
-  letter-spacing: var(--tracking-widest);
-  text-transform: uppercase;
+  letter-spacing: var(--tracking-wider);
   color: var(--color-text-accent);
-  margin-bottom: var(--space-6);
+  margin-bottom: clamp(1rem, 2vw, 1.5rem);
+  font-variant-numeric: tabular-nums;
 }
 
-.storyText {
-  font-size: clamp(1rem, 1.5vw, 1.15rem);
+.pillarHeading {
+  font-size: var(--type-display-sm);
+  font-weight: var(--weight-black);
+  letter-spacing: var(--tracking-tighter);
+  line-height: var(--leading-tight);
+  color: var(--color-text-primary);
+  margin-bottom: clamp(1.25rem, 2.5vw, 1.75rem);
+}
+
+.pillarBody {
+  font-size: clamp(1.05rem, 1.6vw, 1.3rem);
   color: var(--color-text-secondary);
   line-height: var(--leading-relaxed);
-  margin-bottom: clamp(1.25rem, 2.5vw, 2rem);
-}
-
-.storyText em {
-  font-style: italic;
-  color: var(--color-text-primary);
-}
-
-.statsRow {
-  display: flex;
-  align-items: center;
-  gap: var(--space-6);
-  margin-top: clamp(1.5rem, 3vw, 2.5rem);
-  padding-top: clamp(1.5rem, 3vw, 2rem);
-  border-top: 1px solid var(--color-border);
-}
-
-.stat {
-  display: flex;
-  flex-direction: column;
-  gap: 0.3rem;
-}
-
-.statNumber {
-  font-size: clamp(1.8rem, 3.5vw, 2.75rem);
-  font-weight: var(--weight-black);
-  letter-spacing: var(--tracking-tighter);
-  color: var(--color-text-primary);
-  line-height: 1;
-}
-
-.statLabel {
-  font-size: var(--type-body-xs);
-  color: var(--color-text-tertiary);
-  letter-spacing: var(--tracking-wide);
-  text-transform: uppercase;
-}
-
-.statDivider {
-  width: 1px;
-  height: 36px;
-  background: var(--color-border);
-  flex-shrink: 0;
-}
-
-/* ── Method pillars ── */
-.pillarCard {
-  background: var(--color-bg-elevated);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-lg);
-  padding: clamp(1.5rem, 3vw, 2rem);
-  margin-bottom: var(--space-4);
-  transition: border-color 0.3s ease;
-}
-
-.pillarCard:last-child {
-  margin-bottom: 0;
-}
-
-.pillarCard:hover {
-  border-color: var(--color-border-accent);
-}
-
-.pillarTitle {
-  font-size: clamp(1.1rem, 1.8vw, 1.3rem);
-  font-weight: var(--weight-bold);
-  color: var(--color-text-primary);
-  margin-bottom: var(--space-4);
-  letter-spacing: var(--tracking-tight);
-}
-
-.pillarList {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-}
-
-.pillarItem {
-  font-size: 11px;
-  color: var(--color-text-secondary);
-  background: rgba(0, 200, 255, 0.07);
-  border: 1px solid rgba(0, 200, 255, 0.18);
-  border-radius: var(--radius-md);
-  padding: 0.3rem 0.75rem;
-  letter-spacing: 0.04em;
+  max-width: 42ch;
 }
 
 /* ═══════════════════════════════
-   VALUES
+   VALUES — numbered list rows
 ═══════════════════════════════ */
 .valuesSection {
   padding-block: var(--section-padding-y);
   background: var(--color-bg-primary);
+}
+
+.valuesTitle {
+  font-size: var(--type-display-lg);
+  font-weight: var(--weight-black);
+  letter-spacing: var(--tracking-tighter);
+  color: var(--color-text-primary);
+  margin-bottom: clamp(2.5rem, 5vw, 4rem);
+}
+
+.valuesList {
+  display: flex;
+  flex-direction: column;
+  border-top: 1px solid var(--color-border);
+}
+
+.valueRow {
+  display: flex;
+  align-items: baseline;
+  gap: clamp(1.5rem, 4vw, 3.5rem);
+  padding-block: clamp(1.5rem, 3vw, 2.25rem);
+  border-bottom: 1px solid var(--color-border);
+  transition: padding-inline-start var(--dur-normal) var(--ease-out-expo);
+}
+
+.valueRow:hover {
+  padding-inline-start: var(--space-4);
+}
+
+.valueRowNum {
+  font-size: var(--type-body-md);
+  font-weight: var(--weight-semibold);
+  color: var(--color-text-tertiary);
+  font-variant-numeric: tabular-nums;
+  flex-shrink: 0;
+  width: 2.5ch;
+}
+
+.valueRowTitle {
+  font-size: clamp(1.75rem, 4.5vw, 3.5rem);
+  font-weight: var(--weight-black);
+  letter-spacing: var(--tracking-tight);
+  color: var(--color-text-primary);
+  transition: color var(--dur-normal) ease;
+}
+
+.valueRow:hover .valueRowTitle {
+  color: var(--color-cyan);
+}
+
+/* ═══════════════════════════════
+   TEAM — The Minds Behind Hewar
+═══════════════════════════════ */
+.teamSection {
+  padding-block: var(--section-padding-y);
+  background: var(--color-bg-secondary);
 }
 
 .sectionEyebrow {
@@ -305,58 +171,67 @@
   letter-spacing: var(--tracking-widest);
   text-transform: uppercase;
   color: var(--color-text-accent);
-  margin-bottom: var(--space-4);
-}
-
-.sectionTitle {
-  font-size: clamp(2rem, 4vw, 3.5rem);
-  font-weight: var(--weight-black);
-  letter-spacing: var(--tracking-tighter);
-  color: var(--color-text-primary);
   margin-bottom: clamp(2.5rem, 5vw, 4rem);
 }
 
-.valuesGrid {
+.teamGrid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 1px;
-  background: var(--color-border);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-lg);
-  overflow: hidden;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(1.5rem, 3vw, 2rem);
 }
 
-.valueCard {
-  background: var(--color-bg-primary);
+.teamCard {
+  background: var(--color-bg-elevated);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
   padding: clamp(1.75rem, 3vw, 2.5rem);
   display: flex;
   flex-direction: column;
   gap: var(--space-3);
-  transition: background var(--dur-normal) ease;
+  transition: border-color var(--dur-normal) ease;
 }
 
-.valueCard:hover {
-  background: var(--color-bg-card-hover);
+.teamCard:hover {
+  border-color: var(--color-border-accent);
 }
 
-.valueNum {
-  font-size: var(--type-body-xs);
-  font-weight: var(--weight-semibold);
-  letter-spacing: var(--tracking-wider);
-  color: var(--color-text-accent);
+.teamAvatar {
+  width: 3.25rem;
+  height: 3.25rem;
+  border-radius: 50%;
+  background: var(--gradient-brand);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--type-body-sm);
+  font-weight: var(--weight-bold);
+  letter-spacing: var(--tracking-wide);
+  color: var(--color-white);
+  margin-bottom: var(--space-2);
+  flex-shrink: 0;
 }
 
-.valueTitle {
+.teamName {
   font-size: clamp(1.1rem, 1.8vw, 1.3rem);
   font-weight: var(--weight-bold);
   color: var(--color-text-primary);
   letter-spacing: var(--tracking-tight);
 }
 
-.valueBody {
+.teamTitle {
+  font-size: var(--type-body-xs);
+  font-weight: var(--weight-semibold);
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  color: var(--color-text-accent);
+  margin-bottom: var(--space-2);
+}
+
+.teamQuote {
   font-size: var(--type-body-sm);
   color: var(--color-text-secondary);
   line-height: var(--leading-relaxed);
+  font-style: italic;
 }
 
 /* ═══════════════════════════════
@@ -365,7 +240,7 @@
 .ctaSection {
   position: relative;
   padding-block: clamp(8rem, 15vw, 12rem);
-  background: var(--color-bg-secondary);
+  background: var(--color-bg-primary);
   overflow: hidden;
   text-align: center;
 }
@@ -413,50 +288,16 @@
    RESPONSIVE
 ═══════════════════════════════ */
 @media (max-width: 768px) {
-  .storyGrid {
+  .pillarsGrid {
     grid-template-columns: 1fr;
-    gap: 2.5rem;
+    gap: 3rem;
   }
 
-  .storyImageCol {
-    position: relative;
-    top: auto;
+  .valueRow {
+    gap: 1.25rem;
   }
 
-  .imageStack {
-    height: clamp(280px, 75vw, 420px);
-  }
-
-  /* On mobile simplify to A + B only */
-  .imgFrameC {
-    display: none;
-  }
-
-  .imgFrameA {
-    width: 65%;
-  }
-
-  .imgFrameB {
-    width: 56%;
-    top: 30%;
-  }
-
-  .valuesGrid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-@media (max-width: 480px) {
-  .valuesGrid {
+  .teamGrid {
     grid-template-columns: 1fr;
-  }
-
-  .imgFrameB {
-    display: none;
-  }
-
-  .imgFrameA {
-    width: 88%;
-    aspect-ratio: 4 / 3;
   }
 }
