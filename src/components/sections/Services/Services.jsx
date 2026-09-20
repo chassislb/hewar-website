@@ -1,8 +1,8 @@
-import { useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { useGSAP } from '@gsap/react'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
-import { Link } from 'react-router-dom'
+import { AnimatePresence, motion } from 'framer-motion'
 import Container from '../../ui/Container/Container'
 import { useCursor } from '../../../context/CursorContext'
 import { useSectionTheme } from '../../../context/SectionThemeContext'
@@ -11,7 +11,17 @@ import styles from './Services.module.css'
 
 gsap.registerPlugin(ScrollTrigger)
 
-const ServiceCard = ({ title, index }) => {
+const backdropVariants = {
+  closed: { opacity: 0 },
+  open: { opacity: 1, transition: { duration: 0.3 } },
+}
+
+const panelVariants = {
+  closed: { opacity: 0, y: 24, scale: 0.98 },
+  open: { opacity: 1, y: 0, scale: 1, transition: { duration: 0.4, ease: [0.16, 1, 0.3, 1] } },
+}
+
+const ServiceCard = ({ title, index, onOpen }) => {
   const { setCursor, resetCursor } = useCursor()
 
   return (
@@ -20,7 +30,7 @@ const ServiceCard = ({ title, index }) => {
       onMouseEnter={() => setCursor('hover')}
       onMouseLeave={resetCursor}
     >
-      <Link to="/services" className={styles.cardLink}>
+      <button type="button" className={styles.cardLink} onClick={() => onOpen(index)}>
         <div className={styles.cardInner}>
           <div className={styles.cardTop}>
             <span className={styles.cardNum}>{String(index + 1).padStart(2, '0')}</span>
@@ -31,7 +41,7 @@ const ServiceCard = ({ title, index }) => {
         </div>
 
         <div className={styles.cardBorder} aria-hidden />
-      </Link>
+      </button>
     </div>
   )
 }
@@ -42,7 +52,29 @@ const Services = () => {
   const theme = useSectionTheme()
   const isLight = theme === 'light'
   const { t } = useTranslation()
+  const { setCursor, resetCursor } = useCursor()
   const cards = t('services.cards')
+  const cardDetails = t('services.cardDetails')
+  const [openIndex, setOpenIndex] = useState(null)
+  const isOpen = openIndex !== null
+
+  const closeModal = () => setOpenIndex(null)
+
+  useEffect(() => {
+    document.body.style.overflow = isOpen ? 'hidden' : ''
+    return () => {
+      document.body.style.overflow = ''
+    }
+  }, [isOpen])
+
+  useEffect(() => {
+    if (!isOpen) return
+    const onKeyDown = (e) => {
+      if (e.key === 'Escape') closeModal()
+    }
+    window.addEventListener('keydown', onKeyDown)
+    return () => window.removeEventListener('keydown', onKeyDown)
+  }, [isOpen])
 
   useGSAP(() => {
     const mm = gsap.matchMedia()
@@ -143,10 +175,60 @@ const Services = () => {
 
         <div className={styles.track} ref={trackRef}>
           {cards.map((title, index) => (
-            <ServiceCard key={title} title={title} index={index} />
+            <ServiceCard key={title} title={title} index={index} onOpen={setOpenIndex} />
           ))}
         </div>
       </div>
+
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            className={styles.modalBackdrop}
+            variants={backdropVariants}
+            initial="closed"
+            animate="open"
+            exit="closed"
+            onClick={closeModal}
+          >
+            <motion.div
+              className={styles.modalPanel}
+              variants={panelVariants}
+              initial="closed"
+              animate="open"
+              exit="closed"
+              onClick={(e) => e.stopPropagation()}
+              role="dialog"
+              aria-modal="true"
+              aria-label={cards[openIndex]}
+            >
+              <button
+                type="button"
+                className={styles.modalClose}
+                onClick={closeModal}
+                aria-label="Close"
+                onMouseEnter={() => setCursor('hover')}
+                onMouseLeave={resetCursor}
+              >
+                <span aria-hidden>×</span>
+              </button>
+
+              <p className={styles.modalEyebrow}>
+                <span className={styles.eyebrowDot} aria-hidden />
+                {t('services.modalLabel')}
+              </p>
+              <h3 className={styles.modalTitle}>{cards[openIndex]}</h3>
+
+              <ul className={styles.modalList}>
+                {cardDetails[openIndex].map((item) => (
+                  <li key={item} className={styles.modalListItem}>
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </section>
   )
 }

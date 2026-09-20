@@ -122,9 +122,11 @@
 .cardLink {
   display: flex;
   flex-direction: column;
+  width: 100%;
   height: 100%;
   color: inherit;
   text-decoration: none;
+  text-align: start;
 }
 
 .cardInner {
@@ -290,4 +292,116 @@
   .cardTitle {
     font-size: clamp(1.35rem, 6vw, 1.8rem);
   }
+}
+
+/* ═══════════════════════════════
+   SERVICE DETAIL MODAL
+═══════════════════════════════ */
+.modalBackdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(1rem, 4vw, 3rem);
+  background: rgba(4, 10, 26, 0.72);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  overflow-y: auto;
+}
+
+.modalPanel {
+  position: relative;
+  width: 100%;
+  max-width: 640px;
+  max-height: calc(100vh - 4rem);
+  overflow-y: auto;
+  background: var(--color-bg-secondary);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: clamp(2rem, 4vw, 3rem);
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.45);
+}
+
+.modalClose {
+  position: absolute;
+  top: clamp(1rem, 2vw, 1.5rem);
+  right: clamp(1rem, 2vw, 1.5rem);
+  z-index: 1;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--color-border);
+  border-radius: 50%;
+  background: transparent;
+  color: var(--color-text-primary);
+  font-size: 1.5rem;
+  line-height: 1;
+  cursor: none;
+  transition: border-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
+}
+
+.modalClose:hover {
+  border-color: var(--color-border-accent);
+  color: var(--color-cyan);
+  transform: rotate(90deg);
+}
+
+.modalEyebrow {
+  font-size: var(--type-body-xs);
+  font-weight: var(--weight-semibold);
+  letter-spacing: var(--tracking-widest);
+  text-transform: uppercase;
+  color: var(--color-text-accent);
+  margin-bottom: 0.85rem;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.eyebrowDot {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--color-cyan);
+  flex-shrink: 0;
+}
+
+.modalTitle {
+  font-size: clamp(1.5rem, 2.8vw, 2.1rem);
+  font-weight: var(--weight-black);
+  letter-spacing: var(--tracking-tight);
+  line-height: 1.15;
+  color: var(--color-text-primary);
+  margin: 0 0 clamp(1.5rem, 3vw, 2rem);
+  max-width: 26ch;
+}
+
+.modalList {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(0.75rem, 1.5vw, 1rem);
+}
+
+.modalListItem {
+  font-size: var(--type-body-sm);
+  color: var(--color-text-secondary);
+  line-height: var(--leading-relaxed);
+  padding-inline-start: 1.4rem;
+  position: relative;
+}
+
+.modalListItem::before {
+  content: '';
+  position: absolute;
+  inset-inline-start: 0;
+  top: 0.55em;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--color-cyan);
 }
