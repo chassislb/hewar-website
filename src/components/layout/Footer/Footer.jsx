@@ -37,7 +37,7 @@ const Footer = () => {
               />
             </Link>
 
-            <p className={styles.tagline}>{t('common.tagline')}</p>
+            <p className={styles.tagline}>{t('footer.tagline')}</p>
 
             <a
               href={`mailto:${CONTACT_EMAIL}`}
@@ -80,7 +80,7 @@ const Footer = () => {
             onMouseEnter={() => setCursor('hover')}
             onMouseLeave={resetCursor}
           >
-            {t('footer.letsTalk')}
+            {t('footer.hewarUs')}
           </Button>
         </div>
 

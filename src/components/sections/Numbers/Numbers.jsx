@@ -21,7 +21,6 @@ const StatItem = ({ stat, language }) => {
 
       <div className={styles.statMeta}>
         <span className={styles.statLabel}>{stat.label[language]}</span>
-        <span className={styles.statDesc}>{stat.description[language]}</span>
       </div>
     </div>
   )

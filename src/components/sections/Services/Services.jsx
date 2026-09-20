@@ -2,8 +2,8 @@ import { useRef } from 'react'
 import { useGSAP } from '@gsap/react'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import { Link } from 'react-router-dom'
 import Container from '../../ui/Container/Container'
-import { services } from '../../../data/services'
 import { useCursor } from '../../../context/CursorContext'
 import { useSectionTheme } from '../../../context/SectionThemeContext'
 import { useTranslation } from '../../../i18n/useTranslation'
@@ -11,7 +11,7 @@ import styles from './Services.module.css'
 
 gsap.registerPlugin(ScrollTrigger)
 
-const ServiceCard = ({ service, language }) => {
+const ServiceCard = ({ title, index }) => {
   const { setCursor, resetCursor } = useCursor()
 
   return (
@@ -20,25 +20,18 @@ const ServiceCard = ({ service, language }) => {
       onMouseEnter={() => setCursor('hover')}
       onMouseLeave={resetCursor}
     >
-      <div className={styles.cardInner}>
-        <div className={styles.cardTop}>
-          <span className={styles.cardNum}>{service.id}</span>
-          <span className={styles.cardArrow}>↗</span>
+      <Link to="/services" className={styles.cardLink}>
+        <div className={styles.cardInner}>
+          <div className={styles.cardTop}>
+            <span className={styles.cardNum}>{String(index + 1).padStart(2, '0')}</span>
+            <span className={styles.cardArrow}>↗</span>
+          </div>
+
+          <h3 className={styles.cardTitle}>{title}</h3>
         </div>
 
-        <h3 className={styles.cardTitle}>{service.title[language]}</h3>
-        <p className={styles.cardDesc}>{service.description[language]}</p>
-
-        <div className={styles.cardTags}>
-          {service.tags[language].map((tag) => (
-            <span key={tag} className={styles.tag}>
-              {tag}
-            </span>
-          ))}
-        </div>
-      </div>
-
-      <div className={styles.cardBorder} aria-hidden />
+        <div className={styles.cardBorder} aria-hidden />
+      </Link>
     </div>
   )
 }
@@ -48,7 +41,8 @@ const Services = () => {
   const trackRef = useRef(null)
   const theme = useSectionTheme()
   const isLight = theme === 'light'
-  const { t, language } = useTranslation()
+  const { t } = useTranslation()
+  const cards = t('services.cards')
 
   useGSAP(() => {
     const mm = gsap.matchMedia()
@@ -148,8 +142,8 @@ const Services = () => {
         </Container>
 
         <div className={styles.track} ref={trackRef}>
-          {services.map((service) => (
-            <ServiceCard key={service.id} service={service} language={language} />
+          {cards.map((title, index) => (
+            <ServiceCard key={title} title={title} index={index} />
           ))}
         </div>
       </div>

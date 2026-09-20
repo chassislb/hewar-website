@@ -24,19 +24,27 @@
 
 .grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: 0;
   position: relative;
   z-index: 1;
 }
 
-/* Each stat separated by vertical lines */
+/* Each stat separated by vertical lines, two rows of three */
 .grid > div {
   padding-inline: clamp(1.5rem, 3vw, 3rem);
   border-right: 1px solid var(--color-border-onlight);
 }
-.grid > div:first-child { padding-left: 0; }
-.grid > div:last-child  { border-right: none; }
+
+@media (min-width: 1025px) {
+  .grid > div:nth-child(3n+1) { padding-left: 0; }
+  .grid > div:nth-child(3n)   { border-right: none; }
+  .grid > div:nth-child(n+4) {
+    border-top: 1px solid var(--color-border-onlight);
+    padding-top: clamp(1.5rem, 3vw, 2rem);
+    margin-top: clamp(1.5rem, 3vw, 2rem);
+  }
+}
 
 /* ── Stat ── */
 .stat {
@@ -82,12 +90,6 @@
   font-size: var(--type-body-sm);
   font-weight: var(--weight-semibold);
   color: var(--color-text-primary-onlight);
-}
-
-.statDesc {
-  font-size: var(--type-body-xs);
-  color: var(--color-text-tertiary-onlight);
-  line-height: var(--leading-relaxed);
 }
 
 /* ── Responsive ── */
