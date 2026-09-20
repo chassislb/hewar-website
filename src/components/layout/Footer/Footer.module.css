@@ -154,6 +154,39 @@
   color: var(--color-text-primary);
 }
 
+/* ── Social icons ── */
+.socialList {
+  list-style: none;
+  display: flex;
+  gap: var(--space-3);
+}
+
+.socialLink {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  border: 1px solid var(--color-border);
+  border-radius: 50%;
+  color: var(--color-text-secondary);
+  transition:
+    color var(--dur-fast) ease,
+    border-color var(--dur-fast) ease,
+    transform var(--dur-fast) ease;
+}
+
+.socialLink svg {
+  width: 17px;
+  height: 17px;
+}
+
+.socialLink:hover {
+  color: var(--color-cyan);
+  border-color: var(--color-border-accent);
+  transform: translateY(-2px);
+}
+
 /* ── Bottom bar ── */
 .bottom {
   display: flex;

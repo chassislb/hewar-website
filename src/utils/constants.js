@@ -12,6 +12,6 @@ export const OFFICES = [
 
 export const SOCIAL_LINKS = {
   linkedin:  'https://linkedin.com/company/hewar-group',
-  twitter:   'https://twitter.com/hewargroup',
+  x:         'https://x.com/hewargroup',
   instagram: 'https://instagram.com/hewargroup',
 }
