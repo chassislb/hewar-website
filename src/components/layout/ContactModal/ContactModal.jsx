@@ -18,7 +18,7 @@ const panelVariants = {
 
 const ContactModal = () => {
   const { isOpen, closeContactModal } = useContactModal()
-  const { setCursor, resetCursor } = useCursor()
+  const { setCursor, resetCursor, lockCursorToModal, unlockCursorFromModal } = useCursor()
   const { t } = useTranslation()
   const [submitted, setSubmitted] = useState(false)
   const [formData, setFormData] = useState({ name: '', company: '', email: '', message: '' })
@@ -32,10 +32,12 @@ const ContactModal = () => {
 
   useEffect(() => {
     document.body.style.overflow = isOpen ? 'hidden' : ''
+    if (isOpen) lockCursorToModal()
     return () => {
       document.body.style.overflow = ''
+      if (isOpen) unlockCursorFromModal()
     }
-  }, [isOpen])
+  }, [isOpen, lockCursorToModal, unlockCursorFromModal])
 
   useEffect(() => {
     if (!isOpen) return

@@ -52,7 +52,7 @@ const Services = () => {
   const theme = useSectionTheme()
   const isLight = theme === 'light'
   const { t } = useTranslation()
-  const { setCursor, resetCursor } = useCursor()
+  const { setCursor, resetCursor, lockCursorToModal, unlockCursorFromModal } = useCursor()
   const cards = t('services.cards')
   const cardDetails = t('services.cardDetails')
   const [openIndex, setOpenIndex] = useState(null)
@@ -62,10 +62,12 @@ const Services = () => {
 
   useEffect(() => {
     document.body.style.overflow = isOpen ? 'hidden' : ''
+    if (isOpen) lockCursorToModal()
     return () => {
       document.body.style.overflow = ''
+      if (isOpen) unlockCursorFromModal()
     }
-  }, [isOpen])
+  }, [isOpen, lockCursorToModal, unlockCursorFromModal])
 
   useEffect(() => {
     if (!isOpen) return

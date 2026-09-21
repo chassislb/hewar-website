@@ -8,9 +8,13 @@ import styles from './Cursor.module.css'
 const Cursor = () => {
   const dotRef  = useRef(null)
   const ringRef = useRef(null)
-  const { cursorType, cursorLabel } = useCursor()
+  const { cursorType, cursorLabel, forceDarkBgCursor } = useCursor()
   const isMobile = useIsMobile()
-  const theme = useSectionTheme()
+  const sectionTheme = useSectionTheme()
+  /* Modal panels are always dark, regardless of the section behind them,
+     so while one is open the cursor must render as it would over a dark
+     background even if the ambient section theme is currently light. */
+  const theme = forceDarkBgCursor ? 'dark' : sectionTheme
   const themeClass = theme === 'light' ? styles.themeLight : ''
 
   useEffect(() => {
