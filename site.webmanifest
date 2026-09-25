@@ -1,0 +1,12 @@
+{
+  "name": "HEWAR Group",
+  "short_name": "HEWAR",
+  "description": "Think. Create. Communicate. Saudi Arabia's premier communication company.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#061A40",
+  "theme_color": "#061A40",
+  "icons": [
+    { "src": "/favicon.svg", "sizes": "any", "type": "image/svg+xml" }
+  ]
+}
