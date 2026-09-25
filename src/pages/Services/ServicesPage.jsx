@@ -1,12 +1,11 @@
-import { useRef } from 'react'
+import { useRef, useState } from 'react'
 import { motion } from 'framer-motion'
 import { useGSAP } from '@gsap/react'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import Container from '../../components/ui/Container/Container'
 import Button from '../../components/ui/Button/Button'
-import { services } from '../../data/services'
-import { useLanguage } from '../../context/LanguageContext'
+import { useTranslation } from '../../i18n/useTranslation'
 import styles from './ServicesPage.module.css'
 
 gsap.registerPlugin(ScrollTrigger)
@@ -38,12 +37,49 @@ const processSteps = [
   },
 ]
 
+const ServiceRow = ({ index, title, summary, description, bullets, isOpen, onToggle }) => (
+  <div className={styles.serviceRow} data-service-row>
+    <button
+      type="button"
+      className={`${styles.serviceHeader} ${isOpen ? styles.serviceHeaderOpen : ''}`}
+      onClick={onToggle}
+      aria-expanded={isOpen}
+    >
+      <span className={styles.serviceNumber}>{String(index + 1).padStart(2, '0')}</span>
+      <span className={styles.serviceHeaderText}>
+        <span className={styles.serviceTitle}>{title}</span>
+        <span className={styles.serviceSummary}>{summary}</span>
+      </span>
+      <span className={`${styles.serviceArrow} ${isOpen ? styles.serviceArrowOpen : ''}`} aria-hidden>↗</span>
+    </button>
+
+    <div className={`${styles.servicePanel} ${isOpen ? styles.servicePanelOpen : ''}`}>
+      <div className={styles.servicePanelInner}>
+        <p className={styles.serviceDescription}>{description}</p>
+        <div className={styles.serviceBulletGrid}>
+          {bullets.map((bullet) => (
+            <span key={bullet} className={styles.serviceBullet}>{bullet}</span>
+          ))}
+        </div>
+      </div>
+    </div>
+  </div>
+)
+
 const ServicesPage = () => {
-  const { language } = useLanguage()
+  const { t } = useTranslation()
   const heroRef = useRef(null)
   const listRef = useRef(null)
   const processRef = useRef(null)
   const ctaRef = useRef(null)
+  const [openIndex, setOpenIndex] = useState(null)
+
+  const titles = t('services.cards')
+  const summaries = t('services.summaries')
+  const descriptions = t('services.descriptions')
+  const bulletLists = t('services.cardDetails')
+
+  const toggleRow = (i) => setOpenIndex((prev) => (prev === i ? null : i))
 
   useGSAP(() => {
     gsap.fromTo(
@@ -112,10 +148,10 @@ const ServicesPage = () => {
         <Container>
           <p className={styles.eyebrow} data-page-eyebrow>
             <span className={styles.eyebrowDot} aria-hidden />
-            Our Services
+            {t('services.label')}
           </p>
           <h1 className={styles.title} data-page-title>
-            Everything a modern brand needs — amplified.
+            {t('services.headingLine1')} {t('services.headingAccent')}
           </h1>
         </Container>
       </section>
@@ -124,19 +160,17 @@ const ServicesPage = () => {
       <section className={styles.servicesList} ref={listRef}>
         <Container>
           <div className={styles.listInner}>
-            {services.map((service) => (
-              <div key={service.id} className={styles.serviceRow} data-service-row>
-                <span className={styles.serviceNumber}>{service.id}</span>
-                <div className={styles.serviceContent}>
-                  <h2 className={styles.serviceTitle}>{service.title[language]}</h2>
-                  <p className={styles.serviceDesc}>{service.description[language]}</p>
-                </div>
-                <div className={styles.serviceTags}>
-                  {service.tags[language].map((tag) => (
-                    <span key={tag} className={styles.tag}>{tag}</span>
-                  ))}
-                </div>
-              </div>
+            {titles.map((title, i) => (
+              <ServiceRow
+                key={title}
+                index={i}
+                title={title}
+                summary={summaries[i]}
+                description={descriptions[i]}
+                bullets={bulletLists[i]}
+                isOpen={openIndex === i}
+                onToggle={() => toggleRow(i)}
+              />
             ))}
           </div>
         </Container>
