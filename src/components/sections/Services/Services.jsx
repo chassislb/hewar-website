@@ -163,10 +163,17 @@ const Services = () => {
             </div>
 
             <div className={styles.headingRow}>
-              <h2 className={styles.heading}>
-                {t('services.headingLine1')}<br />
-                <span className={styles.headingAccent}>{t('services.headingAccent')}</span>
-              </h2>
+              <div className={styles.headingWrap}>
+                <svg className={styles.headingRings} viewBox="0 0 400 400" aria-hidden>
+                  <circle className={styles.headingRing} cx="200" cy="200" r="120" />
+                  <circle className={styles.headingRing} cx="200" cy="200" r="170" />
+                  <circle className={styles.headingRingDot} cx="316" cy="84" r="4" />
+                </svg>
+                <h2 className={styles.heading}>
+                  {t('services.headingLine1')}<br />
+                  <span className={styles.headingAccent}>{t('services.headingAccent')}</span>
+                </h2>
+              </div>
 
               <p className={styles.headingSub}>
                 {t('services.sub')}
