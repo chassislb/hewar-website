@@ -130,6 +130,24 @@ const WorkDetail = () => {
         </Container>
       </section>
 
+      {/* ── Film ── */}
+      {project.video?.long && (
+        <section className={styles.videoSection}>
+          <Container>
+            <p className={styles.videoLabel}>{t('workPage.watchFilm')}</p>
+            <div className={styles.videoWrapper}>
+              <video
+                className={styles.video}
+                src={project.video.long}
+                controls
+                playsInline
+                poster={project.image || undefined}
+              />
+            </div>
+          </Container>
+        </section>
+      )}
+
       {/* ── Gallery ── */}
       {project.images && project.images.length > 0 && (
         <section className={styles.gallerySection}>
