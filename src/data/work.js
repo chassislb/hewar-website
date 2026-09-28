@@ -19,6 +19,9 @@ export const work = [
     images: [
       '/hewar-website/Website/CaseStudy/KFSHRC/1.png',
     ],
+    video: {
+      long: 'https://hewar-media.netlify.app/kfshrc-long.mp4',
+    },
   },
   {
     id: 'zatca',
@@ -110,5 +113,78 @@ export const work = [
       '/hewar-website/Website/CaseStudy/KARNAR/3.png',
       '/hewar-website/Website/CaseStudy/KARNAR/oo3.jpg',
     ],
+    video: {
+      short: 'https://hewar-media.netlify.app/karnr-short.mp4',
+      long: 'https://hewar-media.netlify.app/karnr-long.mp4',
+    },
+  },
+  {
+    id: 'neom',
+    title: {
+      en: 'A strategic communications partnership shaping NEOM’s regional voice.',
+      ar: 'شراكة تواصل استراتيجية تعزز حضور نيوم إقليميًا وعالميًا.',
+    },
+    client: 'NEOM',
+    category: { en: 'PR & Communications', ar: 'العلاقات العامة والتواصل' },
+    year: '2021',
+    description: {
+      en: 'Hewar Group has been a trusted communications partner for NEOM since August 2021. We were selected through a competitive RFP process to support NEOM’s PR and communication needs across both local and regional markets. Our role involves developing and executing strategic communication plans that position NEOM’s brand effectively across various platforms.',
+      ar: 'بدأ عمل مجموعة حوار مع نيوم منذ أغسطس 2021، حيث فزنا بطلب تقديم العروض (RFP) عالي التنافسية، لنقدم خدماتنا في العلاقات العامة وحلول التواصل لنوصل رسالة نيوم إلى جمهورها المحلي والإقليمي والعالمي، فشمل عملنا بناء إستراتيجيات مدروسة وتنفيذها لتعزيز الصورة الذهنية لنيوم عبر المنصات المختلفة.',
+    },
+    color: '#122a5c',
+    size: 'large',
+    logo: null,
+    image: null,
+    images: [],
+    video: {
+      short: 'https://hewar-media.netlify.app/neom-short.mp4',
+      long: 'https://hewar-media.netlify.app/neom-long.mp4',
+    },
+  },
+  {
+    id: 'king-salman-academy',
+    title: {
+      en: 'A digital portfolio celebrating the Arabic language, built for the world to share.',
+      ar: 'حقيبة رقمية تحتفي باللغة العربية، صُممت لتُشارك مع العالم.',
+    },
+    client: 'King Salman Academy',
+    category: { en: 'Digital Campaign', ar: 'حملة رقمية' },
+    year: '2024',
+    description: {
+      en: 'For World Arabic Language Day, King Salman Global Academy for Arabic Language launched a comprehensive Digital Portfolio filled with materials, resources, and content ideas for social media celebrations. Hewar led the initiative, creating and designing the portfolio’s visual identity.',
+      ar: 'احتفالًا باليوم العالمي للغة العربية، أطلق مجمع الملك سلمان العالمي للغة العربية حقيبة رقمية غنية بالمصادر والمواد الإبداعية اللغوية والثقافية التي يمكن مشاركتها على منصات وسائل التواصل الاجتماعي؛ لإحياء حب اللغة العربية في نفوس متحدثيها ومتعلميها، فصممنا الهوية الرقمية للحقيبة وأثريناها بمحتوىً عربي سليم ومتنوع.',
+    },
+    color: '#1a1450',
+    size: 'large',
+    logo: null,
+    image: null,
+    images: [],
+    video: {
+      short: 'https://hewar-media.netlify.app/king-salman-academy-short.mp4',
+      long: 'https://hewar-media.netlify.app/king-salman-academy-long.mp4',
+    },
+  },
+  {
+    id: 'saudi-exports',
+    title: {
+      en: 'Amplifying “Made in Saudi” on the world’s biggest stage.',
+      ar: 'تعزيز حضور «صُنع في السعودية» على أكبر منصة عالمية.',
+    },
+    client: 'Saudi Exports',
+    category: { en: 'Government Campaign', ar: 'حملة حكومية' },
+    year: '2022',
+    description: {
+      en: 'The Saudi Export Development Authority, represented by "Made in Saudi," sought to enhance the Kingdom’s brand image by promoting Saudi products during the World Cup 2022. The event presented a global platform, and the Hewar Agency played a pivotal role in ensuring comprehensive media coverage and facilitating the promotional efforts of Saudi exports.',
+      ar: 'سعت هيئة تنمية الصادرات السعودية، ممثلةً في برنامج صُنع في السعودية، إلى تعزيز صورة المملكة وعلامتها الوطنية من خلال الترويج للمنتجات السعودية خلال كأس العالم 2022. وكان لحوار دور أساسي في التغطية الإعلامية الشاملة وتيسير جهود الترويج للصادرات السعودية.',
+    },
+    color: '#0f2d40',
+    size: 'large',
+    logo: null,
+    image: null,
+    images: [],
+    video: {
+      short: 'https://hewar-media.netlify.app/saudi-exports-short.mp4',
+      long: 'https://hewar-media.netlify.app/saudi-exports-long.mp4',
+    },
   },
 ]

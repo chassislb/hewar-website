@@ -22,7 +22,17 @@ const WorkCard = ({ project, index, language, viewProjectLabel }) => {
     >
       <Link to={`/work/${project.id}`} className={styles.cardLink}>
         <div className={styles.visual} style={{ '--card-color': project.color }}>
-          {project.image && (
+          {project.video?.short ? (
+            <video
+              className={styles.cardImg}
+              src={project.video.short}
+              autoPlay
+              muted
+              loop
+              playsInline
+              aria-hidden
+            />
+          ) : project.image && (
             <img src={project.image} alt="" className={styles.cardImg} aria-hidden />
           )}
 

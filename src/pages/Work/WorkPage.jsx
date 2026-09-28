@@ -124,7 +124,19 @@ const WorkPage = () => {
                 data-work-card
                 style={{ '--card-color': project.color }}
               >
-                <div className={styles.cardBg} style={{ background: project.color }} />
+                {project.video?.short ? (
+                  <video
+                    className={styles.cardBg}
+                    src={project.video.short}
+                    autoPlay
+                    muted
+                    loop
+                    playsInline
+                    aria-hidden
+                  />
+                ) : (
+                  <div className={styles.cardBg} style={{ background: project.color }} />
+                )}
                 <div className={styles.cardContent}>
                   <span className={styles.cardNumber}>
                     {String(index + 1).padStart(2, '0')}
