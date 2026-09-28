@@ -188,6 +188,62 @@
   backdrop-filter: blur(8px);
 }
 
+/* ── Industries We Empower ── */
+.industriesSection {
+  padding-block: var(--section-padding-y);
+  background: var(--color-bg-primary);
+}
+
+.sectionEyebrow {
+  font-size: var(--type-body-xs);
+  font-weight: var(--weight-semibold);
+  letter-spacing: var(--tracking-widest);
+  text-transform: uppercase;
+  color: var(--color-text-accent);
+  margin-bottom: clamp(2rem, 4vw, 3rem);
+}
+
+.industriesGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: var(--color-border);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+
+.industryItem {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  background: var(--color-bg-secondary);
+  padding: clamp(1.25rem, 2.5vw, 1.75rem);
+  font-size: var(--type-body-sm);
+  font-weight: var(--weight-medium);
+  color: var(--color-text-secondary);
+  transition: background var(--dur-normal) ease, color var(--dur-normal) ease;
+}
+
+.industryItem:hover {
+  background: var(--color-bg-card-hover);
+  color: var(--color-text-primary);
+}
+
+.industryDot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--color-cyan);
+  flex-shrink: 0;
+}
+
+@media (max-width: 768px) {
+  .industriesGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
 /* ── CTA ── */
 .ctaSection {
   position: relative;

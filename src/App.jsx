@@ -17,6 +17,7 @@ import About from './pages/About/About'
 import ServicesPage from './pages/Services/ServicesPage'
 import WorkPage from './pages/Work/WorkPage'
 import WorkDetail from './pages/WorkDetail/WorkDetail'
+import CareersPage from './pages/Careers/CareersPage'
 import InsightsPage from './pages/Insights/InsightsPage'
 import InsightDetail from './pages/InsightDetail/InsightDetail'
 import Contact from './pages/Contact/Contact'
@@ -82,6 +83,7 @@ const App = () => {
                     <Route path="/services" element={<ServicesPage />} />
                     <Route path="/work" element={<WorkPage />} />
                     <Route path="/work/:id" element={<WorkDetail />} />
+                    <Route path="/careers" element={<CareersPage />} />
                     <Route path="/insights" element={<InsightsPage />} />
                     <Route path="/insights/:id" element={<InsightDetail />} />
                     <Route path="/contact" element={<Contact />} />

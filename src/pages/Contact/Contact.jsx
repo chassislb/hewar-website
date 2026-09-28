@@ -5,6 +5,9 @@ import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import Container from '../../components/ui/Container/Container'
 import Button from '../../components/ui/Button/Button'
+import { useTranslation } from '../../i18n/useTranslation'
+import { SOCIAL_LINKS } from '../../utils/constants'
+import { SOCIAL_META } from '../../components/icons/SocialIcons'
 import styles from './Contact.module.css'
 
 gsap.registerPlugin(ScrollTrigger)
@@ -15,30 +18,8 @@ const pageVariants = {
   exit: { opacity: 0, transition: { duration: 0.25 } },
 }
 
-const contactInfo = [
-  {
-    label: 'Email',
-    value: 'info@hewargroup.com',
-    href: 'mailto:info@hewargroup.com',
-  },
-  {
-    label: 'Phone',
-    value: '+966 56 775 5776',
-    href: 'tel:+966567755776',
-  },
-  {
-    label: 'Riyadh',
-    value: 'Salah Ad Din Al Ayyubi Rd, Riyadh',
-    href: null,
-  },
-  {
-    label: 'Beirut',
-    value: 'Beirut, Lebanon',
-    href: null,
-  },
-]
-
 const Contact = () => {
+  const { t } = useTranslation()
   const heroRef = useRef(null)
   const bodyRef = useRef(null)
   const [submitted, setSubmitted] = useState(false)
@@ -48,6 +29,14 @@ const Contact = () => {
     email: '',
     message: '',
   })
+
+  const contactInfo = [
+    { label: t('contact.emailLabel'), value: 'info@hewargroup.com', href: 'mailto:info@hewargroup.com' },
+    { label: t('contact.phoneLabel'), value: '+966 56 775 5776', href: 'tel:+966567755776' },
+    { label: t('contact.riyadhLabel'), value: t('contact.riyadhValue'), href: null },
+    { label: t('contact.abuDhabiLabel'), value: t('contact.abuDhabiValue'), href: null },
+    { label: t('contact.cairoLabel'), value: t('contact.cairoValue'), href: null },
+  ]
 
   useGSAP(() => {
     gsap.fromTo(
@@ -96,10 +85,10 @@ const Contact = () => {
         <Container>
           <p className={styles.eyebrow} data-page-eyebrow>
             <span className={styles.eyebrowDot} aria-hidden />
-            Get in Touch
+            {t('contact.eyebrow')}
           </p>
           <h1 className={styles.title} data-page-title>
-            Your next idea deserves amplification.
+            {t('contact.title')}
           </h1>
         </Container>
       </section>
@@ -111,8 +100,7 @@ const Contact = () => {
             {/* Left: Contact Info */}
             <div className={styles.infoCol} data-reveal>
               <p className={styles.infoIntro}>
-                We'd love to hear from you. Reach out to start a conversation
-                about your brand, campaign, or next big idea.
+                {t('contact.intro')}
               </p>
               <div className={styles.infoItems}>
                 {contactInfo.map((item) => (
@@ -128,6 +116,21 @@ const Contact = () => {
                   </div>
                 ))}
               </div>
+
+              <div className={styles.socialRow}>
+                {Object.entries(SOCIAL_LINKS).map(([platform, url]) => (
+                  <a
+                    key={platform}
+                    href={url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={styles.socialLink}
+                    aria-label={SOCIAL_META[platform].label}
+                  >
+                    {SOCIAL_META[platform].icon}
+                  </a>
+                ))}
+              </div>
             </div>
 
             {/* Right: Form */}
@@ -140,17 +143,16 @@ const Contact = () => {
                       <path d="M10 16.5l4 4 8-8" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
                     </svg>
                   </div>
-                  <h2 className={styles.successTitle}>Thank you, we'll be in touch.</h2>
+                  <h2 className={styles.successTitle}>{t('contact.thankYou')}</h2>
                   <p className={styles.successBody}>
-                    We've received your message and will get back to you within
-                    one business day.
+                    {t('contact.thankYouBody')}
                   </p>
                 </div>
               ) : (
                 <form className={styles.form} onSubmit={handleSubmit} noValidate>
                   <div className={styles.formRow}>
                     <div className={styles.fieldGroup}>
-                      <label className={styles.fieldLabel} htmlFor="name">Name</label>
+                      <label className={styles.fieldLabel} htmlFor="name">{t('contact.name')}</label>
                       <input
                         id="name"
                         name="name"
@@ -158,27 +160,27 @@ const Contact = () => {
                         required
                         autoComplete="name"
                         className={styles.fieldInput}
-                        placeholder="Your name"
+                        placeholder={t('contact.namePlaceholder')}
                         value={formData.name}
                         onChange={handleChange}
                       />
                     </div>
                     <div className={styles.fieldGroup}>
-                      <label className={styles.fieldLabel} htmlFor="company">Company</label>
+                      <label className={styles.fieldLabel} htmlFor="company">{t('contact.company')}</label>
                       <input
                         id="company"
                         name="company"
                         type="text"
                         autoComplete="organization"
                         className={styles.fieldInput}
-                        placeholder="Your company"
+                        placeholder={t('contact.companyPlaceholder')}
                         value={formData.company}
                         onChange={handleChange}
                       />
                     </div>
                   </div>
                   <div className={styles.fieldGroup}>
-                    <label className={styles.fieldLabel} htmlFor="email">Email</label>
+                    <label className={styles.fieldLabel} htmlFor="email">{t('contact.emailLabel')}</label>
                     <input
                       id="email"
                       name="email"
@@ -186,26 +188,27 @@ const Contact = () => {
                       required
                       autoComplete="email"
                       className={styles.fieldInput}
-                      placeholder="your@email.com"
+                      placeholder={t('contact.emailPlaceholder')}
                       value={formData.email}
                       onChange={handleChange}
+                      dir="ltr"
                     />
                   </div>
                   <div className={styles.fieldGroup}>
-                    <label className={styles.fieldLabel} htmlFor="message">Message</label>
+                    <label className={styles.fieldLabel} htmlFor="message">{t('contact.message')}</label>
                     <textarea
                       id="message"
                       name="message"
                       required
                       rows={6}
                       className={styles.fieldTextarea}
-                      placeholder="Tell us about your project or idea..."
+                      placeholder={t('contact.messagePlaceholder')}
                       value={formData.message}
                       onChange={handleChange}
                     />
                   </div>
                   <Button variant="primary" size="lg" type="submit">
-                    Send Message
+                    {t('contact.send')}
                   </Button>
                 </form>
               )}

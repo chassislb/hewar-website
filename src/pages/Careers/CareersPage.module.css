@@ -1,0 +1,247 @@
+/* ── Hero ── */
+.hero {
+  position: relative;
+  padding-top: clamp(9rem, 16vw, 13rem);
+  padding-bottom: clamp(5rem, 10vw, 8rem);
+  background: var(--color-bg-primary);
+  overflow: hidden;
+  text-align: center;
+}
+
+.heroOrb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  pointer-events: none;
+}
+
+.title {
+  font-size: var(--type-display-2xl);
+  font-weight: var(--weight-black);
+  letter-spacing: var(--tracking-tighter);
+  line-height: var(--leading-none);
+  color: var(--color-text-primary);
+  position: relative;
+  z-index: 1;
+  margin-bottom: clamp(1rem, 2vw, 1.5rem);
+}
+
+.heroSub {
+  font-size: clamp(1rem, 1.8vw, 1.3rem);
+  color: var(--color-text-secondary);
+  max-width: 46ch;
+  margin-inline: auto;
+  line-height: var(--leading-relaxed);
+  position: relative;
+  z-index: 1;
+}
+
+/* ── Why Join Us ── */
+.benefitsSection {
+  padding-block: var(--section-padding-y);
+  background: var(--color-bg-secondary);
+}
+
+.sectionEyebrow {
+  font-size: var(--type-body-xs);
+  font-weight: var(--weight-semibold);
+  letter-spacing: var(--tracking-widest);
+  text-transform: uppercase;
+  color: var(--color-text-accent);
+  margin-bottom: clamp(2.5rem, 5vw, 4rem);
+}
+
+.benefitsGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(1.5rem, 3vw, 2rem);
+}
+
+@media (max-width: 900px) {
+  .benefitsGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 560px) {
+  .benefitsGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.benefitCard {
+  background: var(--color-bg-elevated);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: clamp(1.75rem, 3vw, 2.5rem);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  transition: border-color var(--dur-normal) ease;
+}
+
+.benefitCard:hover {
+  border-color: var(--color-border-accent);
+}
+
+.benefitIcon {
+  width: 44px;
+  height: 44px;
+  object-fit: contain;
+  margin-bottom: var(--space-2);
+}
+
+.benefitTitle {
+  font-size: clamp(1.05rem, 1.6vw, 1.2rem);
+  font-weight: var(--weight-bold);
+  color: var(--color-text-primary);
+  letter-spacing: var(--tracking-tight);
+}
+
+.benefitBody {
+  font-size: var(--type-body-sm);
+  color: var(--color-text-secondary);
+  line-height: var(--leading-relaxed);
+}
+
+/* ── Apply ── */
+.applySection {
+  padding-block: var(--section-padding-y);
+  background: var(--color-bg-primary);
+}
+
+/* ── Form ── */
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+}
+
+.formRow {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-4);
+}
+
+@media (max-width: 580px) {
+  .formRow {
+    grid-template-columns: 1fr;
+  }
+}
+
+.fieldGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.fieldLabel {
+  font-size: var(--type-body-xs);
+  font-weight: var(--weight-semibold);
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  color: var(--color-text-tertiary);
+}
+
+.fieldInput {
+  background: var(--color-bg-elevated);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  color: var(--color-text-primary);
+  font-family: var(--font-primary);
+  font-size: var(--type-body-sm);
+  padding: 0.85rem 1rem;
+  width: 100%;
+  transition: border-color 0.2s ease, background 0.2s ease;
+  outline: none;
+  -webkit-appearance: none;
+}
+
+.fieldInput:focus {
+  border-color: var(--color-border-accent);
+  background: rgba(0, 200, 255, 0.04);
+}
+
+/* ── Dropzone ── */
+.dropzone {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem;
+  text-align: center;
+  padding: clamp(2rem, 4vw, 3rem);
+  border: 1.5px dashed var(--color-border);
+  border-radius: var(--radius-md);
+  background: var(--color-bg-elevated);
+  cursor: none;
+  transition: border-color var(--dur-fast) ease, background var(--dur-fast) ease;
+}
+
+.dropzone:hover,
+.dropzoneActive {
+  border-color: var(--color-border-accent);
+  background: rgba(0, 200, 255, 0.04);
+}
+
+.dropzoneFilled {
+  border-style: solid;
+  border-color: var(--color-cyan);
+}
+
+.dropzoneInput {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  opacity: 0;
+}
+
+.dropzoneLabel {
+  font-size: var(--type-body-sm);
+  font-weight: var(--weight-semibold);
+  color: var(--color-text-primary);
+}
+
+.dropzoneHint {
+  font-size: var(--type-body-xs);
+  color: var(--color-text-tertiary);
+}
+
+.dropzoneFileName {
+  font-size: var(--type-body-sm);
+  font-weight: var(--weight-semibold);
+  color: var(--color-cyan);
+  word-break: break-all;
+}
+
+/* ── Success State ── */
+.successState {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+  padding: clamp(2.5rem, 5vw, 4rem);
+  background: var(--color-bg-elevated);
+  border: 1px solid var(--color-border-accent);
+  border-radius: var(--radius-lg);
+  align-items: flex-start;
+}
+
+.successIcon {
+  color: var(--color-text-accent);
+}
+
+.successTitle {
+  font-size: clamp(1.5rem, 3vw, 2.5rem);
+  font-weight: var(--weight-bold);
+  letter-spacing: var(--tracking-tight);
+  color: var(--color-text-primary);
+  line-height: 1.2;
+}
+
+.successBody {
+  font-size: var(--type-body-sm);
+  color: var(--color-text-secondary);
+  line-height: var(--leading-relaxed);
+  max-width: 42ch;
+}

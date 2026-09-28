@@ -17,6 +17,7 @@ const NAV_LABEL_KEYS = {
   '/about': 'nav.about',
   '/services': 'nav.services',
   '/work': 'nav.work',
+  '/careers': 'nav.careers',
   '/insights': 'nav.insights',
 }
 

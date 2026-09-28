@@ -37,7 +37,7 @@ const processSteps = [
   },
 ]
 
-const ServiceRow = ({ index, title, summary, description, bullets, isOpen, onToggle }) => (
+const ServiceRow = ({ index, title, description, bullets, isOpen, onToggle }) => (
   <div className={styles.serviceRow} data-service-row>
     <button
       type="button"
@@ -46,10 +46,7 @@ const ServiceRow = ({ index, title, summary, description, bullets, isOpen, onTog
       aria-expanded={isOpen}
     >
       <span className={styles.serviceNumber}>{String(index + 1).padStart(2, '0')}</span>
-      <span className={styles.serviceHeaderText}>
-        <span className={styles.serviceTitle}>{title}</span>
-        <span className={styles.serviceSummary}>{summary}</span>
-      </span>
+      <span className={styles.serviceTitle}>{title}</span>
       <span className={`${styles.serviceArrow} ${isOpen ? styles.serviceArrowOpen : ''}`} aria-hidden>↗</span>
     </button>
 
@@ -75,7 +72,6 @@ const ServicesPage = () => {
   const [openIndex, setOpenIndex] = useState(null)
 
   const titles = t('services.cards')
-  const summaries = t('services.summaries')
   const descriptions = t('services.descriptions')
   const bulletLists = t('services.cardDetails')
 
@@ -165,7 +161,6 @@ const ServicesPage = () => {
                 key={title}
                 index={i}
                 title={title}
-                summary={summaries[i]}
                 description={descriptions[i]}
                 bullets={bulletLists[i]}
                 isOpen={openIndex === i}

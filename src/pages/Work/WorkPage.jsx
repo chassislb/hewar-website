@@ -8,6 +8,7 @@ import Container from '../../components/ui/Container/Container'
 import Button from '../../components/ui/Button/Button'
 import { work } from '../../data/work'
 import { useLanguage } from '../../context/LanguageContext'
+import { useTranslation } from '../../i18n/useTranslation'
 import styles from './WorkPage.module.css'
 
 gsap.registerPlugin(ScrollTrigger)
@@ -20,8 +21,11 @@ const pageVariants = {
 
 const WorkPage = () => {
   const { language } = useLanguage()
+  const { t } = useTranslation()
+  const industries = t('workPage.industries')
   const heroRef = useRef(null)
   const gridRef = useRef(null)
+  const industriesRef = useRef(null)
   const ctaRef = useRef(null)
 
   useGSAP(() => {
@@ -56,6 +60,21 @@ const WorkPage = () => {
       }
     )
   }, { scope: gridRef })
+
+  useGSAP(() => {
+    gsap.fromTo(
+      '[data-industry-item]',
+      { y: 20, opacity: 0 },
+      {
+        y: 0,
+        opacity: 1,
+        duration: 0.6,
+        stagger: 0.05,
+        ease: 'power3.out',
+        scrollTrigger: { trigger: industriesRef.current, start: 'top 82%' },
+      }
+    )
+  }, { scope: industriesRef })
 
   useGSAP(() => {
     gsap.fromTo(
@@ -123,6 +142,21 @@ const WorkPage = () => {
                   <span className={styles.viewLabel}>View Project ↗</span>
                 </div>
               </Link>
+            ))}
+          </div>
+        </Container>
+      </section>
+
+      {/* ── Industries We Empower ── */}
+      <section className={styles.industriesSection} ref={industriesRef}>
+        <Container>
+          <p className={styles.sectionEyebrow}>{t('workPage.industriesLabel')}</p>
+          <div className={styles.industriesGrid}>
+            {industries.map((industry) => (
+              <div key={industry} className={styles.industryItem} data-industry-item>
+                <span className={styles.industryDot} aria-hidden />
+                {industry}
+              </div>
             ))}
           </div>
         </Container>

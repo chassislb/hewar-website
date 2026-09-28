@@ -4,6 +4,8 @@ import Button from '../../ui/Button/Button'
 import { useContactModal } from '../../../context/ContactModalContext'
 import { useCursor } from '../../../context/CursorContext'
 import { useTranslation } from '../../../i18n/useTranslation'
+import { SOCIAL_LINKS } from '../../../utils/constants'
+import { SOCIAL_META } from '../../icons/SocialIcons'
 import styles from './ContactModal.module.css'
 
 const backdropVariants = {
@@ -27,7 +29,8 @@ const ContactModal = () => {
     { label: t('contact.emailLabel'), value: 'info@hewargroup.com', href: 'mailto:info@hewargroup.com' },
     { label: t('contact.phoneLabel'), value: '+966 56 775 5776', href: 'tel:+966567755776' },
     { label: t('contact.riyadhLabel'), value: t('contact.riyadhValue'), href: null },
-    { label: t('contact.beirutLabel'), value: t('contact.beirutValue'), href: null },
+    { label: t('contact.abuDhabiLabel'), value: t('contact.abuDhabiValue'), href: null },
+    { label: t('contact.cairoLabel'), value: t('contact.cairoValue'), href: null },
   ]
 
   useEffect(() => {
@@ -120,6 +123,23 @@ const ContactModal = () => {
                         <span className={styles.infoValue}>{item.value}</span>
                       )}
                     </div>
+                  ))}
+                </div>
+
+                <div className={styles.socialRow}>
+                  {Object.entries(SOCIAL_LINKS).map(([platform, url]) => (
+                    <a
+                      key={platform}
+                      href={url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={styles.socialLink}
+                      aria-label={SOCIAL_META[platform].label}
+                      onMouseEnter={() => setCursor('hover')}
+                      onMouseLeave={resetCursor}
+                    >
+                      {SOCIAL_META[platform].icon}
+                    </a>
                   ))}
                 </div>
               </div>

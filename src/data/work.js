@@ -111,23 +111,4 @@ export const work = [
       '/hewar-website/Website/CaseStudy/KARNAR/oo3.jpg',
     ],
   },
-  {
-    id: 'drdc',
-    title: {
-      en: 'A visionary desert concept introduced to the world.',
-      ar: 'مفهوم صحراوي طموح يُقدَّم للعالم.',
-    },
-    client: 'DRDC',
-    category: { en: 'Brand Communications', ar: 'تواصل العلامة التجارية' },
-    year: '2024',
-    description: {
-      en: 'Strategic brand communications for a landmark desert development concept, shaping the narrative that introduced a visionary Saudi project to global audiences.',
-      ar: 'تواصل استراتيجي لعلامة تجارية لمفهوم تطوير صحراوي بارز، صاغ السردية التي قدّمت مشروعاً سعودياً طموحاً للجمهور العالمي.',
-    },
-    color: '#1a0820',
-    size: 'small',
-    logo: null,
-    image: '/hewar-website/Website/CaseStudy/DRDC/oo2.jpg',
-    images: ['/hewar-website/Website/CaseStudy/DRDC/oo2.jpg'],
-  },
 ]

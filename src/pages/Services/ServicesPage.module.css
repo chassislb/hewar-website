@@ -92,33 +92,12 @@
   font-variant-numeric: tabular-nums;
 }
 
-.serviceHeaderText {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: clamp(1.5rem, 3vw, 3rem);
-  align-items: baseline;
-  text-align: start;
-}
-
-@media (max-width: 768px) {
-  .serviceHeaderText {
-    grid-template-columns: 1fr;
-    gap: 0.35rem;
-  }
-}
-
 .serviceTitle {
   font-size: clamp(1.25rem, 2.5vw, 2rem);
   font-weight: var(--weight-bold);
   letter-spacing: var(--tracking-tight);
   color: var(--color-text-primary);
   line-height: 1.2;
-}
-
-.serviceSummary {
-  font-size: clamp(0.85rem, 1.3vw, 0.95rem);
-  color: var(--color-text-tertiary);
-  line-height: var(--leading-relaxed);
 }
 
 .serviceArrow {
