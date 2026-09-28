@@ -55,7 +55,7 @@
 }
 
 .heading {
-  font-size: clamp(3.2rem, 5.6vw, 5.8rem);
+  font-size: clamp(2.4rem, 4.2vw, 4.2rem);
   font-weight: var(--weight-black);
   letter-spacing: var(--tracking-tight);
   line-height: 0.95;

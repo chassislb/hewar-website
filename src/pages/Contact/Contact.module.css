@@ -36,7 +36,7 @@
 }
 
 .title {
-  font-size: clamp(2.8rem, 7vw, 7rem);
+  font-size: clamp(2.2rem, 5vw, 4.5rem);
   font-weight: var(--weight-black);
   letter-spacing: var(--tracking-tighter);
   line-height: var(--leading-tight);

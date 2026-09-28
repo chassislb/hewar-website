@@ -12,11 +12,11 @@
   --font-mono:    'JetBrains Mono', 'Fira Code', monospace;
 
   /* ── Display Scale (fluid clamp) ── */
-  --type-display-2xl: clamp(3.5rem, 9vw, 10.5rem);
-  --type-display-xl:  clamp(3rem,   7vw, 8rem);
-  --type-display-lg:  clamp(2.5rem, 5vw, 6rem);
-  --type-display-md:  clamp(2rem,   4vw, 4.5rem);
-  --type-display-sm:  clamp(1.75rem,3vw, 3.25rem);
+  --type-display-2xl: clamp(2.75rem, 6.5vw, 6rem);
+  --type-display-xl:  clamp(2.5rem,  5.5vw, 5.25rem);
+  --type-display-lg:  clamp(2.2rem,  4.5vw, 4.25rem);
+  --type-display-md:  clamp(1.9rem,  3.5vw, 3.5rem);
+  --type-display-sm:  clamp(1.6rem,  2.6vw, 2.6rem);
 
   /* ── Headings ── */
   --type-h1: clamp(1.75rem, 3.5vw, 4rem);
@@ -32,8 +32,8 @@
   --type-body-xs: 0.75rem;
 
   /* ── Letter Spacing ── */
-  --tracking-tighter: -0.05em;
-  --tracking-tight:   -0.03em;
+  --tracking-tighter: -0.02em;
+  --tracking-tight:   -0.01em;
   --tracking-normal:   0em;
   --tracking-wide:     0.06em;
   --tracking-wider:    0.12em;
