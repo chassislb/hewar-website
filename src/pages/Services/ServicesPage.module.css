@@ -7,10 +7,29 @@
   overflow: hidden;
 }
 
-.heroOrb {
+.heroVideoBg {
   position: absolute;
-  border-radius: 50%;
-  filter: blur(80px);
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.heroVideo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.heroVideoOverlay {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(
+    to bottom,
+    rgba(6, 26, 64, 0.86),
+    rgba(6, 26, 64, 0.94)
+  );
   pointer-events: none;
 }
 
@@ -25,6 +44,8 @@
   align-items: center;
   justify-content: center;
   gap: 0.6rem;
+  position: relative;
+  z-index: 2;
 }
 
 .eyebrowDot {
@@ -38,6 +59,7 @@
 
 .titleWrap {
   position: relative;
+  z-index: 2;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -99,26 +121,6 @@
   text-align: center;
   position: relative;
   z-index: 1;
-}
-
-/* ── Video ── */
-.videoSection {
-  padding-bottom: var(--section-padding-y);
-  background: var(--color-bg-primary);
-}
-
-.videoWrapper {
-  border-radius: var(--radius-lg);
-  overflow: hidden;
-  background: var(--color-bg-elevated);
-  aspect-ratio: 16 / 9;
-}
-
-.video {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
 }
 
 /* ── Services List ── */

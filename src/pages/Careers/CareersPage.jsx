@@ -78,15 +78,13 @@ const CareersPage = () => {
     <motion.div variants={pageVariants} initial="initial" animate="animate" exit="exit">
       {/* ── Hero ── */}
       <section className={styles.hero} ref={heroRef}>
-        <div className={styles.heroOrb} style={{ top: '-30%', right: '-15%', background: 'radial-gradient(circle, rgba(71,0,179,0.4) 0%, transparent 70%)', width: 'clamp(400px,60vw,900px)', height: 'clamp(400px,60vw,900px)' }} aria-hidden />
-        <div className={styles.heroOrb} style={{ bottom: '-10%', left: '-8%', background: 'radial-gradient(circle, rgba(0,200,255,0.25) 0%, transparent 70%)', width: 'clamp(250px,40vw,600px)', height: 'clamp(250px,40vw,600px)' }} aria-hidden />
+        <div className={styles.heroVideoBg} aria-hidden>
+          <video className={styles.heroVideo} src={VIDEO_SRC} autoPlay muted loop playsInline />
+        </div>
+        <div className={styles.heroVideoOverlay} aria-hidden />
         <Container>
           <h1 className={styles.title} data-page-title>{t('careersPage.heroTitle')}</h1>
           <p className={styles.heroSub} data-page-eyebrow>{t('careersPage.heroTagline')}</p>
-
-          <div className={styles.videoWrapper}>
-            <video className={styles.video} src={VIDEO_SRC} controls playsInline />
-          </div>
         </Container>
       </section>
 
