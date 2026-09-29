@@ -20,6 +20,7 @@
   height: 100%;
   object-fit: cover;
   object-position: center;
+  filter: brightness(0.6) saturate(0.7) blur(1.5px);
 }
 
 .heroVideoOverlay {
@@ -28,8 +29,8 @@
   z-index: 0;
   background: linear-gradient(
     to bottom,
-    rgba(6, 26, 64, 0.86),
-    rgba(6, 26, 64, 0.94)
+    rgba(6, 26, 64, 0.28),
+    rgba(6, 26, 64, 0.5)
   );
   pointer-events: none;
 }

@@ -133,13 +133,16 @@ const About = () => {
             {team.map((member) => (
               <div key={member.name} className={styles.teamCard} data-team-card>
                 <img
-                  className={styles.teamAvatar}
+                  className={styles.teamPhoto}
                   src={`${import.meta.env.BASE_URL}images/team/${member.photo}`}
                   alt={member.name}
                 />
-                <h3 className={styles.teamName}>{member.name}</h3>
-                <p className={styles.teamTitle}>{member.title}</p>
-                <p className={styles.teamQuote}>&ldquo;{member.quote}&rdquo;</p>
+                <div className={styles.teamCardOverlay} aria-hidden />
+                <div className={styles.teamCardContent}>
+                  <h3 className={styles.teamName}>{member.name}</h3>
+                  <p className={styles.teamTitle}>{member.title}</p>
+                  <p className={styles.teamQuote}>&ldquo;{member.quote}&rdquo;</p>
+                </div>
               </div>
             ))}
           </div>
