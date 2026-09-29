@@ -225,19 +225,12 @@
   font-size: var(--type-body-sm);
   font-weight: var(--weight-medium);
   color: var(--color-text-secondary);
-  transition: background var(--dur-normal) ease, color var(--dur-normal) ease;
 }
 
-.industryItem:hover {
-  background: var(--color-bg-card-hover);
-  color: var(--color-text-primary);
-}
-
-.industryDot {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: var(--color-cyan);
+.industryIcon {
+  width: clamp(28px, 3.5vw, 34px);
+  height: clamp(28px, 3.5vw, 34px);
+  object-fit: contain;
   flex-shrink: 0;
 }
 

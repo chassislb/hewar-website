@@ -13,6 +13,19 @@ import styles from './WorkPage.module.css'
 
 gsap.registerPlugin(ScrollTrigger)
 
+/* Matches the fixed order of workPage.industries in translations.js */
+const INDUSTRY_ICONS = [
+  'telecommunications-technology.png',
+  'government-public-services.png',
+  'financial-economic-development.png',
+  'transportation-logistics.png',
+  'tourism-culture-hospitality.png',
+  'energy-environmental-sustainability.png',
+  'research-education.png',
+  'health-medical-sector.png',
+  'real-estate-infrastructure.png',
+]
+
 const pageVariants = {
   initial: { opacity: 0 },
   animate: { opacity: 1, transition: { duration: 0.5 } },
@@ -164,9 +177,14 @@ const WorkPage = () => {
         <Container>
           <p className={styles.sectionEyebrow}>{t('workPage.industriesLabel')}</p>
           <div className={styles.industriesGrid}>
-            {industries.map((industry) => (
+            {industries.map((industry, i) => (
               <div key={industry} className={styles.industryItem} data-industry-item>
-                <span className={styles.industryDot} aria-hidden />
+                <img
+                  className={styles.industryIcon}
+                  src={`${import.meta.env.BASE_URL}images/industries/${INDUSTRY_ICONS[i]}`}
+                  alt=""
+                  aria-hidden
+                />
                 {industry}
               </div>
             ))}
