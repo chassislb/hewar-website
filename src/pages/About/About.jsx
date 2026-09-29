@@ -17,9 +17,6 @@ const pageVariants = {
   exit: { opacity: 0, transition: { duration: 0.25 } },
 }
 
-const initials = (name) =>
-  name.split(' ').map((part) => part[0]).join('').slice(0, 2)
-
 const About = () => {
   const { t } = useTranslation()
   const { openContactModal } = useContactModal()
@@ -148,7 +145,11 @@ const About = () => {
           <div className={styles.teamGrid}>
             {team.map((member) => (
               <div key={member.name} className={styles.teamCard} data-team-card>
-                <div className={styles.teamAvatar} aria-hidden>{initials(member.name)}</div>
+                <img
+                  className={styles.teamAvatar}
+                  src={`${import.meta.env.BASE_URL}images/team/${member.photo}`}
+                  alt={member.name}
+                />
                 <h3 className={styles.teamName}>{member.name}</h3>
                 <p className={styles.teamTitle}>{member.title}</p>
                 <p className={styles.teamQuote}>&ldquo;{member.quote}&rdquo;</p>

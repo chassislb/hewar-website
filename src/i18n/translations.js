@@ -132,9 +132,9 @@ export const translations = {
       values: ['Integrity', 'Inclusion', 'Excellence', 'Growth', 'Innovation'],
       teamLabel: 'The Minds Behind Hewar',
       team: [
-        { name: 'Abdulaziz Alghshayan', title: 'General Manager', quote: 'Our mission is to reshape the communications industry with innovation that serves people and strengthens communities across the Kingdom.' },
-        { name: 'Fawzi Bteddiny', title: 'CEO', quote: 'We are guided by Saudi Arabia’s Vision, combining technology and human-centered solutions to drive positive change in communication.' },
-        { name: 'Loma Jaber', title: 'Managing Director', quote: 'At Hewar, we believe the future is not defined by technology alone, but by the harmony between human potential and AI. Guided by Saudi Arabia’s Vision, we embrace innovation that empowers people and reimagines possibilities.' },
+        { name: 'Abdulaziz Alghshayan', title: 'General Manager', quote: 'Our mission is to reshape the communications industry with innovation that serves people and strengthens communities across the Kingdom.', photo: 'abdulaziz-alghshayan.png' },
+        { name: 'Fawzi Bteddiny', title: 'CEO', quote: 'We are guided by Saudi Arabia’s Vision, combining technology and human-centered solutions to drive positive change in communication.', photo: 'fawzi-bteddiny.png' },
+        { name: 'Loma Jaber', title: 'Managing Director', quote: 'At Hewar, we believe the future is not defined by technology alone, but by the harmony between human potential and AI. Guided by Saudi Arabia’s Vision, we embrace innovation that empowers people and reimagines possibilities.', photo: 'loma-jaber.png' },
       ],
       awardsLabel: 'Recognized for What We Create',
       awards: [
@@ -368,9 +368,9 @@ export const translations = {
       values: ['الشفافية والنزاهة', 'التنوع والشمولية', 'شغف التميز', 'تحفيز النمو', 'الريادة بالابتكار'],
       teamLabel: 'مؤسسي الحوار',
       team: [
-        { name: 'عبدالعزيز الغشيان', title: 'المدير العام', quote: 'انطلقنا في حوار من رؤية واضحة تسعى لدمج التقنية في مجال التسويق والتواصل؛ لنترك بها أثرًا إيجابيًا في حياة الأشخاص، وجودة المجتمعات في المملكة، مستلهمين من رؤيتها وفكر قادتها.' },
-        { name: 'فوزي البتديني', title: 'المدير التنفيذي', quote: 'استلهمنا من رؤية المملكة 2030 لنقدم حلولًا متطورة تعتمد على أحدث التقنيات وتركز على الإنسان؛ لنكون من أوائل الشركات التي تشجع على التأثير الإيجابي وتسعى فعليًا لتطبيقه على أرض الواقع.' },
-        { name: 'لوما جابر', title: 'مدير العمليات', quote: 'في مجال عملنا، نعلم أن التقنية وحدها لا تكفي للنجاح، وإنما سر النجاح هو إضافة اللمسة البشرية لما يقدمه لنا الذكاء الاصطناعي من حلول، وهذا ما استلهمناه من رؤية المملكة التي تشجع على تبني الابتكار وتمكين المواهب على حد سواء.' },
+        { name: 'عبدالعزيز الغشيان', title: 'المدير العام', quote: 'انطلقنا في حوار من رؤية واضحة تسعى لدمج التقنية في مجال التسويق والتواصل؛ لنترك بها أثرًا إيجابيًا في حياة الأشخاص، وجودة المجتمعات في المملكة، مستلهمين من رؤيتها وفكر قادتها.', photo: 'abdulaziz-alghshayan.png' },
+        { name: 'فوزي البتديني', title: 'المدير التنفيذي', quote: 'استلهمنا من رؤية المملكة 2030 لنقدم حلولًا متطورة تعتمد على أحدث التقنيات وتركز على الإنسان؛ لنكون من أوائل الشركات التي تشجع على التأثير الإيجابي وتسعى فعليًا لتطبيقه على أرض الواقع.', photo: 'fawzi-bteddiny.png' },
+        { name: 'لوما جابر', title: 'مدير العمليات', quote: 'في مجال عملنا، نعلم أن التقنية وحدها لا تكفي للنجاح، وإنما سر النجاح هو إضافة اللمسة البشرية لما يقدمه لنا الذكاء الاصطناعي من حلول، وهذا ما استلهمناه من رؤية المملكة التي تشجع على تبني الابتكار وتمكين المواهب على حد سواء.', photo: 'loma-jaber.png' },
       ],
       awardsLabel: 'تقدير يليق بما نبدعه',
       awards: [
