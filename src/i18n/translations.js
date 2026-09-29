@@ -10,7 +10,7 @@ export const translations = {
       work: 'Work',
       careers: 'Careers',
       insights: 'Insights',
-      letsTalk: "Let's Talk",
+      letsTalk: 'Hewar Us!',
     },
     hero: {
       line1: 'Human Intelligence.',
@@ -246,7 +246,7 @@ export const translations = {
       services: 'خدماتنا',
       work: 'أعمالنا',
       insights: 'رؤى',
-      letsTalk: 'لنتحدث',
+      letsTalk: 'تحاور معنا!',
     },
     hero: {
       line1: 'ذكاء بشري.',

@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom'
 import Container from '../../ui/Container/Container'
 import Button from '../../ui/Button/Button'
-import { CONTACT_EMAIL, SOCIAL_LINKS } from '../../../utils/constants'
+import { SOCIAL_LINKS } from '../../../utils/constants'
 import { SOCIAL_META } from '../../icons/SocialIcons'
 import { useCursor } from '../../../context/CursorContext'
 import { useContactModal } from '../../../context/ContactModalContext'
@@ -39,15 +39,6 @@ const Footer = () => {
             </Link>
 
             <p className={styles.tagline}>{t('footer.tagline')}</p>
-
-            <a
-              href={`mailto:${CONTACT_EMAIL}`}
-              className={styles.email}
-              onMouseEnter={() => setCursor('hover')}
-              onMouseLeave={resetCursor}
-            >
-              {CONTACT_EMAIL}
-            </a>
           </div>
 
           <div className={styles.social}>
