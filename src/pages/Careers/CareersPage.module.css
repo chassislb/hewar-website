@@ -1,8 +1,10 @@
 /* ── Hero ── */
 .hero {
   position: relative;
-  padding-top: clamp(9rem, 16vw, 13rem);
-  padding-bottom: clamp(5rem, 10vw, 8rem);
+  height: 100svh;
+  min-height: 560px;
+  display: flex;
+  align-items: center;
   background: var(--color-bg-primary);
   overflow: hidden;
   text-align: center;
@@ -20,7 +22,6 @@
   height: 100%;
   object-fit: cover;
   object-position: center;
-  filter: brightness(0.6) saturate(0.7) blur(1.5px);
 }
 
 .heroVideoOverlay {
@@ -29,8 +30,8 @@
   z-index: 0;
   background: linear-gradient(
     to bottom,
-    rgba(6, 26, 64, 0.28),
-    rgba(6, 26, 64, 0.5)
+    rgba(6, 26, 64, 0.15),
+    rgba(6, 26, 64, 0.35)
   );
   pointer-events: none;
 }
@@ -44,6 +45,7 @@
   position: relative;
   z-index: 1;
   margin-bottom: clamp(1rem, 2vw, 1.5rem);
+  text-shadow: 0 2px 16px rgba(0, 0, 0, 0.45);
 }
 
 .heroSub {

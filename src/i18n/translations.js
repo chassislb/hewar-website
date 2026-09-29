@@ -245,6 +245,7 @@ export const translations = {
       about: 'من نحن',
       services: 'خدماتنا',
       work: 'أعمالنا',
+      careers: 'الوظائف',
       insights: 'رؤى',
       letsTalk: 'تحاور معنا!',
     },
