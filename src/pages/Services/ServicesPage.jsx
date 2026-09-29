@@ -4,11 +4,16 @@ import { useGSAP } from '@gsap/react'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import Container from '../../components/ui/Container/Container'
-import Button from '../../components/ui/Button/Button'
 import { useTranslation } from '../../i18n/useTranslation'
+import { useLanguage } from '../../context/LanguageContext'
 import styles from './ServicesPage.module.css'
 
 gsap.registerPlugin(ScrollTrigger)
+
+const VIDEO_SRC = {
+  en: 'https://hewar-media.netlify.app/services-en.mp4',
+  ar: 'https://hewar-media.netlify.app/services-ar.mp4',
+}
 
 const pageVariants = {
   initial: { opacity: 0 },
@@ -65,10 +70,10 @@ const ServiceRow = ({ index, title, description, bullets, isOpen, onToggle }) =>
 
 const ServicesPage = () => {
   const { t } = useTranslation()
+  const { language } = useLanguage()
   const heroRef = useRef(null)
   const listRef = useRef(null)
   const processRef = useRef(null)
-  const ctaRef = useRef(null)
   const [openIndex, setOpenIndex] = useState(null)
 
   const titles = t('services.cards')
@@ -120,21 +125,6 @@ const ServicesPage = () => {
     )
   }, { scope: processRef })
 
-  useGSAP(() => {
-    gsap.fromTo(
-      '[data-cta-reveal]',
-      { y: 30, opacity: 0 },
-      {
-        y: 0,
-        opacity: 1,
-        duration: 0.8,
-        stagger: 0.12,
-        ease: 'power3.out',
-        scrollTrigger: { trigger: ctaRef.current, start: 'top 85%' },
-      }
-    )
-  }, { scope: ctaRef })
-
   return (
     <motion.div variants={pageVariants} initial="initial" animate="animate" exit="exit">
       {/* ── Hero ── */}
@@ -155,6 +145,21 @@ const ServicesPage = () => {
             <h1 className={styles.title} data-page-title>
               {t('services.headingLine1')} {t('services.headingAccent')}
             </h1>
+          </div>
+        </Container>
+      </section>
+
+      {/* ── Video ── */}
+      <section className={styles.videoSection}>
+        <Container>
+          <div className={styles.videoWrapper}>
+            <video
+              key={language}
+              className={styles.video}
+              src={VIDEO_SRC[language]}
+              controls
+              playsInline
+            />
           </div>
         </Container>
       </section>
@@ -195,24 +200,6 @@ const ServicesPage = () => {
                 <p className={styles.stepDesc}>{step.description}</p>
               </div>
             ))}
-          </div>
-        </Container>
-      </section>
-
-      {/* ── CTA ── */}
-      <section className={styles.ctaSection} ref={ctaRef}>
-        <div className={styles.ctaOrb} aria-hidden />
-        <Container size="narrow">
-          <div className={styles.ctaContent}>
-            <p className={styles.ctaEyebrow} data-cta-reveal>Ready to start?</p>
-            <h2 className={styles.ctaTitle} data-cta-reveal>
-              Amplify Your Brand.
-            </h2>
-            <div data-cta-reveal>
-              <Button variant="primary" size="lg" href="/contact">
-                Start a Project
-              </Button>
-            </div>
           </div>
         </Container>
       </section>

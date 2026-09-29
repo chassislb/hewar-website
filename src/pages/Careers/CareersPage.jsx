@@ -10,6 +10,8 @@ import styles from './CareersPage.module.css'
 
 gsap.registerPlugin(ScrollTrigger)
 
+const VIDEO_SRC = 'https://hewar-media.netlify.app/careers-hero.mp4'
+
 const pageVariants = {
   initial: { opacity: 0 },
   animate: { opacity: 1, transition: { duration: 0.5 } },
@@ -81,6 +83,10 @@ const CareersPage = () => {
         <Container>
           <h1 className={styles.title} data-page-title>{t('careersPage.heroTitle')}</h1>
           <p className={styles.heroSub} data-page-eyebrow>{t('careersPage.heroTagline')}</p>
+
+          <div className={styles.videoWrapper}>
+            <video className={styles.video} src={VIDEO_SRC} controls playsInline />
+          </div>
         </Container>
       </section>
 

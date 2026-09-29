@@ -56,6 +56,26 @@
   z-index: 1;
 }
 
+/* ── Showreel ── */
+.videoSection {
+  padding-bottom: var(--section-padding-y);
+  background: var(--color-bg-primary);
+}
+
+.videoWrapper {
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  background: var(--color-bg-elevated);
+  aspect-ratio: 16 / 9;
+}
+
+.video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
 /* ── Work Grid ── */
 .workSection {
   padding-block: var(--section-padding-y);
@@ -238,52 +258,4 @@
   .industriesGrid {
     grid-template-columns: 1fr;
   }
-}
-
-/* ── CTA ── */
-.ctaSection {
-  position: relative;
-  padding-block: clamp(8rem, 15vw, 12rem);
-  background: var(--color-bg-primary);
-  overflow: hidden;
-  text-align: center;
-}
-
-.ctaOrb {
-  position: absolute;
-  width: 700px;
-  height: 700px;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background: radial-gradient(circle, rgba(71, 0, 179, 0.35) 0%, transparent 70%);
-  border-radius: 50%;
-  filter: blur(80px);
-  pointer-events: none;
-}
-
-.ctaContent {
-  position: relative;
-  z-index: 1;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: clamp(1.5rem, 3vw, 2.5rem);
-}
-
-.ctaEyebrow {
-  font-size: var(--type-body-xs);
-  font-weight: var(--weight-semibold);
-  letter-spacing: var(--tracking-widest);
-  text-transform: uppercase;
-  color: var(--color-text-accent);
-}
-
-.ctaTitle {
-  font-size: clamp(2.5rem, 6vw, 6rem);
-  font-weight: var(--weight-black);
-  letter-spacing: var(--tracking-tighter);
-  line-height: var(--leading-tight);
-  color: var(--color-text-primary);
-  margin: 0;
 }

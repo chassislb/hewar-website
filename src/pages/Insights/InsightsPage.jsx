@@ -5,7 +5,6 @@ import { useGSAP } from '@gsap/react'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import Container from '../../components/ui/Container/Container'
-import Button from '../../components/ui/Button/Button'
 import { insights } from '../../data/insights'
 import { useLanguage } from '../../context/LanguageContext'
 import styles from './InsightsPage.module.css'
@@ -22,7 +21,6 @@ const InsightsPage = () => {
   const { language } = useLanguage()
   const heroRef = useRef(null)
   const gridRef = useRef(null)
-  const ctaRef = useRef(null)
 
   useGSAP(() => {
     gsap.fromTo(
@@ -51,21 +49,6 @@ const InsightsPage = () => {
       }
     )
   }, { scope: gridRef })
-
-  useGSAP(() => {
-    gsap.fromTo(
-      '[data-cta-reveal]',
-      { y: 30, opacity: 0 },
-      {
-        y: 0,
-        opacity: 1,
-        duration: 0.8,
-        stagger: 0.12,
-        ease: 'power3.out',
-        scrollTrigger: { trigger: ctaRef.current, start: 'top 85%' },
-      }
-    )
-  }, { scope: ctaRef })
 
   return (
     <motion.div variants={pageVariants} initial="initial" animate="animate" exit="exit">
@@ -116,24 +99,6 @@ const InsightsPage = () => {
             ))}
           </div>
           <p className={styles.comingSoon}>More insights coming soon.</p>
-        </Container>
-      </section>
-
-      {/* ── CTA ── */}
-      <section className={styles.ctaSection} ref={ctaRef}>
-        <div className={styles.ctaOrb} aria-hidden />
-        <Container size="narrow">
-          <div className={styles.ctaContent}>
-            <p className={styles.ctaEyebrow} data-cta-reveal>Work with us</p>
-            <h2 className={styles.ctaTitle} data-cta-reveal>
-              Ready to amplify your brand?
-            </h2>
-            <div data-cta-reveal>
-              <Button variant="primary" size="lg" href="/contact">
-                Start a Conversation
-              </Button>
-            </div>
-          </div>
         </Container>
       </section>
     </motion.div>

@@ -4,9 +4,7 @@ import { useGSAP } from '@gsap/react'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import Container from '../../components/ui/Container/Container'
-import Button from '../../components/ui/Button/Button'
 import { useTranslation } from '../../i18n/useTranslation'
-import { useContactModal } from '../../context/ContactModalContext'
 import styles from './About.module.css'
 
 gsap.registerPlugin(ScrollTrigger)
@@ -19,14 +17,12 @@ const pageVariants = {
 
 const About = () => {
   const { t } = useTranslation()
-  const { openContactModal } = useContactModal()
 
   const heroRef = useRef(null)
   const pillarsRef = useRef(null)
   const valuesRef = useRef(null)
   const teamRef = useRef(null)
   const awardsRef = useRef(null)
-  const ctaRef = useRef(null)
 
   const values = t('aboutPage.values')
   const team = t('aboutPage.team')
@@ -74,15 +70,6 @@ const About = () => {
         scrollTrigger: { trigger: awardsRef.current, start: 'top 80%' } }
     )
   }, { scope: awardsRef })
-
-  /* CTA */
-  useGSAP(() => {
-    gsap.fromTo('[data-cta-reveal]',
-      { y: 30, opacity: 0 },
-      { y: 0, opacity: 1, duration: 0.8, stagger: 0.12, ease: 'power3.out',
-        scrollTrigger: { trigger: ctaRef.current, start: 'top 85%' } }
-    )
-  }, { scope: ctaRef })
 
   return (
     <motion.div variants={pageVariants} initial="initial" animate="animate" exit="exit">
@@ -178,22 +165,6 @@ const About = () => {
                 {award.category && <p className={styles.awardCategory}>{award.category}</p>}
               </div>
             ))}
-          </div>
-        </Container>
-      </section>
-
-      {/* ── CTA ── */}
-      <section className={styles.ctaSection} ref={ctaRef}>
-        <div className={styles.ctaOrb} aria-hidden />
-        <Container size="narrow">
-          <div className={styles.ctaContent}>
-            <p className={styles.ctaEyebrow} data-cta-reveal>{t('aboutPage.ctaEyebrow')}</p>
-            <h2 className={styles.ctaTitle} data-cta-reveal>{t('aboutPage.ctaTitle')}</h2>
-            <div data-cta-reveal>
-              <Button variant="primary" size="lg" onClick={openContactModal}>
-                {t('aboutPage.ctaButton')}
-              </Button>
-            </div>
           </div>
         </Container>
       </section>

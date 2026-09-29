@@ -5,13 +5,17 @@ import { useGSAP } from '@gsap/react'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import Container from '../../components/ui/Container/Container'
-import Button from '../../components/ui/Button/Button'
 import { work } from '../../data/work'
 import { useLanguage } from '../../context/LanguageContext'
 import { useTranslation } from '../../i18n/useTranslation'
 import styles from './WorkPage.module.css'
 
 gsap.registerPlugin(ScrollTrigger)
+
+const SHOWREEL_SRC = {
+  en: 'https://hewar-media.netlify.app/work-showreel-en.mp4',
+  ar: 'https://hewar-media.netlify.app/work-showreel-ar.mp4',
+}
 
 /* Matches the fixed order of workPage.industries in translations.js */
 const INDUSTRY_ICONS = [
@@ -39,7 +43,6 @@ const WorkPage = () => {
   const heroRef = useRef(null)
   const gridRef = useRef(null)
   const industriesRef = useRef(null)
-  const ctaRef = useRef(null)
 
   useGSAP(() => {
     gsap.fromTo(
@@ -89,21 +92,6 @@ const WorkPage = () => {
     )
   }, { scope: industriesRef })
 
-  useGSAP(() => {
-    gsap.fromTo(
-      '[data-cta-reveal]',
-      { y: 30, opacity: 0 },
-      {
-        y: 0,
-        opacity: 1,
-        duration: 0.8,
-        stagger: 0.12,
-        ease: 'power3.out',
-        scrollTrigger: { trigger: ctaRef.current, start: 'top 85%' },
-      }
-    )
-  }, { scope: ctaRef })
-
   return (
     <motion.div variants={pageVariants} initial="initial" animate="animate" exit="exit">
       {/* ── Hero ── */}
@@ -122,6 +110,21 @@ const WorkPage = () => {
             A selection of campaigns, identities, and experiences we've created
             for partners across Saudi Arabia and the region.
           </p>
+        </Container>
+      </section>
+
+      {/* ── Showreel ── */}
+      <section className={styles.videoSection}>
+        <Container>
+          <div className={styles.videoWrapper}>
+            <video
+              key={language}
+              className={styles.video}
+              src={SHOWREEL_SRC[language]}
+              controls
+              playsInline
+            />
+          </div>
         </Container>
       </section>
 
@@ -188,24 +191,6 @@ const WorkPage = () => {
                 {industry}
               </div>
             ))}
-          </div>
-        </Container>
-      </section>
-
-      {/* ── CTA ── */}
-      <section className={styles.ctaSection} ref={ctaRef}>
-        <div className={styles.ctaOrb} aria-hidden />
-        <Container size="narrow">
-          <div className={styles.ctaContent}>
-            <p className={styles.ctaEyebrow} data-cta-reveal>Work with us</p>
-            <h2 className={styles.ctaTitle} data-cta-reveal>
-              Ready to create something great?
-            </h2>
-            <div data-cta-reveal>
-              <Button variant="primary" size="lg" href="/contact">
-                Start a Conversation
-              </Button>
-            </div>
           </div>
         </Container>
       </section>

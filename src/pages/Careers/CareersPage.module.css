@@ -36,6 +36,24 @@
   z-index: 1;
 }
 
+.videoWrapper {
+  max-width: 900px;
+  margin: clamp(2.5rem, 5vw, 4rem) auto 0;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  background: var(--color-bg-elevated);
+  aspect-ratio: 16 / 9;
+  position: relative;
+  z-index: 1;
+}
+
+.video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
 /* ── Why Join Us ── */
 .benefitsSection {
   padding-block: var(--section-padding-y);

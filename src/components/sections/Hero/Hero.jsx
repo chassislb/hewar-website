@@ -1,11 +1,16 @@
 import { useRef, useState, useEffect } from 'react'
 import { useTranslation } from '../../../i18n/useTranslation'
+import { useLanguage } from '../../../context/LanguageContext'
 import styles from './Hero.module.css'
 
-const VIDEO_SRC = '/hewar-website/videos/amplified.mp4'
+const VIDEO_SRC = {
+  en: 'https://hewar-media.netlify.app/home-hero-en.mp4',
+  ar: 'https://hewar-media.netlify.app/home-hero-ar.mp4',
+}
 
 const Hero = () => {
   const { t } = useTranslation()
+  const { language } = useLanguage()
   const videoRef = useRef(null)
   const [muted, setMuted] = useState(true)
 
@@ -16,7 +21,7 @@ const Hero = () => {
     video.playbackRate = 0.75
     video.muted = true
     video.play().catch(() => {})
-  }, [])
+  }, [language])
 
   const toggleMute = () => {
     const video = videoRef.current
@@ -39,6 +44,7 @@ const Hero = () => {
         </div>
 
         <video
+          key={language}
           ref={videoRef}
           className={styles.heroVideo}
           autoPlay
@@ -46,7 +52,7 @@ const Hero = () => {
           playsInline
           preload="auto"
         >
-          <source src={VIDEO_SRC} type="video/mp4" />
+          <source src={VIDEO_SRC[language]} type="video/mp4" />
         </video>
 
         <div className={styles.videoOverlay} aria-hidden />
