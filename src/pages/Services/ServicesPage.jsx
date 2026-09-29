@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react'
+import { useRef, useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import { useGSAP } from '@gsap/react'
 import gsap from 'gsap'
@@ -74,6 +74,7 @@ const ServicesPage = () => {
   const heroRef = useRef(null)
   const listRef = useRef(null)
   const processRef = useRef(null)
+  const heroVideoRef = useRef(null)
   const [openIndex, setOpenIndex] = useState(null)
 
   const titles = t('services.cards')
@@ -81,6 +82,13 @@ const ServicesPage = () => {
   const bulletLists = t('services.cardDetails')
 
   const toggleRow = (i) => setOpenIndex((prev) => (prev === i ? null : i))
+
+  useEffect(() => {
+    const video = heroVideoRef.current
+    if (!video) return
+    video.muted = true
+    video.play().catch(() => {})
+  }, [language])
 
   useGSAP(() => {
     gsap.fromTo(
@@ -132,6 +140,7 @@ const ServicesPage = () => {
         <div className={styles.heroVideoBg} aria-hidden>
           <video
             key={language}
+            ref={heroVideoRef}
             className={styles.heroVideo}
             src={VIDEO_SRC[language]}
             autoPlay

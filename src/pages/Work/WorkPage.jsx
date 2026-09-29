@@ -1,4 +1,4 @@
-import { useRef } from 'react'
+import { useRef, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import { useGSAP } from '@gsap/react'
@@ -43,6 +43,14 @@ const WorkPage = () => {
   const heroRef = useRef(null)
   const gridRef = useRef(null)
   const industriesRef = useRef(null)
+  const heroVideoRef = useRef(null)
+
+  useEffect(() => {
+    const video = heroVideoRef.current
+    if (!video) return
+    video.muted = true
+    video.play().catch(() => {})
+  }, [language])
 
   useGSAP(() => {
     gsap.fromTo(
@@ -99,6 +107,7 @@ const WorkPage = () => {
         <div className={styles.heroVideoBg} aria-hidden>
           <video
             key={language}
+            ref={heroVideoRef}
             className={styles.heroVideo}
             src={SHOWREEL_SRC[language]}
             autoPlay

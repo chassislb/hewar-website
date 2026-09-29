@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react'
+import { useRef, useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import { useGSAP } from '@gsap/react'
 import gsap from 'gsap'
@@ -25,6 +25,14 @@ const CareersPage = () => {
   const heroRef = useRef(null)
   const benefitsRef = useRef(null)
   const applyRef = useRef(null)
+  const heroVideoRef = useRef(null)
+
+  useEffect(() => {
+    const video = heroVideoRef.current
+    if (!video) return
+    video.muted = true
+    video.play().catch(() => {})
+  }, [])
 
   const [isDragging, setIsDragging] = useState(false)
   const [cvFile, setCvFile] = useState(null)
@@ -79,7 +87,7 @@ const CareersPage = () => {
       {/* ── Hero ── */}
       <section className={styles.hero} ref={heroRef}>
         <div className={styles.heroVideoBg} aria-hidden>
-          <video className={styles.heroVideo} src={VIDEO_SRC} autoPlay muted loop playsInline />
+          <video ref={heroVideoRef} className={styles.heroVideo} src={VIDEO_SRC} autoPlay muted loop playsInline />
         </div>
         <div className={styles.heroVideoOverlay} aria-hidden />
         <Container>
