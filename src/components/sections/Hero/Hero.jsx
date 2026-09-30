@@ -4,8 +4,8 @@ import { useLanguage } from '../../../context/LanguageContext'
 import styles from './Hero.module.css'
 
 const VIDEO_SRC = {
-  en: 'https://hewar-media.netlify.app/home-hero-en.mp4',
-  ar: 'https://hewar-media.netlify.app/home-hero-ar.mp4',
+  en: '/hewar-website/videos/home-hero-en.mp4',
+  ar: '/hewar-website/videos/home-hero-ar.mp4',
 }
 
 const Hero = () => {
@@ -47,13 +47,12 @@ const Hero = () => {
           key={language}
           ref={videoRef}
           className={styles.heroVideo}
+          src={VIDEO_SRC[language]}
           autoPlay
           muted
           playsInline
           preload="auto"
-        >
-          <source src={VIDEO_SRC[language]} type="video/mp4" />
-        </video>
+        />
 
         <div className={styles.videoOverlay} aria-hidden />
 

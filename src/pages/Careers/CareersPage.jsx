@@ -10,7 +10,7 @@ import styles from './CareersPage.module.css'
 
 gsap.registerPlugin(ScrollTrigger)
 
-const VIDEO_SRC = 'https://hewar-media.netlify.app/careers-hero.mp4'
+const VIDEO_SRC = '/hewar-website/videos/careers-hero.mp4'
 
 const pageVariants = {
   initial: { opacity: 0 },

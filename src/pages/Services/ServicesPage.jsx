@@ -11,8 +11,8 @@ import styles from './ServicesPage.module.css'
 gsap.registerPlugin(ScrollTrigger)
 
 const VIDEO_SRC = {
-  en: 'https://hewar-media.netlify.app/services-en.mp4',
-  ar: 'https://hewar-media.netlify.app/services-ar.mp4',
+  en: '/hewar-website/videos/services-en.mp4',
+  ar: '/hewar-website/videos/services-ar.mp4',
 }
 
 const pageVariants = {
@@ -155,16 +155,9 @@ const ServicesPage = () => {
             <span className={styles.eyebrowDot} aria-hidden />
             {t('services.label')}
           </p>
-          <div className={styles.titleWrap}>
-            <svg className={styles.titleRings} viewBox="0 0 400 400" aria-hidden>
-              <circle className={styles.titleRing} cx="200" cy="200" r="120" />
-              <circle className={styles.titleRing} cx="200" cy="200" r="170" />
-              <circle className={styles.titleRingDot} cx="316" cy="84" r="4" />
-            </svg>
-            <h1 className={styles.title} data-page-title>
-              {t('services.headingLine1')} {t('services.headingAccent')}
-            </h1>
-          </div>
+          <h1 className={styles.title} data-page-title>
+            {t('services.headingLine1')} {t('services.headingAccent')}
+          </h1>
         </Container>
       </section>
 

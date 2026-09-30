@@ -4,7 +4,8 @@
   height: 100svh;
   min-height: 560px;
   display: flex;
-  align-items: center;
+  align-items: flex-end;
+  padding-bottom: clamp(3rem, 7vw, 5.5rem);
   background: var(--color-bg-primary);
   overflow: hidden;
 }
@@ -59,7 +60,7 @@
 }
 
 .title {
-  font-size: clamp(2.2rem, 5vw, 4.5rem);
+  font-size: clamp(1.6rem, 3vw, 2.75rem);
   font-weight: var(--weight-black);
   letter-spacing: var(--tracking-tighter);
   line-height: var(--leading-tight);

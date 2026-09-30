@@ -20,7 +20,7 @@ export const work = [
       '/hewar-website/Website/CaseStudy/KFSHRC/1.png',
     ],
     video: {
-      long: 'https://hewar-media.netlify.app/kfshrc-long.mp4',
+      long: '/hewar-website/videos/work/kfshrc-long.mp4',
     },
   },
   {
@@ -114,8 +114,8 @@ export const work = [
       '/hewar-website/Website/CaseStudy/KARNAR/oo3.jpg',
     ],
     video: {
-      short: 'https://hewar-media.netlify.app/karnr-short.mp4',
-      long: 'https://hewar-media.netlify.app/karnr-long.mp4',
+      short: '/hewar-website/videos/work/karnr-short.mp4',
+      long: '/hewar-website/videos/work/karnr-long.mp4',
     },
   },
   {
@@ -137,8 +137,8 @@ export const work = [
     image: null,
     images: [],
     video: {
-      short: 'https://hewar-media.netlify.app/neom-short.mp4',
-      long: 'https://hewar-media.netlify.app/neom-long.mp4',
+      short: '/hewar-website/videos/work/neom-short.mp4',
+      long: '/hewar-website/videos/work/neom-long.mp4',
     },
   },
   {
@@ -160,8 +160,8 @@ export const work = [
     image: null,
     images: [],
     video: {
-      short: 'https://hewar-media.netlify.app/king-salman-academy-short.mp4',
-      long: 'https://hewar-media.netlify.app/king-salman-academy-long.mp4',
+      short: '/hewar-website/videos/work/king-salman-academy-short.mp4',
+      long: '/hewar-website/videos/work/king-salman-academy-long.mp4',
     },
   },
   {
@@ -183,8 +183,8 @@ export const work = [
     image: null,
     images: [],
     video: {
-      short: 'https://hewar-media.netlify.app/saudi-exports-short.mp4',
-      long: 'https://hewar-media.netlify.app/saudi-exports-long.mp4',
+      short: '/hewar-website/videos/work/saudi-exports-short.mp4',
+      long: '/hewar-website/videos/work/saudi-exports-long.mp4',
     },
   },
 ]

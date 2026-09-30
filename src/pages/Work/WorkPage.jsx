@@ -13,8 +13,8 @@ import styles from './WorkPage.module.css'
 gsap.registerPlugin(ScrollTrigger)
 
 const SHOWREEL_SRC = {
-  en: 'https://hewar-media.netlify.app/work-showreel-en.mp4',
-  ar: 'https://hewar-media.netlify.app/work-showreel-ar.mp4',
+  en: '/hewar-website/videos/work-showreel-en.mp4',
+  ar: '/hewar-website/videos/work-showreel-ar.mp4',
 }
 
 /* Matches the fixed order of workPage.industries in translations.js */
