@@ -1,0 +1,195 @@
+.sectionEyebrow {
+  font-size: var(--type-body-xs);
+  font-weight: var(--weight-semibold);
+  letter-spacing: var(--tracking-widest);
+  text-transform: uppercase;
+  color: var(--color-text-accent);
+  margin-bottom: clamp(2.5rem, 5vw, 4rem);
+}
+
+/* ═══════════════════════════════
+   AWARDS — "The Unveiling"
+   Lights go down, then one stage beam at a time drops onto each trophy.
+═══════════════════════════════ */
+.awardsSection {
+  position: relative;
+  padding-block: var(--section-padding-y);
+  background: var(--color-bg-primary);
+  overflow: hidden;
+  isolation: isolate;
+}
+
+/* house lights down */
+.awardsDark {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse 70% 60% at 50% 62%, #01050F 0%, rgba(1, 5, 15, 0.92) 45%, rgba(3, 12, 32, 0.6) 75%, transparent 100%);
+}
+
+.awardsHead {
+  text-align: center;
+}
+
+.stage {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: clamp(1rem, 2.5vw, 2.5rem);
+  margin-top: clamp(4rem, 9vw, 7rem);
+}
+
+.slot {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+/* the stage light (lives inside .pedestal, lands on the floor) */
+.beam {
+  position: absolute;
+  left: 50%;
+  bottom: -22px;
+  width: 125%;
+  height: calc(100% + 22px + clamp(3rem, 6vw, 5rem));
+  transform: translateX(-50%);
+  transform-origin: 50% 0;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.beam::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  clip-path: polygon(47% 0, 53% 0, 90% 100%, 10% 100%);
+  background: linear-gradient(
+    to bottom,
+    rgba(200, 235, 255, 0.5) 0%,
+    rgba(150, 205, 255, 0.14) 28%,
+    rgba(120, 170, 255, 0.08) 65%,
+    rgba(140, 120, 255, 0.14) 88%,
+    rgba(140, 120, 255, 0) 100%
+  );
+  filter: blur(12px);
+  mix-blend-mode: screen;
+}
+
+/* the lamp itself */
+.beam::after {
+  content: '';
+  position: absolute;
+  top: -4px;
+  left: 50%;
+  width: 14px;
+  height: 14px;
+  margin-left: -7px;
+  border-radius: 50%;
+  background: #EAF8FF;
+  box-shadow:
+    0 0 10px 3px rgba(190, 235, 255, 0.9),
+    0 0 40px 12px rgba(0, 200, 255, 0.35);
+}
+
+.pedestal {
+  position: relative;
+  z-index: 1;
+  isolation: isolate;
+  height: clamp(170px, 22vw, 280px);
+  width: 100%;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+/* pool of light on the floor */
+.floorGlow {
+  position: absolute;
+  z-index: 1;
+  left: 50%;
+  bottom: -18px;
+  width: 120%;
+  height: 46px;
+  transform: translateX(-50%);
+  border-radius: 50%;
+  background: radial-gradient(closest-side, rgba(190, 230, 255, 0.45), rgba(98, 0, 240, 0.18) 55%, transparent 100%);
+  filter: blur(6px);
+  pointer-events: none;
+}
+
+.trophy {
+  position: relative;
+  z-index: 1;
+  max-height: 100%;
+  max-width: 88%;
+  object-fit: contain;
+  filter: drop-shadow(0 18px 30px rgba(0, 0, 0, 0.55));
+  -webkit-box-reflect: below 2px linear-gradient(transparent 72%, rgba(255, 255, 255, 0.14));
+  transition: translate 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* logos / badges read smaller than real trophies */
+.trophyFlat {
+  max-height: 72%;
+  -webkit-box-reflect: unset;
+}
+
+.slot:hover .trophy {
+  translate: 0 -6px;
+}
+
+.awardCopy {
+  position: relative;
+  z-index: 1;
+  margin-top: clamp(2.5rem, 4vw, 3.25rem);
+  max-width: 24ch;
+}
+
+.awardTitle {
+  font-size: clamp(1rem, 1.35vw, 1.2rem);
+  font-weight: var(--weight-bold);
+  color: var(--color-text-primary);
+  letter-spacing: var(--tracking-tight);
+  line-height: var(--leading-snug);
+  margin: 0;
+}
+
+.awardWord {
+  display: inline-block;
+  white-space: pre;
+}
+
+.awardYear {
+  color: var(--color-text-accent);
+  font-weight: var(--weight-semibold);
+}
+
+.awardCategory {
+  margin: 0.5rem 0 0;
+  font-size: var(--type-body-xs);
+  letter-spacing: var(--tracking-wider);
+  text-transform: uppercase;
+  color: var(--color-text-secondary);
+}
+
+@media (max-width: 1024px) {
+  .stage {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    row-gap: clamp(6rem, 14vw, 8rem);
+  }
+}
+
+@media (max-width: 560px) {
+  .stage {
+    grid-template-columns: 1fr;
+    row-gap: 7rem;
+  }
+
+  .pedestal {
+    height: 240px;
+  }
+}
