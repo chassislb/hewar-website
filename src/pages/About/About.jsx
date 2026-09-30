@@ -156,12 +156,22 @@ const About = () => {
           <div className={styles.awardsGrid}>
             {awards.map((award) => (
               <div key={award.title} className={styles.awardCard} data-award-card>
-                <span className={styles.awardIcon} aria-hidden>
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6">
-                    <path d="M8 21h8M12 17v4M7 4h10v5a5 5 0 0 1-10 0V4Z" strokeLinecap="round" strokeLinejoin="round" />
-                    <path d="M7 6H4a1 1 0 0 0-1 1 4 4 0 0 0 4 4M17 6h3a1 1 0 0 1 1 1 4 4 0 0 1-4 4" strokeLinecap="round" strokeLinejoin="round" />
-                  </svg>
-                </span>
+                {award.photo ? (
+                  <div className={styles.awardPhotoFrame}>
+                    <img
+                      className={styles.awardPhoto}
+                      src={`${import.meta.env.BASE_URL}images/awards/${award.photo}`}
+                      alt={award.title}
+                    />
+                  </div>
+                ) : (
+                  <span className={styles.awardIcon} aria-hidden>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6">
+                      <path d="M8 21h8M12 17v4M7 4h10v5a5 5 0 0 1-10 0V4Z" strokeLinecap="round" strokeLinejoin="round" />
+                      <path d="M7 6H4a1 1 0 0 0-1 1 4 4 0 0 0 4 4M17 6h3a1 1 0 0 1 1 1 4 4 0 0 1-4 4" strokeLinecap="round" strokeLinejoin="round" />
+                    </svg>
+                  </span>
+                )}
                 <h3 className={styles.awardTitle}>
                   {award.title}{award.year && <span className={styles.awardYear}> {award.year}</span>}
                 </h3>
