@@ -154,15 +154,27 @@ const WorkPage = () => {
                     playsInline
                     aria-hidden
                   />
+                ) : project.image ? (
+                  <img
+                    className={styles.cardBg}
+                    src={project.image}
+                    alt=""
+                    aria-hidden
+                  />
                 ) : (
                   <div className={styles.cardBg} style={{ background: project.color }} />
                 )}
+                <div className={styles.cardGradient} aria-hidden />
                 <div className={styles.cardContent}>
                   <span className={styles.cardNumber}>
                     {String(index + 1).padStart(2, '0')}
                   </span>
                   <div className={styles.cardMeta}>
-                    <span className={styles.cardClient}>{project.client}</span>
+                    {project.logo ? (
+                      <img className={styles.cardLogo} src={project.logo} alt={project.client} />
+                    ) : (
+                      <span className={styles.cardClient}>{project.client}</span>
+                    )}
                   </div>
                   <h2 className={styles.cardTitle}>{project.title[language]}</h2>
                   <div className={styles.cardFooter}>

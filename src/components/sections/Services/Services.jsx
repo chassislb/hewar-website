@@ -7,6 +7,7 @@ import Container from '../../ui/Container/Container'
 import { useCursor } from '../../../context/CursorContext'
 import { useSectionTheme } from '../../../context/SectionThemeContext'
 import { useTranslation } from '../../../i18n/useTranslation'
+import ServiceGlyph from './ServiceGlyph'
 import styles from './Services.module.css'
 
 gsap.registerPlugin(ScrollTrigger)
@@ -21,26 +22,46 @@ const panelVariants = {
   open: { opacity: 1, y: 0, scale: 1, transition: { duration: 0.4, ease: [0.16, 1, 0.3, 1] } },
 }
 
-const SERVICE_ICONS = [
-  'strategic-corporate-communication.png',
-  'pr-and-media.png',
-  'content-and-editorial-services.png',
-  'creative-lab.png',
-  'digital-marketing-services.png',
-  'monitoring-and-media-research.png',
-  'events-management.png',
-]
-
 const ServiceCard = ({ title, index, onOpen }) => {
   const { setCursor, resetCursor } = useCursor()
+  const [active, setActive] = useState(false)
+  const [shown, setShown] = useState(false)
+  const cardRef = useRef(null)
+
+  // Pop the icon in whenever the card enters the viewport — works with the
+  // GSAP horizontal track (observer sees transformed positions) and the
+  // mobile swipe strip alike. Resets on exit so it pops again next pass.
+  useEffect(() => {
+    const el = cardRef.current
+    if (!el) return
+    const io = new IntersectionObserver(
+      ([entry]) => setShown(entry.isIntersecting),
+      { threshold: 0.45 },
+    )
+    io.observe(el)
+    return () => io.disconnect()
+  }, [])
 
   return (
     <div
+      ref={cardRef}
       className={styles.card}
-      onMouseEnter={() => setCursor('hover')}
-      onMouseLeave={resetCursor}
+      onMouseEnter={() => {
+        setCursor('hover')
+        setActive(true)
+      }}
+      onMouseLeave={() => {
+        resetCursor()
+        setActive(false)
+      }}
     >
-      <button type="button" className={styles.cardLink} onClick={() => onOpen(index)}>
+      <button
+        type="button"
+        className={styles.cardLink}
+        onClick={() => onOpen(index)}
+        onFocus={() => setActive(true)}
+        onBlur={() => setActive(false)}
+      >
         <div className={styles.cardInner}>
           <div className={styles.cardTop}>
             <span className={styles.cardNum}>{String(index + 1).padStart(2, '0')}</span>
@@ -49,12 +70,7 @@ const ServiceCard = ({ title, index, onOpen }) => {
 
           <div className={styles.cardBottom}>
             <h3 className={styles.cardTitle}>{title}</h3>
-            <img
-              className={styles.cardIcon}
-              src={`${import.meta.env.BASE_URL}images/services/${SERVICE_ICONS[index]}`}
-              alt=""
-              aria-hidden
-            />
+            <ServiceGlyph className={styles.cardIcon} index={index} active={active} shown={shown} />
           </div>
         </div>
 

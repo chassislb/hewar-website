@@ -10,7 +10,6 @@ import { useSectionTheme } from '../../../context/SectionThemeContext'
 import { useContactModal } from '../../../context/ContactModalContext'
 import { useLanguage } from '../../../context/LanguageContext'
 import { useTranslation } from '../../../i18n/useTranslation'
-import { useScrollProgress } from '../../../hooks/useScrollProgress'
 import styles from './Navbar.module.css'
 
 const NAV_LABEL_KEYS = {
@@ -28,7 +27,6 @@ const Navbar = () => {
   const navRef                      = useRef(null)
   const location                    = useLocation()
   const { setCursor, resetCursor }  = useCursor()
-  const scrollProgress              = useScrollProgress()
   const theme                       = useSectionTheme()
   const isLight                     = theme === 'light'
   const { openContactModal }        = useContactModal()
@@ -76,13 +74,6 @@ const Navbar = () => {
         ref={navRef}
         className={`${styles.navbar} ${scrolled ? styles.scrolled : ''} ${menuOpen ? styles.menuOpen : ''} ${isLight ? styles.themeLight : ''}`}
       >
-        {/* Scroll progress bar */}
-        <div
-          className={styles.progressBar}
-          style={{ transform: `scaleX(${scrollProgress})` }}
-          aria-hidden
-        />
-
         <Container>
           <nav className={styles.inner}>
             {/* Logo */}

@@ -14,20 +14,6 @@
   overflow: hidden;
 }
 
-/* Scroll progress bar */
-.progressBar {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 1.5px;
-  background: var(--gradient-brand);
-  transform-origin: left center;
-  transform: scaleX(0);
-  transition: opacity var(--dur-fast) ease;
-  z-index: 1;
-}
-
 .scrolled {
   background: rgba(6, 26, 64, 0.85);
   -webkit-backdrop-filter: blur(24px) saturate(1.6);

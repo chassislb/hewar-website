@@ -75,7 +75,8 @@
 
 .headingSub {
   max-width: 480px;
-  font-size: var(--type-body-md);
+  font-size: clamp(1.15rem, 1.8vw, 1.4rem);
+  font-weight: var(--weight-bold);
   color: var(--color-text-secondary);
   line-height: var(--leading-relaxed);
   margin: 0;
@@ -83,7 +84,7 @@
 }
 
 .track {
-  height: clamp(220px, 26vh, 300px);
+  height: clamp(260px, 34vh, 360px);
   display: flex;
   align-items: stretch;
   gap: 1px;
@@ -184,9 +185,9 @@
 }
 
 .cardIcon {
-  width: clamp(36px, 4vw, 48px);
-  height: clamp(36px, 4vw, 48px);
-  object-fit: contain;
+  width: clamp(64px, 6vw, 88px);
+  height: clamp(64px, 6vw, 88px);
+  flex-shrink: 0;
 }
 
 .cardBorder {

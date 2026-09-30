@@ -14,7 +14,7 @@ export const work = [
     },
     color: '#071c46',
     size: 'large',
-    logo: null,
+    logo: '/hewar-website/logos/clients/Hewar P logos (1)-07.svg',
     image: '/hewar-website/Website/CaseStudy/KFSHRC/1.png',
     images: [
       '/hewar-website/Website/CaseStudy/KFSHRC/1.png',
@@ -59,7 +59,7 @@ export const work = [
     },
     color: '#08315a',
     size: 'large',
-    logo: null,
+    logo: '/hewar-website/logos/clients/Hewar P logos (1)-02.svg',
     image: '/hewar-website/Website/CaseStudy/Amana Al-Riyadh/4.png',
     images: [
       '/hewar-website/Website/CaseStudy/Amana Al-Riyadh/4.png',
@@ -80,7 +80,7 @@ export const work = [
     },
     color: '#0A3A8A',
     size: 'large',
-    logo: null,
+    logo: '/hewar-website/logos/clients/Hewar P logos (1)-11.svg',
     image: '/hewar-website/Website/CaseStudy/KCT/3.jpg',
     images: [
       '/hewar-website/Website/CaseStudy/KCT/3.jpg',
@@ -133,7 +133,7 @@ export const work = [
     },
     color: '#122a5c',
     size: 'large',
-    logo: null,
+    logo: '/hewar-website/logos/clients/Hewar P logos (1)-06.svg',
     image: null,
     images: [],
     video: {
