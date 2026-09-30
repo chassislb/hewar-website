@@ -4,7 +4,12 @@
   display: block;
   overflow: visible;
   filter: drop-shadow(0 6px 18px rgba(0, 200, 255, 0));
-  transition: filter var(--dur) var(--ease);
+  /* Magnet: --mx / --my (-1…1) are set from the cursor position by the card.
+     The transition gives it that soft, lagging "pulled" feel. */
+  transform: translate(calc(var(--mx, 0) * 14px), calc(var(--my, 0) * 12px));
+  transition:
+    filter var(--dur) var(--ease),
+    transform 0.7s var(--ease);
 }
 
 .glyph * {
@@ -70,7 +75,16 @@
   opacity: 0.85;
 }
 
-/* Light keeps drifting while the card is hovered */
+/* Light inside the shape follows the cursor like a torch */
+.hotMove {
+  transition: transform 0.55s var(--ease) !important;
+}
+
+.glyph[data-active] .hotMove {
+  transform: translate(calc(var(--mx, 0) * 40px), calc(var(--my, 0) * 36px));
+}
+
+/* …and keeps breathing while the card is hovered */
 .glyph[data-active] .hot {
   animation: drift 3.6s ease-in-out infinite alternate;
 }
@@ -86,9 +100,6 @@
   transform: translate(5px, -5px);
 }
 
-.strategy[data-active] .hotMove {
-  transform: translate(22px, -24px);
-}
 
 /* ── 02 PR: bubble tilts up, "typing" dots appear ── */
 .pr .dots circle {
@@ -101,9 +112,6 @@
   transform: translateY(-3px) rotate(-4deg);
 }
 
-.pr[data-active] .hotMove {
-  transform: translate(30px, -20px);
-}
 
 .pr[data-active] .dots circle {
   opacity: 0.75;
@@ -124,9 +132,6 @@
 .editorial[data-active] .line2 { transform: translateX(14px); transition-delay: 0.05s; }
 .editorial[data-active] .line3 { transform: translateX(22px); transition-delay: 0.1s; }
 
-.editorial[data-active] .hotMove {
-  transform: translate(36px, -30px);
-}
 
 /* ── 04 Creative Lab: orb lifts, iridescent band rolls ── */
 .band {
@@ -137,9 +142,6 @@
   transform: translateY(-5px);
 }
 
-.lab[data-active] .hotMove {
-  transform: translate(10px, 8px);
-}
 
 .lab[data-active] .band {
   transform: translateY(-9px) scaleX(1.1);
@@ -158,18 +160,12 @@
 .digital[data-active] .bar2 { transform: scaleY(1.18); transition-delay: 0.06s; }
 .digital[data-active] .bar3 { transform: scaleY(1.1);  transition-delay: 0.12s; }
 
-.digital[data-active] .hotMove {
-  transform: translate(38px, -40px);
-}
 
 /* ── 06 Monitoring: lens scans across ── */
 .monitor[data-active] .wrap {
   transform: translate(6px, 4px) rotate(-6deg);
 }
 
-.monitor[data-active] .hotMove {
-  transform: translate(40px, -30px);
-}
 
 /* ── 07 Events: sparkle turns, a second spark pops ── */
 .spark {
@@ -182,9 +178,6 @@
   transform: rotate(18deg) scale(1.05);
 }
 
-.events[data-active] .hotMove {
-  transform: translateY(-28px);
-}
 
 .events[data-active] .spark {
   opacity: 0.9;

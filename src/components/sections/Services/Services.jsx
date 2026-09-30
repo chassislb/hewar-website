@@ -2,7 +2,6 @@ import { useEffect, useRef, useState } from 'react'
 import { useGSAP } from '@gsap/react'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
-import { AnimatePresence, motion } from 'framer-motion'
 import Container from '../../ui/Container/Container'
 import { useCursor } from '../../../context/CursorContext'
 import { useSectionTheme } from '../../../context/SectionThemeContext'
@@ -12,21 +11,42 @@ import styles from './Services.module.css'
 
 gsap.registerPlugin(ScrollTrigger)
 
-const backdropVariants = {
-  closed: { opacity: 0 },
-  open: { opacity: 1, transition: { duration: 0.3 } },
-}
-
-const panelVariants = {
-  closed: { opacity: 0, y: 24, scale: 0.98 },
-  open: { opacity: 1, y: 0, scale: 1, transition: { duration: 0.4, ease: [0.16, 1, 0.3, 1] } },
-}
-
-const ServiceCard = ({ title, index, onOpen }) => {
+const ServiceCard = ({ title, index, onPick }) => {
   const { setCursor, resetCursor } = useCursor()
   const [active, setActive] = useState(false)
   const [shown, setShown] = useState(false)
   const cardRef = useRef(null)
+  const iconRef = useRef(null)
+  const frame = useRef(0)
+
+  // Magnet: feed the cursor position (relative to the icon, normalised to
+  // the card size) into CSS vars. The glyph's CSS does the easing.
+  const setMagnet = (mx, my) => {
+    const el = iconRef.current
+    if (!el) return
+    el.style.setProperty('--mx', mx.toFixed(3))
+    el.style.setProperty('--my', my.toFixed(3))
+  }
+
+  const onPointerMove = (e) => {
+    if (e.pointerType !== 'mouse') return
+    const { clientX, clientY } = e
+    cancelAnimationFrame(frame.current)
+    frame.current = requestAnimationFrame(() => {
+      const card = cardRef.current.getBoundingClientRect()
+      const icon = iconRef.current.getBoundingClientRect()
+      const clamp = (v) => Math.max(-1, Math.min(1, v))
+      setMagnet(
+        clamp((clientX - (icon.left + icon.width / 2)) / (card.width / 2)),
+        clamp((clientY - (icon.top + icon.height / 2)) / (card.height / 2)),
+      )
+    })
+  }
+
+  const onPointerLeave = () => {
+    cancelAnimationFrame(frame.current)
+    setMagnet(0, 0)
+  }
 
   // Pop the icon in whenever the card enters the viewport — works with the
   // GSAP horizontal track (observer sees transformed positions) and the
@@ -46,6 +66,8 @@ const ServiceCard = ({ title, index, onOpen }) => {
     <div
       ref={cardRef}
       className={styles.card}
+      onPointerMove={onPointerMove}
+      onPointerLeave={onPointerLeave}
       onMouseEnter={() => {
         setCursor('hover')
         setActive(true)
@@ -58,19 +80,23 @@ const ServiceCard = ({ title, index, onOpen }) => {
       <button
         type="button"
         className={styles.cardLink}
-        onClick={() => onOpen(index)}
+        onClick={() => onPick(index)}
         onFocus={() => setActive(true)}
         onBlur={() => setActive(false)}
       >
         <div className={styles.cardInner}>
           <div className={styles.cardTop}>
-            <span className={styles.cardNum}>{String(index + 1).padStart(2, '0')}</span>
-            <span className={styles.cardArrow}>↗</span>
+              <span className={styles.iconSlot} ref={iconRef}>
+                <ServiceGlyph className={styles.cardIcon} index={index} active={active} shown={shown} />
+              </span>
+            <span className={styles.cardMeta}>
+              <span className={styles.cardNum}>{String(index + 1).padStart(2, '0')}</span>
+              <span className={styles.cardArrow}>↗</span>
+            </span>
           </div>
 
           <div className={styles.cardBottom}>
             <h3 className={styles.cardTitle}>{title}</h3>
-            <ServiceGlyph className={styles.cardIcon} index={index} active={active} shown={shown} />
           </div>
         </div>
 
@@ -83,34 +109,21 @@ const ServiceCard = ({ title, index, onOpen }) => {
 const Services = () => {
   const sectionRef = useRef(null)
   const trackRef = useRef(null)
+  const stickyRef = useRef(null)
+  const spotRef = useRef(null)
   const theme = useSectionTheme()
   const isLight = theme === 'light'
   const { t } = useTranslation()
-  const { setCursor, resetCursor, lockCursorToModal, unlockCursorFromModal } = useCursor()
   const cards = t('services.cards')
-  const cardDetails = t('services.cardDetails')
-  const [openIndex, setOpenIndex] = useState(null)
-  const isOpen = openIndex !== null
+  const summaries = t('services.summaries')
+  const railRef = useRef(null)
+  const pinnedRef = useRef(null)
+  const [focus, setFocus] = useState(0)
 
-  const closeModal = () => setOpenIndex(null)
-
-  useEffect(() => {
-    document.body.style.overflow = isOpen ? 'hidden' : ''
-    if (isOpen) lockCursorToModal()
-    return () => {
-      document.body.style.overflow = ''
-      if (isOpen) unlockCursorFromModal()
-    }
-  }, [isOpen, lockCursorToModal, unlockCursorFromModal])
-
-  useEffect(() => {
-    if (!isOpen) return
-    const onKeyDown = (e) => {
-      if (e.key === 'Escape') closeModal()
-    }
-    window.addEventListener('keydown', onKeyDown)
-    return () => window.removeEventListener('keydown', onKeyDown)
-  }, [isOpen])
+  // Click a card: the spotlight + info jump to it until the user scrolls again.
+  const pickCard = (index) => {
+    pinnedRef.current = { index, y: window.scrollY, x: trackRef.current?.scrollLeft ?? 0 }
+  }
 
   useGSAP(() => {
     const mm = gsap.matchMedia()
@@ -177,6 +190,100 @@ const Services = () => {
     return () => mm.revert()
   }, { scope: sectionRef })
 
+  // Spotlight: one glow travels along the strip as you scroll, landing on
+  // card 1 at the start and card 7 at the end. The card under it is "in
+  // focus" (icon lit); the rest dim. Runs only while the section is on screen.
+  useEffect(() => {
+    const section = sectionRef.current
+    const track = trackRef.current
+    const sticky = stickyRef.current
+    const spot = spotRef.current
+    if (!section || !track || !sticky || !spot) return
+
+    let raf = 0
+    let running = false
+    let cur = null
+    let focused = -1
+    let railX = null
+
+    const tick = () => {
+      const cards = Array.from(track.children)
+      if (!cards.length) return
+      const base = sticky.getBoundingClientRect()
+      const tr = track.getBoundingClientRect()
+
+      // progress through the strip, 0 → 1 (desktop: GSAP transform, mobile: native scroll)
+      const isScroller = track.scrollWidth > track.clientWidth + 1
+      const p = isScroller
+        ? track.scrollLeft / (track.scrollWidth - track.clientWidth)
+        : (() => {
+            const travel = track.scrollWidth - window.innerWidth
+            return travel > 0 ? -(tr.left - base.left) / travel : 0
+          })()
+      // a clicked card overrides scroll until the user scrolls again
+      const pin = pinnedRef.current
+      if (pin && (Math.abs(window.scrollY - pin.y) > 40 || Math.abs(track.scrollLeft - pin.x) > 40)) {
+        pinnedRef.current = null
+      }
+      const f = pinnedRef.current
+        ? pinnedRef.current.index
+        : Math.max(0, Math.min(1, p || 0)) * (cards.length - 1)
+      const i = Math.floor(f)
+      const a = cards[i].getBoundingClientRect()
+      const b = cards[Math.min(i + 1, cards.length - 1)].getBoundingClientRect()
+      const k = f - i
+      const target = {
+        x: a.left + a.width / 2 + ((b.left + b.width / 2) - (a.left + a.width / 2)) * k - base.left,
+        y: a.top + a.height / 2 - base.top,
+      }
+
+      cur = cur
+        ? { x: cur.x + (target.x - cur.x) * 0.12, y: cur.y + (target.y - cur.y) * 0.12 }
+        : target
+      spot.style.transform = `translate3d(${cur.x}px, ${cur.y}px, 0) translate(-50%, -50%)`
+
+      const next = Math.round(f)
+      if (next !== focused) {
+        cards[focused]?.removeAttribute('data-focus')
+        cards[next]?.setAttribute('data-focus', '')
+        focused = next
+        setFocus(next)
+      }
+
+      // info rail slides along under the lit card (desktop only)
+      const rail = railRef.current
+      if (rail) {
+        if (isScroller) {
+          rail.style.transform = ''
+        } else {
+          const lit = cards[next].getBoundingClientRect()
+          const pad = 24
+          const maxX = base.width - rail.offsetWidth - pad
+          // centre the rail under the lit card, kept inside the screen
+          const centre = lit.left - base.left + lit.width / 2 - rail.offsetWidth / 2
+          const want = Math.max(pad, Math.min(maxX, centre))
+          railX = railX === null ? want : railX + (want - railX) * 0.12
+          rail.style.transform = `translate3d(${railX}px, 0, 0)`
+        }
+      }
+
+      if (running) raf = requestAnimationFrame(tick)
+    }
+
+    const io = new IntersectionObserver(([entry]) => {
+      running = entry.isIntersecting
+      cancelAnimationFrame(raf)
+      if (running) raf = requestAnimationFrame(tick)
+    })
+    io.observe(section)
+
+    return () => {
+      running = false
+      cancelAnimationFrame(raf)
+      io.disconnect()
+    }
+  }, [])
+
   return (
     <section
       className={`${styles.services} ${isLight ? styles.themeLight : ''}`}
@@ -184,7 +291,8 @@ const Services = () => {
       id="services"
       data-section-theme="dark"
     >
-      <div className={styles.sticky}>
+      <div className={styles.sticky} ref={stickyRef}>
+        <div className={styles.spotlight} ref={spotRef} aria-hidden />
         <Container>
           <div className={styles.header}>
             <div className={styles.label}>
@@ -211,60 +319,22 @@ const Services = () => {
 
         <div className={styles.track} ref={trackRef}>
           {cards.map((title, index) => (
-            <ServiceCard key={title} title={title} index={index} onOpen={setOpenIndex} />
+            <ServiceCard key={title} title={title} index={index} onPick={pickCard} />
           ))}
+        </div>
+
+        {/* Info rail: what the lit card actually covers. Remounts on focus
+            change so the text + chips animate in fresh each time. */}
+        <div className={styles.railWrap}>
+          <div className={styles.rail} ref={railRef} aria-live="polite">
+            <div className={styles.railInner} key={focus}>
+              <span className={styles.railDot} aria-hidden />
+              <p className={styles.railSummary}>{summaries[focus]}</p>
+            </div>
+          </div>
         </div>
       </div>
 
-      <AnimatePresence>
-        {isOpen && (
-          <motion.div
-            className={styles.modalBackdrop}
-            variants={backdropVariants}
-            initial="closed"
-            animate="open"
-            exit="closed"
-            onClick={closeModal}
-          >
-            <motion.div
-              className={styles.modalPanel}
-              variants={panelVariants}
-              initial="closed"
-              animate="open"
-              exit="closed"
-              onClick={(e) => e.stopPropagation()}
-              role="dialog"
-              aria-modal="true"
-              aria-label={cards[openIndex]}
-            >
-              <button
-                type="button"
-                className={styles.modalClose}
-                onClick={closeModal}
-                aria-label="Close"
-                onMouseEnter={() => setCursor('hover')}
-                onMouseLeave={resetCursor}
-              >
-                <span aria-hidden>×</span>
-              </button>
-
-              <p className={styles.modalEyebrow}>
-                <span className={styles.eyebrowDot} aria-hidden />
-                {t('services.modalLabel')}
-              </p>
-              <h3 className={styles.modalTitle}>{cards[openIndex]}</h3>
-
-              <ul className={styles.modalList}>
-                {cardDetails[openIndex].map((item) => (
-                  <li key={item} className={styles.modalListItem}>
-                    {item}
-                  </li>
-                ))}
-              </ul>
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
     </section>
   )
 }
