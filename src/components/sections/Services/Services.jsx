@@ -21,6 +21,16 @@ const panelVariants = {
   open: { opacity: 1, y: 0, scale: 1, transition: { duration: 0.4, ease: [0.16, 1, 0.3, 1] } },
 }
 
+const SERVICE_ICONS = [
+  'strategic-corporate-communication.png',
+  'pr-and-media.png',
+  'content-and-editorial-services.png',
+  'creative-lab.png',
+  'digital-marketing-services.png',
+  'monitoring-and-media-research.png',
+  'events-management.png',
+]
+
 const ServiceCard = ({ title, index, onOpen }) => {
   const { setCursor, resetCursor } = useCursor()
 
@@ -37,7 +47,15 @@ const ServiceCard = ({ title, index, onOpen }) => {
             <span className={styles.cardArrow}>↗</span>
           </div>
 
-          <h3 className={styles.cardTitle}>{title}</h3>
+          <div className={styles.cardBottom}>
+            <h3 className={styles.cardTitle}>{title}</h3>
+            <img
+              className={styles.cardIcon}
+              src={`${import.meta.env.BASE_URL}images/services/${SERVICE_ICONS[index]}`}
+              alt=""
+              aria-hidden
+            />
+          </div>
         </div>
 
         <div className={styles.cardBorder} aria-hidden />

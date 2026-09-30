@@ -167,6 +167,12 @@
   transform: translate(3px, -3px);
 }
 
+.cardBottom {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(1rem, 2vw, 1.5rem);
+}
+
 .cardTitle {
   font-size: clamp(1.7rem, 2.6vw, 2.5rem);
   font-weight: var(--weight-bold);
@@ -175,6 +181,12 @@
   line-height: var(--leading-snug);
   margin: 0;
   transition: color var(--dur-normal) var(--ease-smooth);
+}
+
+.cardIcon {
+  width: clamp(36px, 4vw, 48px);
+  height: clamp(36px, 4vw, 48px);
+  object-fit: contain;
 }
 
 .cardBorder {

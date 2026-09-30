@@ -14,19 +14,12 @@ const ABOUT_IMAGES = [
   { src: 'about-02-panel.png', alt: 'HEWAR representatives on a panel discussion' },
 ]
 
-/* Tracks the same color as whichever photo is currently dominant, so
-   the word row visibly shifts in sync with each image change. */
-const WORD_COLORS = [
-  [71, 0, 179], // violet — image 1
-  [0, 130, 190], // cyan — image 2
-  [6, 26, 64], // navy — image 3
-]
+const SLIDE_DISTANCE = 70
 
 const About = () => {
   const sectionRef = useRef(null)
   const pinWrapperRef = useRef(null)
   const { t } = useTranslation()
-  const movingWords = t('about.words')
   const headingLines = t('about.headingLines')
 
   useGSAP(() => {
@@ -76,13 +69,11 @@ const About = () => {
       /* Pin the whole photo + copy block in place while the reader scrolls
          through pinWrapper's extra height (set in CSS via .pinStage's
          position: sticky). That scroll distance is what drives the image
-         crossfade and the word-row color — not page scroll in general —
-         so the section only releases to the next one once the third photo
-         has settled in. image[i] (and its matching color) peaks when
-         progress === i / (count - 1), fading linearly toward its
-         neighbors. */
+         transition — not page scroll in general — so the section only
+         releases to the next one once the third photo has settled in.
+         image[i] peaks when progress === i / (count - 1), sliding
+         horizontally in/out as it fades toward its neighbors. */
       const images = gsap.utils.toArray('[data-about-img]')
-      const words = gsap.utils.toArray('[data-about-word]')
       const step = 1 / (images.length - 1)
 
       ScrollTrigger.create({
@@ -91,27 +82,11 @@ const About = () => {
         end: 'bottom bottom',
         scrub: true,
         onUpdate: (self) => {
-          const weights = images.map((_, i) => {
-            const distance = Math.abs(self.progress - i * step)
-            return Math.max(0, 1 - distance / step)
-          })
-
           images.forEach((img, i) => {
-            img.style.opacity = weights[i]
-          })
-
-          const totalWeight = weights.reduce((sum, w) => sum + w, 0) || 1
-          const rgb = [0, 0, 0]
-          weights.forEach((w, i) => {
-            rgb[0] += WORD_COLORS[i][0] * w
-            rgb[1] += WORD_COLORS[i][1] * w
-            rgb[2] += WORD_COLORS[i][2] * w
-          })
-          const color = `rgb(${Math.round(rgb[0] / totalWeight)}, ${Math.round(rgb[1] / totalWeight)}, ${Math.round(rgb[2] / totalWeight)})`
-
-          words.forEach((word) => {
-            word.style.color = color
-            word.style.borderColor = color
+            const offset = self.progress - i * step
+            const weight = Math.max(0, 1 - Math.abs(offset) / step)
+            img.style.opacity = weight
+            img.style.transform = `translateX(${offset * SLIDE_DISTANCE}px)`
           })
         },
       })
@@ -175,16 +150,6 @@ const About = () => {
                     {t('about.p2')}
                   </p>
                 </div>
-              </div>
-            </div>
-
-            <div className={styles.wordsTrack} aria-hidden>
-              <div className={styles.wordsMarquee}>
-                {[...movingWords, ...movingWords].map((word, i) => (
-                  <span key={`${word}-${i}`} className={styles.wordPill} data-about-word>
-                    {word}
-                  </span>
-                ))}
               </div>
             </div>
           </div>

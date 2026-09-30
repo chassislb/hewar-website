@@ -1,6 +1,6 @@
 .about {
   position: relative;
-  padding-block: clamp(7rem, 10vw, 9rem) clamp(5rem, 7vw, 6rem);
+  padding-block: clamp(5rem, 7.5vw, 6.5rem) clamp(5rem, 7vw, 6rem);
   background: transparent;
   border-top: 1px solid var(--color-border-onlight);
   scroll-margin-top: 90px;
@@ -86,7 +86,7 @@
   position: relative;
   z-index: 3;
   display: grid;
-  grid-template-columns: minmax(240px, 0.7fr) minmax(380px, 1fr);
+  grid-template-columns: minmax(280px, 0.85fr) minmax(380px, 1fr);
   gap: clamp(2.5rem, 6vw, 5rem);
   align-items: start;
 }
@@ -98,7 +98,7 @@
 .imageStack {
   position: relative;
   width: 100%;
-  max-width: 380px;
+  max-width: 460px;
   aspect-ratio: 1 / 1;
 }
 
@@ -110,7 +110,7 @@
   object-fit: cover;
   border-radius: 50%;
   box-shadow: 0 20px 50px rgba(6, 26, 64, 0.16);
-  will-change: opacity;
+  will-change: opacity, transform;
 }
 
 .dots {
@@ -168,78 +168,12 @@
   color: var(--color-text-primary-onlight);
 }
 
-/* Words: a plain horizontal marquee (same technique as the Clients
-   logo strip) — steady, not the old diagonal cascade — with color
-   shifting to match whichever photo is currently in focus (set
-   inline via JS on every cloned pill). */
-.wordsTrack {
-  position: relative;
-  z-index: 2;
-  overflow: hidden;
-  width: 100%;
-  margin-top: clamp(2.5rem, 5vw, 4rem);
-  mask-image: linear-gradient(
-    to right,
-    transparent,
-    black 7%,
-    black 93%,
-    transparent
-  );
-}
-
-.wordsMarquee {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-  width: max-content;
-  animation: wordsMarquee 32s linear infinite;
-  will-change: transform;
-}
-
-.wordsTrack:hover .wordsMarquee {
-  animation-play-state: paused;
-}
-
-@keyframes wordsMarquee {
-  from {
-    transform: translateX(0);
-  }
-
-  to {
-    transform: translateX(-50%);
-  }
-}
-
-.wordPill {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-
-  padding: 0.5rem 1.25rem;
-
-  border: 1px solid var(--color-accent-onlight);
-  border-radius: var(--radius-full);
-
-  color: var(--color-accent-onlight);
-
-  font-size: var(--type-body-xs);
-  font-weight: var(--weight-semibold);
-  letter-spacing: var(--tracking-wider);
-  text-transform: uppercase;
-  white-space: nowrap;
-
-  transition:
-    color var(--dur-normal) var(--ease-smooth),
-    border-color var(--dur-normal) var(--ease-smooth);
-}
-
 @media (max-width: 900px) {
   .about {
     padding-block: 4.5rem 4rem;
   }
 
-  /* Pinning a stacked image+heading+paragraphs+words column inside one
+  /* Pinning a stacked image+heading+paragraphs column inside one
      100vh screen doesn't fit on mobile, so just let it scroll normally —
      the crossfade below still runs, it just won't hold the section in
      place while it plays. */
@@ -259,7 +193,7 @@
   }
 
   .imageStack {
-    max-width: 260px;
+    max-width: 320px;
     margin: 0 auto;
   }
 
@@ -271,10 +205,6 @@
   .storyBlock {
     max-width: none;
     margin: 0;
-  }
-
-  .wordsTrack {
-    margin-top: 2rem;
   }
 }
 
@@ -290,10 +220,5 @@
   .story {
     font-size: 1rem;
     line-height: 1.7;
-  }
-
-  .wordPill {
-    padding: 0.4rem 0.9rem;
-    font-size: 0.68rem;
   }
 }
