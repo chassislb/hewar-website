@@ -124,6 +124,23 @@ export const translations = {
     aboutPage: {
       heroTitle: 'Who We Are',
       heroBody: 'Hewar Group is a fully integrated marketing and communications agency, offering comprehensive solutions. We think, create, and communicate to help businesses connect, engage, and grow through seamless, strategic communication.',
+      chat: {
+        hewarName: 'Hewar',
+        youName: 'You',
+        question: 'So… who are you?',
+        answers: [
+          'We’re Hewar. In Arabic, it means dialogue.',
+          'A fully integrated marketing and communications agency. Riyadh-born, since 2011.',
+          'We think, create and communicate, so brands and people actually connect.',
+        ],
+        prompt: 'Your turn:',
+        replies: [
+          { ask: 'What do you do?', answer: 'Seven disciplines, one team: strategy, PR, content, creative, digital, research and events.', cta: 'See our services', to: '/services' },
+          { ask: 'Show me your work', answer: 'Gladly. Here’s what we’ve been making.', cta: 'View the work', to: '/work' },
+          { ask: 'Let’s talk', answer: 'Love that. Tell us what you’re working on.', cta: 'Start the conversation', action: 'contact' },
+        ],
+        typing: 'Hewar is typing',
+      },
       missionLabel: 'Our Mission',
       missionBody: 'Connecting brands and people by curating impactful conversations backed by forward-thinking strategies.',
       visionLabel: 'Our Vision',
@@ -361,6 +378,23 @@ export const translations = {
     aboutPage: {
       heroTitle: 'من نحن',
       heroBody: 'مجموعة حوار هي وكالة متكاملة للتسويق والتواصل تقدم حلولًا شاملة، إذ نفكر ونبدع ونتواصل لنساعد الشركات على التواصل والتفاعل والنمو من خلال إستراتيجيات مدروسة.',
+      chat: {
+        hewarName: 'حوار',
+        youName: 'أنت',
+        question: 'طيب… من أنتم؟',
+        answers: [
+          'نحن حوار. والاسم يختصر كل شيء.',
+          'وكالة متكاملة للتسويق والتواصل، من الرياض منذ 2011.',
+          'نفكر ونبدع ونتواصل، ليحدث تواصل حقيقي بين العلامات والناس.',
+        ],
+        prompt: 'دورك:',
+        replies: [
+          { ask: 'ماذا تقدمون؟', answer: 'سبعة تخصصات وفريق واحد: الاستراتيجية، العلاقات العامة، المحتوى، الإبداع، التسويق الرقمي، الرصد، والفعاليات.', cta: 'اكتشف خدماتنا', to: '/services' },
+          { ask: 'أرونا أعمالكم', answer: 'بكل سرور. هذا ما صنعناه مؤخرًا.', cta: 'شاهد أعمالنا', to: '/work' },
+          { ask: 'لنتحدث', answer: 'يسعدنا ذلك. أخبرنا بما تعمل عليه.', cta: 'ابدأ الحوار', action: 'contact' },
+        ],
+        typing: 'حوار يكتب الآن',
+      },
       missionLabel: 'رسالتنا',
       missionBody: 'تجسير العلاقة بين عملائنا والجمهور المستهدف، عبر تطوير إستراتيجيات اتصالية ذات رسائل ملهمة تستشرف آفاق المستقبل.',
       visionLabel: 'رؤيتنا',

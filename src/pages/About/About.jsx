@@ -4,6 +4,7 @@ import { useGSAP } from '@gsap/react'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import Container from '../../components/ui/Container/Container'
+import AboutHero from '../../components/sections/AboutHero/AboutHero'
 import AwardsUnveiling from '../../components/sections/AwardsUnveiling/AwardsUnveiling'
 import { useTranslation } from '../../i18n/useTranslation'
 import styles from './About.module.css'
@@ -19,20 +20,12 @@ const pageVariants = {
 const About = () => {
   const { t } = useTranslation()
 
-  const heroRef = useRef(null)
   const pillarsRef = useRef(null)
   const valuesRef = useRef(null)
   const teamRef = useRef(null)
 
   const values = t('aboutPage.values')
   const team = t('aboutPage.team')
-
-  /* Hero entrance */
-  useGSAP(() => {
-    gsap.fromTo('[data-page-eyebrow]', { y: 20, opacity: 0 }, { y: 0, opacity: 1, duration: 0.8, ease: 'power3.out', delay: 0.15 })
-    gsap.fromTo('[data-page-title]',   { y: 60, opacity: 0 }, { y: 0, opacity: 1, duration: 1,   ease: 'power4.out', delay: 0.05 })
-    gsap.fromTo('[data-page-sub]',     { y: 25, opacity: 0 }, { y: 0, opacity: 1, duration: 0.8, ease: 'power3.out', delay: 0.35 })
-  }, { scope: heroRef })
 
   /* Mission / Vision — big editorial blocks */
   useGSAP(() => {
@@ -64,23 +57,7 @@ const About = () => {
   return (
     <motion.div variants={pageVariants} initial="initial" animate="animate" exit="exit">
 
-      {/* ── Hero — Who We Are ── */}
-      <section className={styles.hero} ref={heroRef}>
-        <div className={styles.heroOrb} style={{ top: '-30%', right: '-15%', background: 'radial-gradient(circle, rgba(71,0,179,0.4) 0%, transparent 70%)', width: 'clamp(400px,60vw,900px)', height: 'clamp(400px,60vw,900px)' }} aria-hidden />
-        <div className={styles.heroOrb} style={{ bottom: '-10%', left: '-8%', background: 'radial-gradient(circle, rgba(0,200,255,0.25) 0%, transparent 70%)', width: 'clamp(250px,40vw,600px)', height: 'clamp(250px,40vw,600px)' }} aria-hidden />
-        <Container>
-          <p className={styles.eyebrow} data-page-eyebrow>
-            <span className={styles.eyebrowDot} aria-hidden />
-            {t('common.tagline')}
-          </p>
-          <h1 className={styles.title} data-page-title>
-            {t('aboutPage.heroTitle')}
-          </h1>
-          <p className={styles.heroSub} data-page-sub>
-            {t('aboutPage.heroBody')}
-          </p>
-        </Container>
-      </section>
+      <AboutHero />
 
       {/* ── Mission / Vision — big numbered editorial blocks ── */}
       <section className={styles.pillars} ref={pillarsRef}>
