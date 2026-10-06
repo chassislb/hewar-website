@@ -35,6 +35,8 @@ const HeroConversation = () => {
       ? [
           { id: nextId(), from: 'you', kind: 'question' },
           ...chat.answers.map((_, i) => ({ id: nextId(), from: 'hewar', kind: 'answer', i })),
+          { id: nextId(), from: 'you', kind: 'followAsk' },
+          { id: nextId(), from: 'hewar', kind: 'followAnswer' },
         ]
       : [],
   )
@@ -75,6 +77,11 @@ const HeroConversation = () => {
         await hewarSays(id, { kind: 'answer', i }, chat.answers[i])
         await wait(350)
       }
+      /* the visitor reacts to the name, Hewar explains it */
+      await wait(900)
+      push(id, { from: 'you', kind: 'followAsk' })
+      await wait(500)
+      await hewarSays(id, { kind: 'followAnswer' }, chat.followUp.answer)
       await wait(450)
       if (run.current !== id) return
       busy.current = false
@@ -106,6 +113,10 @@ const HeroConversation = () => {
         return chat.question
       case 'answer':
         return chat.answers[m.i]
+      case 'followAsk':
+        return chat.followUp.ask
+      case 'followAnswer':
+        return chat.followUp.answer
       case 'ask':
         return chat.replies[m.r].ask
       case 'reply': {
@@ -113,7 +124,7 @@ const HeroConversation = () => {
         return (
           <>
             {r.answer}
-            {r.to ? (
+            {!r.cta ? null : r.to ? (
               <Link to={r.to} className={styles.cta} {...hoverable}>
                 {r.cta} <span aria-hidden>→</span>
               </Link>
@@ -129,6 +140,13 @@ const HeroConversation = () => {
         return null
     }
   }
+
+  /* a fresh pair of questions each turn, with "let's talk" always last */
+  const contactIdx = chat.replies.findIndex((r) => r.action === 'contact')
+  const visibleChips = [
+    ...chat.replies.map((_, i) => i).filter((i) => i !== contactIdx && !used.includes(i)).slice(0, 2),
+    ...(contactIdx >= 0 && !used.includes(contactIdx) ? [contactIdx] : []),
+  ]
 
   return (
     <div className={styles.chat}>
@@ -176,7 +194,7 @@ const HeroConversation = () => {
       <div className={`${styles.chips} ${chipsOpen ? styles.chipsOpen : ''}`}>
         <span className={styles.prompt}>{chat.prompt}</span>
         {chat.replies.map((r, i) =>
-          used.includes(i) ? null : (
+          !visibleChips.includes(i) ? null : (
             <button
               key={r.ask}
               type="button"

@@ -4,7 +4,8 @@
   position: relative;
   z-index: 1;
   width: 100%;
-  max-width: 540px;
+  /* grows with the screen: 540px on laptops → ~820px on 1920 */
+  max-width: clamp(540px, 43vw, 860px);
   margin-inline: auto;
   flex: 1;
   justify-content: flex-end;
@@ -16,11 +17,12 @@
 /* Thread is bottom-anchored: new messages push older ones up and out,
    where they fade away under the mask. */
 .thread {
-  height: clamp(280px, 46vh, 460px);
+  /* the chat is the whole hero now, so it takes the room the title had */
+  height: clamp(320px, 66vh, 760px);
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  gap: 0.45rem;
+  gap: clamp(0.45rem, 0.5vw, 0.7rem);
   padding: 0 14px 14px;
   overflow: hidden;
   -webkit-mask-image: linear-gradient(to bottom, transparent 0, #000 22%);
@@ -35,7 +37,7 @@
 }
 
 .runStart {
-  margin-top: 0.7rem;
+  margin-top: clamp(0.7rem, 0.9vw, 1.1rem);
 }
 
 .hewar {
@@ -63,7 +65,7 @@
   align-items: center;
   gap: 0.45rem;
   margin-bottom: 0.35rem;
-  font-size: var(--type-body-xs);
+  font-size: clamp(0.75rem, 0.65vw, 0.9rem);
   font-weight: var(--weight-semibold);
   letter-spacing: var(--tracking-wider);
   text-transform: uppercase;
@@ -72,8 +74,8 @@
 
 /* the ••• from the Hewar logo, as an avatar */
 .avatar {
-  width: 22px;
-  height: 22px;
+  width: clamp(22px, 1.4vw, 28px);
+  height: clamp(22px, 1.4vw, 28px);
   border-radius: 50%;
   background: var(--gradient-brand);
   display: inline-flex;
@@ -91,10 +93,10 @@
 }
 
 .bubble {
-  font-size: clamp(0.98rem, 1.1vw, 1.08rem);
+  font-size: clamp(0.98rem, 1.15vw, 1.4rem);
   line-height: 1.5;
-  padding: 0.75rem 1.05rem;
-  border-radius: 20px;
+  padding: clamp(0.75rem, 0.85vw, 1.05rem) clamp(1.05rem, 1.15vw, 1.4rem);
+  border-radius: clamp(20px, 1.4vw, 26px);
 }
 
 .hewar .bubble {
@@ -220,7 +222,7 @@
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
-  gap: 0.5rem;
+  gap: clamp(0.5rem, 0.6vw, 0.75rem);
   min-height: 2.6rem;
   visibility: hidden;
 }
@@ -230,7 +232,7 @@
 }
 
 .prompt {
-  font-size: var(--type-body-xs);
+  font-size: clamp(0.75rem, 0.65vw, 0.9rem);
   letter-spacing: var(--tracking-wider);
   text-transform: uppercase;
   color: var(--color-text-tertiary);
@@ -239,9 +241,9 @@
 
 .chip {
   font: inherit;
-  font-size: var(--type-body-sm);
+  font-size: clamp(0.95rem, 0.95vw, 1.15rem);
   color: var(--color-text-primary);
-  padding: 0.55rem 1rem;
+  padding: clamp(0.55rem, 0.65vw, 0.8rem) clamp(1rem, 1.1vw, 1.35rem);
   border-radius: 999px;
   border: 1px solid rgba(0, 200, 255, 0.4);
   background: rgba(0, 200, 255, 0.06);
@@ -272,7 +274,7 @@
   }
 
   .thread {
-    height: 380px;
+    height: min(520px, 64svh);
   }
 
 }
