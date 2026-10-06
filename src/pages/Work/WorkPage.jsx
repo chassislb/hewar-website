@@ -1,11 +1,10 @@
 import { useRef, useEffect } from 'react'
-import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import { useGSAP } from '@gsap/react'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import Container from '../../components/ui/Container/Container'
-import { work } from '../../data/work'
+import WorkSpace from '../../components/sections/WorkSpace/WorkSpace'
 import { useLanguage } from '../../context/LanguageContext'
 import { useTranslation } from '../../i18n/useTranslation'
 import styles from './WorkPage.module.css'
@@ -41,7 +40,6 @@ const WorkPage = () => {
   const { t } = useTranslation()
   const industries = t('workPage.industries')
   const heroRef = useRef(null)
-  const gridRef = useRef(null)
   const industriesRef = useRef(null)
   const heroVideoRef = useRef(null)
 
@@ -69,21 +67,6 @@ const WorkPage = () => {
       { y: 0, opacity: 1, duration: 0.8, ease: 'power3.out', delay: 0.4 }
     )
   }, { scope: heroRef })
-
-  useGSAP(() => {
-    gsap.fromTo(
-      '[data-work-card]',
-      { y: 40, opacity: 0 },
-      {
-        y: 0,
-        opacity: 1,
-        duration: 0.8,
-        stagger: 0.1,
-        ease: 'power3.out',
-        scrollTrigger: { trigger: gridRef.current, start: 'top 82%' },
-      }
-    )
-  }, { scope: gridRef })
 
   useGSAP(() => {
     gsap.fromTo(
@@ -132,64 +115,8 @@ const WorkPage = () => {
         </Container>
       </section>
 
-      {/* ── Work Grid ── */}
-      <section className={styles.workSection} ref={gridRef}>
-        <Container>
-          <div className={styles.workGrid}>
-            {work.map((project, index) => (
-              <Link
-                key={project.id}
-                to={`/work/${project.id}`}
-                className={styles.workCard}
-                data-work-card
-                style={{ '--card-color': project.color }}
-              >
-                {project.video?.short ? (
-                  <video
-                    className={styles.cardBg}
-                    src={project.video.short}
-                    autoPlay
-                    muted
-                    loop
-                    playsInline
-                    aria-hidden
-                  />
-                ) : project.image ? (
-                  <img
-                    className={styles.cardBg}
-                    src={project.image}
-                    alt=""
-                    aria-hidden
-                  />
-                ) : (
-                  <div className={styles.cardBg} style={{ background: project.color }} />
-                )}
-                <div className={styles.cardGradient} aria-hidden />
-                <div className={styles.cardContent}>
-                  <span className={styles.cardNumber}>
-                    {String(index + 1).padStart(2, '0')}
-                  </span>
-                  <div className={styles.cardMeta}>
-                    {project.logo ? (
-                      <img className={styles.cardLogo} src={project.logo} alt={project.client} />
-                    ) : (
-                      <span className={styles.cardClient}>{project.client}</span>
-                    )}
-                  </div>
-                  <h2 className={styles.cardTitle}>{project.title[language]}</h2>
-                  <div className={styles.cardFooter}>
-                    <span className={styles.cardCategory}>{project.category[language]}</span>
-                    <span className={styles.cardYear}>{project.year}</span>
-                  </div>
-                </div>
-                <div className={styles.cardOverlay}>
-                  <span className={styles.viewLabel}>View Project ↗</span>
-                </div>
-              </Link>
-            ))}
-          </div>
-        </Container>
-      </section>
+      {/* ── Projects: 3D space you fly through ── */}
+      <WorkSpace />
 
       {/* ── Industries We Empower ── */}
       <section className={styles.industriesSection} ref={industriesRef}>

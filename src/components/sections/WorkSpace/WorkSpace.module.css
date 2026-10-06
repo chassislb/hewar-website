@@ -1,0 +1,250 @@
+/* ═══════════════════════════════
+   WORK SPACE — pinned 3D space: project frames float at different depths
+   and the camera flies through them on scroll (drawn in workScene.js).
+═══════════════════════════════ */
+.tunnel {
+  position: relative;
+  background: radial-gradient(ellipse at 50% 50%, #0a2255 0%, #030c22 70%);
+}
+
+.stage {
+  position: sticky;
+  top: 0;
+  height: 100svh;
+  overflow: hidden;
+}
+
+.label {
+  position: absolute;
+  top: clamp(5.5rem, 12vh, 7rem);
+  inset-inline-start: var(--container-pad);
+  z-index: 2000;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: var(--type-body-xs);
+  font-weight: var(--weight-semibold);
+  letter-spacing: var(--tracking-widest);
+  text-transform: uppercase;
+  color: var(--color-text-accent);
+}
+
+.label i {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--color-cyan);
+}
+
+.gl {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  cursor: none;
+}
+
+/* case panel — on the side the frame isn't, only while holding */
+.panel {
+  position: absolute;
+  top: 50%;
+  inset-inline-start: var(--container-pad);
+  z-index: 2000;
+  width: min(440px, 36vw);
+  transform: translateY(-50%);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.35s ease, visibility 0s linear 0.35s;
+}
+
+.panelRight {
+  inset-inline-start: auto;
+  inset-inline-end: var(--container-pad);
+}
+
+.panelOn {
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.5s ease 0.1s, visibility 0s;
+}
+
+.panelIn > * {
+  opacity: 0;
+  transform: translateY(14px);
+}
+
+.panelOn .panelIn > * {
+  animation: rise 0.7s var(--ease-out-expo) forwards;
+}
+
+.panelOn .panelIn > :nth-child(2) { animation-delay: 0.05s; }
+.panelOn .panelIn > :nth-child(3) { animation-delay: 0.1s; }
+.panelOn .panelIn > :nth-child(4) { animation-delay: 0.15s; }
+.panelOn .panelIn > :nth-child(5) { animation-delay: 0.2s; }
+.panelOn .panelIn > :nth-child(6) { animation-delay: 0.25s; }
+
+@keyframes rise {
+  to { opacity: 1; transform: none; }
+}
+
+.num {
+  font-size: var(--type-body-xs);
+  font-weight: var(--weight-semibold);
+  letter-spacing: var(--tracking-widest);
+  color: var(--color-text-accent);
+  font-variant-numeric: tabular-nums;
+  direction: ltr;
+  display: inline-block;
+}
+
+.title {
+  font-size: clamp(1.5rem, 2.4vw, 2.4rem);
+  font-weight: var(--weight-black);
+  letter-spacing: var(--tracking-tighter);
+  line-height: 1.06;
+  margin: 0.8rem 0 1rem;
+  text-wrap: balance;
+  color: var(--color-text-primary);
+}
+
+.desc {
+  margin: 0 0 1.4rem;
+  font-size: var(--type-body-sm);
+  line-height: var(--leading-relaxed);
+  color: var(--color-text-secondary);
+}
+
+.facts {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+  margin: 0 0 1.5rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--color-border);
+}
+
+.facts dt {
+  font-size: 0.7rem;
+  font-weight: var(--weight-semibold);
+  letter-spacing: var(--tracking-wider);
+  text-transform: uppercase;
+  color: var(--color-text-tertiary);
+  margin-bottom: 0.3rem;
+}
+
+.facts dd {
+  margin: 0;
+  font-size: var(--type-body-sm);
+  font-weight: var(--weight-semibold);
+  color: var(--color-text-primary);
+}
+
+.travel {
+  display: block;
+  margin-top: 1rem;
+  font-size: 0.72rem;
+  letter-spacing: var(--tracking-wider);
+  text-transform: uppercase;
+  color: var(--color-text-tertiary);
+}
+
+.travel i {
+  font-style: normal;
+}
+
+.go {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  background: none;
+  border: 1px solid rgba(0, 200, 255, 0.45);
+  color: var(--color-text-primary);
+  border-radius: 999px;
+  padding: 0.6rem 1.1rem;
+  font: inherit;
+  font-size: var(--type-body-sm);
+  font-weight: var(--weight-semibold);
+  cursor: none;
+  transition: background 0.3s ease, border-color 0.3s ease;
+}
+
+.go:hover,
+.go:focus-visible {
+  background: rgba(0, 200, 255, 0.14);
+  border-color: var(--color-cyan);
+  outline: none;
+}
+
+:global([dir='rtl']) .go span {
+  transform: scaleX(-1);
+}
+
+.hud {
+  position: absolute;
+  left: 50%;
+  bottom: clamp(1.25rem, 4vh, 2.5rem);
+  transform: translateX(-50%);
+  z-index: 2000;
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+  font-size: 0.8rem;
+  font-weight: var(--weight-semibold);
+  letter-spacing: var(--tracking-wider);
+  color: var(--color-text-secondary);
+  font-variant-numeric: tabular-nums;
+  direction: ltr;
+}
+
+.bar {
+  width: clamp(80px, 14vw, 180px);
+  height: 1px;
+  background: rgba(255, 255, 255, 0.15);
+  position: relative;
+}
+
+.bar span {
+  position: absolute;
+  left: 0;
+  top: -0.5px;
+  height: 2px;
+  width: 0;
+  background: var(--color-cyan);
+}
+
+@media (max-width: 700px) {
+  .panel,
+  .panelRight {
+    top: auto;
+    bottom: 4.25rem;
+    inset-inline: 16px;
+    width: auto;
+    transform: none;
+    text-align: center;
+  }
+
+  .title {
+    font-size: 1.25rem;
+    margin: 0.5rem 0;
+  }
+
+  .desc,
+  .travel {
+    display: none;
+  }
+
+  .facts {
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+    padding-top: 0.75rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .panelOn .panelIn > * {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+}
