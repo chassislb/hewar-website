@@ -121,6 +121,18 @@ export const translations = {
       p2: 'Founded in Saudi Arabia with 12+ years in the market, we craft bespoke communication solutions for partners from the public and private sectors across diverse industries. Built for the MENA region, we read the room before we shape the message, culture, timing, stakeholders, and public conversation included.',
       words: ['Expertise', 'Integrity', 'Excellence', 'Dedication', 'Growth', 'Methodology', 'Innovation', 'Creativity'],
     },
+    presence: {
+      label: 'Where We Work',
+      headingLines: ['Same dialogue.', 'Three dialects.'],
+      lede: 'Riyadh is home. Dubai and Beirut are where the conversation keeps going. Same team, same thinking, tuned to whoever is listening.',
+      hint: 'Drag to spin · tap a city',
+      globeLabel: 'Interactive globe showing Hewar in Saudi Arabia, the UAE and Lebanon',
+      offices: [
+        { country: 'Saudi Arabia', city: 'Riyadh · HQ', greeting: 'وش الأخبار؟', note: 'Where it started in 2011. Still where most of the talking happens.' },
+        { country: 'UAE', city: 'Dubai', greeting: 'شحالك؟', note: 'For the briefs that cross the Gulf.' },
+        { country: 'Lebanon', city: 'Beirut', greeting: 'كيفك؟', note: 'The Levant end of the conversation.' },
+      ],
+    },
     aboutPage: {
       heroTitle: 'Who We Are',
       heroBody: 'Hewar Group is a fully integrated marketing and communications agency, offering comprehensive solutions. We think, create, and communicate to help businesses connect, engage, and grow through seamless, strategic communication.',
@@ -374,6 +386,18 @@ export const translations = {
       p1After: ' ليست مجرد اسم، بل مبدأ عملنا الأساسي. نؤمن بأن أفضل تواصل لا يكون في اتجاه واحد؛ فهو يُنصت بقدر ما يتحدث، ويكسب الاهتمام بدلاً من أن يفرضه.',
       p2: 'تأسست حوار في السعودية، وتمتلك أكثر من 12 عاماً من الخبرة في السوق، حيث نصمم حلول تواصل مخصصة لشركائنا من القطاعين العام والخاص وعبر قطاعات متنوعة. وبما أننا بُنينا لمنطقة الشرق الأوسط وشمال أفريقيا، فإننا نقرأ المشهد قبل صياغة الرسالة، بما في ذلك الثقافة والتوقيت وأصحاب المصلحة والحوار العام.',
       words: ['الخبرة', 'النزاهة', 'التميز', 'التفاني', 'النمو', 'المنهجية', 'الابتكار', 'الإبداع'],
+    },
+    presence: {
+      label: 'أين نعمل',
+      headingLines: ['حوار واحد.', 'ثلاث لهجات.'],
+      lede: 'الرياض بيتنا. ودبي وبيروت حيث يستمر الحوار. نفس الفريق ونفس التفكير، بلهجة من يسمعنا.',
+      hint: 'اسحب للتدوير · اضغط على مدينة',
+      globeLabel: 'كرة أرضية تفاعلية تُظهر حوار في السعودية والإمارات ولبنان',
+      offices: [
+        { country: 'السعودية', city: 'الرياض · المقر الرئيسي', greeting: 'وش الأخبار؟', note: 'هنا بدأنا عام 2011، وهنا يدور أغلب الحوار.' },
+        { country: 'الإمارات', city: 'دبي', greeting: 'شحالك؟', note: 'للمشاريع التي تعبر الخليج.' },
+        { country: 'لبنان', city: 'بيروت', greeting: 'كيفك؟', note: 'طرف الحوار في بلاد الشام.' },
+      ],
     },
     aboutPage: {
       heroTitle: 'من نحن',
