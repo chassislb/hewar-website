@@ -1,0 +1,80 @@
+/* ═══════════════════════════════
+   CAREERS — WHY JOIN: "At Hewar, you're ___"
+═══════════════════════════════ */
+.mo { position: relative; height: 640vh; }
+.stage { position: sticky; top: 0; height: 100vh; height: 100svh; overflow: hidden; isolation: isolate; background: var(--color-navy-deep); }
+.bg { position: absolute; inset: 0; }
+.img { position: absolute; inset: -4%; background-size: cover; background-position: center; opacity: 0; transform: scale(1.12);
+  filter: saturate(1.25) brightness(1.15); transition: opacity 0.9s ease, transform 6s linear; }
+.img.on { opacity: 1; transform: scale(1); }
+.stageImg { filter: none; background: linear-gradient(rgba(255,240,224,0.82), rgba(255,240,224,0.82)), var(--stage-img) center 30% / cover; }
+.lab { filter: none; background:
+  repeating-linear-gradient(90deg, rgba(255,255,255,0.18) 0 1px, transparent 1px 28px),
+  repeating-linear-gradient(0deg, rgba(255,255,255,0.18) 0 1px, transparent 1px 28px),
+  conic-gradient(from var(--spin, 0deg) at 50% 50%, #00C8FF, #4700B3, #2F3DFF, #00FFC8, #00C8FF);
+  animation: spinlab 6s linear infinite; }
+@property --spin { syntax: '<angle>'; inherits: false; initial-value: 0deg; }
+@keyframes spinlab { to { --spin: 360deg; } }
+
+/* the knockout: navy everywhere, photo only inside the letters */
+.knock { position: absolute; inset: 0; background: #030b1f; mix-blend-mode: multiply; }
+.col { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; padding-inline: 4vw; }
+.pre { margin: 0 0 0.6rem; height: 1.3em; font-size: clamp(1rem, 1.8vw, 1.6rem); font-weight: 600; letter-spacing: -0.01em; color: rgba(255,255,255,0.75); text-align: center; transition: opacity 0.3s ease, transform 0.3s ease; }
+.word { position: relative; width: 100%; height: calc(var(--fs, 15vw) * 1.05); font-size: var(--fs, 15vw); font-weight: 900; letter-spacing: -0.055em; line-height: 0.95; }
+.knock .word { color: #fff; }
+.knock .pre, .knock .sub, .knock .cta { visibility: hidden; }
+.l { position: absolute; left: 0; top: 0; display: block; white-space: pre; will-change: transform;
+  transition: transform 1s var(--ease-out-expo), opacity 0.55s ease, filter 0.55s ease; }
+.l i { display: block; font-style: normal; transition: transform 0.35s var(--ease-out-expo), text-shadow 0.8s ease; }
+.l.out { opacity: 0; filter: blur(14px); transition-duration: 0.7s, 0.45s, 0.45s; }
+.l.preIn { opacity: 0; filter: blur(14px); transition: none; }
+.whole { left: 0; right: 0; text-align: center; transform: none; }
+.whole.preIn { transform: scale(0.94); }
+.whole.out { transform: scale(1.05); }
+.measure { position: absolute; visibility: hidden; white-space: pre; font-weight: 900; letter-spacing: -0.055em; line-height: 0.95; }
+.measure span { display: inline-block; white-space: pre; }
+
+.sub { margin: clamp(1rem, 3vh, 2rem) 0 0; max-width: 40ch; min-height: 3.1em; text-align: center; font-size: clamp(1rem, 1.35vw, 1.2rem); line-height: 1.55; color: rgba(255,255,255,0.8); transition: opacity 0.3s ease, transform 0.3s ease; }
+.swap { opacity: 0; transform: translateY(8px); }
+.cta { margin-top: 1.25rem; display: inline-flex; align-items: center; gap: 0.6rem; padding: 0.95rem 1.5rem; border: 0; border-radius: 999px;
+  background: linear-gradient(135deg, var(--color-violet), #2F3DFF 60%, var(--color-cyan)); color: #fff; font: inherit; font-weight: 600; font-size: 1rem;
+  box-shadow: 0 10px 30px rgba(71,0,179,0.45); opacity: 0; transform: translateY(14px); pointer-events: none; transition: opacity 0.4s ease, transform 0.5s var(--ease-out-expo); }
+.cta.on { opacity: 1; transform: none; pointer-events: auto; }
+.cta:focus-visible { outline: 2px solid var(--color-cyan); outline-offset: 3px; }
+
+/* light that follows the cursor */
+.glow { position: absolute; inset: 0; pointer-events: none; mix-blend-mode: screen; opacity: 0.55; background: radial-gradient(28vmax circle at var(--mx, 50%) var(--my, 45%), rgba(0,200,255,0.28), transparent 60%); }
+.grain { position: absolute; inset: 0; pointer-events: none; opacity: 0.35; background: repeating-linear-gradient(0deg, rgba(255,255,255,0.035) 0 1px, transparent 1px 3px); }
+
+.top { position: absolute; top: clamp(5rem, 11vh, 6.5rem); inset-inline: var(--container-pad); z-index: 2; display: flex; justify-content: space-between; align-items: center; }
+.eyebrow { display: flex; align-items: center; gap: 0.6rem; margin: 0; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.22em; text-transform: uppercase; color: var(--color-cyan); }
+.eyebrow i { width: 6px; height: 6px; border-radius: 50%; background: var(--color-cyan); }
+.count { margin: 0; font-family: var(--font-mono); font-size: 0.9rem; color: var(--color-text-tertiary); font-variant-numeric: tabular-nums; }
+.count b { color: #fff; font-weight: 500; }
+
+/* state 4, "the stage.": the room dims, the cursor is a spotlight, a warm backlight behind the word */
+.spot { position: absolute; inset: 0; pointer-events: none; opacity: 0; transition: opacity 0.7s ease;
+  background: radial-gradient(circle clamp(140px, 17vmax, 300px) at var(--sx, 50%) var(--sy, 45%), transparent 0%, transparent 40%, rgba(1,4,12,0.15) 70%, rgba(1,4,12,0.3) 100%); }
+.spot::after { content: ''; position: absolute; inset: 0; mix-blend-mode: screen;
+  background: radial-gradient(circle clamp(120px, 14vmax, 250px) at var(--sx, 50%) var(--sy, 45%), rgba(255,240,215,0.85), rgba(255,240,215,0.25) 45%, transparent 72%); }
+.back { position: absolute; left: 50%; top: 46%; width: 90vw; height: 46vh; transform: translate(-50%, -50%); pointer-events: none; mix-blend-mode: screen; opacity: 0; transition: opacity 0.8s ease;
+  background: radial-gradient(closest-side, rgba(255,214,170,0.42), rgba(255,170,120,0.14) 55%, transparent 100%); filter: blur(10px); }
+.lightsOff .spot { opacity: 1; }
+.lightsOff .back { opacity: 1; animation: flicker 4s ease-in-out infinite; }
+.lightsOff .glow { opacity: 0; }
+.lightsOff .knock .l i { text-shadow: 0 0 18px rgba(255,255,255,0.9), 0 0 60px rgba(255,255,255,0.45); }
+@keyframes flicker { 0%, 100% { opacity: 1; } 50% { opacity: 0.82; } }
+
+/* Arabic */
+:global(html[lang='ar']) .word, :global(html[lang='ar']) .measure { font-family: var(--font-arabic); font-weight: 700; letter-spacing: 0; line-height: 1.25; }
+:global(html[lang='ar']) .word { height: calc(var(--fs, 15vw) * 1.35); }
+:global(html[lang='ar']) .pre, :global(html[lang='ar']) .eyebrow { letter-spacing: 0; }
+
+@media (max-width: 760px) {
+  .sub { max-width: 30ch; font-size: 0.98rem; }
+  .top { top: 5.4rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .l, .l i, .img { transition: none; }
+  .lab, .lightsOff .back { animation: none; }
+}
