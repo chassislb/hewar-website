@@ -213,6 +213,18 @@ export const translations = {
     },
     workPage: {
       industriesLabel: 'Industries We Empower',
+      industriesTitle: ['Nine sectors.', 'Same dialogue.'],
+      industryTakes: [
+        'Launches that make complex products sound simple to the people buying them.',
+        'Policy and services explained so people understand them and act on them.',
+        'Numbers and reforms turned into stories investors and citizens can follow.',
+        'Moving people and goods, and keeping the message moving with them.',
+        'Places and heritage told for visitors and locals alike.',
+        'Big commitments made concrete enough to believe.',
+        'Knowledge made clear enough to share.',
+        'Care communicated with clarity, accuracy and trust.',
+        'Projects people can picture long before they are built.',
+      ],
       industries: [
         'Telecommunications & Technology',
         'Government & Public Services',
@@ -484,6 +496,18 @@ export const translations = {
     },
     workPage: {
       industriesLabel: 'قطاعات نخدمها',
+      industriesTitle: ['تسعة قطاعات.', 'والحوار واحد.'],
+      industryTakes: [
+        'إطلاقات تجعل المنتجات المعقدة بسيطة في نظر من يشتريها.',
+        'سياسات وخدمات نشرحها حتى يفهمها الناس ويتفاعلوا معها.',
+        'أرقام وإصلاحات نحوّلها إلى قصص يتابعها المستثمر والمواطن.',
+        'نحرّك الرسالة مع حركة الناس والبضائع.',
+        'أماكن وتراث نرويها للزائر وابن المكان معًا.',
+        'التزامات كبيرة نجعلها ملموسة وقابلة للتصديق.',
+        'معرفة نجعلها واضحة بما يكفي لتُشارَك.',
+        'رعاية نتحدث عنها بوضوح ودقة وثقة.',
+        'مشاريع يتخيلها الناس قبل أن تُبنى بوقت طويل.',
+      ],
       industries: [
         'الاتصالات والتقنية',
         'الحكومة والخدمات العامة',

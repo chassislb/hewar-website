@@ -5,8 +5,8 @@ import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import Container from '../../components/ui/Container/Container'
 import WorkSpace from '../../components/sections/WorkSpace/WorkSpace'
+import IndustriesIndex from '../../components/sections/IndustriesIndex/IndustriesIndex'
 import { useLanguage } from '../../context/LanguageContext'
-import { useTranslation } from '../../i18n/useTranslation'
 import styles from './WorkPage.module.css'
 
 gsap.registerPlugin(ScrollTrigger)
@@ -16,18 +16,6 @@ const SHOWREEL_SRC = {
   ar: '/hewar-website/videos/work-showreel-ar.mp4',
 }
 
-/* Matches the fixed order of workPage.industries in translations.js */
-const INDUSTRY_ICONS = [
-  'telecommunications-technology.png',
-  'government-public-services.png',
-  'financial-economic-development.png',
-  'transportation-logistics.png',
-  'tourism-culture-hospitality.png',
-  'energy-environmental-sustainability.png',
-  'research-education.png',
-  'health-medical-sector.png',
-  'real-estate-infrastructure.png',
-]
 
 const pageVariants = {
   initial: { opacity: 0 },
@@ -37,10 +25,7 @@ const pageVariants = {
 
 const WorkPage = () => {
   const { language } = useLanguage()
-  const { t } = useTranslation()
-  const industries = t('workPage.industries')
   const heroRef = useRef(null)
-  const industriesRef = useRef(null)
   const heroVideoRef = useRef(null)
 
   useEffect(() => {
@@ -68,20 +53,6 @@ const WorkPage = () => {
     )
   }, { scope: heroRef })
 
-  useGSAP(() => {
-    gsap.fromTo(
-      '[data-industry-item]',
-      { y: 20, opacity: 0 },
-      {
-        y: 0,
-        opacity: 1,
-        duration: 0.6,
-        stagger: 0.05,
-        ease: 'power3.out',
-        scrollTrigger: { trigger: industriesRef.current, start: 'top 82%' },
-      }
-    )
-  }, { scope: industriesRef })
 
   return (
     <motion.div variants={pageVariants} initial="initial" animate="animate" exit="exit">
@@ -118,25 +89,8 @@ const WorkPage = () => {
       {/* ── Projects: 3D space you fly through ── */}
       <WorkSpace />
 
-      {/* ── Industries We Empower ── */}
-      <section className={styles.industriesSection} ref={industriesRef}>
-        <Container>
-          <p className={styles.sectionEyebrow}>{t('workPage.industriesLabel')}</p>
-          <div className={styles.industriesGrid}>
-            {industries.map((industry, i) => (
-              <div key={industry} className={styles.industryItem} data-industry-item>
-                <img
-                  className={styles.industryIcon}
-                  src={`${import.meta.env.BASE_URL}images/industries/${INDUSTRY_ICONS[i]}`}
-                  alt=""
-                  aria-hidden
-                />
-                {industry}
-              </div>
-            ))}
-          </div>
-        </Container>
-      </section>
+      {/* ── Industries We Empower: typographic index ── */}
+      <IndustriesIndex />
     </motion.div>
   )
 }

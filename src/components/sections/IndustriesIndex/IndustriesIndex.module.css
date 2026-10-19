@@ -1,0 +1,297 @@
+/* ═══════════════════════════════
+   INDUSTRIES — one screen: compact list + big active sector
+═══════════════════════════════ */
+.section {
+  padding-block: clamp(3.5rem, 7vw, 6rem);
+  background: var(--color-bg-primary);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  gap: clamp(2rem, 5vw, 5rem);
+  align-items: stretch;
+}
+
+.eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin: 0 0 0.9rem;
+  font-size: var(--type-body-xs);
+  font-weight: var(--weight-semibold);
+  letter-spacing: var(--tracking-widest);
+  text-transform: uppercase;
+  color: var(--color-text-accent);
+}
+
+.eyebrow i {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--color-cyan);
+}
+
+.heading {
+  margin: 0 0 clamp(1.25rem, 2.5vw, 2rem);
+  font-size: clamp(1.6rem, 2.6vw, 2.4rem);
+  font-weight: var(--weight-black);
+  letter-spacing: -0.025em;
+  line-height: 1.05;
+  color: var(--color-text-primary);
+}
+
+.heading span {
+  color: var(--color-text-tertiary);
+}
+
+/* list */
+.list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border-top: 1px solid var(--color-border);
+}
+
+.list li {
+  border-bottom: 1px solid var(--color-border);
+}
+
+.list button {
+  position: relative;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 3ch minmax(0, 1fr) 1.2rem;
+  align-items: center;
+  gap: 0.9rem;
+  padding: 0.62rem 0;
+  background: none;
+  border: 0;
+  color: var(--color-text-secondary);
+  font: inherit;
+  font-size: clamp(0.95rem, 1.15vw, 1.08rem);
+  font-weight: var(--weight-medium);
+  text-align: start;
+  cursor: none;
+  transition: color 0.3s ease, padding 0.5s var(--ease-out-expo);
+}
+
+.list button:focus-visible {
+  outline: 2px solid var(--color-cyan);
+  outline-offset: 2px;
+}
+
+.n {
+  font-size: 0.72rem;
+  font-weight: var(--weight-semibold);
+  letter-spacing: 0.12em;
+  color: var(--color-text-tertiary);
+  font-variant-numeric: tabular-nums;
+}
+
+.arrow {
+  opacity: 0;
+  transform: translateX(-6px);
+  color: var(--color-cyan);
+  transition: opacity 0.3s ease, transform 0.4s var(--ease-out-expo);
+}
+
+/* progress line under the active item while it auto-cycles */
+.progress {
+  position: absolute;
+  inset-inline-start: 0;
+  bottom: -1px;
+  height: 1px;
+  width: 0;
+  background: linear-gradient(90deg, var(--color-violet), var(--color-cyan));
+  animation: fill var(--dur, 3800ms) linear forwards;
+}
+
+.paused .progress {
+  animation: none;
+  width: 100%;
+}
+
+@keyframes fill {
+  to { width: 100%; }
+}
+
+.on button {
+  color: var(--color-text-primary);
+  padding-inline-start: 0.4rem;
+}
+
+.on .n { color: var(--color-cyan); }
+.on .arrow { opacity: 1; transform: none; }
+
+/* stage: the active sector + its client logos */
+.stage {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: clamp(340px, 40vw, 470px);
+  padding-block: 0.5rem;
+}
+
+.bigN {
+  position: absolute;
+  top: -0.5rem;
+  inset-inline-end: 0;
+  margin: 0;
+  font-size: clamp(6rem, 13vw, 11rem);
+  font-weight: var(--weight-black);
+  letter-spacing: -0.06em;
+  line-height: 0.85;
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(0, 200, 255, 0.22);
+  font-variant-numeric: tabular-nums;
+  direction: ltr;
+  pointer-events: none;
+}
+
+.other {
+  position: relative;
+  margin: 0 0 0.4rem;
+  font-size: clamp(0.95rem, 1.4vw, 1.2rem);
+  font-weight: var(--weight-semibold);
+  color: var(--color-cyan);
+}
+
+.other:lang(ar) {
+  font-family: var(--font-arabic);
+}
+
+/* line up with the name under it, whatever the script */
+.other { text-align: left; }
+:global(html[lang='ar']) .other { text-align: right; }
+
+.name {
+  position: relative;
+  margin: 0 0 0.6rem;
+  max-width: 18ch;
+  font-size: clamp(1.6rem, 2.9vw, 2.6rem);
+  font-weight: var(--weight-black);
+  letter-spacing: -0.03em;
+  line-height: 1.02;
+  text-wrap: balance;
+  color: var(--color-text-primary);
+}
+
+:global(html[lang='ar']) .name,
+:global(html[lang='ar']) .heading {
+  letter-spacing: 0;
+  line-height: 1.25;
+}
+
+.take {
+  position: relative;
+  margin: 0 0 clamp(1.25rem, 2.5vw, 2rem);
+  max-width: 46ch;
+  font-size: clamp(0.95rem, 1.1vw, 1.05rem);
+  line-height: 1.55;
+  color: var(--color-text-secondary);
+}
+
+.count {
+  margin: 0 0 0.9rem;
+  font-size: 0.72rem;
+  font-weight: var(--weight-semibold);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--color-text-tertiary);
+}
+
+:global(html[lang='ar']) .count {
+  letter-spacing: 0;
+  font-size: var(--type-body-sm);
+}
+
+.logos {
+  position: relative;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.75rem;
+}
+
+/* identical cells, logo centred */
+.logos li {
+  height: clamp(78px, 7.5vw, 104px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.025);
+  opacity: 0;
+  transform: translateY(10px);
+  animation: logoIn 0.6s var(--ease-out-expo) forwards;
+  animation-delay: calc(var(--k) * 0.07s + 0.12s);
+}
+
+.logos img {
+  display: block;
+  height: calc(var(--lh) * 1px);
+  width: auto;
+  max-width: 86%;
+  max-height: 74%;
+  object-fit: contain;
+  opacity: 0.9;
+  transition: opacity 0.3s ease;
+}
+
+.logos li:hover img {
+  opacity: 1;
+}
+
+@keyframes logoIn {
+  to { opacity: 1; transform: none; }
+}
+
+.swap {
+  transition: opacity 0.35s ease, transform 0.55s var(--ease-out-expo);
+}
+
+.out .swap {
+  opacity: 0;
+  transform: translateY(14px);
+}
+
+.out .bigN {
+  opacity: 0.2;
+}
+
+@media (max-width: 820px) {
+  .grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .text {
+    display: contents;
+  }
+
+  .head {
+    order: -2;
+  }
+
+  .stage {
+    order: -1;
+    min-height: 0;
+  }
+
+  .logos {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .logos li {
+    height: 76px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .progress { animation: none; width: 100%; }
+  .swap, .list button, .arrow { transition: none; }
+  .logos li { animation: none; opacity: 1; transform: none; }
+}
