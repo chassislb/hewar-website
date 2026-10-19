@@ -1,7 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
 import Container from '../../ui/Container/Container'
 import { useTranslation } from '../../../i18n/useTranslation'
-import { translations } from '../../../i18n/translations'
 import { useCursor } from '../../../context/CursorContext'
 import { industryClients, logoHeight } from '../../../data/industryClients'
 import styles from './IndustriesIndex.module.css'
@@ -9,7 +8,7 @@ import styles from './IndustriesIndex.module.css'
 /*
   Industries we empower — one screen, no icons, no cards.
   A compact numbered list on one side; on the other, the active sector
-  (number, name, the name in the other language, a one-line take) and the
+  (number, name, a one-line take) and the
   real client logos Hewar has worked with in it (src/data/industryClients.js).
   It cycles on its own with a progress line; hover / tap / keyboard focus
   picks a sector and pauses the cycle.
@@ -27,8 +26,6 @@ const IndustriesIndex = () => {
   const names = t('workPage.industries')
   const takes = t('workPage.industryTakes')
   const title = t('workPage.industriesTitle')
-  const other = language === 'ar' ? 'en' : 'ar'
-  const otherNames = translations[other].workPage.industries
   const N = names.length
 
   const [cur, setCur] = useState(0)
@@ -99,9 +96,6 @@ const IndustriesIndex = () => {
             onMouseLeave={() => setPaused(false)}
           >
             <p className={`${styles.bigN} ${styles.swap}`} aria-hidden>{pad(shown + 1)}</p>
-            <p className={`${styles.other} ${styles.swap}`} lang={other} dir={other === 'ar' ? 'rtl' : 'ltr'}>
-              {otherNames[shown]}
-            </p>
             <h3 className={`${styles.name} ${styles.swap}`}>{names[shown]}</h3>
             <p className={`${styles.take} ${styles.swap}`}>{takes[shown]}</p>
             <p className={`${styles.count} ${styles.swap}`}>

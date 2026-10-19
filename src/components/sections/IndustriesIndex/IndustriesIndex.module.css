@@ -150,22 +150,6 @@
   pointer-events: none;
 }
 
-.other {
-  position: relative;
-  margin: 0 0 0.4rem;
-  font-size: clamp(0.95rem, 1.4vw, 1.2rem);
-  font-weight: var(--weight-semibold);
-  color: var(--color-cyan);
-}
-
-.other:lang(ar) {
-  font-family: var(--font-arabic);
-}
-
-/* line up with the name under it, whatever the script */
-.other { text-align: left; }
-:global(html[lang='ar']) .other { text-align: right; }
-
 .name {
   position: relative;
   margin: 0 0 0.6rem;
