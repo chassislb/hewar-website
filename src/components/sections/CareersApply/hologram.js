@@ -168,8 +168,6 @@ export function createHologram({ THREE: T, canvas, host, reduce = false, onFrame
     king(M, r) { // eslint-disable-line no-unused-vars
       const g = new T.Group();
       add(g, lathe([[0.001, 0.8], [0.62, 0.8], [0.62, 0.92], [0.5, 0.98], [0.52, 1.06], [0.36, 1.12], [0.26, 1.4], [0.2, 1.9], [0.24, 2.0], [0.36, 2.05], [0.24, 2.12], [0.32, 2.42], [0.001, 2.48]], 80), M, [0, 0, 0], [0, 0, 0], 0);
-      add(g, new T.BoxGeometry(0.1, 0.42, 0.1), M, [0, 2.7, 0]);
-      add(g, new T.BoxGeometry(0.3, 0.1, 0.1), M, [0, 2.75, 0]);
       return g;
     },
     target(M, r) {  
