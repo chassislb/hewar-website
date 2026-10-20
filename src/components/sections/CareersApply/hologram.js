@@ -2,7 +2,7 @@
   Hologram engine for the Careers "Apply" section (three.js, loaded on demand).
   A light-made object for the lane you pick; the name decides which piece, its tint, line density and angle.
   It builds itself bottom-up with a scan line, floats, turns slowly, can be dragged, and brightens on hover.
-  The canvas is composited with mix-blend-mode: screen, so only the light shows over the section background.
+  The canvas is opaque site-navy with the light added on top (no CSS blend mode, so it looks the same in every browser).
 */
 export const hashStr = (str) => { let h = 2166136261; for (const ch of str) { h ^= ch.codePointAt(0); h = Math.imul(h, 16777619) } return h >>> 0 }
 const mulberry = (a) => () => { a |= 0; a = a + 0x6D2B79F5 | 0; let t = Math.imul(a ^ a >>> 15, 1 | a); t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296 }
@@ -17,7 +17,7 @@ const PALETTES = [[[0.0, 0.42, 0.85], [0.45, 0.88, 1.0]], [[0.1, 0.2, 0.8], [0.3
 
 export function createHologram({ THREE: T, canvas, host, reduce = false, onFrame, onHoverEnter, side = () => 1 }) {
   const renderer = new T.WebGLRenderer({ canvas, alpha: true, antialias: true })
-  renderer.setClearColor(0x000000, 1)
+  renderer.setClearColor(0x061A40, 1) /* the site navy: the canvas paints its own background, so it never depends on CSS blend modes */
   const scene3 = new T.Scene()
   const camera = new T.PerspectiveCamera(32, 1, 0.1, 100)
   const world = new T.Group(); scene3.add(world)
