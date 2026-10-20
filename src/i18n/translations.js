@@ -54,6 +54,9 @@ export const translations = {
         'We track and analyze communication campaigns to show what’s working and what isn’t, monitoring coverage and measuring the indicators that define brand reputation. Our services include benchmarking reports and data analysis across media and digital platforms.',
         'We lead the full process of event content creation, from shaping the ideation, concept, and main theme, to developing engaging panel programs and speaking topics, and carefully selecting the right speakers and participants to bring the vision to life.',
       ],
+      tags: ['Reputation', 'Earned media', 'Words', 'Brand & film', 'Performance', 'Data', 'Live'],
+      countLabel: 'services',
+      briefCta: 'Start a brief',
       modalLabel: 'Service Details',
       cardDetails: [
         [
@@ -402,6 +405,9 @@ export const translations = {
         'نتابع الحملات الاتصالية ونحللها لنُظهر ما ينجح وما يحتاج إلى تعديل، مع مراقبة التغطية الإعلامية وقياس المؤشرات التي تحدد سمعة العلامة. تشمل خدماتنا تقارير المقارنة المرجعية وتحليل البيانات عبر المنصات الإعلامية والرقمية.',
         'نقود العملية الكاملة لصناعة محتوى الفعاليات، من صياغة الفكرة والمفهوم والمحور الرئيسي، إلى تطوير برامج الجلسات والمواضيع الحوارية، واختيار المتحدثين والمشاركين بعناية لتجسيد الرؤية على أرض الواقع.',
       ],
+      tags: ['السمعة', 'الإعلام المكتسب', 'الكلمة', 'العلامة والأفلام', 'الأداء', 'البيانات', 'الفعاليات الحية'],
+      countLabel: 'خدمات',
+      briefCta: 'ابدأ موجزك',
       modalLabel: 'تفاصيل الخدمة',
       cardDetails: [
         [

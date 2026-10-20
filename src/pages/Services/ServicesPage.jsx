@@ -1,9 +1,10 @@
-import { useRef, useState, useEffect } from 'react'
+import { useRef, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import { useGSAP } from '@gsap/react'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import Container from '../../components/ui/Container/Container'
+import ServicePosters from '../../components/sections/ServicePosters/ServicePosters'
 import { useTranslation } from '../../i18n/useTranslation'
 import { useLanguage } from '../../context/LanguageContext'
 import styles from './ServicesPage.module.css'
@@ -21,67 +22,11 @@ const pageVariants = {
   exit: { opacity: 0, transition: { duration: 0.25 } },
 }
 
-const processSteps = [
-  {
-    number: '01',
-    title: 'Discover',
-    description:
-      'We begin by listening. Deep research, stakeholder interviews, and cultural analysis give us the intelligence to make every creative decision a strategic one.',
-  },
-  {
-    number: '02',
-    title: 'Create',
-    description:
-      'Strategy unlocked, our creative and production teams get to work — fast. AI-assisted ideation means we explore more directions, more quickly, without sacrificing quality.',
-  },
-  {
-    number: '03',
-    title: 'Amplify',
-    description:
-      'The right message, to the right audience, through the right channels. PR, social, campaigns, and earned media work together to drive real-world impact.',
-  },
-]
-
-const ServiceRow = ({ index, title, description, bullets, isOpen, onToggle }) => (
-  <div className={styles.serviceRow} data-service-row>
-    <button
-      type="button"
-      className={`${styles.serviceHeader} ${isOpen ? styles.serviceHeaderOpen : ''}`}
-      onClick={onToggle}
-      aria-expanded={isOpen}
-    >
-      <span className={styles.serviceNumber}>{String(index + 1).padStart(2, '0')}</span>
-      <span className={styles.serviceTitle}>{title}</span>
-      <span className={`${styles.serviceArrow} ${isOpen ? styles.serviceArrowOpen : ''}`} aria-hidden>↗</span>
-    </button>
-
-    <div className={`${styles.servicePanel} ${isOpen ? styles.servicePanelOpen : ''}`}>
-      <div className={styles.servicePanelInner}>
-        <p className={styles.serviceDescription}>{description}</p>
-        <div className={styles.serviceBulletGrid}>
-          {bullets.map((bullet) => (
-            <span key={bullet} className={styles.serviceBullet}>{bullet}</span>
-          ))}
-        </div>
-      </div>
-    </div>
-  </div>
-)
-
 const ServicesPage = () => {
   const { t } = useTranslation()
   const { language } = useLanguage()
   const heroRef = useRef(null)
-  const listRef = useRef(null)
-  const processRef = useRef(null)
   const heroVideoRef = useRef(null)
-  const [openIndex, setOpenIndex] = useState(null)
-
-  const titles = t('services.cards')
-  const descriptions = t('services.descriptions')
-  const bulletLists = t('services.cardDetails')
-
-  const toggleRow = (i) => setOpenIndex((prev) => (prev === i ? null : i))
 
   useEffect(() => {
     const video = heroVideoRef.current
@@ -102,36 +47,6 @@ const ServicesPage = () => {
       { y: 0, opacity: 1, duration: 1, ease: 'power4.out', delay: 0.2 }
     )
   }, { scope: heroRef })
-
-  useGSAP(() => {
-    gsap.fromTo(
-      '[data-service-row]',
-      { y: 30, opacity: 0 },
-      {
-        y: 0,
-        opacity: 1,
-        duration: 0.7,
-        stagger: 0.07,
-        ease: 'power3.out',
-        scrollTrigger: { trigger: listRef.current, start: 'top 82%' },
-      }
-    )
-  }, { scope: listRef })
-
-  useGSAP(() => {
-    gsap.fromTo(
-      '[data-step]',
-      { y: 40, opacity: 0 },
-      {
-        y: 0,
-        opacity: 1,
-        duration: 0.8,
-        stagger: 0.12,
-        ease: 'power3.out',
-        scrollTrigger: { trigger: processRef.current, start: 'top 82%' },
-      }
-    )
-  }, { scope: processRef })
 
   return (
     <motion.div variants={pageVariants} initial="initial" animate="animate" exit="exit">
@@ -161,45 +76,8 @@ const ServicesPage = () => {
         </Container>
       </section>
 
-      {/* ── Services List ── */}
-      <section className={styles.servicesList} ref={listRef}>
-        <Container>
-          <div className={styles.listInner}>
-            {titles.map((title, i) => (
-              <ServiceRow
-                key={title}
-                index={i}
-                title={title}
-                description={descriptions[i]}
-                bullets={bulletLists[i]}
-                isOpen={openIndex === i}
-                onToggle={() => toggleRow(i)}
-              />
-            ))}
-          </div>
-        </Container>
-      </section>
-
-      {/* ── Process ── */}
-      <section className={styles.processSection} ref={processRef}>
-        <Container>
-          <div className={styles.processHeader}>
-            <p className={styles.sectionEyebrow}>How We Work</p>
-            <h2 className={styles.sectionTitle}>The HEWAR Method.</h2>
-          </div>
-          <div className={styles.processGrid}>
-            {processSteps.map((step) => (
-              <div key={step.number} className={styles.stepCard} data-step>
-                <span className={styles.stepNumber}>{step.number}</span>
-                <h3 className={styles.stepTitle}>
-                  {step.number} — {step.title}
-                </h3>
-                <p className={styles.stepDesc}>{step.description}</p>
-              </div>
-            ))}
-          </div>
-        </Container>
-      </section>
+      {/* ── Services: scroll-driven poster cards ── */}
+      <ServicePosters />
     </motion.div>
   )
 }
