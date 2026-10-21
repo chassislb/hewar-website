@@ -1,6 +1,15 @@
 /*
  * Only include entries here that are confirmed, publicly verifiable HEWAR/Loma Jaber
  * thought leadership. Do not add unverified external citations.
+ *
+ * Required: id, title{en,ar}, author, role{en,ar}, category{en,ar}, year,
+ *           publication, excerpt{en,ar}, externalUrl
+ * Optional: image        cover picture (path under /hewar-website/...). Without it
+ *                        a generated brand cover is used.
+ *           featured     true to pin this one as the big feature (default: newest)
+ *           body         { en: [...], ar: [...] } to host the full text on this site.
+ *                        Each item is a paragraph string, { h: 'Heading' } or
+ *                        { quote: 'Pull quote' }.
  */
 export const insights = [
   {
