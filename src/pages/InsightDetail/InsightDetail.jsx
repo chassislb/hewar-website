@@ -30,7 +30,8 @@ const InsightDetail = () => {
 
   const index = insights.findIndex((i) => i.id === id)
   const insight = insights[index]
-  const body = insight?.body?.[language]
+  const bodyFallback = Boolean(insight?.body) && !insight.body[language]
+  const body = insight?.body?.[language] ?? insight?.body?.en
   const minutes = body ? Math.max(1, Math.round(wordsIn(body) / 200)) : null
   const next = insights.length > 1 ? insights[(index + 1) % insights.length] : null
   const prev = insights.length > 2 ? insights[(index - 1 + insights.length) % insights.length] : null
@@ -102,7 +103,7 @@ const InsightDetail = () => {
       <section className={styles.reading}>
         <Container size="narrow">
           {body ? (
-            <article className={styles.article}>
+            <article className={styles.article} {...(bodyFallback ? { lang: 'en', dir: 'ltr' } : {})}>
               {body.map((block, i) => {
                 if (typeof block === 'string') return <p key={i}>{block}</p>
                 if (block.h) return <h2 key={i}>{block.h}</h2>
