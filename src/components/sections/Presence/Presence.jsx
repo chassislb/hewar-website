@@ -21,16 +21,19 @@ const OFFICES = [
   { code: 'SA', lon: 46.6753, lat: 24.7136, tz: 'Asia/Riyadh' },
   { code: 'AE', lon: 55.2708, lat: 25.2048, tz: 'Asia/Dubai' },
   { code: 'LB', lon: 35.5018, lat: 33.8938, tz: 'Asia/Beirut' },
+  { code: 'EG', lon: 31.2357, lat: 30.0444, tz: 'Africa/Cairo' },
 ]
 
 const ARCS = [
   ['SA', 'AE'],
   ['SA', 'LB'],
   ['LB', 'AE'],
+  ['SA', 'EG'],
+  ['EG', 'LB'],
 ]
 
-/* Region centre — where the camera rests between Beirut, Riyadh and Dubai */
-const HOME_VIEW = { lon: 44, lat: 22, scale: 1 }
+/* Region centre — where the camera rests between Cairo, Beirut, Riyadh and Dubai */
+const HOME_VIEW = { lon: 43, lat: 22, scale: 1 }
 
 const decode = (b64) => {
   const bin = atob(b64)
