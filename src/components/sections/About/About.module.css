@@ -105,8 +105,9 @@
 /* full-viewport-wide lane the circles ride along (left/width set in JS) */
 .ribbonTrack {
   position: absolute;
-  top: 0;
-  height: 100%;
+  top: -80px;
+  height: calc(100% + 160px);
+  overflow: hidden;
   pointer-events: none;
   z-index: 1;
 }

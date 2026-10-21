@@ -30,8 +30,6 @@ const sorted = [...insights].sort((a, b) => Number(b.year) - Number(a.year))
 const lead = sorted.find((i) => i.featured) ?? sorted[0]
 const rest = sorted.filter((i) => i !== lead)
 const categories = [...new Map(rest.map((i) => [i.category.en, i.category])).entries()]
-const publications = new Set(sorted.map((i) => i.publication)).size
-const since = Math.min(...sorted.map((i) => Number(i.year)))
 
 const Card = ({ item, index, language }) => {
   const [ref, shown] = useReveal()
@@ -163,19 +161,7 @@ const InsightsPage = () => {
             ))}
           </h1>
           <p className={styles.sub} data-fade>{t('insightsPage.sub')}</p>
-
-          {sorted.length >= 3 && (
-            <dl className={styles.stats} data-fade>
-              <div><dt>{sorted.length}</dt><dd>{t('insightsPage.pieces')}</dd></div>
-              <div><dt>{publications}</dt><dd>{language === 'ar' ? 'منصات' : 'publications'}</dd></div>
-              <div><dt>{since}</dt><dd>{language === 'ar' ? 'منذ' : 'since'}</dd></div>
-            </dl>
-          )}
         </Container>
-        <span className={styles.cue} aria-hidden data-fade>
-          <i />
-          {t('insightsPage.scroll')}
-        </span>
       </section>
 
       {/* ── Featured ── */}
@@ -267,9 +253,6 @@ const InsightsPage = () => {
         <Container>
           <div className={styles.libHead}>
             <h2 className={styles.libTitle}>{t('insightsPage.libraryTitle')}</h2>
-            <span className={styles.count}>
-              {sorted.length} {sorted.length === 1 ? t('insightsPage.piece') : t('insightsPage.pieces')}
-            </span>
           </div>
 
           {showFilters && (

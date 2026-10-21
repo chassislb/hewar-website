@@ -100,70 +100,6 @@
   color: var(--color-text-secondary);
 }
 
-.stats {
-  position: relative;
-  display: flex;
-  gap: clamp(1.75rem, 5vw, 4rem);
-  margin: clamp(2rem, 4vw, 3.25rem) 0 0;
-}
-
-.stats div {
-  display: flex;
-  flex-direction: column;
-  gap: 0.2rem;
-}
-
-.stats dt {
-  font-size: clamp(2rem, 3.4vw, 3rem);
-  font-weight: var(--weight-black);
-  letter-spacing: -0.03em;
-  line-height: 1;
-  font-variant-numeric: tabular-nums;
-}
-
-.stats dd {
-  margin: 0;
-  font-size: var(--type-body-xs);
-  letter-spacing: var(--tracking-wider);
-  text-transform: uppercase;
-  color: var(--color-text-tertiary);
-}
-
-.cue {
-  position: absolute;
-  inset-inline-end: clamp(1.25rem, 4vw, 3rem);
-  bottom: clamp(1.5rem, 4vh, 2.5rem);
-  display: flex;
-  align-items: center;
-  gap: 0.8rem;
-  font-size: var(--type-body-xs);
-  letter-spacing: var(--tracking-widest);
-  text-transform: uppercase;
-  color: var(--color-text-tertiary);
-}
-
-.cue i {
-  position: relative;
-  display: block;
-  width: 56px;
-  height: 1px;
-  background: rgba(255, 255, 255, 0.18);
-  overflow: hidden;
-}
-
-.cue i::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: var(--color-cyan);
-  transform: translateX(-100%);
-  animation: sweep 2.2s var(--ease-out-expo) infinite;
-}
-
-@keyframes sweep {
-  to { transform: translateX(100%); }
-}
-
 /* ═══════════════════════════════
    FEATURED
 ═══════════════════════════════ */
@@ -417,14 +353,6 @@
   font-size: var(--type-display-md);
   font-weight: var(--weight-black);
   letter-spacing: -0.03em;
-}
-
-.count {
-  font-size: var(--type-body-sm);
-  font-weight: var(--weight-semibold);
-  letter-spacing: var(--tracking-wider);
-  text-transform: uppercase;
-  color: var(--color-text-tertiary);
 }
 
 .filters {
@@ -778,7 +706,6 @@
 @media (max-width: 860px) {
   .featGrid { grid-template-columns: 1fr; }
   .featCover { order: -1; max-width: 520px; width: 100%; margin-inline: auto; }
-  .cue { display: none; }
 }
 
 @media (max-width: 640px) {
@@ -797,7 +724,6 @@
 @media (prefers-reduced-motion: reduce) {
   .track { animation: none; }
   .card { opacity: 1; transform: none; transition: none; }
-  .cue i::after,
   .soonPulse::after { animation: none; }
   .tilt { transform: none; }
 }

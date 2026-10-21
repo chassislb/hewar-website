@@ -82,6 +82,8 @@ const About = () => {
       const N = beads.length
       const BEHIND = 0.18
       const HOLD = 0.85
+      /* the lane is clipped to the screen; it is taller than the row so shadows aren't cut (see .ribbonTrack) */
+      const PAD = 80
 
       let W = 0, size = 0, gap = 0, cy = 0, spotX = 0
       let text = { l: 0, t: 0, b: 0 }
@@ -117,10 +119,11 @@ const About = () => {
           }
           const top = cy - size / 2
           const vOverlap = top < text.b && top + size > text.t
+          const y = top + PAD
           const behind = vOverlap ? Math.max(0, x + size - text.l) : 0
           bead.style.visibility = 'visible'
           bead.style.opacity = String(BEHIND + (1 - BEHIND) * (1 - smooth(0, size * 0.3, behind)))
-          bead.style.transform = `translate3d(${x}px, ${top}px, 0)`
+          bead.style.transform = `translate3d(${x}px, ${y}px, 0)`
         })
       }
 
