@@ -25,6 +25,7 @@ const WorkDetail = () => {
   const projectIndex = work.findIndex((p) => p.id === id)
   const project = work[projectIndex]
   const nextProject = project ? work[(projectIndex + 1) % work.length] : null
+  const back = language === 'ar' ? '→' : '←'
 
   useGSAP(() => {
     gsap.fromTo(
@@ -63,8 +64,8 @@ const WorkDetail = () => {
       <motion.div variants={pageVariants} initial="initial" animate="animate" exit="exit">
         <section className={styles.notFound}>
           <Container>
-            <h1 className={styles.notFoundTitle}>Project not found.</h1>
-            <Button variant="ghost" href="/work">← Back to Work</Button>
+            <h1 className={styles.notFoundTitle}>{t('workPage.projectNotFound')}</h1>
+            <Button variant="ghost" href="/work">{back} {t('workPage.backToWork')}</Button>
           </Container>
         </section>
       </motion.div>
@@ -88,7 +89,7 @@ const WorkDetail = () => {
         <div className={styles.heroOverlay} aria-hidden />
         <Container>
           <Link to="/work" className={styles.backLink}>
-            ← All Work
+            {back} {t('workPage.allWork')}
           </Link>
           <p className={styles.eyebrow} data-page-eyebrow>
             <span className={styles.eyebrowDot} aria-hidden />
@@ -99,12 +100,12 @@ const WorkDetail = () => {
           </h1>
           <div className={styles.heroMeta} data-page-meta>
             <span className={styles.metaItem}>
-              <span className={styles.metaLabel}>Category</span>
+              <span className={styles.metaLabel}>{t('workPage.category')}</span>
               <span className={styles.metaValue}>{project.category[language]}</span>
             </span>
             <span className={styles.metaDivider} aria-hidden />
             <span className={styles.metaItem}>
-              <span className={styles.metaLabel}>Year</span>
+              <span className={styles.metaLabel}>{t('workPage.year')}</span>
               <span className={styles.metaValue}>{project.year}</span>
             </span>
           </div>
@@ -120,10 +121,10 @@ const WorkDetail = () => {
             </p>
             <div className={styles.actions} data-reveal>
               <Button variant="ghost" href="/work">
-                ← Back to Work
+                {back} {t('workPage.backToWork')}
               </Button>
               <Button variant="primary" href="/contact">
-                Work With Us
+                {t('workPage.workWithUs')}
               </Button>
             </div>
           </div>
@@ -152,11 +153,11 @@ const WorkDetail = () => {
       {project.images && project.images.length > 0 && (
         <section className={styles.gallerySection}>
           <Container>
-            <p className={styles.galleryLabel}>Project Visuals</p>
+            <p className={styles.galleryLabel}>{t('workPage.visuals')}</p>
             <div className={styles.gallery}>
               {project.images.map((src, i) => (
                 <div key={i} className={styles.galleryItem}>
-                  <img src={src} alt={`${project.client} — visual ${i + 1}`} className={styles.galleryImg} />
+                  <img src={src} alt={`${project.client}, ${t('workPage.visualAlt')} ${i + 1}`} className={styles.galleryImg} />
                 </div>
               ))}
             </div>

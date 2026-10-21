@@ -19,7 +19,7 @@ const RAD = Math.PI / 180
 
 const OFFICES = [
   { code: 'SA', lon: 46.6753, lat: 24.7136, tz: 'Asia/Riyadh' },
-  { code: 'AE', lon: 55.2708, lat: 25.2048, tz: 'Asia/Dubai' },
+  { code: 'AE', lon: 54.3773, lat: 24.4539, tz: 'Asia/Dubai' },
   { code: 'LB', lon: 35.5018, lat: 33.8938, tz: 'Asia/Beirut' },
   { code: 'EG', lon: 31.2357, lat: 30.0444, tz: 'Africa/Cairo' },
 ]
@@ -32,7 +32,7 @@ const ARCS = [
   ['EG', 'LB'],
 ]
 
-/* Region centre — where the camera rests between Cairo, Beirut, Riyadh and Dubai */
+/* Region centre — where the camera rests between Cairo, Beirut, Riyadh and Abu Dhabi */
 const HOME_VIEW = { lon: 43, lat: 22, scale: 1 }
 
 const decode = (b64) => {

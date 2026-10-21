@@ -1,6 +1,8 @@
 import { motion } from 'framer-motion'
 import Container from '../../components/ui/Container/Container'
 import Button from '../../components/ui/Button/Button'
+import { useTranslation } from '../../i18n/useTranslation'
+import { useLanguage } from '../../context/LanguageContext'
 import styles from './NotFound.module.css'
 
 const pageVariants = {
@@ -9,7 +11,11 @@ const pageVariants = {
   exit: { opacity: 0, transition: { duration: 0.25 } },
 }
 
-const NotFound = () => (
+const NotFound = () => {
+  const { t } = useTranslation()
+  const { language } = useLanguage()
+  const back = language === 'ar' ? '→' : '←'
+  return (
   <motion.div variants={pageVariants} initial="initial" animate="animate" exit="exit">
     <section className={styles.notFound}>
       <div className={styles.orb} aria-hidden />
@@ -18,17 +24,16 @@ const NotFound = () => (
           <span className={styles.eyebrowDot} aria-hidden />
           404
         </p>
-        <h1 className={styles.title}>This page doesn&rsquo;t exist.</h1>
-        <p className={styles.sub}>
-          The page you&rsquo;re looking for may have been moved or never existed.
-        </p>
+        <h1 className={styles.title}>{t('notFoundPage.title')}</h1>
+        <p className={styles.sub}>{t('notFoundPage.sub')}</p>
         <div className={styles.actions}>
-          <Button variant="primary" href="/">← Back to Home</Button>
-          <Button variant="ghost" href="/contact">Contact Us</Button>
+          <Button variant="primary" href="/">{back} {t('notFoundPage.home')}</Button>
+          <Button variant="ghost" href="/contact">{t('notFoundPage.contact')}</Button>
         </div>
       </Container>
     </section>
   </motion.div>
-)
+  )
+}
 
 export default NotFound

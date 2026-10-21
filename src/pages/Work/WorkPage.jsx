@@ -7,6 +7,7 @@ import Container from '../../components/ui/Container/Container'
 import WorkSpace from '../../components/sections/WorkSpace/WorkSpace'
 import IndustriesIndex from '../../components/sections/IndustriesIndex/IndustriesIndex'
 import { useLanguage } from '../../context/LanguageContext'
+import { useTranslation } from '../../i18n/useTranslation'
 import styles from './WorkPage.module.css'
 
 gsap.registerPlugin(ScrollTrigger)
@@ -25,6 +26,7 @@ const pageVariants = {
 
 const WorkPage = () => {
   const { language } = useLanguage()
+  const { t } = useTranslation()
   const heroRef = useRef(null)
   const heroVideoRef = useRef(null)
 
@@ -74,14 +76,13 @@ const WorkPage = () => {
         <Container>
           <p className={styles.eyebrow} data-page-eyebrow>
             <span className={styles.eyebrowDot} aria-hidden />
-            Selected Work
+            {t('workPage.eyebrow')}
           </p>
           <h1 className={styles.title} data-page-title>
-            Human insight, amplified into impact.
+            {t('workPage.heroTitle')}
           </h1>
           <p className={styles.heroSub} data-page-sub>
-            A selection of campaigns, identities, and experiences we've created
-            for partners across Saudi Arabia and the region.
+            {t('workPage.heroSub')}
           </p>
         </Container>
       </section>

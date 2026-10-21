@@ -12,6 +12,7 @@ import Preloader from './components/layout/Preloader/Preloader'
 import Navbar from './components/layout/Navbar/Navbar'
 import Footer from './components/layout/Footer/Footer'
 import ContactModal from './components/layout/ContactModal/ContactModal'
+import PageMeta from './components/layout/PageMeta/PageMeta'
 import Home from './pages/Home/Home'
 import About from './pages/About/About'
 import ServicesPage from './pages/Services/ServicesPage'
@@ -60,6 +61,7 @@ const App = () => {
 
                 <ParticleField />
                 <Cursor />
+                <PageMeta />
                 <Navbar />
                 <ContactModal />
 

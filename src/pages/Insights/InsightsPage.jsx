@@ -54,7 +54,7 @@ const Card = ({ item, index, language }) => {
       <span className={styles.spot} aria-hidden />
       <InsightArt id={item.id} image={item.image} className={styles.cardArt} />
       <span className={styles.cardChip}>{item.category[language]}</span>
-      <span className={styles.cardNum} aria-hidden>{pad(index + 2)}</span>
+      <span className={styles.cardNum} aria-hidden>{pad(index + 1)}</span>
       <div className={styles.cardBody}>
         <h3 className={styles.cardTitle}>{item.title[language]}</h3>
         <p className={styles.cardExcerpt}>{item.excerpt[language]}</p>
